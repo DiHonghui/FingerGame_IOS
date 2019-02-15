@@ -1,0 +1,950 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4E985FB521DE44C2009E5D71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FB421DE44C2009E5D71 /* AppDelegate.m */; };
+		4E985FB821DE44C2009E5D71 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FB721DE44C2009E5D71 /* ViewController.m */; };
+		4E985FBB21DE44C2009E5D71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E985FB921DE44C2009E5D71 /* Main.storyboard */; };
+		4E985FBD21DE44C7009E5D71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E985FBC21DE44C7009E5D71 /* Assets.xcassets */; };
+		4E985FC021DE44C7009E5D71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E985FBE21DE44C7009E5D71 /* LaunchScreen.storyboard */; };
+		4E985FC321DE44C7009E5D71 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FC221DE44C7009E5D71 /* main.m */; };
+		4E985FCD21DE44C8009E5D71 /* FingerGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FCC21DE44C8009E5D71 /* FingerGameTests.m */; };
+		4E985FD821DE44C8009E5D71 /* FingerGameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FD721DE44C8009E5D71 /* FingerGameUITests.m */; };
+		4E98600B22165B4B009E5D71 /* ZHYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FEA22165B4B009E5D71 /* ZHYLogger.m */; };
+		4E98600C22165B4B009E5D71 /* ZHYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FEA22165B4B009E5D71 /* ZHYLogger.m */; };
+		4E98600D22165B4B009E5D71 /* ZHYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FEA22165B4B009E5D71 /* ZHYLogger.m */; };
+		4E98600E22165B4B009E5D71 /* ZHYAPIBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FEE22165B4B009E5D71 /* ZHYAPIBaseManager.m */; };
+		4E98600F22165B4B009E5D71 /* ZHYAPIBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FEE22165B4B009E5D71 /* ZHYAPIBaseManager.m */; };
+		4E98601022165B4B009E5D71 /* ZHYAPIBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FEE22165B4B009E5D71 /* ZHYAPIBaseManager.m */; };
+		4E98601122165B4B009E5D71 /* ZHYRequestGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FEF22165B4B009E5D71 /* ZHYRequestGenerator.m */; };
+		4E98601222165B4B009E5D71 /* ZHYRequestGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FEF22165B4B009E5D71 /* ZHYRequestGenerator.m */; };
+		4E98601322165B4B009E5D71 /* ZHYRequestGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FEF22165B4B009E5D71 /* ZHYRequestGenerator.m */; };
+		4E98601422165B4B009E5D71 /* ZHYAPIProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FF322165B4B009E5D71 /* ZHYAPIProxy.m */; };
+		4E98601522165B4B009E5D71 /* ZHYAPIProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FF322165B4B009E5D71 /* ZHYAPIProxy.m */; };
+		4E98601622165B4B009E5D71 /* ZHYAPIProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FF322165B4B009E5D71 /* ZHYAPIProxy.m */; };
+		4E98601722165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FF622165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.m */; };
+		4E98601822165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FF622165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.m */; };
+		4E98601922165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FF622165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.m */; };
+		4E98601A22165B4B009E5D71 /* NSURLRequest+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FF822165B4B009E5D71 /* NSURLRequest+Properties.m */; };
+		4E98601B22165B4B009E5D71 /* NSURLRequest+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FF822165B4B009E5D71 /* NSURLRequest+Properties.m */; };
+		4E98601C22165B4B009E5D71 /* NSURLRequest+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FF822165B4B009E5D71 /* NSURLRequest+Properties.m */; };
+		4E98601D22165B4B009E5D71 /* YunzsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FFB22165B4B009E5D71 /* YunzsService.m */; };
+		4E98601E22165B4B009E5D71 /* YunzsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FFB22165B4B009E5D71 /* YunzsService.m */; };
+		4E98601F22165B4B009E5D71 /* YunzsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FFB22165B4B009E5D71 /* YunzsService.m */; };
+		4E98602022165B4B009E5D71 /* ZHYDefaultService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FFE22165B4B009E5D71 /* ZHYDefaultService.m */; };
+		4E98602122165B4B009E5D71 /* ZHYDefaultService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FFE22165B4B009E5D71 /* ZHYDefaultService.m */; };
+		4E98602222165B4B009E5D71 /* ZHYDefaultService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FFE22165B4B009E5D71 /* ZHYDefaultService.m */; };
+		4E98602322165B4B009E5D71 /* ZHYService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FFF22165B4B009E5D71 /* ZHYService.m */; };
+		4E98602422165B4B009E5D71 /* ZHYService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FFF22165B4B009E5D71 /* ZHYService.m */; };
+		4E98602522165B4B009E5D71 /* ZHYService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FFF22165B4B009E5D71 /* ZHYService.m */; };
+		4E98602622165B4B009E5D71 /* ZHYServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600022165B4B009E5D71 /* ZHYServiceFactory.m */; };
+		4E98602722165B4B009E5D71 /* ZHYServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600022165B4B009E5D71 /* ZHYServiceFactory.m */; };
+		4E98602822165B4B009E5D71 /* ZHYServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600022165B4B009E5D71 /* ZHYServiceFactory.m */; };
+		4E98602922165B4B009E5D71 /* TestYunzsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600322165B4B009E5D71 /* TestYunzsService.m */; };
+		4E98602A22165B4B009E5D71 /* TestYunzsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600322165B4B009E5D71 /* TestYunzsService.m */; };
+		4E98602B22165B4B009E5D71 /* TestYunzsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600322165B4B009E5D71 /* TestYunzsService.m */; };
+		4E98602C22165B4B009E5D71 /* ZHYURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600522165B4B009E5D71 /* ZHYURLResponse.m */; };
+		4E98602D22165B4B009E5D71 /* ZHYURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600522165B4B009E5D71 /* ZHYURLResponse.m */; };
+		4E98602E22165B4B009E5D71 /* ZHYURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600522165B4B009E5D71 /* ZHYURLResponse.m */; };
+		4E98602F22165B4B009E5D71 /* ZHYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600922165B4B009E5D71 /* ZHYCache.m */; };
+		4E98603022165B4B009E5D71 /* ZHYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600922165B4B009E5D71 /* ZHYCache.m */; };
+		4E98603122165B4B009E5D71 /* ZHYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600922165B4B009E5D71 /* ZHYCache.m */; };
+		4E98603222165B4B009E5D71 /* ZHYCacheObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600A22165B4B009E5D71 /* ZHYCacheObject.m */; };
+		4E98603322165B4B009E5D71 /* ZHYCacheObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600A22165B4B009E5D71 /* ZHYCacheObject.m */; };
+		4E98603422165B4B009E5D71 /* ZHYCacheObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600A22165B4B009E5D71 /* ZHYCacheObject.m */; };
+		4E98603D22165B78009E5D71 /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603622165B78009E5D71 /* BTViewController.m */; };
+		4E98603E22165B78009E5D71 /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603622165B78009E5D71 /* BTViewController.m */; };
+		4E98603F22165B78009E5D71 /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603622165B78009E5D71 /* BTViewController.m */; };
+		4E98604022165B78009E5D71 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603722165B78009E5D71 /* DetailViewController.m */; };
+		4E98604122165B78009E5D71 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603722165B78009E5D71 /* DetailViewController.m */; };
+		4E98604222165B78009E5D71 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603722165B78009E5D71 /* DetailViewController.m */; };
+		4E98604322165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
+		4E98604422165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
+		4E98604522165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
+		6CA7689EB0971694AC95FCBC /* Pods_FingerGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F839D6627D42675A230BB2 /* Pods_FingerGame.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4E985FC921DE44C7009E5D71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E985FA821DE44C2009E5D71 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E985FAF21DE44C2009E5D71;
+			remoteInfo = FingerGame;
+		};
+		4E985FD421DE44C8009E5D71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E985FA821DE44C2009E5D71 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E985FAF21DE44C2009E5D71;
+			remoteInfo = FingerGame;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		087BB4B1C058E65BBB673BD6 /* Pods-FingerGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FingerGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FingerGame/Pods-FingerGame.debug.xcconfig"; sourceTree = "<group>"; };
+		25F839D6627D42675A230BB2 /* Pods_FingerGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FingerGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E985FB021DE44C2009E5D71 /* FingerGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FingerGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E985FB321DE44C2009E5D71 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4E985FB421DE44C2009E5D71 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4E985FB621DE44C2009E5D71 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		4E985FB721DE44C2009E5D71 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		4E985FBA21DE44C2009E5D71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4E985FBC21DE44C7009E5D71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4E985FBF21DE44C7009E5D71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4E985FC121DE44C7009E5D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E985FC221DE44C7009E5D71 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4E985FC821DE44C7009E5D71 /* FingerGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FingerGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E985FCC21DE44C8009E5D71 /* FingerGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FingerGameTests.m; sourceTree = "<group>"; };
+		4E985FCE21DE44C8009E5D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E985FD321DE44C8009E5D71 /* FingerGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FingerGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E985FD721DE44C8009E5D71 /* FingerGameUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FingerGameUITests.m; sourceTree = "<group>"; };
+		4E985FD921DE44C8009E5D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E985FE621F5637D009E5D71 /* AppMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppMacro.h; sourceTree = "<group>"; };
+		4E985FEA22165B4B009E5D71 /* ZHYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYLogger.m; sourceTree = "<group>"; };
+		4E985FEB22165B4B009E5D71 /* ZHYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYLogger.h; sourceTree = "<group>"; };
+		4E985FEC22165B4B009E5D71 /* ZHYNetworkingConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYNetworkingConfiguration.h; sourceTree = "<group>"; };
+		4E985FED22165B4B009E5D71 /* ZHYNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYNetworking.h; sourceTree = "<group>"; };
+		4E985FEE22165B4B009E5D71 /* ZHYAPIBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYAPIBaseManager.m; sourceTree = "<group>"; };
+		4E985FEF22165B4B009E5D71 /* ZHYRequestGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYRequestGenerator.m; sourceTree = "<group>"; };
+		4E985FF022165B4B009E5D71 /* ZHYAPIProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYAPIProxy.h; sourceTree = "<group>"; };
+		4E985FF122165B4B009E5D71 /* ZHYURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYURLResponse.h; sourceTree = "<group>"; };
+		4E985FF222165B4B009E5D71 /* ZHYAPIBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYAPIBaseManager.h; sourceTree = "<group>"; };
+		4E985FF322165B4B009E5D71 /* ZHYAPIProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYAPIProxy.m; sourceTree = "<group>"; };
+		4E985FF422165B4B009E5D71 /* ZHYRequestGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYRequestGenerator.h; sourceTree = "<group>"; };
+		4E985FF622165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+ZHYNetworingMethods.m"; sourceTree = "<group>"; };
+		4E985FF722165B4B009E5D71 /* NSURLRequest+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+Properties.h"; sourceTree = "<group>"; };
+		4E985FF822165B4B009E5D71 /* NSURLRequest+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+Properties.m"; sourceTree = "<group>"; };
+		4E985FF922165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+ZHYNetworingMethods.h"; sourceTree = "<group>"; };
+		4E985FFB22165B4B009E5D71 /* YunzsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YunzsService.m; sourceTree = "<group>"; };
+		4E985FFC22165B4B009E5D71 /* ZHYServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYServiceFactory.h; sourceTree = "<group>"; };
+		4E985FFD22165B4B009E5D71 /* TestYunzsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestYunzsService.h; sourceTree = "<group>"; };
+		4E985FFE22165B4B009E5D71 /* ZHYDefaultService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYDefaultService.m; sourceTree = "<group>"; };
+		4E985FFF22165B4B009E5D71 /* ZHYService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYService.m; sourceTree = "<group>"; };
+		4E98600022165B4B009E5D71 /* ZHYServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYServiceFactory.m; sourceTree = "<group>"; };
+		4E98600122165B4B009E5D71 /* YunzsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YunzsService.h; sourceTree = "<group>"; };
+		4E98600222165B4B009E5D71 /* ZHYDefaultService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYDefaultService.h; sourceTree = "<group>"; };
+		4E98600322165B4B009E5D71 /* TestYunzsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestYunzsService.m; sourceTree = "<group>"; };
+		4E98600422165B4B009E5D71 /* ZHYService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYService.h; sourceTree = "<group>"; };
+		4E98600522165B4B009E5D71 /* ZHYURLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYURLResponse.m; sourceTree = "<group>"; };
+		4E98600722165B4B009E5D71 /* ZHYCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYCache.h; sourceTree = "<group>"; };
+		4E98600822165B4B009E5D71 /* ZHYCacheObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYCacheObject.h; sourceTree = "<group>"; };
+		4E98600922165B4B009E5D71 /* ZHYCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYCache.m; sourceTree = "<group>"; };
+		4E98600A22165B4B009E5D71 /* ZHYCacheObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYCacheObject.m; sourceTree = "<group>"; };
+		4E98603622165B78009E5D71 /* BTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTViewController.m; sourceTree = "<group>"; };
+		4E98603722165B78009E5D71 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		4E98603822165B78009E5D71 /* BTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTViewController.h; sourceTree = "<group>"; };
+		4E98603A22165B78009E5D71 /* BLEInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEInfo.m; sourceTree = "<group>"; };
+		4E98603B22165B78009E5D71 /* BLEInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEInfo.h; sourceTree = "<group>"; };
+		4E98603C22165B78009E5D71 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		753C542771069F572133C9E1 /* Pods-FingerGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FingerGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-FingerGame/Pods-FingerGame.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4E985FAD21DE44C2009E5D71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CA7689EB0971694AC95FCBC /* Pods_FingerGame.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E985FC521DE44C7009E5D71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E985FD021DE44C8009E5D71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04D0EAD28EBF36ACAA8B1F48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				25F839D6627D42675A230BB2 /* Pods_FingerGame.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4E985FA721DE44C2009E5D71 = {
+			isa = PBXGroup;
+			children = (
+				4E985FE822165B4B009E5D71 /* ZHYNetworking */,
+				4E985FB221DE44C2009E5D71 /* FingerGame */,
+				4E985FCB21DE44C7009E5D71 /* FingerGameTests */,
+				4E985FD621DE44C8009E5D71 /* FingerGameUITests */,
+				4E985FB121DE44C2009E5D71 /* Products */,
+				6BAFB409FA611116E447C03F /* Pods */,
+				04D0EAD28EBF36ACAA8B1F48 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4E985FB121DE44C2009E5D71 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4E985FB021DE44C2009E5D71 /* FingerGame.app */,
+				4E985FC821DE44C7009E5D71 /* FingerGameTests.xctest */,
+				4E985FD321DE44C8009E5D71 /* FingerGameUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4E985FB221DE44C2009E5D71 /* FingerGame */ = {
+			isa = PBXGroup;
+			children = (
+				4E985FB321DE44C2009E5D71 /* AppDelegate.h */,
+				4E985FB421DE44C2009E5D71 /* AppDelegate.m */,
+				4E98603522165B78009E5D71 /* Bluetooth */,
+				4E985FE721F57263009E5D71 /* Function */,
+				4E985FE521F56320009E5D71 /* Custom */,
+				4E985FB621DE44C2009E5D71 /* ViewController.h */,
+				4E985FB721DE44C2009E5D71 /* ViewController.m */,
+				4E985FB921DE44C2009E5D71 /* Main.storyboard */,
+				4E985FBC21DE44C7009E5D71 /* Assets.xcassets */,
+				4E985FBE21DE44C7009E5D71 /* LaunchScreen.storyboard */,
+				4E985FC121DE44C7009E5D71 /* Info.plist */,
+				4E985FC221DE44C7009E5D71 /* main.m */,
+			);
+			path = FingerGame;
+			sourceTree = "<group>";
+		};
+		4E985FCB21DE44C7009E5D71 /* FingerGameTests */ = {
+			isa = PBXGroup;
+			children = (
+				4E985FCC21DE44C8009E5D71 /* FingerGameTests.m */,
+				4E985FCE21DE44C8009E5D71 /* Info.plist */,
+			);
+			path = FingerGameTests;
+			sourceTree = "<group>";
+		};
+		4E985FD621DE44C8009E5D71 /* FingerGameUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4E985FD721DE44C8009E5D71 /* FingerGameUITests.m */,
+				4E985FD921DE44C8009E5D71 /* Info.plist */,
+			);
+			path = FingerGameUITests;
+			sourceTree = "<group>";
+		};
+		4E985FE521F56320009E5D71 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				4E985FE621F5637D009E5D71 /* AppMacro.h */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		4E985FE721F57263009E5D71 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		4E985FE822165B4B009E5D71 /* ZHYNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				4E985FE922165B4B009E5D71 /* LogComponents */,
+				4E985FEC22165B4B009E5D71 /* ZHYNetworkingConfiguration.h */,
+				4E985FED22165B4B009E5D71 /* ZHYNetworking.h */,
+				4E985FEE22165B4B009E5D71 /* ZHYAPIBaseManager.m */,
+				4E985FEF22165B4B009E5D71 /* ZHYRequestGenerator.m */,
+				4E985FF022165B4B009E5D71 /* ZHYAPIProxy.h */,
+				4E985FF122165B4B009E5D71 /* ZHYURLResponse.h */,
+				4E985FF222165B4B009E5D71 /* ZHYAPIBaseManager.h */,
+				4E985FF322165B4B009E5D71 /* ZHYAPIProxy.m */,
+				4E985FF422165B4B009E5D71 /* ZHYRequestGenerator.h */,
+				4E985FF522165B4B009E5D71 /* Categories */,
+				4E985FFA22165B4B009E5D71 /* Services */,
+				4E98600522165B4B009E5D71 /* ZHYURLResponse.m */,
+				4E98600622165B4B009E5D71 /* CacheComponents */,
+			);
+			path = ZHYNetworking;
+			sourceTree = "<group>";
+		};
+		4E985FE922165B4B009E5D71 /* LogComponents */ = {
+			isa = PBXGroup;
+			children = (
+				4E985FEA22165B4B009E5D71 /* ZHYLogger.m */,
+				4E985FEB22165B4B009E5D71 /* ZHYLogger.h */,
+			);
+			path = LogComponents;
+			sourceTree = "<group>";
+		};
+		4E985FF522165B4B009E5D71 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4E985FF622165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.m */,
+				4E985FF722165B4B009E5D71 /* NSURLRequest+Properties.h */,
+				4E985FF822165B4B009E5D71 /* NSURLRequest+Properties.m */,
+				4E985FF922165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.h */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		4E985FFA22165B4B009E5D71 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4E985FFB22165B4B009E5D71 /* YunzsService.m */,
+				4E985FFC22165B4B009E5D71 /* ZHYServiceFactory.h */,
+				4E985FFD22165B4B009E5D71 /* TestYunzsService.h */,
+				4E985FFE22165B4B009E5D71 /* ZHYDefaultService.m */,
+				4E985FFF22165B4B009E5D71 /* ZHYService.m */,
+				4E98600022165B4B009E5D71 /* ZHYServiceFactory.m */,
+				4E98600122165B4B009E5D71 /* YunzsService.h */,
+				4E98600222165B4B009E5D71 /* ZHYDefaultService.h */,
+				4E98600322165B4B009E5D71 /* TestYunzsService.m */,
+				4E98600422165B4B009E5D71 /* ZHYService.h */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4E98600622165B4B009E5D71 /* CacheComponents */ = {
+			isa = PBXGroup;
+			children = (
+				4E98600722165B4B009E5D71 /* ZHYCache.h */,
+				4E98600822165B4B009E5D71 /* ZHYCacheObject.h */,
+				4E98600922165B4B009E5D71 /* ZHYCache.m */,
+				4E98600A22165B4B009E5D71 /* ZHYCacheObject.m */,
+			);
+			path = CacheComponents;
+			sourceTree = "<group>";
+		};
+		4E98603522165B78009E5D71 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				4E98603922165B78009E5D71 /* Model */,
+				4E98603622165B78009E5D71 /* BTViewController.m */,
+				4E98603822165B78009E5D71 /* BTViewController.h */,
+				4E98603722165B78009E5D71 /* DetailViewController.m */,
+				4E98603C22165B78009E5D71 /* DetailViewController.h */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		4E98603922165B78009E5D71 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4E98603A22165B78009E5D71 /* BLEInfo.m */,
+				4E98603B22165B78009E5D71 /* BLEInfo.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6BAFB409FA611116E447C03F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				087BB4B1C058E65BBB673BD6 /* Pods-FingerGame.debug.xcconfig */,
+				753C542771069F572133C9E1 /* Pods-FingerGame.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4E985FAF21DE44C2009E5D71 /* FingerGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E985FDC21DE44C8009E5D71 /* Build configuration list for PBXNativeTarget "FingerGame" */;
+			buildPhases = (
+				66F28875A67A51D8DC9E15CE /* [CP] Check Pods Manifest.lock */,
+				4E985FAC21DE44C2009E5D71 /* Sources */,
+				4E985FAD21DE44C2009E5D71 /* Frameworks */,
+				4E985FAE21DE44C2009E5D71 /* Resources */,
+				0923D6995DB22528358783E6 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FingerGame;
+			productName = FingerGame;
+			productReference = 4E985FB021DE44C2009E5D71 /* FingerGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4E985FC721DE44C7009E5D71 /* FingerGameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E985FDF21DE44C8009E5D71 /* Build configuration list for PBXNativeTarget "FingerGameTests" */;
+			buildPhases = (
+				4E985FC421DE44C7009E5D71 /* Sources */,
+				4E985FC521DE44C7009E5D71 /* Frameworks */,
+				4E985FC621DE44C7009E5D71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E985FCA21DE44C7009E5D71 /* PBXTargetDependency */,
+			);
+			name = FingerGameTests;
+			productName = FingerGameTests;
+			productReference = 4E985FC821DE44C7009E5D71 /* FingerGameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4E985FD221DE44C8009E5D71 /* FingerGameUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E985FE221DE44C8009E5D71 /* Build configuration list for PBXNativeTarget "FingerGameUITests" */;
+			buildPhases = (
+				4E985FCF21DE44C8009E5D71 /* Sources */,
+				4E985FD021DE44C8009E5D71 /* Frameworks */,
+				4E985FD121DE44C8009E5D71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E985FD521DE44C8009E5D71 /* PBXTargetDependency */,
+			);
+			name = FingerGameUITests;
+			productName = FingerGameUITests;
+			productReference = 4E985FD321DE44C8009E5D71 /* FingerGameUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4E985FA821DE44C2009E5D71 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = lisy;
+				TargetAttributes = {
+					4E985FAF21DE44C2009E5D71 = {
+						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					4E985FC721DE44C7009E5D71 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 4E985FAF21DE44C2009E5D71;
+					};
+					4E985FD221DE44C8009E5D71 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 4E985FAF21DE44C2009E5D71;
+					};
+				};
+			};
+			buildConfigurationList = 4E985FAB21DE44C2009E5D71 /* Build configuration list for PBXProject "FingerGame" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4E985FA721DE44C2009E5D71;
+			productRefGroup = 4E985FB121DE44C2009E5D71 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4E985FAF21DE44C2009E5D71 /* FingerGame */,
+				4E985FC721DE44C7009E5D71 /* FingerGameTests */,
+				4E985FD221DE44C8009E5D71 /* FingerGameUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4E985FAE21DE44C2009E5D71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E985FC021DE44C7009E5D71 /* LaunchScreen.storyboard in Resources */,
+				4E985FBD21DE44C7009E5D71 /* Assets.xcassets in Resources */,
+				4E985FBB21DE44C2009E5D71 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E985FC621DE44C7009E5D71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E985FD121DE44C8009E5D71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0923D6995DB22528358783E6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FingerGame/Pods-FingerGame-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework",
+				"${BUILT_PRODUCTS_DIR}/AVOSCloudIM/AVOSCloudIM.framework",
+				"${BUILT_PRODUCTS_DIR}/Aspects/Aspects.framework",
+				"${BUILT_PRODUCTS_DIR}/CRToast/CRToast.framework",
+				"${BUILT_PRODUCTS_DIR}/CYLDeallocBlockExecutor/CYLDeallocBlockExecutor.framework",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
+				"${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework",
+				"${BUILT_PRODUCTS_DIR}/FDFullscreenPopGesture/FDFullscreenPopGesture.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/GVUserDefaults/GVUserDefaults.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/JSBadgeView/JSBadgeView.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/RKNotificationHub/RKNotificationHub.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SVPullToRefresh/SVPullToRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/WZLBadge/WZLBadge.framework",
+				"${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework",
+				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
+				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloud.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloudIM.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Aspects.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CRToast.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CYLDeallocBlockExecutor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTools.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FDFullscreenPopGesture.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GVUserDefaults.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSBadgeView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RKNotificationHub.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVPullToRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WZLBadge.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FingerGame/Pods-FingerGame-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66F28875A67A51D8DC9E15CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FingerGame-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4E985FAC21DE44C2009E5D71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E98601422165B4B009E5D71 /* ZHYAPIProxy.m in Sources */,
+				4E98601722165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.m in Sources */,
+				4E98600E22165B4B009E5D71 /* ZHYAPIBaseManager.m in Sources */,
+				4E98602C22165B4B009E5D71 /* ZHYURLResponse.m in Sources */,
+				4E98602F22165B4B009E5D71 /* ZHYCache.m in Sources */,
+				4E98603222165B4B009E5D71 /* ZHYCacheObject.m in Sources */,
+				4E98603D22165B78009E5D71 /* BTViewController.m in Sources */,
+				4E98604322165B78009E5D71 /* BLEInfo.m in Sources */,
+				4E98602922165B4B009E5D71 /* TestYunzsService.m in Sources */,
+				4E98602322165B4B009E5D71 /* ZHYService.m in Sources */,
+				4E98604022165B78009E5D71 /* DetailViewController.m in Sources */,
+				4E98601A22165B4B009E5D71 /* NSURLRequest+Properties.m in Sources */,
+				4E98601122165B4B009E5D71 /* ZHYRequestGenerator.m in Sources */,
+				4E98602022165B4B009E5D71 /* ZHYDefaultService.m in Sources */,
+				4E985FB821DE44C2009E5D71 /* ViewController.m in Sources */,
+				4E98600B22165B4B009E5D71 /* ZHYLogger.m in Sources */,
+				4E98601D22165B4B009E5D71 /* YunzsService.m in Sources */,
+				4E985FC321DE44C7009E5D71 /* main.m in Sources */,
+				4E985FB521DE44C2009E5D71 /* AppDelegate.m in Sources */,
+				4E98602622165B4B009E5D71 /* ZHYServiceFactory.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E985FC421DE44C7009E5D71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E98601522165B4B009E5D71 /* ZHYAPIProxy.m in Sources */,
+				4E98601B22165B4B009E5D71 /* NSURLRequest+Properties.m in Sources */,
+				4E98604122165B78009E5D71 /* DetailViewController.m in Sources */,
+				4E98603E22165B78009E5D71 /* BTViewController.m in Sources */,
+				4E985FCD21DE44C8009E5D71 /* FingerGameTests.m in Sources */,
+				4E98601E22165B4B009E5D71 /* YunzsService.m in Sources */,
+				4E98600C22165B4B009E5D71 /* ZHYLogger.m in Sources */,
+				4E98604422165B78009E5D71 /* BLEInfo.m in Sources */,
+				4E98600F22165B4B009E5D71 /* ZHYAPIBaseManager.m in Sources */,
+				4E98602D22165B4B009E5D71 /* ZHYURLResponse.m in Sources */,
+				4E98602122165B4B009E5D71 /* ZHYDefaultService.m in Sources */,
+				4E98603322165B4B009E5D71 /* ZHYCacheObject.m in Sources */,
+				4E98602A22165B4B009E5D71 /* TestYunzsService.m in Sources */,
+				4E98601222165B4B009E5D71 /* ZHYRequestGenerator.m in Sources */,
+				4E98602722165B4B009E5D71 /* ZHYServiceFactory.m in Sources */,
+				4E98601822165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.m in Sources */,
+				4E98603022165B4B009E5D71 /* ZHYCache.m in Sources */,
+				4E98602422165B4B009E5D71 /* ZHYService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E985FCF21DE44C8009E5D71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E98601622165B4B009E5D71 /* ZHYAPIProxy.m in Sources */,
+				4E98601C22165B4B009E5D71 /* NSURLRequest+Properties.m in Sources */,
+				4E98604222165B78009E5D71 /* DetailViewController.m in Sources */,
+				4E98603F22165B78009E5D71 /* BTViewController.m in Sources */,
+				4E985FD821DE44C8009E5D71 /* FingerGameUITests.m in Sources */,
+				4E98601F22165B4B009E5D71 /* YunzsService.m in Sources */,
+				4E98600D22165B4B009E5D71 /* ZHYLogger.m in Sources */,
+				4E98604522165B78009E5D71 /* BLEInfo.m in Sources */,
+				4E98601022165B4B009E5D71 /* ZHYAPIBaseManager.m in Sources */,
+				4E98602E22165B4B009E5D71 /* ZHYURLResponse.m in Sources */,
+				4E98602222165B4B009E5D71 /* ZHYDefaultService.m in Sources */,
+				4E98603422165B4B009E5D71 /* ZHYCacheObject.m in Sources */,
+				4E98602B22165B4B009E5D71 /* TestYunzsService.m in Sources */,
+				4E98601322165B4B009E5D71 /* ZHYRequestGenerator.m in Sources */,
+				4E98602822165B4B009E5D71 /* ZHYServiceFactory.m in Sources */,
+				4E98601922165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.m in Sources */,
+				4E98603122165B4B009E5D71 /* ZHYCache.m in Sources */,
+				4E98602522165B4B009E5D71 /* ZHYService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4E985FCA21DE44C7009E5D71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E985FAF21DE44C2009E5D71 /* FingerGame */;
+			targetProxy = 4E985FC921DE44C7009E5D71 /* PBXContainerItemProxy */;
+		};
+		4E985FD521DE44C8009E5D71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E985FAF21DE44C2009E5D71 /* FingerGame */;
+			targetProxy = 4E985FD421DE44C8009E5D71 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4E985FB921DE44C2009E5D71 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4E985FBA21DE44C2009E5D71 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4E985FBE21DE44C7009E5D71 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4E985FBF21DE44C7009E5D71 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4E985FDA21DE44C8009E5D71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4E985FDB21DE44C8009E5D71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4E985FDD21DE44C8009E5D71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 087BB4B1C058E65BBB673BD6 /* Pods-FingerGame.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RV75G22HVG;
+				INFOPLIST_FILE = FingerGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = yunzs.com.FingerGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4E985FDE21DE44C8009E5D71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 753C542771069F572133C9E1 /* Pods-FingerGame.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RV75G22HVG;
+				INFOPLIST_FILE = FingerGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = yunzs.com.FingerGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4E985FE021DE44C8009E5D71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FingerGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = yunzs.com.FingerGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FingerGame.app/FingerGame";
+			};
+			name = Debug;
+		};
+		4E985FE121DE44C8009E5D71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FingerGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = yunzs.com.FingerGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FingerGame.app/FingerGame";
+			};
+			name = Release;
+		};
+		4E985FE321DE44C8009E5D71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FingerGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = yunzs.com.FingerGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FingerGame;
+			};
+			name = Debug;
+		};
+		4E985FE421DE44C8009E5D71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FingerGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = yunzs.com.FingerGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FingerGame;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4E985FAB21DE44C2009E5D71 /* Build configuration list for PBXProject "FingerGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E985FDA21DE44C8009E5D71 /* Debug */,
+				4E985FDB21DE44C8009E5D71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E985FDC21DE44C8009E5D71 /* Build configuration list for PBXNativeTarget "FingerGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E985FDD21DE44C8009E5D71 /* Debug */,
+				4E985FDE21DE44C8009E5D71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E985FDF21DE44C8009E5D71 /* Build configuration list for PBXNativeTarget "FingerGameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E985FE021DE44C8009E5D71 /* Debug */,
+				4E985FE121DE44C8009E5D71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E985FE221DE44C8009E5D71 /* Build configuration list for PBXNativeTarget "FingerGameUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E985FE321DE44C8009E5D71 /* Debug */,
+				4E985FE421DE44C8009E5D71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4E985FA821DE44C2009E5D71 /* Project object */;
+}
