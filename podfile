@@ -30,4 +30,5 @@ target 'FingerGame' do
     pod 'SVProgressHUD',            '~>1.1.3'
     pod 'YYCache'
     pod 'pop',                      '~>1.0.10'
+    pod 'ReactiveCocoa'
 end

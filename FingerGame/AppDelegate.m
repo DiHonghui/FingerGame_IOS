@@ -9,7 +9,8 @@
 #import "AppDelegate.h"
 
 #import "ViewController.h"
-
+#import "MainGameViewController.h"
+#import "StartAnimView.h"
 
 @interface AppDelegate ()
 
@@ -20,10 +21,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
     self.window.rootViewController = [[UIViewController alloc] init];
-    ViewController *vc = [[ViewController alloc] init];
-    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
-    self.window.rootViewController =navi;
+    MainGameViewController *vc = [[MainGameViewController alloc] init];
+    self.window.rootViewController =vc;
+//    StartAnimView *animView = [StartAnimView shareInstance];
+//    [self.window.rootViewController.view addSubview:animView];
+    [self.window makeKeyAndVisible];
+//    [animView showWithAnimNum:3 CompleteBlock:^{
+//        NSLog(@"enter cbl");
+//    }];
+    
     return YES;
 }
 
