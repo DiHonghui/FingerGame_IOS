@@ -8,16 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "MyBTManager.h"
 
-@interface DetailViewController : UIViewController<
-CBPeripheralManagerDelegate,
-CBCentralManagerDelegate,
-CBPeripheralDelegate
->
+@interface DetailViewController : UIViewController
 
-@property (nonatomic, strong) CBCentralManager *centralMgr;
-@property (nonatomic, strong) CBPeripheral *discoveredPeripheral;
-@property (strong, nonatomic) CBCharacteristic* writeCharacteristic;
-@property (strong,nonatomic) CBCharacteristic* readNowC;
+@property (nonatomic, strong) MyBTManager *myManager;
 
 @end

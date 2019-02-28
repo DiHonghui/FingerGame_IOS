@@ -11,9 +11,6 @@
 #import "BLEInfo.h"
 #import "DetailViewController.h"
 
-@interface BTViewController : UITableViewController<CBCentralManagerDelegate>
-
-@property (nonatomic, strong) CBCentralManager *centralMgr;
-@property (nonatomic, strong) NSMutableArray *arrayBLE;
+@interface BTViewController : UITableViewController
 
 @end

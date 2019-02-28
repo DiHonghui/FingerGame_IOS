@@ -10,7 +10,6 @@
 
 #import "ViewController.h"
 #import "MainGameViewController.h"
-#import "StartAnimView.h"
 
 @interface AppDelegate ()
 
@@ -25,12 +24,7 @@
     self.window.rootViewController = [[UIViewController alloc] init];
     MainGameViewController *vc = [[MainGameViewController alloc] init];
     self.window.rootViewController =vc;
-//    StartAnimView *animView = [StartAnimView shareInstance];
-//    [self.window.rootViewController.view addSubview:animView];
     [self.window makeKeyAndVisible];
-//    [animView showWithAnimNum:3 CompleteBlock:^{
-//        NSLog(@"enter cbl");
-//    }];
     
     return YES;
 }

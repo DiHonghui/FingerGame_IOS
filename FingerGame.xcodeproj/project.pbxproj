@@ -10,6 +10,9 @@
 		4E2BDEEA221C0D3C001D52FC /* MainGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEE9221C0D3C001D52FC /* MainGameViewController.m */; };
 		4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEED221C0D84001D52FC /* GameSceneView.m */; };
 		4E2BDEF2221ED382001D52FC /* StartAnimView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEF1221ED382001D52FC /* StartAnimView.m */; };
+		4E6E6EDA221FD90D0061E599 /* GameStaticsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6E6ED9221FD90D0061E599 /* GameStaticsView.m */; };
+		4E6E6EDD22238AA50061E599 /* BottomLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6E6EDC22238AA50061E599 /* BottomLeftView.m */; };
+		4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6E6EDF22238ADD0061E599 /* BottomRightView.m */; };
 		4E985FB521DE44C2009E5D71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FB421DE44C2009E5D71 /* AppDelegate.m */; };
 		4E985FB821DE44C2009E5D71 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E985FB721DE44C2009E5D71 /* ViewController.m */; };
 		4E985FBB21DE44C2009E5D71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E985FB921DE44C2009E5D71 /* Main.storyboard */; };
@@ -60,15 +63,12 @@
 		4E98603222165B4B009E5D71 /* ZHYCacheObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600A22165B4B009E5D71 /* ZHYCacheObject.m */; };
 		4E98603322165B4B009E5D71 /* ZHYCacheObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600A22165B4B009E5D71 /* ZHYCacheObject.m */; };
 		4E98603422165B4B009E5D71 /* ZHYCacheObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98600A22165B4B009E5D71 /* ZHYCacheObject.m */; };
-		4E98603D22165B78009E5D71 /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603622165B78009E5D71 /* BTViewController.m */; };
-		4E98603E22165B78009E5D71 /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603622165B78009E5D71 /* BTViewController.m */; };
-		4E98603F22165B78009E5D71 /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603622165B78009E5D71 /* BTViewController.m */; };
-		4E98604022165B78009E5D71 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603722165B78009E5D71 /* DetailViewController.m */; };
-		4E98604122165B78009E5D71 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603722165B78009E5D71 /* DetailViewController.m */; };
-		4E98604222165B78009E5D71 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603722165B78009E5D71 /* DetailViewController.m */; };
 		4E98604322165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
 		4E98604422165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
 		4E98604522165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
+		4ECF95252227CAED00AC1AED /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95222227CAED00AC1AED /* BTViewController.m */; };
+		4ECF95262227CAED00AC1AED /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95232227CAED00AC1AED /* DetailViewController.m */; };
+		4ECF95272227CAED00AC1AED /* MyBTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95242227CAED00AC1AED /* MyBTManager.m */; };
 		6CA7689EB0971694AC95FCBC /* Pods_FingerGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F839D6627D42675A230BB2 /* Pods_FingerGame.framework */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +99,12 @@
 		4E2BDEEF221C0DE3001D52FC /* GameSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameSet.h; sourceTree = "<group>"; };
 		4E2BDEF0221ED382001D52FC /* StartAnimView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartAnimView.h; sourceTree = "<group>"; };
 		4E2BDEF1221ED382001D52FC /* StartAnimView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartAnimView.m; sourceTree = "<group>"; };
+		4E6E6ED8221FD90D0061E599 /* GameStaticsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameStaticsView.h; sourceTree = "<group>"; };
+		4E6E6ED9221FD90D0061E599 /* GameStaticsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameStaticsView.m; sourceTree = "<group>"; };
+		4E6E6EDB22238AA50061E599 /* BottomLeftView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomLeftView.h; sourceTree = "<group>"; };
+		4E6E6EDC22238AA50061E599 /* BottomLeftView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BottomLeftView.m; sourceTree = "<group>"; };
+		4E6E6EDE22238ADD0061E599 /* BottomRightView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomRightView.h; sourceTree = "<group>"; };
+		4E6E6EDF22238ADD0061E599 /* BottomRightView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BottomRightView.m; sourceTree = "<group>"; };
 		4E985FB021DE44C2009E5D71 /* FingerGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FingerGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E985FB321DE44C2009E5D71 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4E985FB421DE44C2009E5D71 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -146,12 +152,14 @@
 		4E98600822165B4B009E5D71 /* ZHYCacheObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYCacheObject.h; sourceTree = "<group>"; };
 		4E98600922165B4B009E5D71 /* ZHYCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYCache.m; sourceTree = "<group>"; };
 		4E98600A22165B4B009E5D71 /* ZHYCacheObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYCacheObject.m; sourceTree = "<group>"; };
-		4E98603622165B78009E5D71 /* BTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTViewController.m; sourceTree = "<group>"; };
-		4E98603722165B78009E5D71 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		4E98603822165B78009E5D71 /* BTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTViewController.h; sourceTree = "<group>"; };
 		4E98603A22165B78009E5D71 /* BLEInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEInfo.m; sourceTree = "<group>"; };
 		4E98603B22165B78009E5D71 /* BLEInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEInfo.h; sourceTree = "<group>"; };
-		4E98603C22165B78009E5D71 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		4ECF951F2227CAEC00AC1AED /* BTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTViewController.h; sourceTree = "<group>"; };
+		4ECF95202227CAEC00AC1AED /* MyBTManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBTManager.h; sourceTree = "<group>"; };
+		4ECF95212227CAED00AC1AED /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		4ECF95222227CAED00AC1AED /* BTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTViewController.m; sourceTree = "<group>"; };
+		4ECF95232227CAED00AC1AED /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		4ECF95242227CAED00AC1AED /* MyBTManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBTManager.m; sourceTree = "<group>"; };
 		753C542771069F572133C9E1 /* Pods-FingerGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FingerGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-FingerGame/Pods-FingerGame.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,6 +215,12 @@
 				4E2BDEED221C0D84001D52FC /* GameSceneView.m */,
 				4E2BDEF0221ED382001D52FC /* StartAnimView.h */,
 				4E2BDEF1221ED382001D52FC /* StartAnimView.m */,
+				4E6E6ED8221FD90D0061E599 /* GameStaticsView.h */,
+				4E6E6ED9221FD90D0061E599 /* GameStaticsView.m */,
+				4E6E6EDB22238AA50061E599 /* BottomLeftView.h */,
+				4E6E6EDC22238AA50061E599 /* BottomLeftView.m */,
+				4E6E6EDE22238ADD0061E599 /* BottomRightView.h */,
+				4E6E6EDF22238ADD0061E599 /* BottomRightView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -359,11 +373,13 @@
 		4E98603522165B78009E5D71 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
+				4ECF951F2227CAEC00AC1AED /* BTViewController.h */,
+				4ECF95222227CAED00AC1AED /* BTViewController.m */,
+				4ECF95212227CAED00AC1AED /* DetailViewController.h */,
+				4ECF95232227CAED00AC1AED /* DetailViewController.m */,
+				4ECF95202227CAEC00AC1AED /* MyBTManager.h */,
+				4ECF95242227CAED00AC1AED /* MyBTManager.m */,
 				4E98603922165B78009E5D71 /* Model */,
-				4E98603622165B78009E5D71 /* BTViewController.m */,
-				4E98603822165B78009E5D71 /* BTViewController.h */,
-				4E98603722165B78009E5D71 /* DetailViewController.m */,
-				4E98603C22165B78009E5D71 /* DetailViewController.h */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -624,20 +640,24 @@
 				4E98602C22165B4B009E5D71 /* ZHYURLResponse.m in Sources */,
 				4E98602F22165B4B009E5D71 /* ZHYCache.m in Sources */,
 				4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */,
+				4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */,
 				4E98603222165B4B009E5D71 /* ZHYCacheObject.m in Sources */,
-				4E98603D22165B78009E5D71 /* BTViewController.m in Sources */,
 				4E98604322165B78009E5D71 /* BLEInfo.m in Sources */,
+				4ECF95262227CAED00AC1AED /* DetailViewController.m in Sources */,
 				4E98602922165B4B009E5D71 /* TestYunzsService.m in Sources */,
 				4E98602322165B4B009E5D71 /* ZHYService.m in Sources */,
-				4E98604022165B78009E5D71 /* DetailViewController.m in Sources */,
 				4E2BDEEA221C0D3C001D52FC /* MainGameViewController.m in Sources */,
 				4E98601A22165B4B009E5D71 /* NSURLRequest+Properties.m in Sources */,
+				4ECF95272227CAED00AC1AED /* MyBTManager.m in Sources */,
 				4E2BDEF2221ED382001D52FC /* StartAnimView.m in Sources */,
 				4E98601122165B4B009E5D71 /* ZHYRequestGenerator.m in Sources */,
 				4E98602022165B4B009E5D71 /* ZHYDefaultService.m in Sources */,
 				4E985FB821DE44C2009E5D71 /* ViewController.m in Sources */,
+				4ECF95252227CAED00AC1AED /* BTViewController.m in Sources */,
 				4E98600B22165B4B009E5D71 /* ZHYLogger.m in Sources */,
 				4E98601D22165B4B009E5D71 /* YunzsService.m in Sources */,
+				4E6E6EDA221FD90D0061E599 /* GameStaticsView.m in Sources */,
+				4E6E6EDD22238AA50061E599 /* BottomLeftView.m in Sources */,
 				4E985FC321DE44C7009E5D71 /* main.m in Sources */,
 				4E985FB521DE44C2009E5D71 /* AppDelegate.m in Sources */,
 				4E98602622165B4B009E5D71 /* ZHYServiceFactory.m in Sources */,
@@ -650,8 +670,6 @@
 			files = (
 				4E98601522165B4B009E5D71 /* ZHYAPIProxy.m in Sources */,
 				4E98601B22165B4B009E5D71 /* NSURLRequest+Properties.m in Sources */,
-				4E98604122165B78009E5D71 /* DetailViewController.m in Sources */,
-				4E98603E22165B78009E5D71 /* BTViewController.m in Sources */,
 				4E985FCD21DE44C8009E5D71 /* FingerGameTests.m in Sources */,
 				4E98601E22165B4B009E5D71 /* YunzsService.m in Sources */,
 				4E98600C22165B4B009E5D71 /* ZHYLogger.m in Sources */,
@@ -675,8 +693,6 @@
 			files = (
 				4E98601622165B4B009E5D71 /* ZHYAPIProxy.m in Sources */,
 				4E98601C22165B4B009E5D71 /* NSURLRequest+Properties.m in Sources */,
-				4E98604222165B78009E5D71 /* DetailViewController.m in Sources */,
-				4E98603F22165B78009E5D71 /* BTViewController.m in Sources */,
 				4E985FD821DE44C8009E5D71 /* FingerGameUITests.m in Sources */,
 				4E98601F22165B4B009E5D71 /* YunzsService.m in Sources */,
 				4E98600D22165B4B009E5D71 /* ZHYLogger.m in Sources */,
@@ -849,13 +865,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RV75G22HVG;
 				INFOPLIST_FILE = FingerGame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yunzs.com.FingerGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -867,13 +884,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RV75G22HVG;
 				INFOPLIST_FILE = FingerGame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yunzs.com.FingerGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

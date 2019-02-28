@@ -8,72 +8,41 @@
 
 #import "BTViewController.h"
 #import "AppMacro.h"
+#import "MyBTManager.h"
 
 @interface BTViewController ()
-
+@property (nonatomic,strong) NSMutableArray *arrayBLE;
+@property (nonatomic,strong) MyBTManager *myBTManager;
 @end
 
 @implementation BTViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"viewDidload");
+
     self.navigationItem.title=@"蓝牙搜索";
-    self.centralMgr = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+
     self.arrayBLE = [[NSMutableArray alloc] init];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated{
+    NSLog(@"enter viewwillappear");
+    [self showTable];
 }
 
-//蓝牙状态delegate
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central
-{
-    switch (central.state)
-    {
-        case CBCentralManagerStatePoweredOn:
-            [self.centralMgr scanForPeripheralsWithServices:nil options:nil];
-            NSLog(@"start scan Peripherals");
-            
-            break;
-            
-        default:
-            NSLog(@"Central Manager did change state");
-            break;
-    }
-}
-
-//发现设备delegate
-- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
-{
-    BLEInfo *discoveredBLEInfo = [[BLEInfo alloc] init];
-    discoveredBLEInfo.discoveredPeripheral = peripheral;
-    discoveredBLEInfo.rssi = RSSI;
+- (void)showTable{
+    self.myBTManager = [MyBTManager sharedInstance];
+    self.navigationItem.title = @"正在搜索蓝牙，请稍后...";
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.arrayBLE = [self.myBTManager getSurroundedBLEDevices];
+        self.navigationItem.title = @"选择一个蓝牙进行连接";
+        [self.arrayBLE enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            BLEInfo *cInfo = (BLEInfo *)obj;
+            NSLog(@"设备信息：%@",cInfo.rssi);
+        }];
+        [self.tableView reloadData];
+    });
     
-    // update tableview
-    [self saveBLE:discoveredBLEInfo];
-    
-}
-
-//保存设备信息
-- (BOOL)saveBLE:(BLEInfo *)discoveredBLEInfo
-{
-    for (BLEInfo *info in self.arrayBLE)
-    {
-        if ([info.discoveredPeripheral.identifier.UUIDString isEqualToString:discoveredBLEInfo.discoveredPeripheral.identifier.UUIDString])
-        {
-            return NO;
-        }
-    }
-    
-    NSLog(@"\nDiscover New Devices!\n");
-    NSLog(@"BLEInfo\n UUID：%@\n RSSI:%@\n\n",discoveredBLEInfo.discoveredPeripheral.identifier.UUIDString,discoveredBLEInfo.rssi);
-    
-    [self.arrayBLE addObject:discoveredBLEInfo];
-    [self.tableView reloadData];
-    return YES;
 }
 
 
@@ -92,30 +61,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
-    
-    // Step 2: If there are no cells to reuse, create a new one
     if(cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     // Add a detail view accessory
     BLEInfo *thisBLEInfo=[self.arrayBLE objectAtIndex:indexPath.row];
     cell.textLabel.text=[NSString stringWithFormat:@"%@ %@",thisBLEInfo.discoveredPeripheral.name,thisBLEInfo.rssi];
     cell.detailTextLabel.text=[NSString stringWithFormat:@"UUID:%@",thisBLEInfo.discoveredPeripheral.identifier.UUIDString];
-    // Step 3: Set the cell text
-    
-    // Step 4: Return the cell
+
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     BLEInfo *thisBLEInfo=[self.arrayBLE objectAtIndex:indexPath.row];
-    DetailViewController* dtvc=[[DetailViewController alloc] init];
-    //DetailViewController* dtvc=[self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
-    
-    dtvc.centralMgr=self.centralMgr;
-    dtvc.discoveredPeripheral=thisBLEInfo.discoveredPeripheral;
-    
-    [self.navigationController pushViewController:dtvc animated:YES];
-    
+    [self.myBTManager connectPeripheral:thisBLEInfo.discoveredPeripheral finish:^(BOOL state) {
+        if (state == YES){
+            [self.myBTManager readValue];
+            DetailViewController *dvc = [[DetailViewController alloc] init];
+            [self.navigationController pushViewController:dvc animated:YES];
+        }
+        else{
+            NSLog(@"已连接，但未找到可读写特征");
+        }
+    }];
 }
 @end
 
