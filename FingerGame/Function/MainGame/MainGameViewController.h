@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "OrderModel.h"
+#import "GameOrderFile.h"
+
 @interface MainGameViewController : UIViewController
+
+- (id)initWithGameOrderFile:(GameOrderFile *)gameOrderFile;
 
 @end

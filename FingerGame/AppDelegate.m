@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 
 #import "ViewController.h"
-#import "MainGameViewController.h"
+#import "GameDetailViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,8 +22,9 @@
     // Override point for customization after application launch.
     
     self.window.rootViewController = [[UIViewController alloc] init];
-    MainGameViewController *vc = [[MainGameViewController alloc] init];
-    self.window.rootViewController =vc;
+    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameName:@"手指操"];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController =nc;
     [self.window makeKeyAndVisible];
     
     return YES;

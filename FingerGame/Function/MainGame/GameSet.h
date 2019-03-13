@@ -18,6 +18,20 @@
 
 #define DefaultFont(o) [UIFont fontWithName:@"FZMWJW--GB1-0" size:o]
 
-#define GameSpeed 2
+#define GameSpeed 10
+
+/**
+ 发给蓝牙的指令（固定）
+ **/
+//游戏开始指令
+#define kGameStartOrder @"aa02010102"
+//游戏结束指令
+#define kGameEndOrder @"aa02010203"
+//游戏暂停指令
+#define kGamePauseOrder @"aa02010304"
+//游戏重新开始指令
+#define kGameRestartOrder @"aa02010405"
+
+
 
 #endif /* GameSet_h */

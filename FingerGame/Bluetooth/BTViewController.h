@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "BLEInfo.h"
-#import "DetailViewController.h"
 
 @interface BTViewController : UITableViewController
 

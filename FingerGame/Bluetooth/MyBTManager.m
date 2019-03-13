@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSMutableArray *deviceArray;
 
 @property (nonatomic,copy) CompleteBlock completeBlock;
+@property (nonatomic,copy) ReadValueReturnBlock readValueReturnBlock;
 
 @end
 
@@ -58,7 +59,7 @@ static MyBTManager *sInstance = nil;
 - (NSMutableArray *)getSurroundedBLEDevices{
     [self.centralManager stopScan];
     NSLog(@"停止搜索");
-    NSLog(@"发现设备数量：%d",[_deviceArray count]);
+    NSLog(@"发现设备数量：%lu",(unsigned long)[_deviceArray count]);
     return _deviceArray;
 }
 
@@ -74,8 +75,9 @@ static MyBTManager *sInstance = nil;
         NSLog(@"未找到该设备");
 }
 
-- (void)readValue{
+- (void)readValueWithBlock:(ReadValueReturnBlock)readValueReturnBlock{
     if (self.peripheral && self.characteristic){
+        self.readValueReturnBlock = readValueReturnBlock;
         [self.peripheral setNotifyValue:YES forCharacteristic:self.characteristic];
         [self.peripheral readValueForCharacteristic:self.characteristic];
     }
@@ -92,9 +94,8 @@ static MyBTManager *sInstance = nil;
     NSLog(@"开始写入数据:%@",value);
     //有回调的写数据
     [self.peripheral writeValue:value forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
-    //写完数据马上接收蓝牙端的回复数据
-    [self.peripheral setNotifyValue:YES forCharacteristic:self.characteristic];
-    [self.peripheral readValueForCharacteristic:self.characteristic];
+//    //写完数据马上接收蓝牙端的回复数据
+//    [self.peripheral setNotifyValue:YES forCharacteristic:self.characteristic];
 }
 
 #pragma mark - Private Methods
@@ -171,28 +172,28 @@ static MyBTManager *sInstance = nil;
 #pragma mark - CBCentralManagerDelegate
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     switch (central.state) {
-        case CBCentralManagerStateUnknown:
+        case CBManagerStateUnknown:
         {
         }
             break;
-        case CBCentralManagerStateResetting:
+        case CBManagerStateResetting:
         {
         }
             break;
-        case CBCentralManagerStateUnsupported:
+        case CBManagerStateUnsupported:
         {
         }
             break;
-        case CBCentralManagerStateUnauthorized:
+        case CBManagerStateUnauthorized:
         {
         }
             break;
-        case CBCentralManagerStatePoweredOff:
+        case CBManagerStatePoweredOff:
         {
             NSLog(@"手机未打开蓝牙");
         }
             break;
-        case CBCentralManagerStatePoweredOn:
+        case CBManagerStatePoweredOn:
         {
             [_deviceArray removeAllObjects];
             [self.centralManager scanForPeripheralsWithServices:nil options:nil];
@@ -220,6 +221,9 @@ static MyBTManager *sInstance = nil;
  */
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     NSLog(@"连接蓝牙%@成功",peripheral.name);
+    if (self.delegate)
+        if ([self.delegate respondsToSelector:@selector(receiveBLELinkState:)])
+            [self.delegate receiveBLELinkState:YES];
     [self.peripheral setDelegate:self];
     //查找服务
     [self.peripheral discoverServices:nil];
@@ -235,6 +239,9 @@ static MyBTManager *sInstance = nil;
  */
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error {
     NSLog(@"断开与蓝牙%@的连接",peripheral.name);
+    if (self.delegate)
+        if ([self.delegate respondsToSelector:@selector(receiveBLELinkState:)])
+            [self.delegate receiveBLELinkState:NO];
 }
 
 #pragma mark - CBPeripheralDelegate
@@ -262,6 +269,7 @@ static MyBTManager *sInstance = nil;
                 self.writeUUID = c.UUID;
                 self.readUUID = c.UUID;
                 NSLog(@"已经发现可读写的特征%@",c.UUID);
+                [self.peripheral setNotifyValue:YES forCharacteristic:self.characteristic];
                 self.completeBlock(YES);
             }
         }
@@ -282,8 +290,14 @@ static MyBTManager *sInstance = nil;
         NSData *dataValue = characteristic.value;
         NSString *dataValues = [self hexadecimalString:dataValue];
         NSLog(@"数据字符串形式为:%@",dataValues);
-        //
+        //响应readValueWithBlock:
+        if (self.readValueReturnBlock){
+            self.readValueReturnBlock(dataValues);
+            self.readValueReturnBlock = nil;
+        }
+        
         if (self.delegate){
+            NSLog(@"准备发送数据给代理人");
             if ([self.delegate respondsToSelector:@selector(receiveDataFromBLE:)]){
                 [self.delegate receiveDataFromBLE:dataValues];
             }

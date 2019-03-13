@@ -24,12 +24,12 @@ static NSUInteger kZHYCacheCountLimit = 1000; // 最多1000条cache
 
 static BOOL KIsOnline = YES;
 
-static NSString *KOnlineApiBaseUrl = @"http://211.157.179.73:9080/fingerGame/";
-static NSString *KOfflineApiBaseUrl = @"http://211.157.179.73:9080/";
+static NSString *KOnlineApiBaseUrl = @"http://shouzhi.yiyon.com.cn/";
+static NSString *KOfflineApiBaseUrl = @"http://shouzhi.yiyon.com.cn/";
 
-static NSString *kOnlineUploadBaseUrl = @"http://wx.yunzs.com.cn/";
-static NSString *kOfflineUploadBaseUrl = @"http://localhost:8080/PDC/";
+static NSString *kOnlineUploadBaseUrl = @"";
+static NSString *kOfflineUploadBaseUrl = @"";
 
-static NSString *kRealOnlineUploadBaseUrl = @"http://wx.yunzs.com.cn/";
+static NSString *kRealOnlineUploadBaseUrl = @"";
 
 #endif /* ZHYNetworkingConfiguration_h */

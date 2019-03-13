@@ -36,9 +36,9 @@ static StartAnimView *instance;
             instance.animLabel.textColor = [UIColor whiteColor];
             instance.animLabel.font = DefaultFont(50);
             [instance addSubview:instance.animLabel];
+            NSLog(@"create instance");
         }
     }
-    NSLog(@"create instance");
     return instance;
 }
 
@@ -82,8 +82,6 @@ static StartAnimView *instance;
 
 #pragma mark - Animation Delegate
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-    NSLog(@"1 end");
-    NSLog(@"%d -- %ld",flag,(long)_animIndex);
     if ( flag && _animIndex > 0) {
         _animIndex--;
         _animLabel.text = [NSString stringWithFormat:@"%ld",(long)_animIndex];
@@ -92,12 +90,12 @@ static StartAnimView *instance;
     //动画执行完毕后 执行的操作
     if (_animIndex == 0) {
         if (_completeBlock != nil) {
-            //延迟0.4s之后 再开始游戏 防止游戏开始太快 user接受不了
             self.hidden = true;
             WeakSelf;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 NSLog(@"ready to enter the completeBlock");
                 self.completeBlock();
+                self.completeBlock = nil;
                 [weakSelf.animLabel.layer removeAllAnimations];
                 weakSelf.hidden = false;
                 [weakSelf removeFromSuperview];

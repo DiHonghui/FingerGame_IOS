@@ -11,7 +11,8 @@
 #import "GameSet.h"
 
 typedef NS_ENUM(NSInteger,CompleteType){
-    CompleteTypeSuccess = 1,
+    CompleteTypeDefault = 0,
+    CompleteTypeSuccess,
     CompleteTypeFailure,
     CompleteTypeMissed
 };

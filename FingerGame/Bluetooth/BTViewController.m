@@ -9,8 +9,10 @@
 #import "BTViewController.h"
 #import "AppMacro.h"
 #import "MyBTManager.h"
+#import "BLEInfo.h"
 
 @interface BTViewController ()
+
 @property (nonatomic,strong) NSMutableArray *arrayBLE;
 @property (nonatomic,strong) MyBTManager *myBTManager;
 @end
@@ -21,7 +23,7 @@
     [super viewDidLoad];
 
     self.navigationItem.title=@"蓝牙搜索";
-
+    self.navigationController.navigationBar.topItem.title = @"";
     self.arrayBLE = [[NSMutableArray alloc] init];
 }
 
@@ -33,7 +35,7 @@
 - (void)showTable{
     self.myBTManager = [MyBTManager sharedInstance];
     self.navigationItem.title = @"正在搜索蓝牙，请稍后...";
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.arrayBLE = [self.myBTManager getSurroundedBLEDevices];
         self.navigationItem.title = @"选择一个蓝牙进行连接";
         [self.arrayBLE enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -72,14 +74,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    self.navigationItem.title = @"正在连接中，请稍后...";
     BLEInfo *thisBLEInfo=[self.arrayBLE objectAtIndex:indexPath.row];
     [self.myBTManager connectPeripheral:thisBLEInfo.discoveredPeripheral finish:^(BOOL state) {
         if (state == YES){
-            [self.myBTManager readValue];
-            DetailViewController *dvc = [[DetailViewController alloc] init];
-            [self.navigationController pushViewController:dvc animated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
+//            [self.myBTManager readValueWithBlock:^(NSString *data) {
+//                NSLog(@"readValue returnWith:%@",data);
+//            }];
         }
         else{
+            self.navigationItem.title = @"已连接，但未找到可读写特征";
             NSLog(@"已连接，但未找到可读写特征");
         }
     }];

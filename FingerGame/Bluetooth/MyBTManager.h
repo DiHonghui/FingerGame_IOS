@@ -10,10 +10,13 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 
 typedef void(^CompleteBlock)(BOOL state);
+typedef void(^ReadValueReturnBlock)(NSString *data);
 
 //协议
 @protocol MyBTManagerProtocol <NSObject>
 @optional
+//获取蓝牙连接状态
+- (void)receiveBLELinkState:(BOOL)state;
 //收到蓝牙设备传回的数据
 - (void)receiveDataFromBLE:(NSString *)sdata;
 
@@ -29,7 +32,7 @@ typedef void(^CompleteBlock)(BOOL state);
 //连接外设
 - (void)connectPeripheral:(CBPeripheral *)peripheral finish:(CompleteBlock)completeblock;
 //读取外设传回的值
-- (void)readValue;
+- (void)readValueWithBlock:(ReadValueReturnBlock)readValueReturnBlock;
 //写入数据
 - (void)writeToPeripheral:(NSString *)string;
 
