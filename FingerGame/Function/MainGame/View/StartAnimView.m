@@ -16,7 +16,7 @@
 
 @property (nonatomic,assign) NSInteger animIndex;
 
-@property (nonatomic,copy) CompleteBlock completeBlock;
+@property (nonatomic,copy) FinishBlock completeBlock;
 
 @end
 
@@ -72,7 +72,7 @@ static StartAnimView *instance;
     [_animLabel.layer addAnimation:[self animationGroup] forKey:nil];
 }
 
-- (void)showWithAnimNum:(NSInteger)num CompleteBlock:(CompleteBlock)completeBlock{
+- (void)showWithAnimNum:(NSInteger)num CompleteBlock:(FinishBlock)completeBlock{
     NSLog(@"enter showAnim");
 //    UIWindow *keyWindow = [[[UIApplication sharedApplication] delegate] window];
 //    [keyWindow addSubview:[StartAnimView shareInstance]];
@@ -92,7 +92,7 @@ static StartAnimView *instance;
         if (_completeBlock != nil) {
             self.hidden = true;
             WeakSelf;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 NSLog(@"ready to enter the completeBlock");
                 self.completeBlock();
                 self.completeBlock = nil;

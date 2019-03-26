@@ -18,7 +18,7 @@
 
 #define DefaultFont(o) [UIFont fontWithName:@"FZMWJW--GB1-0" size:o]
 
-#define GameSpeed 10
+#define GameSpeed 1
 
 /**
  发给蓝牙的指令（固定）

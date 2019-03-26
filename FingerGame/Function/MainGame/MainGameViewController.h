@@ -10,6 +10,7 @@
 
 #import "OrderModel.h"
 #import "GameOrderFile.h"
+#import "MyBTManager.h"
 
 @interface MainGameViewController : UIViewController
 

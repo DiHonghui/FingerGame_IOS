@@ -11,7 +11,6 @@
 #import "GameSet.h"
 #import "BTViewController.h"
 #import "MainGameViewController.h"
-#import "MyBTManager.h"
 #import "GameFileApiManager.h"
 #import "OrderModel.h"
 #import "GameOrderFile.h"
@@ -33,8 +32,7 @@
 @property (nonatomic,strong) NSMutableArray *ordersArray;
 //本地游戏指令保存，用于游戏滑块的初始化
 @property (nonatomic,strong) GameOrderFile *gameOrderFile;
-//蓝牙字符串的缓存
-@property (nonatomic,strong) NSString *cacheString;
+
 @end
 
 @implementation GameDetailViewController
@@ -48,17 +46,15 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    
+    self.curBTManager = [MyBTManager sharedInstance];
+    self.curBTManager.delegate = self;
+    
     GameFileApiManager *gameFileApiManager = [[GameFileApiManager alloc] initWithGameId:@"1"];
     [gameFileApiManager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
         if (errorType == ZHYAPIManagerErrorTypeSuccess){
             NSLog(@"responseData == %@",responseData);
             [self analyzeServiceData:responseData];
-//            //test
-//            [self analyzeReturnOrder:@"aa05010500010100"];
-//            [self analyzeReturnOrder:@"aa050105ffffff00"];
-//            //
-//            [self seperateDataString:@"aa05010500010100aa050105ffffff00aa050105"];
-//            [self seperateDataString:@"00010100"];
         }else{
             NSLog(@"request error");
         }
@@ -99,12 +95,9 @@
     [self.view addSubview:self.startGameBtn];
     
     _bleState = NO;
-    self.curBTManager = [MyBTManager sharedInstance];
-    self.curBTManager.delegate = self;
     
     self.ordersArray = [NSMutableArray array];
     self.gameOrderFile = [[GameOrderFile alloc] init];
-    self.cacheString = @"";
     
     return self;
 }
@@ -117,38 +110,31 @@
 }
 
 - (void)startGameBtnClicked:(id)sender{
-//    if (_bleState){
-//        //蓝牙已连接，准备发送给蓝牙指令集
-//        [self.curBTManager writeToPeripheral:@"aa0701000000000100ff"];
-//        [self.curBTManager writeToPeripheral:@"aa0702000100000100ff"];
-//        [self.curBTManager writeToPeripheral:@"aa0703000200000100ff"];
-//        //指令集发送结束 指令
-//        [self.curBTManager writeToPeripheral:@"aa02010506"];
-//        //
-//        [self.curBTManager readValueWithBlock:^(NSString *data) {
-//            NSLog(@"%@",data);
-//            if ([data containsString:@"aa02030104"]){
-//                [self.curBTManager writeToPeripheral:kGameStartOrder];
-//                [self.curBTManager readValueWithBlock:^(NSString *data) {
-//                    NSLog(@"%@",data);
-//                    if ([data containsString:@"aa02030609"]){
-//                        //enter game
-//                        MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
-//                        [self presentViewController:vc animated:YES completion:nil];
-//                    }
-//                    return;
-//                }];
-//            }
-//        }];
-//    }else{
-//        UIAlertController *_alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您尚未连接蓝牙，无法开始游戏，请连接蓝牙后尝试" preferredStyle:UIAlertControllerStyleAlert];
-//        [_alertController addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//            [self dismissViewControllerAnimated:YES completion:nil];
-//        }]];
-//        [self presentViewController:_alertController animated:YES completion:nil];
-//    }
-    MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
-    [self presentViewController:vc animated:YES completion:nil];
+    if (_bleState){
+        //蓝牙已连接，准备发送给蓝牙指令集
+        [self.curBTManager writeToPeripheral:@"aa0700000000001000ff"];
+        [self.curBTManager writeToPeripheral:@"aa0701001000002000ff"];
+        [self.curBTManager writeToPeripheral:@"aa0702002000001000ff"];
+        //指令集发送结束 指令
+        [self.curBTManager writeToPeripheral:@"aa02010506"];
+        //
+        [self.curBTManager readValueWithBlock:^(NSString *data) {
+            NSLog(@"%@",data);
+            if ([data containsString:@"aa02030104"]){
+                //enter game view
+                MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
+                [self presentViewController:vc animated:YES completion:nil];
+            }
+        }];
+    }else{
+        UIAlertController *_alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您尚未连接蓝牙，无法开始游戏，请连接蓝牙后尝试" preferredStyle:UIAlertControllerStyleAlert];
+        [_alertController addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        [self presentViewController:_alertController animated:YES completion:nil];
+    }
+//    MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
+//    [self presentViewController:vc animated:YES completion:nil];
 }
 
 
@@ -177,56 +163,6 @@
     }];
 }
 
-- (void)analyzeReturnOrder:(NSString *)order{
-    if ([order hasPrefix:@"aa0501"]){
-        NSString *idString = [order substringWithRange:NSMakeRange(6, 2)];
-        NSString *string1 = [order substringWithRange:NSMakeRange(8, 2)];
-        NSString *string2 = [order substringWithRange:NSMakeRange(10, 2)];
-        NSString *string3 = [order substringWithRange:NSMakeRange(12, 2)];
-        int returnId = [idString intValue];
-        if ([string1 isEqualToString:@"ff"]){
-            NSLog(@"这是一条按键抬起指令,手指id为%d",returnId);
-        }else{
-            float returnTime = [string1 floatValue]*60 + [string2 floatValue] + [string3 floatValue]/100;
-            NSLog(@"这是一条按键按下指令,手指id为%d ,按下时间点为%.2f",returnId,returnTime);
-            //find
-            if (self.gameOrderFile){
-                [self.gameOrderFile.gameOrders enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    if ( ((OrderModel*)obj).fingerId == returnId && ((OrderModel*)obj).startTime<=returnTime && ((OrderModel*)obj).startTime+((OrderModel*)obj).duration>=returnTime )
-                        NSLog(@"按键按下指令，手指id为%d，按下时间符合指令序列下标为%d的指令区间",returnId,((OrderModel*)obj).no);
-                }];
-            }
-        }
-    }else{
-        NSLog(@"该指令不是按键按下或者抬起指令");
-    }
-}
-
-//处理游戏过程中蓝牙返回的按键指令
-- (void)seperateDataString:(NSString *)dataString{
-    self.cacheString = [self.cacheString stringByAppendingString:dataString];
-    NSArray *array = [self.cacheString componentsSeparatedByString:@"aa"];
-    NSLog(@"%lu",(unsigned long)[array count]);
-    [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *cStr = (NSString*)obj;
-        NSLog(@"%lu:%@",(unsigned long)idx,cStr);
-        if (idx == [array count]-1){
-            if ([cStr length] == 14){
-                [self analyzeReturnOrder:[NSString stringWithFormat:@"aa%@",cStr]];
-                self.cacheString = @"";
-            }else{
-                self.cacheString = [NSString stringWithFormat:@"aa%@",cStr];
-            }
-        }
-        else{
-            if ([cStr length] == 14){
-                [self analyzeReturnOrder:[NSString stringWithFormat:@"aa%@",cStr]];
-            }
-        }
-    }];
-}
-
 #pragma mark - MyBTManagerDelegate
 - (void)receiveBLELinkState:(BOOL)state{
     if (state == YES){
@@ -240,8 +176,4 @@
     }
 }
 
-- (void)receiveDataFromBLE:(NSString *)sdata{
-    NSLog(@"代理人收到了数据： %@",sdata);
-    [self seperateDataString:sdata];
-}
 @end

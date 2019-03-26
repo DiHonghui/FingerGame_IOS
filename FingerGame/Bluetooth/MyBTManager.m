@@ -293,7 +293,7 @@ static MyBTManager *sInstance = nil;
         //响应readValueWithBlock:
         if (self.readValueReturnBlock){
             self.readValueReturnBlock(dataValues);
-            self.readValueReturnBlock = nil;
+//            self.readValueReturnBlock = NULL;
         }
         
         if (self.delegate){
