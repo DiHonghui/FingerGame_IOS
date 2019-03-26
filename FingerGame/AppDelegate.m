@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "LoginViewController.h"
 #import "ViewController.h"
 #import "GameDetailViewController.h"
 
@@ -23,6 +23,7 @@
     
     self.window.rootViewController = [[UIViewController alloc] init];
     GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameName:@"手指操"];
+    //LoginViewController *vc2 = [[LoginViewController alloc] init];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController =nc;
     [self.window makeKeyAndVisible];
