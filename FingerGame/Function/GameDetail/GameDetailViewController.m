@@ -8,12 +8,15 @@
 
 #import "GameDetailViewController.h"
 
-#import "GameSet.h"
 #import "BTViewController.h"
 #import "MainGameViewController.h"
+
 #import "GameFileApiManager.h"
+#import "AudioManager.h"
+
 #import "OrderModel.h"
 #import "GameOrderFile.h"
+#import "MissionModel.h"
 
 #import "NSObject+ProgressHUD.h"
 #import <YYModel/YYModel.h>
@@ -24,7 +27,9 @@
 @property (nonatomic,strong) UIButton *linkBleBtn;
 @property (nonatomic,strong) UIButton *startGameBtn;
 @property (nonatomic,strong) UILabel *bleStateLb;
-
+@property (nonatomic,strong) UIButton *downloadAudioBtn;
+@property (nonatomic,strong) UIButton *fingerprintBtn;
+//蓝牙连接状态
 @property (nonatomic,assign) BOOL bleState;
 //蓝牙操作工具
 @property (nonatomic,strong) MyBTManager *curBTManager;
@@ -32,6 +37,10 @@
 @property (nonatomic,strong) NSMutableArray *ordersArray;
 //本地游戏指令保存，用于游戏滑块的初始化
 @property (nonatomic,strong) GameOrderFile *gameOrderFile;
+//音频下载、播放操作工具
+@property (nonatomic,strong) AudioManager *curAudioManager;
+//
+@property (nonatomic,strong) MissionModel *curMissionModel;
 
 @end
 
@@ -50,10 +59,15 @@
     self.curBTManager = [MyBTManager sharedInstance];
     self.curBTManager.delegate = self;
     
+    self.curAudioManager = [AudioManager sharedInstance];
+    
+    self.ordersArray = [NSMutableArray array];
+    self.gameOrderFile = [[GameOrderFile alloc] init];
+    self.curMissionModel = [[MissionModel alloc] init];
+    
     GameFileApiManager *gameFileApiManager = [[GameFileApiManager alloc] initWithGameId:@"1"];
     [gameFileApiManager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
         if (errorType == ZHYAPIManagerErrorTypeSuccess){
-            NSLog(@"responseData == %@",responseData);
             [self analyzeServiceData:responseData];
         }else{
             NSLog(@"request error");
@@ -89,15 +103,26 @@
     [self.startGameBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.startGameBtn addTarget:self action:@selector(startGameBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     
+    self.downloadAudioBtn = [[UIButton alloc] initWithFrame:CGRectMake(150, 150, 100, 80)];
+    self.downloadAudioBtn.backgroundColor = [UIColor blueColor];
+    [self.downloadAudioBtn setTitle:@"TEST" forState:UIControlStateNormal];
+    [self.downloadAudioBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //[self.downloadAudioBtn addTarget:self action:@selector(downloadAudioBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.downloadAudioBtn addTarget:self action:@selector(fingerprintBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.fingerprintBtn = [[UIButton alloc] initWithFrame:CGRectMake(150, 250, 100, 80)];
+    self.fingerprintBtn.backgroundColor = [UIColor blueColor];
+    [self.fingerprintBtn setTitle:@"指纹录入" forState:UIControlStateNormal];
+    [self.fingerprintBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.fingerprintBtn addTarget:self action:@selector(fingerprintBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:self.gameNameLb];
     [self.view addSubview:self.bleStateLb];
     [self.view addSubview:self.linkBleBtn];
     [self.view addSubview:self.startGameBtn];
+    [self.view addSubview:self.downloadAudioBtn];
     
     _bleState = NO;
-    
-    self.ordersArray = [NSMutableArray array];
-    self.gameOrderFile = [[GameOrderFile alloc] init];
     
     return self;
 }
@@ -109,12 +134,46 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)downloadAudioBtnClicked:(id)sender{
+    [self.curAudioManager downloadAudioWithURL:[NSString stringWithFormat:@"http://shouzhi.yunzs.net/music/%@",self.curMissionModel.musicPath] fileName:self.curMissionModel.musicName downloadReturnBlock:^(bool state, NSString * _Nonnull localPath) {
+        if (state == YES){
+            [self.curAudioManager prepareForAudioPlayer:localPath];
+            //[self.curAudioManager playAudio];
+        }else{
+            [self showErrorHUD:@"游戏音乐下载失败"];
+        }
+    }];
+}
+
+- (void)fingerprintBtnClicked:(id)sender{
+    __block int idx = 0;
+    if (self.curBTManager && self.bleState){
+        [self.curBTManager writeToPeripheral:[NSString stringWithFormat:@"aa0202000000"]];
+                [self.curBTManager readValueWithBlock:^(NSString *data) {
+                    NSLog(@"%d指纹录入返回%@",idx,data);
+                    if ([data containsString:@"aa0203"])
+                        idx += 1;
+                }];
+    }
+////                返回录入指纹指令
+////                0x02：第一次按指纹成功；0x03：第一次按指纹失败
+////                0x04：第二次按指纹成功；0x05：第二次按指纹失败
+////                0x07：合并指纹成功；    0x08：合并指纹失败
+////                0x09：录入指纹成功：    0x0a: 录入指纹失败
+////                     起始位        长度        指令组ID        录入成功或者失败        校验位
+////                字节    1          2            3                 4                5
+////                内容    0xaa        0x02        0x03             见右           3-4累加和校验
+}
+
 - (void)startGameBtnClicked:(id)sender{
     if (_bleState){
         //蓝牙已连接，准备发送给蓝牙指令集
-        [self.curBTManager writeToPeripheral:@"aa0700000000001000ff"];
-        [self.curBTManager writeToPeripheral:@"aa0701001000002000ff"];
-        [self.curBTManager writeToPeripheral:@"aa0702002000001000ff"];
+        [self.ordersArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.curBTManager writeToPeripheral:(NSString *)obj];
+        }];
+//        [self.curBTManager writeToPeripheral:@"aa0700000000001000ff"];
+//        [self.curBTManager writeToPeripheral:@"aa0701001000002000ff"];
+//        [self.curBTManager writeToPeripheral:@"aa0702002000001000ff"];
         //指令集发送结束 指令
         [self.curBTManager writeToPeripheral:@"aa02010506"];
         //
@@ -139,6 +198,8 @@
 
 
 - (void)analyzeServiceData:(id)data{
+    [self.curMissionModel yy_modelSetWithJSON:data[@"data"][0]];
+    NSLog(@"%@ %@",self.curMissionModel.musicName,self.curMissionModel.musicPath);
     self.gameOrderFile.gameId = data[@"data"][0][@"id"];
     self.gameOrderFile.gameName = data[@"data"][0][@"name"];
     self.gameOrderFile.gameOrders = [NSMutableArray array];
@@ -158,9 +219,9 @@
         NSLog(@"指令编号：%d手指id：%d开始时间：%.2f时长：%.2f",orderModel.no,orderModel.fingerId,orderModel.startTime,orderModel.duration);
         [self.gameOrderFile.gameOrders addObject:orderModel];
     }];
-    [self.gameOrderFile.gameOrders enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSLog(@"保存的指令编号：%d手指id：%d开始时间：%.2f时长：%.2f",((OrderModel*)obj).no,((OrderModel*)obj).fingerId,((OrderModel*)obj).startTime,((OrderModel*)obj).duration);
-    }];
+//    [self.gameOrderFile.gameOrders enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSLog(@"保存的指令编号：%d手指id：%d开始时间：%.2f时长：%.2f",((OrderModel*)obj).no,((OrderModel*)obj).fingerId,((OrderModel*)obj).startTime,((OrderModel*)obj).duration);
+//    }];
 }
 
 #pragma mark - MyBTManagerDelegate

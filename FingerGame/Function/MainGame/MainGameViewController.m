@@ -8,7 +8,6 @@
 
 #import "MainGameViewController.h"
 
-#import "GameSet.h"
 #import "GameSceneView.h"
 #import "StartAnimView.h"
 #import "GameStaticsView.h"
@@ -137,8 +136,11 @@
         [self.curBTManager readValueWithBlock:^(NSString *data) {
             NSLog(@"%@",data);
             if ([data containsString:@"aa02030609"]){
-                NSLog(@"start Game");
-                [self->displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+                NSLog(@"开始游戏！");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"-----------");
+                    [self->displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+                });
             }else{
                 NSLog(@"未接收到蓝牙计时结束指令，无法正常游戏");
             }
@@ -158,11 +160,13 @@
             }
             //方块上边框到达判定线后的操作
             if (scene.frame.origin.y >= SCREEN_HEIGHT-[BottomLeftView heightForView]-20){
+                if (scene.completeType != CompleteTypeSuccess){
+                    scene.backgroundColor = [UIColor redColor];
+                    scene.completeType = CompleteTypeFailure;
+                }
+                scene.frame = [[self.frameArray objectAtIndex:idx] CGRectValue];
                 self.score += 1;
                 [self.gameStaticsView updateScore:self.score];
-                scene.frame = [[self.frameArray objectAtIndex:idx] CGRectValue];
-                scene.completeType = CompleteTypeSuccess;
-                scene.backgroundColor = [UIColor greenColor];
                 if (self.score == 5){
                     [self endGame];
                 }
@@ -221,31 +225,48 @@
 
 - (void)analyzeReturnOrder:(NSString *)order{
     //处理返回按键指令
-    if ([order hasPrefix:@"aa0501"]){
+    if ([order hasPrefix:@"aa05"]){//aa0501 aa050b
+        NSString *typeString = [order substringWithRange:NSMakeRange(4, 2)];
         NSString *idString = [order substringWithRange:NSMakeRange(6, 2)];
         NSString *string1 = [order substringWithRange:NSMakeRange(8, 2)];
         NSString *string2 = [order substringWithRange:NSMakeRange(10, 2)];
         NSString *string3 = [order substringWithRange:NSMakeRange(12, 2)];
         int returnId = [idString intValue];
-        if ([string1 isEqualToString:@"ff"]){
-            NSLog(@"这是一条按键抬起指令,手指id为%d",returnId);
-        }else{
-            float returnTime = [self hexToDec:string1]*60 + [self hexToDec:string2] + [self hexToDec:string3]/100;
-            NSLog(@"这是一条按键按下指令,手指id为%d ,按下时间点为%.2f",returnId,returnTime);
-            //find
+        float returnTime = [self hexToDec:string1]*60 + [self hexToDec:string2] + [self hexToDec:string3]/100;
+        //分不同指令类型和滑块当前状态进行比对
+        if ([typeString isEqualToString:@"0b"]){
+            NSLog(@"这是一条按键抬起指令,手指id为%d ,抬起时间点为%.2f",returnId,returnTime);
             if (self.gameOrderFile){
                 [self.gameOrderFile.gameOrders enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    if ( ((OrderModel*)obj).fingerId == returnId && ((OrderModel*)obj).startTime<=returnTime && ((OrderModel*)obj).startTime+((OrderModel*)obj).duration>=returnTime ){
+                    if ( ((OrderModel*)obj).fingerId == returnId ){
+                        if ( returnTime >= ((OrderModel*)obj).startTime+((OrderModel*)obj).duration-AllowedDelay && returnTime <= ((OrderModel*)obj).startTime+((OrderModel*)obj).duration+AllowedDelay ){
+                            NSLog(@"按键抬起指令，手指id为%d，抬起时间符合指令序列下标为%d的指令区间",returnId,((OrderModel*)obj).no);
+                            GameSceneView *scene = (GameSceneView *)[self.operateArray objectAtIndex:((OrderModel*)obj).no];
+                            if (scene.completeType == CompleteTypeTouched){
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    scene.completeType = CompleteTypeSuccess;
+                                    scene.backgroundColor = [UIColor greenColor];
+                                    NSLog(@"抬起成功");
+                                });
+                            }
+                            
+                        }
+                    }
+                }];
+            }
+        }
+        else{
+            NSLog(@"这是一条按键按下指令,手指id为%d ,按下时间点为%.2f",returnId,returnTime);
+            if (self.gameOrderFile){
+                [self.gameOrderFile.gameOrders enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ( ((OrderModel*)obj).fingerId == returnId && returnTime >= ((OrderModel*)obj).startTime-AllowedDelay && returnTime <= ((OrderModel*)obj).startTime+AllowedDelay ){
                         dispatch_async(dispatch_get_main_queue(), ^{
                             NSLog(@"按键按下指令，手指id为%d，按下时间符合指令序列下标为%d的指令区间",returnId,((OrderModel*)obj).no);
-                            GameSceneView *scene = (GameSceneView*)[self.operateArray objectAtIndex:((OrderModel*)obj).no];
+                            GameSceneView *scene = (GameSceneView *)[self.operateArray objectAtIndex:((OrderModel*)obj).no];
                             if (scene.completeType == CompleteTypeDefault){
-                                scene.completeType = CompleteTypeSuccess;
-                                scene.backgroundColor = [UIColor redColor];
+                                scene.completeType = CompleteTypeTouched;
+                                scene.backgroundColor = [UIColor yellowColor];
                                 NSLog(@"按下成功");
-                                self.score += 1;
-                                [self.gameStaticsView updateScore:self.score];
                             }
                         });
                     }

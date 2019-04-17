@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "GameSet.h"
-
 @interface BottomRightView : UIView
 
 - (void)configView;

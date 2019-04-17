@@ -7,7 +7,6 @@
 //
 
 #import "GameStaticsView.h"
-#import "GameSet.h"
 #import "Masonry.h"
 
 @interface GameStaticsView()

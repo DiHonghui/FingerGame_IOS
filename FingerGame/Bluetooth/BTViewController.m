@@ -8,6 +8,7 @@
 
 #import "BTViewController.h"
 #import "AppMacro.h"
+#import "NSObject+ProgressHUD.h"
 #import "MyBTManager.h"
 #import "BLEInfo.h"
 
@@ -75,15 +76,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     self.navigationItem.title = @"正在连接中，请稍后...";
+    //[self showProgress];
     BLEInfo *thisBLEInfo=[self.arrayBLE objectAtIndex:indexPath.row];
     [self.myBTManager connectPeripheral:thisBLEInfo.discoveredPeripheral finish:^(BOOL state) {
+        //[self hideProgress];
         if (state == YES){
+            //[self showHUDText:@"连接成功"];
             [self.navigationController popViewControllerAnimated:YES];
-//            [self.myBTManager readValueWithBlock:^(NSString *data) {
-//                NSLog(@"readValue returnWith:%@",data);
-//            }];
         }
         else{
+            //[self showErrorHUD:@"连接失败"];
             self.navigationItem.title = @"已连接，但未找到可读写特征";
             NSLog(@"已连接，但未找到可读写特征");
         }

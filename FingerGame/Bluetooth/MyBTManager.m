@@ -261,8 +261,7 @@ static MyBTManager *sInstance = nil;
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(nullable NSError *)error {
     if (error == nil) {
-        for (CBCharacteristic *c in service.characteristics)
-        {
+        for (CBCharacteristic *c in service.characteristics){
             NSLog(@"特征UUID FOUND(in 服务UUID:%@): %@",service.UUID.description,c.UUID);
             if([c.UUID isEqual:[CBUUID UUIDWithString:@"FFE1"]]){
                 self.characteristic = c;
@@ -280,8 +279,7 @@ static MyBTManager *sInstance = nil;
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
-    if (error)
-    {
+    if (error){
         NSLog(@"didUpdateValueForCharacteristic error : %@", error.localizedDescription);
         return;
     }
@@ -293,10 +291,10 @@ static MyBTManager *sInstance = nil;
         //响应readValueWithBlock:
         if (self.readValueReturnBlock){
             self.readValueReturnBlock(dataValues);
-//            self.readValueReturnBlock = NULL;
+            self.readValueReturnBlock = nil;
         }
         
-        if (self.delegate){
+        if (self.readValueReturnBlock && self.delegate){
             NSLog(@"准备发送数据给代理人");
             if ([self.delegate respondsToSelector:@selector(receiveDataFromBLE:)]){
                 [self.delegate receiveDataFromBLE:dataValues];

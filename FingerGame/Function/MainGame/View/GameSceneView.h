@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import "GameSet.h"
-
 typedef NS_ENUM(NSInteger,CompleteType){
     CompleteTypeDefault = 0,
     CompleteTypeSuccess,
     CompleteTypeFailure,
-    CompleteTypeMissed
+    CompleteTypeMissed,
+    CompleteTypeTouched
 };
 
 @interface GameSceneView : UIView

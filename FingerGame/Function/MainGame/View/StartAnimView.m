@@ -8,8 +8,6 @@
 
 #import "StartAnimView.h"
 
-#import "GameSet.h"
-
 @interface StartAnimView()
 
 @property (nonatomic,strong) UILabel *animLabel;

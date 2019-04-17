@@ -23,11 +23,11 @@
 
 - (void)showErrorHUD:(NSString *)error;
 
-- (void)runInMainQueue:(void (^)())queue;
+- (void)runInMainQueue:(void (^)(void))queue;
 
-- (void)runInGlobalQueue:(void (^)())queue;
+- (void)runInGlobalQueue:(void (^)(void))queue;
 
-- (void)runAfterSecs:(float)secs block:(void (^)())block;
+- (void)runAfterSecs:(float)secs block:(void (^)(void))block;
 
 - (void)showHUDText:(NSString *)text;
 

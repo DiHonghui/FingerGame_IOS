@@ -18,6 +18,7 @@
 		119D8C00223F7AB600B19B12 /* LoginByPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8BF8223F7AB600B19B12 /* LoginByPhoneNumberViewController.m */; };
 		119D8C01223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 119D8BF9223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib */; };
 		119D8C04223F7C4300B19B12 /* MissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8C03223F7C4200B19B12 /* MissionModel.m */; };
+		4E05AFD022608A3E006F2670 /* GVUserDefaults+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E05AFCF22608A3E006F2670 /* GVUserDefaults+Properties.m */; };
 		4E2BDEEA221C0D3C001D52FC /* MainGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEE9221C0D3C001D52FC /* MainGameViewController.m */; };
 		4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEED221C0D84001D52FC /* GameSceneView.m */; };
 		4E2BDEF2221ED382001D52FC /* StartAnimView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEF1221ED382001D52FC /* StartAnimView.m */; };
@@ -84,6 +85,8 @@
 		4ECF95252227CAED00AC1AED /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95222227CAED00AC1AED /* BTViewController.m */; };
 		4ECF95272227CAED00AC1AED /* MyBTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95242227CAED00AC1AED /* MyBTManager.m */; };
 		4ECF952A2227CE1000AC1AED /* GameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95292227CE1000AC1AED /* GameDetailViewController.m */; };
+		4ED934342266FD91003A989D /* FingerprintModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED934322266FD90003A989D /* FingerprintModel.m */; };
+		4EF10405224A13CA00C5EFA0 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EF10404224A13CA00C5EFA0 /* AudioManager.m */; };
 		6CA7689EB0971694AC95FCBC /* Pods_FingerGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F839D6627D42675A230BB2 /* Pods_FingerGame.framework */; };
 /* End PBXBuildFile section */
 
@@ -126,11 +129,12 @@
 		119D8C02223F7C4200B19B12 /* MissionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionModel.h; sourceTree = "<group>"; };
 		119D8C03223F7C4200B19B12 /* MissionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionModel.m; sourceTree = "<group>"; };
 		25F839D6627D42675A230BB2 /* Pods_FingerGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FingerGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E05AFCE22608A3E006F2670 /* GVUserDefaults+Properties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+Properties.h"; sourceTree = "<group>"; };
+		4E05AFCF22608A3E006F2670 /* GVUserDefaults+Properties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+Properties.m"; sourceTree = "<group>"; };
 		4E2BDEE8221C0D3C001D52FC /* MainGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainGameViewController.h; sourceTree = "<group>"; };
 		4E2BDEE9221C0D3C001D52FC /* MainGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainGameViewController.m; sourceTree = "<group>"; };
 		4E2BDEEC221C0D84001D52FC /* GameSceneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameSceneView.h; sourceTree = "<group>"; };
 		4E2BDEED221C0D84001D52FC /* GameSceneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameSceneView.m; sourceTree = "<group>"; };
-		4E2BDEEF221C0DE3001D52FC /* GameSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameSet.h; sourceTree = "<group>"; };
 		4E2BDEF0221ED382001D52FC /* StartAnimView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartAnimView.h; sourceTree = "<group>"; };
 		4E2BDEF1221ED382001D52FC /* StartAnimView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartAnimView.m; sourceTree = "<group>"; };
 		4E6E6ED8221FD90D0061E599 /* GameStaticsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameStaticsView.h; sourceTree = "<group>"; };
@@ -202,6 +206,11 @@
 		4ECF95242227CAED00AC1AED /* MyBTManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBTManager.m; sourceTree = "<group>"; };
 		4ECF95282227CE1000AC1AED /* GameDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameDetailViewController.h; sourceTree = "<group>"; };
 		4ECF95292227CE1000AC1AED /* GameDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameDetailViewController.m; sourceTree = "<group>"; };
+		4ED934322266FD90003A989D /* FingerprintModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FingerprintModel.m; sourceTree = "<group>"; };
+		4ED934332266FD90003A989D /* FingerprintModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FingerprintModel.h; sourceTree = "<group>"; };
+		4EF10403224A13CA00C5EFA0 /* AudioManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
+		4EF10404224A13CA00C5EFA0 /* AudioManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
+		4EF10406224DEF7E00C5EFA0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		753C542771069F572133C9E1 /* Pods-FingerGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FingerGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-FingerGame/Pods-FingerGame.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -315,12 +324,12 @@
 		119D8BF1223F7AB600B19B12 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				119D8BF6223F7AB600B19B12 /* RegistViewController.h */,
 				119D8BF2223F7AB600B19B12 /* RegistViewController.m */,
+				119D8BF5223F7AB600B19B12 /* RegistViewController.xib */,
+				119D8BF7223F7AB600B19B12 /* LoginViewController.h */,
 				119D8BF3223F7AB600B19B12 /* LoginViewController.m */,
 				119D8BF4223F7AB600B19B12 /* LoginByPhoneNumberViewController.h */,
-				119D8BF5223F7AB600B19B12 /* RegistViewController.xib */,
-				119D8BF6223F7AB600B19B12 /* RegistViewController.h */,
-				119D8BF7223F7AB600B19B12 /* LoginViewController.h */,
 				119D8BF8223F7AB600B19B12 /* LoginByPhoneNumberViewController.m */,
 				119D8BF9223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib */,
 			);
@@ -340,7 +349,6 @@
 				4E2BDEEB221C0D59001D52FC /* View */,
 				4E2BDEE8221C0D3C001D52FC /* MainGameViewController.h */,
 				4E2BDEE9221C0D3C001D52FC /* MainGameViewController.m */,
-				4E2BDEEF221C0DE3001D52FC /* GameSet.h */,
 			);
 			path = MainGame;
 			sourceTree = "<group>";
@@ -370,6 +378,8 @@
 				4ECF95292227CE1000AC1AED /* GameDetailViewController.m */,
 				4E8CA10E222CD22900B9E1F0 /* GameFileApiManager.h */,
 				4E8CA10F222CD22900B9E1F0 /* GameFileApiManager.m */,
+				4EF10403224A13CA00C5EFA0 /* AudioManager.h */,
+				4EF10404224A13CA00C5EFA0 /* AudioManager.m */,
 			);
 			path = GameDetail;
 			sourceTree = "<group>";
@@ -416,6 +426,7 @@
 				4E985FC221DE44C7009E5D71 /* main.m */,
 				4E985FB321DE44C2009E5D71 /* AppDelegate.h */,
 				4E985FB421DE44C2009E5D71 /* AppDelegate.m */,
+				4EF10406224DEF7E00C5EFA0 /* PrefixHeader.pch */,
 				4E98603522165B78009E5D71 /* Bluetooth */,
 				4E985FE721F57263009E5D71 /* Function */,
 				4E985FE521F56320009E5D71 /* Custom */,
@@ -453,6 +464,8 @@
 				4E8CA112222CFFF100B9E1F0 /* NSObject+ProgressHUD.h */,
 				4E8CA111222CFFF100B9E1F0 /* NSObject+ProgressHUD.m */,
 				4E985FE621F5637D009E5D71 /* AppMacro.h */,
+				4E05AFCE22608A3E006F2670 /* GVUserDefaults+Properties.h */,
+				4E05AFCF22608A3E006F2670 /* GVUserDefaults+Properties.m */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -463,6 +476,7 @@
 				119D8BEA223F7AB600B19B12 /* Entry */,
 				11334ECE223B921900705971 /* MainMenu */,
 				4E8CA1142230F82A00B9E1F0 /* GameDetail */,
+				4ED934302266FD90003A989D /* Fingerprint */,
 				4E2BDEE7221C09FD001D52FC /* MainGame */,
 			);
 			path = Function;
@@ -558,6 +572,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		4ED934302266FD90003A989D /* Fingerprint */ = {
+			isa = PBXGroup;
+			children = (
+				4ED934312266FD90003A989D /* Model */,
+			);
+			path = Fingerprint;
+			sourceTree = "<group>";
+		};
+		4ED934312266FD90003A989D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4ED934322266FD90003A989D /* FingerprintModel.m */,
+				4ED934332266FD90003A989D /* FingerprintModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		6BAFB409FA611116E447C03F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -631,7 +662,7 @@
 		4E985FA821DE44C2009E5D71 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = lisy;
 				TargetAttributes = {
 					4E985FAF21DE44C2009E5D71 = {
@@ -802,6 +833,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ED934342266FD91003A989D /* FingerprintModel.m in Sources */,
 				119D8BFE223F7AB600B19B12 /* LoginViewController.m in Sources */,
 				4E8CA11E223100DA00B9E1F0 /* GameOrderFile.m in Sources */,
 				4E98601422165B4B009E5D71 /* ZHYAPIProxy.m in Sources */,
@@ -816,6 +848,7 @@
 				4E98604322165B78009E5D71 /* BLEInfo.m in Sources */,
 				11334EDA223B930E00705971 /* MissionlistApiManager.m in Sources */,
 				4ECF952A2227CE1000AC1AED /* GameDetailViewController.m in Sources */,
+				4E05AFD022608A3E006F2670 /* GVUserDefaults+Properties.m in Sources */,
 				4E8CA11B2230FAA500B9E1F0 /* OrderModel.m in Sources */,
 				119D8BFD223F7AB600B19B12 /* RegistViewController.m in Sources */,
 				4E98602922165B4B009E5D71 /* TestYunzsService.m in Sources */,
@@ -840,6 +873,7 @@
 				4E8CA110222CD22900B9E1F0 /* GameFileApiManager.m in Sources */,
 				4E985FC321DE44C7009E5D71 /* main.m in Sources */,
 				4E985FB521DE44C2009E5D71 /* AppDelegate.m in Sources */,
+				4EF10405224A13CA00C5EFA0 /* AudioManager.m in Sources */,
 				4E98602622165B4B009E5D71 /* ZHYServiceFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -966,6 +1000,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = FingerGame/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1023,6 +1059,8 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = FingerGame/PrefixHeader.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1041,17 +1079,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 087BB4B1C058E65BBB673BD6 /* Pods-FingerGame.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V6KK735F7M;
+				DEVELOPMENT_TEAM = RV75G22HVG;
 				INFOPLIST_FILE = FingerGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = bj.com.FingerGame;
+				PRODUCT_BUNDLE_IDENTIFIER = bj.123.FingerGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1062,17 +1101,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 753C542771069F572133C9E1 /* Pods-FingerGame.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V6KK735F7M;
+				DEVELOPMENT_TEAM = RV75G22HVG;
 				INFOPLIST_FILE = FingerGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = bj.com.FingerGame;
+				PRODUCT_BUNDLE_IDENTIFIER = bj.123.FingerGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
