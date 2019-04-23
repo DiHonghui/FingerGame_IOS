@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110D28C5226F56D2008FC5F8 /* LoginFingerprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 110D28C3226F56D2008FC5F8 /* LoginFingerprintViewController.m */; };
+		110D28C8226F571F008FC5F8 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 110D28C6226F571E008FC5F8 /* CustomTableViewCell.m */; };
 		11334ED6223B92F200705971 /* GameStageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11334ED4223B92F200705971 /* GameStageTableViewCell.m */; };
 		11334ED7223B92F200705971 /* GameStageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11334ED5223B92F200705971 /* GameStageTableViewCell.xib */; };
 		11334EDA223B930E00705971 /* MissionlistApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11334ED8223B930E00705971 /* MissionlistApiManager.m */; };
@@ -113,6 +115,10 @@
 
 /* Begin PBXFileReference section */
 		087BB4B1C058E65BBB673BD6 /* Pods-FingerGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FingerGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FingerGame/Pods-FingerGame.debug.xcconfig"; sourceTree = "<group>"; };
+		110D28C3226F56D2008FC5F8 /* LoginFingerprintViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginFingerprintViewController.m; sourceTree = "<group>"; };
+		110D28C4226F56D2008FC5F8 /* LoginFingerprintViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginFingerprintViewController.h; sourceTree = "<group>"; };
+		110D28C6226F571E008FC5F8 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		110D28C7226F571E008FC5F8 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		11334ED3223B92F200705971 /* GameStageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStageTableViewCell.h; sourceTree = "<group>"; };
 		11334ED4223B92F200705971 /* GameStageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStageTableViewCell.m; sourceTree = "<group>"; };
 		11334ED5223B92F200705971 /* GameStageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameStageTableViewCell.xib; sourceTree = "<group>"; };
@@ -481,6 +487,8 @@
 		4E985FE521F56320009E5D71 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				110D28C7226F571E008FC5F8 /* CustomTableViewCell.h */,
+				110D28C6226F571E008FC5F8 /* CustomTableViewCell.m */,
 				4E8CA112222CFFF100B9E1F0 /* NSObject+ProgressHUD.h */,
 				4E8CA111222CFFF100B9E1F0 /* NSObject+ProgressHUD.m */,
 				4E985FE621F5637D009E5D71 /* AppMacro.h */,
@@ -595,6 +603,8 @@
 		4ED934302266FD90003A989D /* Fingerprint */ = {
 			isa = PBXGroup;
 			children = (
+				110D28C4226F56D2008FC5F8 /* LoginFingerprintViewController.h */,
+				110D28C3226F56D2008FC5F8 /* LoginFingerprintViewController.m */,
 				4ED934312266FD90003A989D /* Model */,
 			);
 			path = Fingerprint;
@@ -854,6 +864,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ED934342266FD91003A989D /* FingerprintModel.m in Sources */,
+				110D28C5226F56D2008FC5F8 /* LoginFingerprintViewController.m in Sources */,
 				119D8BFE223F7AB600B19B12 /* LoginViewController.m in Sources */,
 				11D2C31E226EEF050071562C /* MissionSimpleForList.m in Sources */,
 				4E8CA11E223100DA00B9E1F0 /* GameOrderFile.m in Sources */,
@@ -866,6 +877,7 @@
 				4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */,
 				4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */,
 				11D2C31B226EB5010071562C /* TableViewController.m in Sources */,
+				110D28C8226F571F008FC5F8 /* CustomTableViewCell.m in Sources */,
 				4E98603222165B4B009E5D71 /* ZHYCacheObject.m in Sources */,
 				4E98604322165B78009E5D71 /* BLEInfo.m in Sources */,
 				11334EDA223B930E00705971 /* MissionlistApiManager.m in Sources */,
