@@ -10,14 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FingerprintModel : NSObject <NSCoding>
+@interface FingerprintModel : NSObject
 
 //指纹所属的用户id
 @property (nonatomic,strong) NSString *userId;
 //指纹所属的手指id
-@property (nonatomic,assign) NSString *fingerId;
+@property (nonatomic,strong) NSString *fingerId;
 //指纹保存的位置
-@property (nonatomic,strong) NSString *storeLocation;
+@property (nonatomic,strong) NSMutableArray *storeLocations;
 
 @end
 

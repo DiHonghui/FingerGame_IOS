@@ -13,8 +13,7 @@ typedef NS_ENUM(NSInteger,CompleteType){
     CompleteTypeSuccess,
     CompleteTypeFailure,
     CompleteTypeMissed,
-    CompleteTypeTouched,
-    CompleteTypeCompleted
+    CompleteTypeTouched
 };
 
 @interface GameSceneView : UIView

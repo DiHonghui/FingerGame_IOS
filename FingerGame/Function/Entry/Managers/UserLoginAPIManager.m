@@ -19,14 +19,14 @@
 
 @implementation UserLoginAPIManager
 
--(instancetype)init{
-    self = [super init];
-    if (self) {
-        self.validator = self;
-        self.paramSource = self;
-    }
-    return self;
-}
+//-(instancetype)init{
+//    self = [super init];
+//    if (self) {
+//        self.validator = self;
+//        self.paramSource = self;
+//    }
+//    return self;
+//}
 
 - (instancetype)initWithUserNameAndPassword:(NSString *)userName password:(NSString *)userPassword{
     self = [super init];

@@ -78,7 +78,7 @@ static MyBTManager *sInstance = nil;
 - (void)readValueWithBlock:(ReadValueReturnBlock)readValueReturnBlock{
     if (self.peripheral && self.characteristic){
         self.readValueReturnBlock = readValueReturnBlock;
-        //[self.peripheral setNotifyValue:YES forCharacteristic:self.characteristic];
+        [self.peripheral setNotifyValue:YES forCharacteristic:self.characteristic];
         [self.peripheral readValueForCharacteristic:self.characteristic];
     }
     else
@@ -293,14 +293,14 @@ static MyBTManager *sInstance = nil;
             self.readValueReturnBlock(dataValues);
             self.readValueReturnBlock = nil;
         }
-        else{
-            if (self.delegate) {
-                NSLog(@"准备发送数据给代理人");
-                if ([self.delegate respondsToSelector:@selector(receiveDataFromBLE:)]){
-                    [self.delegate receiveDataFromBLE:dataValues];
-                }
+        
+        if (self.readValueReturnBlock && self.delegate){
+            NSLog(@"准备发送数据给代理人");
+            if ([self.delegate respondsToSelector:@selector(receiveDataFromBLE:)]){
+                [self.delegate receiveDataFromBLE:dataValues];
             }
         }
+        //
 //        Byte *bytes = (Byte*)[dataValue bytes];
 //        //下面是Byte转换为16进制。
 //        NSString *hexStr=@"";

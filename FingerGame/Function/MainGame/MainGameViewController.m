@@ -64,7 +64,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    NSLog(@"enter viewWillAppear");
+    
     self.curBTManager = [MyBTManager sharedInstance];
     self.curBTManager.delegate = self;
     self.cacheString = @"";
@@ -131,26 +132,19 @@
     StartAnimView *startAnimView = [StartAnimView shareInstance];
     [self.view addSubview:startAnimView];
     [startAnimView showWithAnimNum:3 CompleteBlock:^{
-//        [self.curBTManager writeToPeripheral:kGameStartOrder];
-//        [self.curBTManager readValueWithBlock:^(NSString *data) {
-//            NSLog(@"%@",data);
-//            if ([data containsString:@"aa02030609"]){
-//                NSLog(@"开始游戏！");
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    NSLog(@"-----------");
-//                    [self->displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-//                });
-//            }else{
-//                NSLog(@"未接收到蓝牙计时结束指令，无法正常游戏");
-//            }
-//        }];
-        
-        //only view test
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"-----------");
-            [self->displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-        });
-        
+        [self.curBTManager writeToPeripheral:kGameStartOrder];
+        [self.curBTManager readValueWithBlock:^(NSString *data) {
+            NSLog(@"%@",data);
+            if ([data containsString:@"aa02030609"]){
+                NSLog(@"开始游戏！");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"-----------");
+                    [self->displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+                });
+            }else{
+                NSLog(@"未接收到蓝牙计时结束指令，无法正常游戏");
+            }
+        }];
     }];
 }
 
@@ -159,12 +153,10 @@
         //遍历操作数组中的每个scene
         dispatch_async(dispatch_get_main_queue(), ^{
             GameSceneView *scene = (GameSceneView *)obj;
-            if (scene.completeType != CompleteTypeCompleted){
-                CGRect frame = scene.frame;
-                frame.origin.y += GameSpeed;
-                if (!*stop){
-                    scene.frame = frame;
-                }
+            CGRect frame = scene.frame;
+            frame.origin.y += GameSpeed;
+            if (!*stop){
+                scene.frame = frame;
             }
             //方块上边框到达判定线后的操作
             if (scene.frame.origin.y >= SCREEN_HEIGHT-[BottomLeftView heightForView]-20){
@@ -173,11 +165,9 @@
                     scene.completeType = CompleteTypeFailure;
                 }
                 scene.frame = [[self.frameArray objectAtIndex:idx] CGRectValue];
-                scene.completeType = CompleteTypeCompleted;
-                scene.hidden = YES;
                 self.score += 1;
                 [self.gameStaticsView updateScore:self.score];
-                if (self.score == self.sceneCount){
+                if (self.score == 5){
                     [self endGame];
                 }
             }

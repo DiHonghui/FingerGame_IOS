@@ -10,7 +10,6 @@
 
 #import "BTViewController.h"
 #import "MainGameViewController.h"
-#import "LoginFingerprintViewController.h"
 
 #import "GameFileApiManager.h"
 #import "AudioManager.h"
@@ -106,9 +105,10 @@
     
     self.downloadAudioBtn = [[UIButton alloc] initWithFrame:CGRectMake(150, 150, 100, 80)];
     self.downloadAudioBtn.backgroundColor = [UIColor blueColor];
-    [self.downloadAudioBtn setTitle:@"下载游戏音乐" forState:UIControlStateNormal];
+    [self.downloadAudioBtn setTitle:@"TEST" forState:UIControlStateNormal];
     [self.downloadAudioBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.downloadAudioBtn addTarget:self action:@selector(downloadAudioBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    //[self.downloadAudioBtn addTarget:self action:@selector(downloadAudioBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.downloadAudioBtn addTarget:self action:@selector(fingerprintBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     self.fingerprintBtn = [[UIButton alloc] initWithFrame:CGRectMake(150, 250, 100, 80)];
     self.fingerprintBtn.backgroundColor = [UIColor blueColor];
@@ -121,7 +121,6 @@
     [self.view addSubview:self.linkBleBtn];
     [self.view addSubview:self.startGameBtn];
     [self.view addSubview:self.downloadAudioBtn];
-    [self.view addSubview:self.fingerprintBtn];
     
     _bleState = NO;
     
@@ -138,8 +137,8 @@
 - (void)downloadAudioBtnClicked:(id)sender{
     [self.curAudioManager downloadAudioWithURL:[NSString stringWithFormat:@"http://shouzhi.yunzs.net/music/%@",self.curMissionModel.musicPath] fileName:self.curMissionModel.musicName downloadReturnBlock:^(bool state, NSString * _Nonnull localPath) {
         if (state == YES){
-            [self showHUDText:@"游戏音乐下载成功"];
             [self.curAudioManager prepareForAudioPlayer:localPath];
+            //[self.curAudioManager playAudio];
         }else{
             [self showErrorHUD:@"游戏音乐下载失败"];
         }
@@ -147,42 +146,60 @@
 }
 
 - (void)fingerprintBtnClicked:(id)sender{
-    LoginFingerprintViewController *vc = [[LoginFingerprintViewController alloc] initWithUserId:@"1"];
-    [self.navigationController pushViewController:vc animated:YES];
+    __block int idx = 0;
+    if (self.curBTManager && self.bleState){
+        [self.curBTManager writeToPeripheral:[NSString stringWithFormat:@"aa0202000000"]];
+                [self.curBTManager readValueWithBlock:^(NSString *data) {
+                    NSLog(@"%d指纹录入返回%@",idx,data);
+                    if ([data containsString:@"aa0203"])
+                        idx += 1;
+                }];
+    }
+////                返回录入指纹指令
+////                0x02：第一次按指纹成功；0x03：第一次按指纹失败
+////                0x04：第二次按指纹成功；0x05：第二次按指纹失败
+////                0x07：合并指纹成功；    0x08：合并指纹失败
+////                0x09：录入指纹成功：    0x0a: 录入指纹失败
+////                     起始位        长度        指令组ID        录入成功或者失败        校验位
+////                字节    1          2            3                 4                5
+////                内容    0xaa        0x02        0x03             见右           3-4累加和校验
 }
 
 - (void)startGameBtnClicked:(id)sender{
-//    if (_bleState){
-//        //蓝牙已连接，准备发送给蓝牙指令集
-//        [self.ordersArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            [self.curBTManager writeToPeripheral:(NSString *)obj];
-//        }];
-//        //指令集发送结束 指令
-//        [self.curBTManager writeToPeripheral:@"aa02010506"];
-//        //
-//        [self.curBTManager readValueWithBlock:^(NSString *data) {
-//            NSLog(@"%@",data);
-//            if ([data containsString:@"aa02030104"]){
-//                //enter game view
-//                MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
-//                [self presentViewController:vc animated:YES completion:nil];
-//            }
-//        }];
-//    }else{
-//        UIAlertController *_alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您尚未连接蓝牙，无法开始游戏，请连接蓝牙后尝试" preferredStyle:UIAlertControllerStyleAlert];
-//        [_alertController addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//            [self dismissViewControllerAnimated:YES completion:nil];
-//        }]];
-//        [self presentViewController:_alertController animated:YES completion:nil];
-//    }
-    //only view test
-    MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
-    [self presentViewController:vc animated:YES completion:nil];
+    if (_bleState){
+        //蓝牙已连接，准备发送给蓝牙指令集
+        [self.ordersArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.curBTManager writeToPeripheral:(NSString *)obj];
+        }];
+//        [self.curBTManager writeToPeripheral:@"aa0700000000001000ff"];
+//        [self.curBTManager writeToPeripheral:@"aa0701001000002000ff"];
+//        [self.curBTManager writeToPeripheral:@"aa0702002000001000ff"];
+        //指令集发送结束 指令
+        [self.curBTManager writeToPeripheral:@"aa02010506"];
+        //
+        [self.curBTManager readValueWithBlock:^(NSString *data) {
+            NSLog(@"%@",data);
+            if ([data containsString:@"aa02030104"]){
+                //enter game view
+                MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
+                [self presentViewController:vc animated:YES completion:nil];
+            }
+        }];
+    }else{
+        UIAlertController *_alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您尚未连接蓝牙，无法开始游戏，请连接蓝牙后尝试" preferredStyle:UIAlertControllerStyleAlert];
+        [_alertController addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        [self presentViewController:_alertController animated:YES completion:nil];
+    }
+//    MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
+//    [self presentViewController:vc animated:YES completion:nil];
 }
 
 
 - (void)analyzeServiceData:(id)data{
     [self.curMissionModel yy_modelSetWithJSON:data[@"data"][0]];
+    NSLog(@"%@ %@",self.curMissionModel.musicName,self.curMissionModel.musicPath);
     self.gameOrderFile.gameId = data[@"data"][0][@"id"];
     self.gameOrderFile.gameName = data[@"data"][0][@"name"];
     self.gameOrderFile.gameOrders = [NSMutableArray array];
@@ -202,10 +219,12 @@
         NSLog(@"指令编号：%d手指id：%d开始时间：%.2f时长：%.2f",orderModel.no,orderModel.fingerId,orderModel.startTime,orderModel.duration);
         [self.gameOrderFile.gameOrders addObject:orderModel];
     }];
+//    [self.gameOrderFile.gameOrders enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSLog(@"保存的指令编号：%d手指id：%d开始时间：%.2f时长：%.2f",((OrderModel*)obj).no,((OrderModel*)obj).fingerId,((OrderModel*)obj).startTime,((OrderModel*)obj).duration);
+//    }];
 }
 
 #pragma mark - MyBTManagerDelegate
-
 - (void)receiveBLELinkState:(BOOL)state{
     if (state == YES){
         self.bleStateLb.textColor = [UIColor greenColor];
