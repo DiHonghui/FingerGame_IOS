@@ -18,10 +18,6 @@
 		119D8C00223F7AB600B19B12 /* LoginByPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8BF8223F7AB600B19B12 /* LoginByPhoneNumberViewController.m */; };
 		119D8C01223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 119D8BF9223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib */; };
 		119D8C04223F7C4300B19B12 /* MissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8C03223F7C4200B19B12 /* MissionModel.m */; };
-		11D2C30F226EAC5C0071562C /* GameStageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D2C30E226EAC5C0071562C /* GameStageTableViewController.m */; };
-		11D2C31B226EB5010071562C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D2C31A226EB5010071562C /* TableViewController.m */; };
-		11D2C31E226EEF050071562C /* MissionSimpleForList.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D2C31D226EEF050071562C /* MissionSimpleForList.m */; };
-		11D2C321226F18240071562C /* UserRegistAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D2C320226F18240071562C /* UserRegistAPIManager.m */; };
 		4E05AFD022608A3E006F2670 /* GVUserDefaults+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E05AFCF22608A3E006F2670 /* GVUserDefaults+Properties.m */; };
 		4E2BDEEA221C0D3C001D52FC /* MainGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEE9221C0D3C001D52FC /* MainGameViewController.m */; };
 		4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEED221C0D84001D52FC /* GameSceneView.m */; };
@@ -134,14 +130,6 @@
 		119D8BF9223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginByPhoneNumberViewController.xib; sourceTree = "<group>"; };
 		119D8C02223F7C4200B19B12 /* MissionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionModel.h; sourceTree = "<group>"; };
 		119D8C03223F7C4200B19B12 /* MissionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionModel.m; sourceTree = "<group>"; };
-		11D2C30D226EAC5B0071562C /* GameStageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStageTableViewController.h; sourceTree = "<group>"; };
-		11D2C30E226EAC5C0071562C /* GameStageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStageTableViewController.m; sourceTree = "<group>"; };
-		11D2C319226EB5010071562C /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
-		11D2C31A226EB5010071562C /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		11D2C31C226EEF050071562C /* MissionSimpleForList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MissionSimpleForList.h; sourceTree = "<group>"; };
-		11D2C31D226EEF050071562C /* MissionSimpleForList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MissionSimpleForList.m; sourceTree = "<group>"; };
-		11D2C31F226F18240071562C /* UserRegistAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserRegistAPIManager.h; sourceTree = "<group>"; };
-		11D2C320226F18240071562C /* UserRegistAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserRegistAPIManager.m; sourceTree = "<group>"; };
 		25F839D6627D42675A230BB2 /* Pods_FingerGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FingerGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E05AFCE22608A3E006F2670 /* GVUserDefaults+Properties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+Properties.h"; sourceTree = "<group>"; };
 		4E05AFCF22608A3E006F2670 /* GVUserDefaults+Properties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+Properties.m"; sourceTree = "<group>"; };
@@ -280,8 +268,6 @@
 		11334ECF223B927C00705971 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				11D2C30D226EAC5B0071562C /* GameStageTableViewController.h */,
-				11D2C30E226EAC5C0071562C /* GameStageTableViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -328,8 +314,6 @@
 			children = (
 				119D8BEC223F7AB600B19B12 /* UserLoginAPIManager.h */,
 				119D8BED223F7AB600B19B12 /* UserLoginAPIManager.m */,
-				11D2C31F226F18240071562C /* UserRegistAPIManager.h */,
-				11D2C320226F18240071562C /* UserRegistAPIManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -415,8 +399,6 @@
 				4E8CA11A2230FAA500B9E1F0 /* OrderModel.m */,
 				4E8CA11C223100DA00B9E1F0 /* GameOrderFile.h */,
 				4E8CA11D223100DA00B9E1F0 /* GameOrderFile.m */,
-				11D2C31C226EEF050071562C /* MissionSimpleForList.h */,
-				11D2C31D226EEF050071562C /* MissionSimpleForList.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -456,8 +438,6 @@
 				4E985FE521F56320009E5D71 /* Custom */,
 				4E985FB621DE44C2009E5D71 /* ViewController.h */,
 				4E985FB721DE44C2009E5D71 /* ViewController.m */,
-				11D2C319226EB5010071562C /* TableViewController.h */,
-				11D2C31A226EB5010071562C /* TableViewController.m */,
 				4E985FB921DE44C2009E5D71 /* Main.storyboard */,
 				4E985FBC21DE44C7009E5D71 /* Assets.xcassets */,
 				4E985FBE21DE44C7009E5D71 /* LaunchScreen.storyboard */,
@@ -865,7 +845,6 @@
 			files = (
 				4ED934342266FD91003A989D /* FingerprintModel.m in Sources */,
 				119D8BFE223F7AB600B19B12 /* LoginViewController.m in Sources */,
-				11D2C31E226EEF050071562C /* MissionSimpleForList.m in Sources */,
 				4E8CA11E223100DA00B9E1F0 /* GameOrderFile.m in Sources */,
 				4E98601422165B4B009E5D71 /* ZHYAPIProxy.m in Sources */,
 				4E98601722165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.m in Sources */,
@@ -876,10 +855,13 @@
 				4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */,
 				4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				4E38677822695CB100AD64F0 /* CustomTableViewCell.m in Sources */,
 =======
 				11D2C31B226EB5010071562C /* TableViewController.m in Sources */,
 >>>>>>> 0e228a4b6cc03585d190df2b1a2765852bf33120
+=======
+>>>>>>> parent of 0e228a4... 游戏列表页面，部分UI
 				4E98603222165B4B009E5D71 /* ZHYCacheObject.m in Sources */,
 				4E98604322165B78009E5D71 /* BLEInfo.m in Sources */,
 				11334EDA223B930E00705971 /* MissionlistApiManager.m in Sources */,
@@ -899,9 +881,7 @@
 				4E2BDEF2221ED382001D52FC /* StartAnimView.m in Sources */,
 				4E98601122165B4B009E5D71 /* ZHYRequestGenerator.m in Sources */,
 				4E98602022165B4B009E5D71 /* ZHYDefaultService.m in Sources */,
-				11D2C321226F18240071562C /* UserRegistAPIManager.m in Sources */,
 				4E985FB821DE44C2009E5D71 /* ViewController.m in Sources */,
-				11D2C30F226EAC5C0071562C /* GameStageTableViewController.m in Sources */,
 				119D8C04223F7C4300B19B12 /* MissionModel.m in Sources */,
 				4ECF95252227CAED00AC1AED /* BTViewController.m in Sources */,
 				119D8BFB223F7AB600B19B12 /* UserLoginAPIManager.m in Sources */,

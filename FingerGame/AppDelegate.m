@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "ViewController.h"
-#import "GameStageTableViewController.h"
 #import "GameDetailViewController.h"
 
 @interface AppDelegate ()
@@ -21,32 +20,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [self.window makeKeyAndVisible];
-    self.window.rootViewController = [[UIViewController alloc] init];
-    [self toLogin];
     
+    self.window.rootViewController = [[UIViewController alloc] init];
+    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameName:@"手指操"];
+    //LoginViewController *vc2 = [[LoginViewController alloc] init];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController =nc;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
 
--(void)toLogin{
-    LoginViewController *vc = [[LoginViewController alloc] init];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    self.window.rootViewController =nc;
-}
 
--(void)toMain2{
-    //GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameName:@"手指操"];
-    //LoginViewController *vc2 = [[LoginViewController alloc] init];
-    GameStageTableViewController *vc = [[GameStageTableViewController alloc]init];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    self.window.rootViewController =nc;
-}
--(void)toMain{
-    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameName:@"手指操"];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    self.window.rootViewController =nc;
-}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

@@ -19,21 +19,6 @@
 
 @implementation GameStageTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        [self setup];
-    }
-    return self;
-}
--(instancetype)init{
-    self = [super init];
-    if (self) {
-        [self setup];
-    }
-    return self;
-}
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -47,34 +32,10 @@
     return cell;
 }
 
-+(GameStageTableViewCell *)createCellbyTableView:(UITableView *)tableView{
-    GameStageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([GameStageTableViewCell class])];
-    if (!cell) {
-        cell = [[GameStageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([GameStageTableViewCell class])];
-        [tableView registerClass:[GameStageTableViewCell class] forCellReuseIdentifier:NSStringFromClass([GameStageTableViewCell class])];
-    }
-    return cell;
-}
-
--(void)configureCell:(MissionModel *)model{
-    self.stageNumberLabel.text= @"1";
-    self.musicNameLabel.text = model.musicName;
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
-}
-
-- (void)setup{
-    
-    
-    [self addSubview:self.musicNameLabel];
-    [self addSubview:self.stageNumberLabel];
-    [self addSubview:self.textLabel];
-    [self addSubview:self.actionButton];
-    [self addSubview:self.auditionButton];
 }
 
 @end

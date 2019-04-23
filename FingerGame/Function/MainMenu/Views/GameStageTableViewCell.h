@@ -11,16 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol GameStageTableViewCellDelegate <NSObject>
-
-@end
-
 @interface GameStageTableViewCell : UITableViewCell
-@property (nonatomic, weak) id<GameStageTableViewCellDelegate> delegate;
-+(instancetype)cellWithTableView:(UITableView *)tableview;
-+(GameStageTableViewCell *)createCellbyTableView:(UITableView *)tableView;
 
--(void)configureCell:(MissionModel *)model;
++(instancetype)cellWithTableView:(UITableView *)tableview;
+
 @end
 
 NS_ASSUME_NONNULL_END

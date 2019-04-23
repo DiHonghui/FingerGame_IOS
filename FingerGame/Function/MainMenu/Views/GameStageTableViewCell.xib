@@ -67,12 +67,12 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="actionButton" destination="czm-Wq-EMQ" id="NSF-o3-Qas"/>
-                <outlet property="auditionButton" destination="Fh1-Rl-0Lj" id="G1D-n1-gH9"/>
+                <outlet property="auditionButton" destination="Fh1-Rl-0Lj" id="91g-KE-kLB"/>
                 <outlet property="collectButton" destination="gGq-TX-nFP" id="d9L-1S-UbW"/>
-                <outlet property="musicNameLabel" destination="5uK-jA-XWZ" id="ZDW-j8-mgq"/>
-                <outlet property="stageNumberLabel" destination="Cet-GR-Ush" id="R9I-dI-zr1"/>
+                <outlet property="musicNameLabel" destination="5uK-jA-XWZ" id="blo-Kz-iDU"/>
+                <outlet property="stageNumberLabel" destination="Cet-GR-Ush" id="WaC-80-Wu4"/>
             </connections>
-            <point key="canvasLocation" x="-136" y="171"/>
+            <point key="canvasLocation" x="132.80000000000001" y="136.28185907046478"/>
         </tableViewCell>
     </objects>
 </document>

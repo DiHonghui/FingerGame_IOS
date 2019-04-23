@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "Masonry/Masonry.h"
 #import "AppMacro.h"
-#import "GVUserDefaults+Properties.h"
+#import "GVUserDefaults.h"
 #import "RegistViewController.h"
 #import "UserLoginApiManager.h"
 
@@ -109,23 +109,17 @@
 //    }
     self.loginApimanager = [[UserLoginAPIManager alloc]initWithUserNameAndPassword:self.usernameField.text password:self.passwordField.text];
     [self.loginApimanager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-//        if (errorType == ZHYAPIManagerErrorTypeSuccess) {
+        if (errorType == ZHYAPIManagerErrorTypeSuccess) {
             if ([responseData[@"msg"] isEqualToString:@"未查询到数据！"]) {
                 NSLog(@"登录失败，用户名或密码错误");
                 return;
             }
             NSLog(@"登陆成功");
-            [GVUserDefaults standardUserDefaults].userId = responseData[@"data"][@"id"];
-            [GVUserDefaults standardUserDefaults].userPwd = responseData[@"data"][@"password"];
-            [GVUserDefaults standardUserDefaults].userName = responseData[@"data"][@"name"];
-            NSLog(@"用户ID = %@",[GVUserDefaults standardUserDefaults].userId);
-            AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            [delegate toMain2];
             
-//        }
-//        else{
-//            NSLog(@"登录失败");
-//        }
+        }
+        else{
+            NSLog(@"登录失败");
+        }
     }];
 
     

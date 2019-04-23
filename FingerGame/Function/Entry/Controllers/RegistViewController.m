@@ -11,8 +11,6 @@
 #import "Masonry/Masonry.h"
 #import "AppMacro.h"
 #import "GVUserDefaults.h"
-#import "UserRegistAPIManager.h"
-#import "GVUserDefaults+Properties.h"
 
 
 @interface RegistViewController ()
@@ -21,8 +19,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *userPassword;
 @property (weak, nonatomic) IBOutlet UIButton *getCheckNumberButton;
 @property (weak, nonatomic) IBOutlet UIButton *registButton;
-
-@property(weak,nonatomic) UserRegistAPIManager* userRegistApiManger;
 
 @end
 
@@ -34,25 +30,9 @@
 }
 - (IBAction)registClick:(id)sender {
     if (![self.userName.text isEqualToString:@""]&&![self.userPassword.text isEqualToString:@""]&&![self.userPhoneNumber.text isEqualToString:@""]) {
-        self.userRegistApiManger = [[UserRegistAPIManager alloc]initWithUserInfo:self.userName.text password:self.userPassword.text userPhoneNumber:self.userPhoneNumber.text];
-        [self.userRegistApiManger loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-            //        if (errorType == ZHYAPIManagerErrorTypeSuccess) {
-            if ([responseData[@"data"] isEqualToString:@"该用户名已注册"]) {
-                NSLog(@"注册失败，用户名已注册");
-                return;
-            }
-            NSLog(@"登陆成功");
-            [GVUserDefaults standardUserDefaults].userId = responseData[@"data"][@"id"];
-            [GVUserDefaults standardUserDefaults].userPwd = responseData[@"data"][@"password"];
-            [GVUserDefaults standardUserDefaults].userName = responseData[@"data"][@"name"];
-            NSLog(@"用户ID = %@",[GVUserDefaults standardUserDefaults].userId);
-            AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            [delegate toMain2];
-        
-        //AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         //[delegate toMainGame];
-        }];
-}
+    }
 }
 - (IBAction)getCheckNumber:(id)sender {
     __block int timeout = 59;//倒计时时间
