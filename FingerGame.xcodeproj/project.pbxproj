@@ -22,6 +22,8 @@
 		4E2BDEEA221C0D3C001D52FC /* MainGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEE9221C0D3C001D52FC /* MainGameViewController.m */; };
 		4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEED221C0D84001D52FC /* GameSceneView.m */; };
 		4E2BDEF2221ED382001D52FC /* StartAnimView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEF1221ED382001D52FC /* StartAnimView.m */; };
+		4E38677822695CB100AD64F0 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E38677722695CB100AD64F0 /* CustomTableViewCell.m */; };
+		4E38677E2269AD5600AD64F0 /* LoginFingerprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E38677D2269AD5600AD64F0 /* LoginFingerprintViewController.m */; };
 		4E6E6EDA221FD90D0061E599 /* GameStaticsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6E6ED9221FD90D0061E599 /* GameStaticsView.m */; };
 		4E6E6EDD22238AA50061E599 /* BottomLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6E6EDC22238AA50061E599 /* BottomLeftView.m */; };
 		4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6E6EDF22238ADD0061E599 /* BottomRightView.m */; };
@@ -137,6 +139,10 @@
 		4E2BDEED221C0D84001D52FC /* GameSceneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameSceneView.m; sourceTree = "<group>"; };
 		4E2BDEF0221ED382001D52FC /* StartAnimView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartAnimView.h; sourceTree = "<group>"; };
 		4E2BDEF1221ED382001D52FC /* StartAnimView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartAnimView.m; sourceTree = "<group>"; };
+		4E38677622695CB100AD64F0 /* CustomTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		4E38677722695CB100AD64F0 /* CustomTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		4E38677C2269AD5600AD64F0 /* LoginFingerprintViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginFingerprintViewController.h; sourceTree = "<group>"; };
+		4E38677D2269AD5600AD64F0 /* LoginFingerprintViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginFingerprintViewController.m; sourceTree = "<group>"; };
 		4E6E6ED8221FD90D0061E599 /* GameStaticsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameStaticsView.h; sourceTree = "<group>"; };
 		4E6E6ED9221FD90D0061E599 /* GameStaticsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameStaticsView.m; sourceTree = "<group>"; };
 		4E6E6EDB22238AA50061E599 /* BottomLeftView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomLeftView.h; sourceTree = "<group>"; };
@@ -461,11 +467,13 @@
 		4E985FE521F56320009E5D71 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				4E985FE621F5637D009E5D71 /* AppMacro.h */,
 				4E8CA112222CFFF100B9E1F0 /* NSObject+ProgressHUD.h */,
 				4E8CA111222CFFF100B9E1F0 /* NSObject+ProgressHUD.m */,
-				4E985FE621F5637D009E5D71 /* AppMacro.h */,
 				4E05AFCE22608A3E006F2670 /* GVUserDefaults+Properties.h */,
 				4E05AFCF22608A3E006F2670 /* GVUserDefaults+Properties.m */,
+				4E38677622695CB100AD64F0 /* CustomTableViewCell.h */,
+				4E38677722695CB100AD64F0 /* CustomTableViewCell.m */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -576,6 +584,8 @@
 			isa = PBXGroup;
 			children = (
 				4ED934312266FD90003A989D /* Model */,
+				4E38677C2269AD5600AD64F0 /* LoginFingerprintViewController.h */,
+				4E38677D2269AD5600AD64F0 /* LoginFingerprintViewController.m */,
 			);
 			path = Fingerprint;
 			sourceTree = "<group>";
@@ -583,8 +593,8 @@
 		4ED934312266FD90003A989D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4ED934322266FD90003A989D /* FingerprintModel.m */,
 				4ED934332266FD90003A989D /* FingerprintModel.h */,
+				4ED934322266FD90003A989D /* FingerprintModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -844,12 +854,14 @@
 				4E98602F22165B4B009E5D71 /* ZHYCache.m in Sources */,
 				4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */,
 				4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */,
+				4E38677822695CB100AD64F0 /* CustomTableViewCell.m in Sources */,
 				4E98603222165B4B009E5D71 /* ZHYCacheObject.m in Sources */,
 				4E98604322165B78009E5D71 /* BLEInfo.m in Sources */,
 				11334EDA223B930E00705971 /* MissionlistApiManager.m in Sources */,
 				4ECF952A2227CE1000AC1AED /* GameDetailViewController.m in Sources */,
 				4E05AFD022608A3E006F2670 /* GVUserDefaults+Properties.m in Sources */,
 				4E8CA11B2230FAA500B9E1F0 /* OrderModel.m in Sources */,
+				4E38677E2269AD5600AD64F0 /* LoginFingerprintViewController.m in Sources */,
 				119D8BFD223F7AB600B19B12 /* RegistViewController.m in Sources */,
 				4E98602922165B4B009E5D71 /* TestYunzsService.m in Sources */,
 				119D8C00223F7AB600B19B12 /* LoginByPhoneNumberViewController.m in Sources */,

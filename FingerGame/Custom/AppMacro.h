@@ -57,4 +57,36 @@
 
 #define kKeyWindow [UIApplication sharedApplication].keyWindow
 
+#ifndef zyweakify
+    #if DEBUG
+        #if __has_feature(objc_arc)
+            #define zyweakify(object) autoreleasepool{} __weak __typeof__(object) weak##_##object = object;
+        #else
+            #define zyweakify(object) autoreleasepool{} __block __typeof__(object) block##_##object = object;
+        #endif
+    #else
+        #if __has_feature(objc_arc)
+            #define zyweakify(object) try{} @finally{} {} __weak __typeof__(object) weak##_##object = object;
+        #else
+            #define zyweakify(object) try{} @finally{} {} __block __typeof__(object) block##_##object = object;
+        #endif
+    #endif
+#endif
+
+#ifndef zystrongify
+    #if DEBUG
+        #if __has_feature(objc_arc)
+            #define zystrongify(object) autoreleasepool{} __typeof__(object) object = weak##_##object;
+        #else
+            #define zystrongify(object) autoreleasepool{} __typeof__(object) object = block##_##object;
+        #endif
+    #else
+        #if __has_feature(objc_arc)
+            #define zystrongify(object) try{} @finally{} __typeof__(object) object = weak##_##object;
+        #else
+            #define zystrongify(object) try{} @finally{} __typeof__(object) object = block##_##object;
+        #endif
+    #endif
+#endif
+
 #endif /* AppMacro_h */
