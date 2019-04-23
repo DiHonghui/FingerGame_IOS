@@ -1,40 +1,33 @@
 //
-//  UserLoginAPIManager.m
+//  UserRegistAPIManager.m
 //  FingerGame
 //
-//  Created by Nao Kunagisa on 2019/3/11.
+//  Created by Nao Kunagisa on 2019/4/23.
 //  Copyright © 2019年 lisy. All rights reserved.
 //
 
-#import "UserLoginAPIManager.h"
-#import "NSObject+YYModel.h"
+#import "UserRegistAPIManager.h"
 
-@interface UserLoginAPIManager()
+@interface UserRegistAPIManager()
 
 @property(strong,nonatomic,readwrite)NSString *userName;
 
 @property(strong,nonatomic,readwrite)NSString *userPassword;
 
+@property(strong,nonatomic,readwrite)NSString *userPhoneNumber;
+
 @end
 
-@implementation UserLoginAPIManager
+@implementation UserRegistAPIManager
 
-//-(instancetype)init{
-//    self = [super init];
-//    if (self) {
-//        self.validator = self;
-//        self.paramSource = self;
-//    }
-//    return self;
-//}
-
-- (instancetype)initWithUserNameAndPassword:(NSString *)userName password:(NSString *)userPassword{
+- (instancetype)initWithUserInfo:(NSString *)userName password:(NSString *)password userPhoneNumber:(NSString *)phonerNumber{
     self = [super init];
     if (self) {
         self.validator = self;
         self.paramSource = self;
         self.userName = userName;
-        self.userPassword = userPassword;
+        self.userPassword = password;
+        self.userPhoneNumber = phonerNumber;
     }
     return self;
 }
@@ -69,10 +62,9 @@
 - (NSDictionary *)paramsForApi:(ZHYAPIBaseManager *)manager{
     return @{@"username":self.userName,
              @"password":self.userPassword,
-             @"service" : @"App.User.Login"
+             @"phoneNum":self.userPhoneNumber,
+             @"service" : @"App.User.Register"
              };
 }
-
-
 
 @end
