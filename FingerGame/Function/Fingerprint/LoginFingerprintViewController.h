@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LoginFingerprintViewController : UITableViewController
 
-- (instancetype)initWithUserId:(NSString *)userId;
+- (instancetype)initWithUserId:(NSString *)userId FPAccountId:(NSString *)fpAccountId FPAccountName:(NSString *)fpAccountName;
 
 @end
 

@@ -88,6 +88,8 @@
 		4E98604322165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
 		4E98604422165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
 		4E98604522165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
+		4EC52524227EBC4600225D87 /* FPAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC52523227EBC4600225D87 /* FPAccountModel.m */; };
+		4EC52527227ED72100225D87 /* FingerprintListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC52526227ED72100225D87 /* FingerprintListTableViewController.m */; };
 		4ECF95252227CAED00AC1AED /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95222227CAED00AC1AED /* BTViewController.m */; };
 		4ECF95272227CAED00AC1AED /* MyBTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95242227CAED00AC1AED /* MyBTManager.m */; };
 		4ECF952A2227CE1000AC1AED /* GameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95292227CE1000AC1AED /* GameDetailViewController.m */; };
@@ -218,6 +220,10 @@
 		4E98600A22165B4B009E5D71 /* ZHYCacheObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYCacheObject.m; sourceTree = "<group>"; };
 		4E98603A22165B78009E5D71 /* BLEInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEInfo.m; sourceTree = "<group>"; };
 		4E98603B22165B78009E5D71 /* BLEInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEInfo.h; sourceTree = "<group>"; };
+		4EC52522227EBC4600225D87 /* FPAccountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPAccountModel.h; sourceTree = "<group>"; };
+		4EC52523227EBC4600225D87 /* FPAccountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPAccountModel.m; sourceTree = "<group>"; };
+		4EC52525227ED72100225D87 /* FingerprintListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FingerprintListTableViewController.h; sourceTree = "<group>"; };
+		4EC52526227ED72100225D87 /* FingerprintListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FingerprintListTableViewController.m; sourceTree = "<group>"; };
 		4ECF951F2227CAEC00AC1AED /* BTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTViewController.h; sourceTree = "<group>"; };
 		4ECF95202227CAEC00AC1AED /* MyBTManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBTManager.h; sourceTree = "<group>"; };
 		4ECF95222227CAED00AC1AED /* BTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTViewController.m; sourceTree = "<group>"; };
@@ -603,6 +609,8 @@
 		4ED934302266FD90003A989D /* Fingerprint */ = {
 			isa = PBXGroup;
 			children = (
+				4EC52525227ED72100225D87 /* FingerprintListTableViewController.h */,
+				4EC52526227ED72100225D87 /* FingerprintListTableViewController.m */,
 				110D28C4226F56D2008FC5F8 /* LoginFingerprintViewController.h */,
 				110D28C3226F56D2008FC5F8 /* LoginFingerprintViewController.m */,
 				4ED934312266FD90003A989D /* Model */,
@@ -613,8 +621,10 @@
 		4ED934312266FD90003A989D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4ED934322266FD90003A989D /* FingerprintModel.m */,
+				4EC52522227EBC4600225D87 /* FPAccountModel.h */,
+				4EC52523227EBC4600225D87 /* FPAccountModel.m */,
 				4ED934332266FD90003A989D /* FingerprintModel.h */,
+				4ED934322266FD90003A989D /* FingerprintModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -875,8 +885,10 @@
 				4E98602C22165B4B009E5D71 /* ZHYURLResponse.m in Sources */,
 				4E98602F22165B4B009E5D71 /* ZHYCache.m in Sources */,
 				4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */,
+				4EC52527227ED72100225D87 /* FingerprintListTableViewController.m in Sources */,
 				4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */,
 				11D2C31B226EB5010071562C /* TableViewController.m in Sources */,
+				4EC52524227EBC4600225D87 /* FPAccountModel.m in Sources */,
 				110D28C8226F571F008FC5F8 /* CustomTableViewCell.m in Sources */,
 				4E98603222165B4B009E5D71 /* ZHYCacheObject.m in Sources */,
 				4E98604322165B78009E5D71 /* BLEInfo.m in Sources */,

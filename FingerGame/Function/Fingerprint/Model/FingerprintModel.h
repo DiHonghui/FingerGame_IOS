@@ -12,8 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FingerprintModel : NSObject <NSCoding>
 
-//指纹所属的用户id
-@property (nonatomic,strong) NSString *userId;
+//一个指纹Account拥有很多指纹，对应10手指
+//指纹所属的Account
+@property (nonatomic,strong) NSString *fpAccountId;
 //指纹所属的手指id
 @property (nonatomic,assign) NSString *fingerId;
 //指纹保存的位置

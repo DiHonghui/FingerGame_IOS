@@ -10,7 +10,7 @@
 
 #import "BTViewController.h"
 #import "MainGameViewController.h"
-#import "LoginFingerprintViewController.h"
+#import "FingerprintListTableViewController.h"
 
 #import "GameFileApiManager.h"
 #import "AudioManager.h"
@@ -147,7 +147,7 @@
 }
 
 - (void)fingerprintBtnClicked:(id)sender{
-    LoginFingerprintViewController *vc = [[LoginFingerprintViewController alloc] initWithUserId:@"1"];
+    FingerprintListTableViewController *vc = [[FingerprintListTableViewController alloc] initWithUserId:@"1"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

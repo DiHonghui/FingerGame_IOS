@@ -20,6 +20,8 @@
 @interface LoginFingerprintViewController () <MyBTManagerProtocol>
 
 @property (nonatomic,strong) NSString *curUserId;
+@property (nonatomic,strong) NSString *curFpAccountId;
+@property (nonatomic,strong) NSString *curFpAccountName;
 //记录当前正操作的手指序号fingerId
 @property (nonatomic,strong) NSString *fingerIdWaitLogin;
 @property (nonatomic,strong) NSString *locationWaitLogin;
@@ -35,12 +37,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"指纹";
     
     self.curBTManager = [MyBTManager sharedInstance];
     self.curBTManager.delegate = self;
     
-    self.curCache = [YYCache cacheWithName:[NSString stringWithFormat:@"FingerprintCacheForUser:%@",self.curUserId]];
+    self.curCache = [YYCache cacheWithName:[NSString stringWithFormat:@"FingerprintCacheForUserId-%@",self.curUserId]];
+    
+    self.navigationItem.title = [NSString stringWithFormat:@"%@的指纹",self.curFpAccountName];
+    /* 本地保存路径 */
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Library"];
+    NSLog(@"path==%@",path);
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -48,10 +54,12 @@
     [self loadData];
 }
 
-- (instancetype)initWithUserId:(NSString *)userId{
+- (instancetype)initWithUserId:(NSString *)userId FPAccountId:(nonnull NSString *)fpAccountId FPAccountName:(nonnull NSString *)fpAccountName{
     self = [super init];
     if (self){
         self.curUserId = userId;
+        self.curFpAccountId = fpAccountId;
+        self.curFpAccountName = fpAccountName;
     }
     return self;
 }
@@ -61,8 +69,9 @@
     [self.showDataArray removeAllObjects];
     for (int i=0; i<10; i++){
         NSString *fingerIdString = [NSString stringWithFormat:@"%d",i];
-        if ([self.curCache containsObjectForKey:fingerIdString]){
-            FingerprintModel *model = (FingerprintModel*)[self.curCache objectForKey:fingerIdString];
+        NSString *key = [NSString stringWithFormat:@"FPAccountId%@-%@",self.curFpAccountId,fingerIdString];
+        if ([self.curCache containsObjectForKey:key]){
+            FingerprintModel *model = (FingerprintModel*)[self.curCache objectForKey:key];
             [self.showDataArray addObject:@{@"fingerId":model.fingerId,@"state":@"已录入"}];
         }else{
             [self.showDataArray addObject:@{@"fingerId":fingerIdString,@"state":@"未录入"}];
@@ -94,10 +103,12 @@
 //            [self.curBTManager writeToPeripheral:[NSString stringWithFormat:@"aa02020%@0000",fingerId]];
 //        }
         FingerprintModel *model = [FingerprintModel new];
-        model.userId = self.curUserId;
+        model.fpAccountId = self.curFpAccountId;
         model.fingerId = fingerId;
         model.storeLocation = @"00";
-        [self.curCache setObject:model forKey:model.fingerId];
+
+        NSString *key = [NSString stringWithFormat:@"FPAccountId%@-%@",self.curFpAccountId,model.fingerId];
+        [self.curCache setObject:model forKey:key];
         [self showHUDText:@"录入成功"];
         [self loadData];
     }]];
@@ -118,10 +129,12 @@
         //            [self.curBTManager writeToPeripheral:[NSString stringWithFormat:@"aa02020%@0000",fingerId]];
         //        }
         FingerprintModel *model = [FingerprintModel new];
-        model.userId = self.curUserId;
+        model.fpAccountId = self.curFpAccountId;
         model.fingerId = fingerId;
         model.storeLocation = @"00";
-        [self.curCache setObject:model forKey:model.fingerId];
+        
+        NSString *key = [NSString stringWithFormat:@"FPAccountId%@-%@",self.curFpAccountId,model.fingerId];
+        [self.curCache setObject:model forKey:key];
         [self showHUDText:@"录入成功"];
         [self loadData];
     }]];
