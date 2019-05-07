@@ -118,9 +118,12 @@
             [GVUserDefaults standardUserDefaults].userId = responseData[@"data"][@"id"];
             [GVUserDefaults standardUserDefaults].userPwd = responseData[@"data"][@"password"];
             [GVUserDefaults standardUserDefaults].userName = responseData[@"data"][@"name"];
+        [GVUserDefaults standardUserDefaults].energy = responseData[@"data"][@"energy"];
+        [GVUserDefaults standardUserDefaults].healthyBeans = responseData[@"data"][@"healthyBeans"];
+        [GVUserDefaults standardUserDefaults].diamond = responseData[@"data"][@"diamond"];
             NSLog(@"用户ID = %@",[GVUserDefaults standardUserDefaults].userId);
             AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            [delegate toMain2];
+            [delegate toMain];
             
 //        }
 //        else{

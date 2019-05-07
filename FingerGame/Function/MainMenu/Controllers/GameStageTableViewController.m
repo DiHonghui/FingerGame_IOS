@@ -17,6 +17,7 @@
 #import "GameFileApiManager.h"
 #import "GVUserDefaults+Properties.h"
 #import "GameStageTableViewCell.h"
+#import "GameDetailViewController.h"
 
 #define GSTVCELL @"GameStageTableViewCell"
 
@@ -67,7 +68,7 @@
             }];
         }
     }];
-    [self.tableView  reloadData];
+    [self.tableView reloadData];
     
 }
 - (void)viewDidAppear:(BOOL)animated{
@@ -81,7 +82,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //return 1;
-    NSLog(@"dataSource count = @%@",self.dataSource);
+    //NSLog(@"dataSource count = @%@",self.dataSource);
     return [self.dataSource count];
     //返回显示几条数据
 }
@@ -100,8 +101,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [delegate toMain];
+    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameName:@"手指操"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

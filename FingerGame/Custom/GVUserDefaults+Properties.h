@@ -15,6 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,weak) NSString *userId;
 @property (nonatomic,weak) NSString *userName;
 @property (nonatomic,weak) NSString *userPwd;
+@property (nonatomic,weak) NSString *phoneNumber;
+@property (nonatomic,weak) NSString *diamond;
+@property (nonatomic,weak) NSString *healthyBeans;
+@property (nonatomic,weak) NSString *energy;
+@property (nonatomic,weak) NSString *level;
 
 @end
 

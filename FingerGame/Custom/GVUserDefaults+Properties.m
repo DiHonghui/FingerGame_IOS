@@ -13,5 +13,9 @@
 @dynamic userId;
 @dynamic userName;
 @dynamic userPwd;
-
+@dynamic diamond;
+@dynamic healthyBeans;
+@dynamic energy;
+@dynamic level;
+@dynamic phoneNumber;
 @end

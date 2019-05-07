@@ -11,6 +11,7 @@
 #import "ViewController.h"
 #import "GameStageTableViewController.h"
 #import "GameDetailViewController.h"
+#import "TabBarControllerConfig.h"
 
 @interface AppDelegate ()
 
@@ -35,18 +36,16 @@
     self.window.rootViewController =nc;
 }
 
--(void)toMain2{
-    //GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameName:@"手指操"];
-    //LoginViewController *vc2 = [[LoginViewController alloc] init];
-    GameStageTableViewController *vc = [[GameStageTableViewController alloc]init];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    self.window.rootViewController =nc;
-}
 -(void)toMain{
-    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameName:@"手指操"];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    self.window.rootViewController =nc;
+    TabBarControllerConfig *tabBarController =[[TabBarControllerConfig alloc]init];
+    self.window.rootViewController =tabBarController.tabBarController;
+    
 }
+//-(void)toMain{
+//    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameName:@"手指操"];
+//    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+//    self.window.rootViewController =nc;
+//}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
