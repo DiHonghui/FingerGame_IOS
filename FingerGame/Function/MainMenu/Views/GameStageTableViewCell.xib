@@ -46,6 +46,9 @@
                         <state key="normal" title="收藏">
                             <color key="titleColor" red="0.43767024170000002" green="0.51954474009999996" blue="0.84947781739999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
+                        <connections>
+                            <action selector="collectMission:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5RQ-nN-i46"/>
+                        </connections>
                     </button>
                     <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czm-Wq-EMQ" userLabel="actionButton">
                         <rect key="frame" x="201" y="43" width="103" height="25"/>

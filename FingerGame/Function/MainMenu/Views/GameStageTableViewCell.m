@@ -7,14 +7,20 @@
 //
 
 #import "GameStageTableViewCell.h"
+#import "GVUserDefaults+Properties.h"
+#import "MissionCollectApiManager.h"
 
 @interface GameStageTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *stageNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *musicNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *auditionButton;
+@property (readwrite,nonatomic)NSString *missionIdNumber;
+- (IBAction)collectMission:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *collectButton;
 @property (weak, nonatomic) IBOutlet UIButton *actionButton;
+@property(strong,nonatomic)MissionCollectApiManager *missionCollectApiManager;
+
 @end
 
 @implementation GameStageTableViewCell
@@ -59,6 +65,8 @@
 -(void)configureCell:(MissionModel *)model{
     self.stageNumberLabel.text= @"1";
     self.musicNameLabel.text = model.musicName;
+    self.collectButton.titleLabel.text = @"已收藏";
+    self.missionIdNumber = model.missionID;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -75,6 +83,25 @@
     [self addSubview:self.textLabel];
     [self addSubview:self.actionButton];
     [self addSubview:self.auditionButton];
+    [self addSubview:self.collectButton];
 }
 
+- (IBAction)collectMission:(id)sender {
+    if (self.missionIdNumber!=nil) {
+        self.collectButton.titleLabel.text = @"已收藏";
+        self.detailTextLabel.text = @"gaibian";
+        NSLog(@"触发按钮");
+        [self.missionCollectApiManager loadDataWithParams:@{@"user_id":[GVUserDefaults standardUserDefaults].userId,@"game_id":_missionIdNumber,@"service":@"App.User.Like"} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
+            NSLog(responseData[@"data"][@"message"]);
+            
+        }];
+        NSLog(@"update sucess");
+    }
+}
+-(MissionCollectApiManager*) missionCollectApiManager{
+    if (!_missionCollectApiManager) {
+        _missionCollectApiManager = [[MissionCollectApiManager alloc]initWithMissionId:_missionIdNumber :[GVUserDefaults standardUserDefaults].userId];
+    }
+    return _missionCollectApiManager;
+}
 @end

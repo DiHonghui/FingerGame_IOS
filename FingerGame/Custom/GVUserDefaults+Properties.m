@@ -18,4 +18,5 @@
 @dynamic energy;
 @dynamic level;
 @dynamic phoneNumber;
+@dynamic avatar;
 @end

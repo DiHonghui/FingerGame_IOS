@@ -9,9 +9,26 @@
 /* Begin PBXBuildFile section */
 		110D28C5226F56D2008FC5F8 /* LoginFingerprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 110D28C3226F56D2008FC5F8 /* LoginFingerprintViewController.m */; };
 		110D28C8226F571F008FC5F8 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 110D28C6226F571E008FC5F8 /* CustomTableViewCell.m */; };
+		11149E452289535400D34FD5 /* MissionCollectApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11149E442289535400D34FD5 /* MissionCollectApiManager.m */; };
 		11334ED6223B92F200705971 /* GameStageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11334ED4223B92F200705971 /* GameStageTableViewCell.m */; };
 		11334ED7223B92F200705971 /* GameStageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11334ED5223B92F200705971 /* GameStageTableViewCell.xib */; };
 		11334EDA223B930E00705971 /* MissionlistApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11334ED8223B930E00705971 /* MissionlistApiManager.m */; };
+		1146A448228599B70054B7CB /* PersonalPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1146A436228599B70054B7CB /* PersonalPageViewController.m */; };
+		1146A449228599B70054B7CB /* FavoritesTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1146A439228599B70054B7CB /* FavoritesTableViewController.xib */; };
+		1146A44A228599B70054B7CB /* UploadAvatarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1146A43A228599B70054B7CB /* UploadAvatarViewController.xib */; };
+		1146A44B228599B70054B7CB /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1146A43B228599B70054B7CB /* FavoritesTableViewController.m */; };
+		1146A44C228599B70054B7CB /* OptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1146A43C228599B70054B7CB /* OptionsViewController.xib */; };
+		1146A44D228599B70054B7CB /* PersonalPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1146A43E228599B70054B7CB /* PersonalPageViewController.xib */; };
+		1146A44E228599B70054B7CB /* UploadAvatarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1146A43F228599B70054B7CB /* UploadAvatarViewController.m */; };
+		1146A44F228599B70054B7CB /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1146A440228599B70054B7CB /* OptionsViewController.m */; };
+		1146A450228599B70054B7CB /* PersonalInfoBasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1146A443228599B70054B7CB /* PersonalInfoBasicTableViewCell.xib */; };
+		1146A451228599B70054B7CB /* BasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1146A445228599B70054B7CB /* BasicTableViewCell.xib */; };
+		1146A452228599B70054B7CB /* BasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1146A446228599B70054B7CB /* BasicTableViewCell.m */; };
+		1146A453228599B70054B7CB /* PersonalInfoBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1146A447228599B70054B7CB /* PersonalInfoBasicTableViewCell.m */; };
+		1146A4562285AB030054B7CB /* ZHYBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1146A4542285AB020054B7CB /* ZHYBaseNavigationController.m */; };
+		1193EA7122811CA400368B6E /* ClassicsMissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193EA6E22811CA300368B6E /* ClassicsMissionViewController.m */; };
+		1193EA7222811CA400368B6E /* ClassicsMissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1193EA7022811CA400368B6E /* ClassicsMissionViewController.xib */; };
+		1193EA7522811D0300368B6E /* TabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193EA7322811D0300368B6E /* TabBarControllerConfig.m */; };
 		119D8BFB223F7AB600B19B12 /* UserLoginAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8BED223F7AB600B19B12 /* UserLoginAPIManager.m */; };
 		119D8BFC223F7AB600B19B12 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8BEF223F7AB600B19B12 /* UserModel.m */; };
 		119D8BFD223F7AB600B19B12 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8BF2223F7AB600B19B12 /* RegistViewController.m */; };
@@ -20,6 +37,7 @@
 		119D8C00223F7AB600B19B12 /* LoginByPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8BF8223F7AB600B19B12 /* LoginByPhoneNumberViewController.m */; };
 		119D8C01223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 119D8BF9223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib */; };
 		119D8C04223F7C4300B19B12 /* MissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8C03223F7C4200B19B12 /* MissionModel.m */; };
+		11C217F2228BFB89000347E9 /* UploadAvatarApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C217F1228BFB89000347E9 /* UploadAvatarApiManager.m */; };
 		11D2C30F226EAC5C0071562C /* GameStageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D2C30E226EAC5C0071562C /* GameStageTableViewController.m */; };
 		11D2C31B226EB5010071562C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D2C31A226EB5010071562C /* TableViewController.m */; };
 		11D2C31E226EEF050071562C /* MissionSimpleForList.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D2C31D226EEF050071562C /* MissionSimpleForList.m */; };
@@ -121,11 +139,38 @@
 		110D28C4226F56D2008FC5F8 /* LoginFingerprintViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginFingerprintViewController.h; sourceTree = "<group>"; };
 		110D28C6226F571E008FC5F8 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		110D28C7226F571E008FC5F8 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		11149E432289535400D34FD5 /* MissionCollectApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MissionCollectApiManager.h; sourceTree = "<group>"; };
+		11149E442289535400D34FD5 /* MissionCollectApiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MissionCollectApiManager.m; sourceTree = "<group>"; };
 		11334ED3223B92F200705971 /* GameStageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStageTableViewCell.h; sourceTree = "<group>"; };
 		11334ED4223B92F200705971 /* GameStageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStageTableViewCell.m; sourceTree = "<group>"; };
 		11334ED5223B92F200705971 /* GameStageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameStageTableViewCell.xib; sourceTree = "<group>"; };
 		11334ED8223B930E00705971 /* MissionlistApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionlistApiManager.m; sourceTree = "<group>"; };
 		11334ED9223B930E00705971 /* MissionlistApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionlistApiManager.h; sourceTree = "<group>"; };
+		1146A435228599B70054B7CB /* FavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewController.h; sourceTree = "<group>"; };
+		1146A436228599B70054B7CB /* PersonalPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalPageViewController.m; sourceTree = "<group>"; };
+		1146A437228599B70054B7CB /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsViewController.h; sourceTree = "<group>"; };
+		1146A438228599B70054B7CB /* UploadAvatarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadAvatarViewController.h; sourceTree = "<group>"; };
+		1146A439228599B70054B7CB /* FavoritesTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesTableViewController.xib; sourceTree = "<group>"; };
+		1146A43A228599B70054B7CB /* UploadAvatarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadAvatarViewController.xib; sourceTree = "<group>"; };
+		1146A43B228599B70054B7CB /* FavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewController.m; sourceTree = "<group>"; };
+		1146A43C228599B70054B7CB /* OptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionsViewController.xib; sourceTree = "<group>"; };
+		1146A43D228599B70054B7CB /* PersonalPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalPageViewController.h; sourceTree = "<group>"; };
+		1146A43E228599B70054B7CB /* PersonalPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalPageViewController.xib; sourceTree = "<group>"; };
+		1146A43F228599B70054B7CB /* UploadAvatarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadAvatarViewController.m; sourceTree = "<group>"; };
+		1146A440228599B70054B7CB /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
+		1146A442228599B70054B7CB /* BasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicTableViewCell.h; sourceTree = "<group>"; };
+		1146A443228599B70054B7CB /* PersonalInfoBasicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalInfoBasicTableViewCell.xib; sourceTree = "<group>"; };
+		1146A444228599B70054B7CB /* PersonalInfoBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoBasicTableViewCell.h; sourceTree = "<group>"; };
+		1146A445228599B70054B7CB /* BasicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicTableViewCell.xib; sourceTree = "<group>"; };
+		1146A446228599B70054B7CB /* BasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicTableViewCell.m; sourceTree = "<group>"; };
+		1146A447228599B70054B7CB /* PersonalInfoBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoBasicTableViewCell.m; sourceTree = "<group>"; };
+		1146A4542285AB020054B7CB /* ZHYBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYBaseNavigationController.m; sourceTree = "<group>"; };
+		1146A4552285AB020054B7CB /* ZHYBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYBaseNavigationController.h; sourceTree = "<group>"; };
+		1193EA6E22811CA300368B6E /* ClassicsMissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassicsMissionViewController.m; sourceTree = "<group>"; };
+		1193EA6F22811CA300368B6E /* ClassicsMissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassicsMissionViewController.h; sourceTree = "<group>"; };
+		1193EA7022811CA400368B6E /* ClassicsMissionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassicsMissionViewController.xib; sourceTree = "<group>"; };
+		1193EA7322811D0300368B6E /* TabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarControllerConfig.m; sourceTree = "<group>"; };
+		1193EA7422811D0300368B6E /* TabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarControllerConfig.h; sourceTree = "<group>"; };
 		119D8BEC223F7AB600B19B12 /* UserLoginAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginAPIManager.h; sourceTree = "<group>"; };
 		119D8BED223F7AB600B19B12 /* UserLoginAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginAPIManager.m; sourceTree = "<group>"; };
 		119D8BEF223F7AB600B19B12 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
@@ -140,6 +185,8 @@
 		119D8BF9223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginByPhoneNumberViewController.xib; sourceTree = "<group>"; };
 		119D8C02223F7C4200B19B12 /* MissionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionModel.h; sourceTree = "<group>"; };
 		119D8C03223F7C4200B19B12 /* MissionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionModel.m; sourceTree = "<group>"; };
+		11C217F0228BFB89000347E9 /* UploadAvatarApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UploadAvatarApiManager.h; sourceTree = "<group>"; };
+		11C217F1228BFB89000347E9 /* UploadAvatarApiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UploadAvatarApiManager.m; sourceTree = "<group>"; };
 		11D2C30D226EAC5B0071562C /* GameStageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStageTableViewController.h; sourceTree = "<group>"; };
 		11D2C30E226EAC5C0071562C /* GameStageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStageTableViewController.m; sourceTree = "<group>"; };
 		11D2C319226EB5010071562C /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
@@ -275,10 +322,10 @@
 		11334ECE223B921900705971 /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
-				11334ED2223B92F200705971 /* Views */,
 				11334ECF223B927C00705971 /* Controllers */,
 				11334ED0223B927C00705971 /* Managers */,
 				11334ED1223B927C00705971 /* Models */,
+				11334ED2223B92F200705971 /* Views */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
@@ -286,6 +333,9 @@
 		11334ECF223B927C00705971 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1193EA6F22811CA300368B6E /* ClassicsMissionViewController.h */,
+				1193EA6E22811CA300368B6E /* ClassicsMissionViewController.m */,
+				1193EA7022811CA400368B6E /* ClassicsMissionViewController.xib */,
 				11D2C30D226EAC5B0071562C /* GameStageTableViewController.h */,
 				11D2C30E226EAC5C0071562C /* GameStageTableViewController.m */,
 			);
@@ -297,6 +347,8 @@
 			children = (
 				11334ED9223B930E00705971 /* MissionlistApiManager.h */,
 				11334ED8223B930E00705971 /* MissionlistApiManager.m */,
+				11149E432289535400D34FD5 /* MissionCollectApiManager.h */,
+				11149E442289535400D34FD5 /* MissionCollectApiManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -314,6 +366,65 @@
 				11334ED3223B92F200705971 /* GameStageTableViewCell.h */,
 				11334ED4223B92F200705971 /* GameStageTableViewCell.m */,
 				11334ED5223B92F200705971 /* GameStageTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1146A431228599B70054B7CB /* PersonalPage */ = {
+			isa = PBXGroup;
+			children = (
+				1146A432228599B70054B7CB /* Managers */,
+				1146A433228599B70054B7CB /* Models */,
+				1146A434228599B70054B7CB /* Controllers */,
+				1146A441228599B70054B7CB /* Views */,
+			);
+			path = PersonalPage;
+			sourceTree = "<group>";
+		};
+		1146A432228599B70054B7CB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				11C217F0228BFB89000347E9 /* UploadAvatarApiManager.h */,
+				11C217F1228BFB89000347E9 /* UploadAvatarApiManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		1146A433228599B70054B7CB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1146A434228599B70054B7CB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1146A435228599B70054B7CB /* FavoritesTableViewController.h */,
+				1146A43B228599B70054B7CB /* FavoritesTableViewController.m */,
+				1146A439228599B70054B7CB /* FavoritesTableViewController.xib */,
+				1146A437228599B70054B7CB /* OptionsViewController.h */,
+				1146A440228599B70054B7CB /* OptionsViewController.m */,
+				1146A43C228599B70054B7CB /* OptionsViewController.xib */,
+				1146A43D228599B70054B7CB /* PersonalPageViewController.h */,
+				1146A436228599B70054B7CB /* PersonalPageViewController.m */,
+				1146A43E228599B70054B7CB /* PersonalPageViewController.xib */,
+				1146A438228599B70054B7CB /* UploadAvatarViewController.h */,
+				1146A43F228599B70054B7CB /* UploadAvatarViewController.m */,
+				1146A43A228599B70054B7CB /* UploadAvatarViewController.xib */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1146A441228599B70054B7CB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1146A442228599B70054B7CB /* BasicTableViewCell.h */,
+				1146A443228599B70054B7CB /* PersonalInfoBasicTableViewCell.xib */,
+				1146A444228599B70054B7CB /* PersonalInfoBasicTableViewCell.h */,
+				1146A445228599B70054B7CB /* BasicTableViewCell.xib */,
+				1146A446228599B70054B7CB /* BasicTableViewCell.m */,
+				1146A447228599B70054B7CB /* PersonalInfoBasicTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -384,16 +495,16 @@
 		4E2BDEEB221C0D59001D52FC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4E2BDEEC221C0D84001D52FC /* GameSceneView.h */,
-				4E2BDEED221C0D84001D52FC /* GameSceneView.m */,
-				4E2BDEF0221ED382001D52FC /* StartAnimView.h */,
-				4E2BDEF1221ED382001D52FC /* StartAnimView.m */,
-				4E6E6ED8221FD90D0061E599 /* GameStaticsView.h */,
-				4E6E6ED9221FD90D0061E599 /* GameStaticsView.m */,
 				4E6E6EDB22238AA50061E599 /* BottomLeftView.h */,
 				4E6E6EDC22238AA50061E599 /* BottomLeftView.m */,
 				4E6E6EDE22238ADD0061E599 /* BottomRightView.h */,
 				4E6E6EDF22238ADD0061E599 /* BottomRightView.m */,
+				4E2BDEEC221C0D84001D52FC /* GameSceneView.h */,
+				4E2BDEED221C0D84001D52FC /* GameSceneView.m */,
+				4E6E6ED8221FD90D0061E599 /* GameStaticsView.h */,
+				4E6E6ED9221FD90D0061E599 /* GameStaticsView.m */,
+				4E2BDEF0221ED382001D52FC /* StartAnimView.h */,
+				4E2BDEF1221ED382001D52FC /* StartAnimView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -415,14 +526,14 @@
 		4E8CA1152230F9C400B9E1F0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				119D8C02223F7C4200B19B12 /* MissionModel.h */,
-				119D8C03223F7C4200B19B12 /* MissionModel.m */,
-				4E8CA1192230FAA500B9E1F0 /* OrderModel.h */,
-				4E8CA11A2230FAA500B9E1F0 /* OrderModel.m */,
 				4E8CA11C223100DA00B9E1F0 /* GameOrderFile.h */,
 				4E8CA11D223100DA00B9E1F0 /* GameOrderFile.m */,
+				119D8C02223F7C4200B19B12 /* MissionModel.h */,
+				119D8C03223F7C4200B19B12 /* MissionModel.m */,
 				11D2C31C226EEF050071562C /* MissionSimpleForList.h */,
 				11D2C31D226EEF050071562C /* MissionSimpleForList.m */,
+				4E8CA1192230FAA500B9E1F0 /* OrderModel.h */,
+				4E8CA11A2230FAA500B9E1F0 /* OrderModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -453,6 +564,8 @@
 		4E985FB221DE44C2009E5D71 /* FingerGame */ = {
 			isa = PBXGroup;
 			children = (
+				1146A4552285AB020054B7CB /* ZHYBaseNavigationController.h */,
+				1146A4542285AB020054B7CB /* ZHYBaseNavigationController.m */,
 				4E985FC221DE44C7009E5D71 /* main.m */,
 				4E985FB321DE44C2009E5D71 /* AppDelegate.h */,
 				4E985FB421DE44C2009E5D71 /* AppDelegate.m */,
@@ -493,13 +606,15 @@
 		4E985FE521F56320009E5D71 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				4E985FE621F5637D009E5D71 /* AppMacro.h */,
 				110D28C7226F571E008FC5F8 /* CustomTableViewCell.h */,
 				110D28C6226F571E008FC5F8 /* CustomTableViewCell.m */,
-				4E8CA112222CFFF100B9E1F0 /* NSObject+ProgressHUD.h */,
-				4E8CA111222CFFF100B9E1F0 /* NSObject+ProgressHUD.m */,
-				4E985FE621F5637D009E5D71 /* AppMacro.h */,
 				4E05AFCE22608A3E006F2670 /* GVUserDefaults+Properties.h */,
 				4E05AFCF22608A3E006F2670 /* GVUserDefaults+Properties.m */,
+				4E8CA112222CFFF100B9E1F0 /* NSObject+ProgressHUD.h */,
+				4E8CA111222CFFF100B9E1F0 /* NSObject+ProgressHUD.m */,
+				1193EA7422811D0300368B6E /* TabBarControllerConfig.h */,
+				1193EA7322811D0300368B6E /* TabBarControllerConfig.m */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -507,6 +622,7 @@
 		4E985FE721F57263009E5D71 /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				1146A431228599B70054B7CB /* PersonalPage */,
 				119D8BEA223F7AB600B19B12 /* Entry */,
 				11334ECE223B921900705971 /* MainMenu */,
 				4E8CA1142230F82A00B9E1F0 /* GameDetail */,
@@ -748,11 +864,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1146A450228599B70054B7CB /* PersonalInfoBasicTableViewCell.xib in Resources */,
 				11334ED7223B92F200705971 /* GameStageTableViewCell.xib in Resources */,
+				1146A451228599B70054B7CB /* BasicTableViewCell.xib in Resources */,
+				1146A44C228599B70054B7CB /* OptionsViewController.xib in Resources */,
 				4E985FC021DE44C7009E5D71 /* LaunchScreen.storyboard in Resources */,
 				119D8BFF223F7AB600B19B12 /* RegistViewController.xib in Resources */,
+				1146A44D228599B70054B7CB /* PersonalPageViewController.xib in Resources */,
 				4E985FBD21DE44C7009E5D71 /* Assets.xcassets in Resources */,
 				4E985FBB21DE44C2009E5D71 /* Main.storyboard in Resources */,
+				1193EA7222811CA400368B6E /* ClassicsMissionViewController.xib in Resources */,
+				1146A449228599B70054B7CB /* FavoritesTableViewController.xib in Resources */,
+				1146A44A228599B70054B7CB /* UploadAvatarViewController.xib in Resources */,
 				119D8C01223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -886,16 +1009,22 @@
 				4E98602F22165B4B009E5D71 /* ZHYCache.m in Sources */,
 				4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */,
 				4EC52527227ED72100225D87 /* FingerprintListTableViewController.m in Sources */,
+				1146A44F228599B70054B7CB /* OptionsViewController.m in Sources */,
 				4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */,
 				11D2C31B226EB5010071562C /* TableViewController.m in Sources */,
 				4EC52524227EBC4600225D87 /* FPAccountModel.m in Sources */,
 				110D28C8226F571F008FC5F8 /* CustomTableViewCell.m in Sources */,
+				1146A453228599B70054B7CB /* PersonalInfoBasicTableViewCell.m in Sources */,
+				1146A4562285AB030054B7CB /* ZHYBaseNavigationController.m in Sources */,
 				4E98603222165B4B009E5D71 /* ZHYCacheObject.m in Sources */,
+				1146A452228599B70054B7CB /* BasicTableViewCell.m in Sources */,
 				4E98604322165B78009E5D71 /* BLEInfo.m in Sources */,
 				11334EDA223B930E00705971 /* MissionlistApiManager.m in Sources */,
 				4ECF952A2227CE1000AC1AED /* GameDetailViewController.m in Sources */,
 				4E05AFD022608A3E006F2670 /* GVUserDefaults+Properties.m in Sources */,
+				11149E452289535400D34FD5 /* MissionCollectApiManager.m in Sources */,
 				4E8CA11B2230FAA500B9E1F0 /* OrderModel.m in Sources */,
+				1146A448228599B70054B7CB /* PersonalPageViewController.m in Sources */,
 				119D8BFD223F7AB600B19B12 /* RegistViewController.m in Sources */,
 				4E98602922165B4B009E5D71 /* TestYunzsService.m in Sources */,
 				119D8C00223F7AB600B19B12 /* LoginByPhoneNumberViewController.m in Sources */,
@@ -904,6 +1033,7 @@
 				4E2BDEEA221C0D3C001D52FC /* MainGameViewController.m in Sources */,
 				4E98601A22165B4B009E5D71 /* NSURLRequest+Properties.m in Sources */,
 				4ECF95272227CAED00AC1AED /* MyBTManager.m in Sources */,
+				1193EA7122811CA400368B6E /* ClassicsMissionViewController.m in Sources */,
 				4E8CA113222CFFF100B9E1F0 /* NSObject+ProgressHUD.m in Sources */,
 				4E2BDEF2221ED382001D52FC /* StartAnimView.m in Sources */,
 				4E98601122165B4B009E5D71 /* ZHYRequestGenerator.m in Sources */,
@@ -912,15 +1042,19 @@
 				4E985FB821DE44C2009E5D71 /* ViewController.m in Sources */,
 				11D2C30F226EAC5C0071562C /* GameStageTableViewController.m in Sources */,
 				119D8C04223F7C4300B19B12 /* MissionModel.m in Sources */,
+				11C217F2228BFB89000347E9 /* UploadAvatarApiManager.m in Sources */,
 				4ECF95252227CAED00AC1AED /* BTViewController.m in Sources */,
 				119D8BFB223F7AB600B19B12 /* UserLoginAPIManager.m in Sources */,
 				4E98600B22165B4B009E5D71 /* ZHYLogger.m in Sources */,
 				4E98601D22165B4B009E5D71 /* YunzsService.m in Sources */,
 				4E6E6EDA221FD90D0061E599 /* GameStaticsView.m in Sources */,
+				1193EA7522811D0300368B6E /* TabBarControllerConfig.m in Sources */,
 				4E6E6EDD22238AA50061E599 /* BottomLeftView.m in Sources */,
 				4E8CA110222CD22900B9E1F0 /* GameFileApiManager.m in Sources */,
 				4E985FC321DE44C7009E5D71 /* main.m in Sources */,
+				1146A44E228599B70054B7CB /* UploadAvatarViewController.m in Sources */,
 				4E985FB521DE44C2009E5D71 /* AppDelegate.m in Sources */,
+				1146A44B228599B70054B7CB /* FavoritesTableViewController.m in Sources */,
 				4EF10405224A13CA00C5EFA0 /* AudioManager.m in Sources */,
 				4E98602622165B4B009E5D71 /* ZHYServiceFactory.m in Sources */,
 			);
@@ -1131,14 +1265,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RV75G22HVG;
+				DEVELOPMENT_TEAM = V6KK735F7M;
 				INFOPLIST_FILE = FingerGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = bj.123.FingerGame;
+				PRODUCT_BUNDLE_IDENTIFIER = dgy.com.FingerGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1153,14 +1287,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RV75G22HVG;
+				DEVELOPMENT_TEAM = V6KK735F7M;
 				INFOPLIST_FILE = FingerGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = bj.123.FingerGame;
+				PRODUCT_BUNDLE_IDENTIFIER = dgy.com.FingerGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

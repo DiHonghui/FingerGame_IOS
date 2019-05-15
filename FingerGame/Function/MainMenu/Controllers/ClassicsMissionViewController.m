@@ -7,8 +7,17 @@
 //
 
 #import "ClassicsMissionViewController.h"
+#import "MJRefresh.h"
+#import "YYModel.h"
+#import "AppDelegate.h"
+#import "GVUserDefaults+Properties.h"
 
 @interface ClassicsMissionViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *energyAdd;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *diamondAdd;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *healthyBeansAdd;
+@property (weak, nonatomic) IBOutlet UILabel *levelLabel;
+@property (weak, nonatomic) IBOutlet UIToolbar *itemToolBar;
 
 @end
 
@@ -16,8 +25,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title=@"精品列表";
+    __weak typeof (self) weakself = self;
+    self.tableView.scrollEnabled = NO;
+    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+        [weakself loadData];
+        
+    }];
+    self.tableView.userInteractionEnabled = YES;
     // Do any additional setup after loading the view from its nib.
 }
+
+-(void)loadData{
+    self.energyAdd.title = [GVUserDefaults standardUserDefaults].energy;
+    self.diamondAdd.title = [GVUserDefaults standardUserDefaults].diamond;
+    self.healthyBeansAdd.title = [GVUserDefaults standardUserDefaults].healthyBeans;
+    self.levelLabel.text = [GVUserDefaults standardUserDefaults].level;
+    [self.tableView addSubview:_itemToolBar];
+    [self.tableView reloadData];
+    
+    
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.tableView.mj_header beginRefreshing];
+}
+
 
 /*
 #pragma mark - Navigation
