@@ -38,35 +38,39 @@
     self.tableView.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakself loadData];
     }];
+    
+    [weakself loadData];
+    [self.tableView.mj_header beginRefreshing];
+    
     // Do any additional setup after loading the view.
 }
 
 -(void)loadData{
     NSMutableArray* tempdataSource = [[NSMutableArray alloc]init];
-    [self.missionlistApiManager loadDataWithParams:@{@"userId":[GVUserDefaults standardUserDefaults].userId,@"service":@"App.Game.GameList"} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
+    [self.missionlistApiManager loadDataWithParams:@{@"service":@"App.Game.GameList"} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
         [self.tableView.mj_header endRefreshing];
         [self.dataSource removeAllObjects];
         NSLog(@"datasource 删除了数据");
-            NSDictionary *news = responseData[@"data"][@"1"];
+            NSDictionary *news = responseData[@"data"];
             for (NSDictionary *tmp in news) {
-                MissionSimpleForList *modelForList = [MissionSimpleForList yy_modelWithJSON:tmp];
+                MissionModel *modelForList = [MissionModel yy_modelWithJSON:tmp];
                 NSLog(@"loadData simpleModel = %@",modelForList);
-                [tempdataSource addObject:modelForList];
+                [self.dataSource addObject:modelForList];
                 //[self.dataSource addObject:modelForList];
             }
         NSLog(@"datasource 里面是%@",tempdataSource);
-        for (MissionSimpleForList *modelForlist in tempdataSource) {
-            self.gameFileApiManager = [[GameFileApiManager alloc]initWithGameId:modelForlist.gameId];
-            [self.gameFileApiManager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-                NSDictionary *news = responseData[@"data"];
-                for (NSDictionary *tmp in news) {
-                    MissionModel *model = [MissionModel yy_modelWithJSON:tmp];
-                    NSLog(@"loadData model = %@",model);
-                    [self.dataSource addObject:model];
-                    NSLog(@"datasource 添加了数据");
-                }
-            }];
-        }
+//        for (MissionSimpleForList *modelForlist in tempdataSource) {
+//            self.gameFileApiManager = [[GameFileApiManager alloc]initWithGameId:modelForlist.gameId];
+//            [self.gameFileApiManager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
+//                NSDictionary *news = responseData[@"data"];
+//                for (NSDictionary *tmp in news) {
+//                    MissionModel *model = [MissionModel yy_modelWithJSON:tmp];
+//                    NSLog(@"loadData model = %@",model);
+//                    [self.dataSource addObject:model];
+//                    NSLog(@"datasource 添加了数据");
+//                }
+//            }];
+//        }
     }];
     [self.tableView reloadData];
     

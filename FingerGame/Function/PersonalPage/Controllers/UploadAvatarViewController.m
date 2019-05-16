@@ -8,6 +8,7 @@
 
 #import "UploadAvatarViewController.h"
 #import "GVUserDefaults+Properties.h"
+#import "UploadAvatarApiManager.h"
 
 @interface UploadAvatarViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *username;
@@ -16,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *diamond;
 @property (weak, nonatomic) IBOutlet UIButton *updateAvatar;
 @property (weak, nonatomic) IBOutlet UIImageView *Avatar;
+//@property(strong,nonatomic) NSData *imageData;
+@property(strong,nonatomic) UploadAvatarApiManager *uploadApiManager;
 
 @end
 
@@ -117,6 +120,13 @@
         mimetype = @"image/jpeg";
         imageData = UIImageJPEGRepresentation(img, 1.0);
     }
+    self.uploadApiManager = [[UploadAvatarApiManager alloc]initWithUserId:[GVUserDefaults standardUserDefaults].userId File:imageData];
+    NSLog(@"上传开始");
+    [self.uploadApiManager loadDataWithParams:@{@"user_id":[GVUserDefaults standardUserDefaults].userId,@"file":imageData,@"service":@"App.User.Avatar"} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
+        NSLog(@"url = %@", responseData[@"data"][@"url"]);
+        NSLog(@"code = %@", responseData[@"data"][@"code"]);
+        
+    }];
 //    NSString *urlString = @"http:///XXXXXX";
 //    NSDictionary *params = @{@"login_token":@"220"};
 //    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -141,6 +151,13 @@
 //    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 //        WKLog(@"上传图片失败，失败原因是:%@", error);
 //    }];
+}
+
+-(UploadAvatarApiManager *)uploadApiManager{
+    if (!_uploadApiManager) {
+        _uploadApiManager = [[UploadAvatarApiManager alloc]init];
+    }
+    return _uploadApiManager;
 }
 
 @end
