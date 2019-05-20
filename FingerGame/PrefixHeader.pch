@@ -16,6 +16,10 @@
 // 屏幕宽度
 #define SCREEN_WIDTH          [[UIScreen mainScreen] bounds].size.width
 
+//横屏模式下的屏幕宽高
+#define ScreenHeightLandscape [[UIScreen mainScreen] bounds].size.width
+#define ScreenWidthLandscape  [[UIScreen mainScreen] bounds].size.height
+
 #define WeakSelf __weak typeof(self) weakSelf = self
 #define DefaultFont(o) [UIFont fontWithName:@"FZMWJW--GB1-0" size:o]
 
@@ -24,7 +28,7 @@
  GameSpeed单位为 1/60秒移动的像素
  AllowedDelay为按键指令比对允许的误差区间 精确时间点+-AllowedDelay秒
  **/
-#define GameSpeed 1
+#define GameSpeed 5
 #define AllowedDelay 0.5
 /**
  发给蓝牙的指令（固定）
