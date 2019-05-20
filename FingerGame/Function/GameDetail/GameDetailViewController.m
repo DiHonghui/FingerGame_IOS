@@ -19,6 +19,9 @@
 #import "GameOrderFile.h"
 #import "MissionModel.h"
 
+#import "LoadResourceTipView.h"
+
+#import "GVUserDefaults+Properties.h"
 #import "NSObject+ProgressHUD.h"
 #import <YYModel/YYModel.h>
 
@@ -28,7 +31,6 @@
 @property (nonatomic,strong) UIButton *linkBleBtn;
 @property (nonatomic,strong) UIButton *startGameBtn;
 @property (nonatomic,strong) UILabel *bleStateLb;
-@property (nonatomic,strong) UIButton *downloadAudioBtn;
 @property (nonatomic,strong) UIButton *fingerprintBtn;
 //蓝牙连接状态
 @property (nonatomic,assign) BOOL bleState;
@@ -42,6 +44,8 @@
 @property (nonatomic,strong) AudioManager *curAudioManager;
 //
 @property (nonatomic,strong) MissionModel *curMissionModel;
+
+@property (nonatomic,strong) NSString *curGameId;
 
 @end
 
@@ -66,7 +70,7 @@
     self.gameOrderFile = [[GameOrderFile alloc] init];
     self.curMissionModel = [[MissionModel alloc] init];
     
-    GameFileApiManager *gameFileApiManager = [[GameFileApiManager alloc] initWithGameId:@"1"];
+    GameFileApiManager *gameFileApiManager = [[GameFileApiManager alloc] initWithGameId:self.curGameId];
     [gameFileApiManager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
         if (errorType == ZHYAPIManagerErrorTypeSuccess){
             [self analyzeServiceData:responseData];
@@ -78,39 +82,33 @@
 }
 
 #pragma mark - Object Methods
-- (id)initWithGameName:(NSString *)gameName{
+- (id)initWithGameId:(NSString *)gameId{
     self = [super init];
+    self.curGameId = gameId;
+    
     self.gameNameLb = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 20)];
-    self.gameNameLb.backgroundColor = [UIColor blackColor];
-    self.gameNameLb.textColor = [UIColor whiteColor];
+    self.gameNameLb.textColor = [UIColor blackColor];
     self.gameNameLb.textAlignment = NSTextAlignmentCenter;
-    self.gameNameLb.text = [NSString stringWithFormat:@"游戏名称：%@",gameName];
+    self.gameNameLb.text = [NSString stringWithFormat:@"游戏名称：%@",@"Default"];
     
     self.bleStateLb = [[UILabel alloc] initWithFrame:CGRectMake(0, 120, SCREEN_WIDTH, 20)];
-    self.bleStateLb.backgroundColor = [UIColor blueColor];
     self.bleStateLb.textColor = [UIColor yellowColor];
     self.bleStateLb.textAlignment = NSTextAlignmentCenter;
     self.bleStateLb.text = [NSString stringWithFormat:@"蓝牙连接状态：未连接"];
     
-    self.linkBleBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 150, 100, 80)];
-    self.linkBleBtn.backgroundColor = [UIColor blackColor];
+    self.linkBleBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 150, 100, 40)];
+    self.linkBleBtn.backgroundColor = [UIColor blueColor];
     [self.linkBleBtn setTitle:@"蓝牙连接" forState:UIControlStateNormal];
     [self.linkBleBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.linkBleBtn addTarget:self action:@selector(linkBleBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.startGameBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 250, 100, 80)];
-    self.startGameBtn.backgroundColor = [UIColor blackColor];
+    self.startGameBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 200, 100, 40)];
+    self.startGameBtn.backgroundColor = [UIColor greenColor];
     [self.startGameBtn setTitle:@"开始游戏" forState:UIControlStateNormal];
     [self.startGameBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.startGameBtn addTarget:self action:@selector(startGameBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.downloadAudioBtn = [[UIButton alloc] initWithFrame:CGRectMake(150, 150, 100, 80)];
-    self.downloadAudioBtn.backgroundColor = [UIColor blueColor];
-    [self.downloadAudioBtn setTitle:@"下载游戏音乐" forState:UIControlStateNormal];
-    [self.downloadAudioBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.downloadAudioBtn addTarget:self action:@selector(downloadAudioBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.fingerprintBtn = [[UIButton alloc] initWithFrame:CGRectMake(150, 250, 100, 80)];
+    self.fingerprintBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 250, 100, 40)];
     self.fingerprintBtn.backgroundColor = [UIColor blueColor];
     [self.fingerprintBtn setTitle:@"指纹录入" forState:UIControlStateNormal];
     [self.fingerprintBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -120,7 +118,6 @@
     [self.view addSubview:self.bleStateLb];
     [self.view addSubview:self.linkBleBtn];
     [self.view addSubview:self.startGameBtn];
-    [self.view addSubview:self.downloadAudioBtn];
     [self.view addSubview:self.fingerprintBtn];
     
     _bleState = NO;
@@ -135,19 +132,8 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)downloadAudioBtnClicked:(id)sender{
-    [self.curAudioManager downloadAudioWithURL:[NSString stringWithFormat:@"http://shouzhi.yunzs.net/music/%@",self.curMissionModel.musicPath] fileName:self.curMissionModel.musicName downloadReturnBlock:^(bool state, NSString * _Nonnull localPath) {
-        if (state == YES){
-            [self showHUDText:@"游戏音乐下载成功"];
-            [self.curAudioManager prepareForAudioPlayer:localPath];
-        }else{
-            [self showErrorHUD:@"游戏音乐下载失败"];
-        }
-    }];
-}
-
 - (void)fingerprintBtnClicked:(id)sender{
-    FingerprintListTableViewController *vc = [[FingerprintListTableViewController alloc] initWithUserId:@"1"];
+    FingerprintListTableViewController *vc = [[FingerprintListTableViewController alloc] initWithUserId:[GVUserDefaults standardUserDefaults].userId];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -175,14 +161,30 @@
 //        }]];
 //        [self presentViewController:_alertController animated:YES completion:nil];
 //    }
-    //only view test
-    MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
-    [self presentViewController:vc animated:YES completion:nil];
+    LoadResourceTipView *tv = [[LoadResourceTipView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:tv];
+    
+    [self.curAudioManager downloadAudioWithURL:[NSString stringWithFormat:@"http://shouzhi.yunzs.net/music/%@",self.curMissionModel.musicPath] fileName:self.curMissionModel.musicName downloadProgressBlock:^(CGFloat p) {
+        [tv updateProgress:p];
+    }  downloadReturnBlock:^(bool state, NSString * _Nonnull localPath) {
+        if (state == YES){
+            [self.curAudioManager prepareForAudioPlayer:localPath];
+            
+            [tv removeFromSuperview];
+            //only view test
+            MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
+            [self presentViewController:vc animated:YES completion:nil];
+            
+        }else{
+            [self showErrorHUD:@"游戏音乐下载失败"];
+        }
+    }];
 }
 
 
 - (void)analyzeServiceData:(id)data{
     [self.curMissionModel yy_modelSetWithJSON:data[@"data"][0]];
+    [self showInfo];
     self.gameOrderFile.gameId = data[@"data"][0][@"id"];
     self.gameOrderFile.gameName = data[@"data"][0][@"name"];
     self.gameOrderFile.gameOrders = [NSMutableArray array];
@@ -202,6 +204,10 @@
         NSLog(@"指令编号：%d手指id：%d开始时间：%.2f时长：%.2f",orderModel.no,orderModel.fingerId,orderModel.startTime,orderModel.duration);
         [self.gameOrderFile.gameOrders addObject:orderModel];
     }];
+}
+
+- (void)showInfo{
+    self.gameNameLb.text = [NSString stringWithFormat:@"游戏名称：%@",self.curMissionModel.missionName];
 }
 
 #pragma mark - MyBTManagerDelegate

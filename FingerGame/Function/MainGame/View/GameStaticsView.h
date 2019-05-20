@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GameStaticsViewProtocol <NSObject>
+@optional
+- (void)clickedBackButton;
+
+@end
+
 @interface GameStaticsView : UIView
+
+@property (nonatomic,strong) id<GameStaticsViewProtocol> delegate;
 
 + (CGFloat)heightForView;
 //配置view上控件初始值

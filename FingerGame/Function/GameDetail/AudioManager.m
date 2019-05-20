@@ -30,7 +30,7 @@ static AudioManager *sInstance = nil;
 }
 
 #pragma mark - Object Methods
-- (void)downloadAudioWithURL:(NSString *)aUrl fileName:(NSString *)aFileName downloadReturnBlock:(DownloadReturnBlock)returnBlock{
+- (void)downloadAudioWithURL:(NSString *)aUrl fileName:(NSString *)aFileName downloadProgressBlock:(nonnull DownloadProgressBlock)progressBlock downloadReturnBlock:(nonnull DownloadReturnBlock)returnBlock {
         /* 创建网络下载对象 */
         AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
         /* 下载地址 */
@@ -46,6 +46,7 @@ static AudioManager *sInstance = nil;
         /* 开始请求下载 */
         NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
             NSLog(@"下载进度：%.2f％", downloadProgress.fractionCompleted * 100);
+            progressBlock(downloadProgress.fractionCompleted);
             
         } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
             /* 设定下载到的位置 */

@@ -10,6 +10,6 @@
 
 @interface GameDetailViewController : UIViewController
 
-- (id)initWithGameName:(NSString *)gameName;
+- (id)initWithGameId:(NSString *)gameId;
 
 @end

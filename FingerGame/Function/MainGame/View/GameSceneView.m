@@ -23,6 +23,6 @@
 }
 
 - (void)setup{
-    self.backgroundColor = [UIColor blueColor];
+    self.backgroundColor = [UIColor blackColor];
 }
 @end

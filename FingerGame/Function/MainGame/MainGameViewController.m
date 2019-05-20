@@ -14,7 +14,9 @@
 #import "BottomLeftView.h"
 #import "BottomRightView.h"
 
-@interface MainGameViewController ()<MyBTManagerProtocol>
+#import "AudioManager.h"
+
+@interface MainGameViewController ()<MyBTManagerProtocol,GameStaticsViewProtocol>
 
 //方块的数量（指令的个数）
 @property (nonatomic,assign) NSInteger sceneCount;
@@ -22,10 +24,12 @@
 @property (nonatomic,strong) NSMutableArray *operateArray;
 //初始每个Scene Frame的数组
 @property (nonatomic,strong) NSMutableArray *frameArray;
-//当前正确点击的次数
+//当前正确点击的次数 当前错误点击次数
 @property (nonatomic,assign) NSInteger successClick;
+@property (nonatomic,assign) NSInteger failureClick;
 //当前分数
 @property (nonatomic,assign) float score;
+@property (nonatomic,assign) int stars;
 
 @property (nonatomic,strong) GameStaticsView *gameStaticsView;
 @property (nonatomic,strong) BottomLeftView *bottomLeftView;
@@ -36,6 +40,9 @@
 @property (nonatomic,strong) NSString *cacheString;
 //蓝牙操作工具
 @property (nonatomic,strong) MyBTManager *curBTManager;
+
+//游戏音乐处理工具
+@property (nonatomic,strong) AudioManager *curAudioManager;
 
 @end
 
@@ -58,16 +65,18 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     
+    
     [self buildMainView];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    self.cacheString = @"";
     self.curBTManager = [MyBTManager sharedInstance];
     self.curBTManager.delegate = self;
-    self.cacheString = @"";
+
+    self.curAudioManager = [AudioManager sharedInstance];
+    
     [self startGame];
 }
 
@@ -79,79 +88,64 @@
     _frameArray = [[NSMutableArray alloc] initWithCapacity:_sceneCount];
     //绘制黑色泳道
     for (int i=0; i<9; i++){
-        UIView *judeView = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH-9)/10*(i+1)+i*1, [GameStaticsView heightForView], 1, SCREEN_HEIGHT-[GameStaticsView heightForView]-[BottomLeftView heightForView])];
+        UIView *judeView = [[UIView alloc] initWithFrame:CGRectMake((ScreenWidthLandscape-9)/10*(i+1)+i*1, [GameStaticsView heightForView], 1, ScreenHeightLandscape-[GameStaticsView heightForView]-[BottomLeftView heightForView])];
         judeView.backgroundColor = [UIColor blackColor];
         [self.view addSubview:judeView];
     }
     //绘制判定线
-    UIView *judgeView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-[BottomLeftView heightForView]-20, SCREEN_WIDTH, 1)];
+    UIView *judgeView = [[UIView alloc] initWithFrame:CGRectMake(0, ScreenHeightLandscape-[BottomLeftView heightForView]-25, ScreenWidthLandscape, 1)];
     judgeView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:judgeView];
     //生成初始化滑块并绘制
-    float showHeight = SCREEN_HEIGHT-[GameStaticsView heightForView]-[BottomLeftView heightForView];
+    float showHeight = ScreenHeightLandscape-[GameStaticsView heightForView]-[BottomLeftView heightForView];
     [self.gameOrderFile.gameOrders enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         int no = ((OrderModel*)obj).no;
         int fingerId = ((OrderModel*)obj).fingerId;
         float startTime = ((OrderModel*)obj).startTime;
         float duration = ((OrderModel*)obj).duration;
-        NSLog(@"屏幕高度：%.2f",SCREEN_HEIGHT);
         NSLog(@"指令编号：%d手指id：%d开始时间：%.2f时长：%.2f",no,fingerId,startTime,duration);
         NSLog(@"滑块高度：%.2f",duration*GameSpeed*60-showHeight);
-        GameSceneView *newScene = [[GameSceneView alloc] initWithFrame:CGRectMake(fingerId*(SCREEN_WIDTH+1)/10, SCREEN_HEIGHT-[BottomLeftView heightForView]-20-duration*GameSpeed*60-startTime*GameSpeed*60, (SCREEN_WIDTH-9)/10, duration*GameSpeed*60)];
+        GameSceneView *newScene = [[GameSceneView alloc] initWithFrame:CGRectMake(fingerId*(ScreenWidthLandscape+1)/10, ScreenHeightLandscape-[BottomLeftView heightForView]-20-duration*GameSpeed*60-startTime*GameSpeed*60, (ScreenWidthLandscape-9)/10, duration*GameSpeed*60)];
         newScene.completeType = CompleteTypeDefault;
         newScene.tag = no; //scene的编号
         //初始化的scene添加到数组中
         [self.frameArray addObject:[NSValue valueWithCGRect:newScene.frame]];
         [self.operateArray addObject:newScene];
         
+        newScene.userInteractionEnabled = YES;
+        [newScene addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapScene:)]];
+        
         [self.view addSubview:newScene];
     }];
     //绘制界面上下方信息提示面板
-    _gameStaticsView = [[GameStaticsView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, [GameStaticsView heightForView])];
+    _gameStaticsView = [[GameStaticsView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidthLandscape, [GameStaticsView heightForView])];
     [self.view addSubview:_gameStaticsView];
-    [_gameStaticsView configWithGameName:@"手指操" Score:0.0];
+    [_gameStaticsView configWithGameName:self.gameOrderFile.gameName Score:0.0];
+    _gameStaticsView.delegate = self;
     
-    _bottomLeftView = [[BottomLeftView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-[BottomLeftView heightForView], (SCREEN_WIDTH-1)/2, [BottomLeftView heightForView])];
+    _bottomLeftView = [[BottomLeftView alloc] initWithFrame:CGRectMake(0, ScreenHeightLandscape-[BottomLeftView heightForView], (ScreenWidthLandscape-1)/2, [BottomLeftView heightForView])];
     [self.view addSubview:_bottomLeftView];
     [_bottomLeftView configView];
     
-    _bottomRightView = [[BottomRightView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH+1)/2, SCREEN_HEIGHT-[BottomLeftView heightForView], (SCREEN_WIDTH-1)/2, [BottomRightView heightForView])];
+    _bottomRightView = [[BottomRightView alloc] initWithFrame:CGRectMake((ScreenWidthLandscape+1)/2, ScreenHeightLandscape-[BottomLeftView heightForView], (ScreenWidthLandscape-1)/2, [BottomRightView heightForView])];
     [self.view addSubview:_bottomRightView];
     [_bottomRightView configView];
     
 }
 
 #pragma mark - Event
-//开始游戏（从倒计时开始）
-- (void)startGame{
-    _score = 0;
-    [self.gameStaticsView updateScore:self.score];
-    //用CADisplayLink刷新，频率快，动画不会有明显掉帧
-    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(startScroll)];
-    StartAnimView *startAnimView = [StartAnimView shareInstance];
-    [self.view addSubview:startAnimView];
-    [startAnimView showWithAnimNum:3 CompleteBlock:^{
-//        [self.curBTManager writeToPeripheral:kGameStartOrder];
-//        [self.curBTManager readValueWithBlock:^(NSString *data) {
-//            NSLog(@"%@",data);
-//            if ([data containsString:@"aa02030609"]){
-//                NSLog(@"开始游戏！");
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    NSLog(@"-----------");
-//                    [self->displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-//                });
-//            }else{
-//                NSLog(@"未接收到蓝牙计时结束指令，无法正常游戏");
-//            }
-//        }];
-        
-        //only view test
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"-----------");
-            [self->displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-        });
-        
-    }];
+- (void)tapScene:(UIGestureRecognizer *)gesture{
+    __weak GameSceneView *targetView = (GameSceneView *)gesture.view;
+    NSLog(@"==%ld",targetView.tag);
+    if (targetView.frame.origin.y <= ScreenWidthLandscape-[BottomLeftView heightForView]-25 && targetView.frame.size.height+targetView.frame.origin.y >= ScreenWidthLandscape-[BottomLeftView heightForView]-25) {
+        if (targetView.completeType != CompleteTypeSuccess){
+            targetView.backgroundColor = [UIColor greenColor];
+            targetView.completeType = CompleteTypeSuccess;
+            self.score +=1;
+            [self.gameStaticsView updateScore:self.score];
+            NSLog(@"Touched Success");
+        }
+    }
 }
 
 - (void)startScroll{
@@ -167,42 +161,70 @@
                 }
             }
             //方块上边框到达判定线后的操作
-            if (scene.frame.origin.y >= SCREEN_HEIGHT-[BottomLeftView heightForView]-20){
-                if (scene.completeType != CompleteTypeSuccess){
+            if (scene.frame.origin.y >= ScreenWidthLandscape-[BottomLeftView heightForView]-25){
+                if (scene.completeType != CompleteTypeSuccess && scene.completeType != CompleteTypeFailure && scene.completeType != CompleteTypeCompleted){
                     scene.backgroundColor = [UIColor redColor];
                     scene.completeType = CompleteTypeFailure;
-                }
-                scene.frame = [[self.frameArray objectAtIndex:idx] CGRectValue];
-                scene.completeType = CompleteTypeCompleted;
-                scene.hidden = YES;
-                self.score += 1;
-                [self.gameStaticsView updateScore:self.score];
-                if (self.score == self.sceneCount){
-                    [self endGame];
+                    self.failureClick += 1;
+                    NSLog(@"scene:%ld success:%.f failure:%ld",scene.tag,self.score,self.failureClick);
                 }
             }
-            //
+            if (scene.frame.origin.y >= ScreenWidthLandscape-[BottomLeftView heightForView]){
+                scene.frame = [[self.frameArray objectAtIndex:idx] CGRectValue];
+                scene.hidden = YES;
+                scene.completeType = CompleteTypeCompleted;
+            }
+            if (self.score >= 20 || self.failureClick>=40){
+                [self endGame];
+                *stop = YES;
+            }
         });
+    }];
+}
+
+//开始游戏（从倒计时开始）
+- (void)startGame{
+    [self.view setAlpha:1.0];
+    self.score = 0;
+    self.successClick = 0;
+    self.failureClick = 0;
+    [self.gameStaticsView updateScore:self.score];
+    //用CADisplayLink刷新，频率快，动画不会有明显掉帧
+    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(startScroll)];
+    StartAnimView *startAnimView = [StartAnimView shareInstance];
+    [self.view addSubview:startAnimView];
+    [startAnimView showWithAnimNum:3 CompleteBlock:^{
+        //        [self.curBTManager writeToPeripheral:kGameStartOrder];
+        //        [self.curBTManager readValueWithBlock:^(NSString *data) {
+        //            NSLog(@"%@",data);
+        //            if ([data containsString:@"aa02030609"]){
+        //                NSLog(@"开始游戏！");
+        //                dispatch_async(dispatch_get_main_queue(), ^{
+        //                    NSLog(@"-----------");
+        //                    [self->displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+        //                });
+        //            }else{
+        //                NSLog(@"未接收到蓝牙计时结束指令，无法正常游戏");
+        //            }
+        //        }];
+        
+        //only view test
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"-----------");
+            [self->displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+        });
+        [self.curAudioManager playAudio];
+        
     }];
 }
 
 //游戏结束
 - (void)endGame{
+    [self.curAudioManager pauseAudio];
     [displayLink invalidate];
-    //UIAlertController init
-    NSString *titleString = @"游戏结束";
-    NSString *messageString = [NSString stringWithFormat:@"本次得分：%.f\n",self.score];
-    UIAlertController *_alertController = [UIAlertController alertControllerWithTitle:titleString message:messageString preferredStyle:UIAlertControllerStyleAlert];
-    [_alertController addAction:[UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"点击返回");
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }]];
-    [_alertController addAction:[UIAlertAction actionWithTitle:@"重新开始" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"点击重新开始");
-        [self restartGame];
-    }]];
+    [self.view setAlpha:0.5];
     
-    [self presentViewController:_alertController animated:YES completion:nil];
+    [self showSettlement];
 }
 
 //重新开始游戏
@@ -212,21 +234,42 @@
             GameSceneView *scene = (GameSceneView *)obj;
             scene.frame = [[self.frameArray objectAtIndex:idx] CGRectValue];
             scene.completeType = CompleteTypeDefault;
-            scene.backgroundColor = [UIColor blueColor];
+            scene.backgroundColor = [UIColor blackColor];
+            scene.hidden = NO;
         });
     }];
-    _score = 0;
-    [self.gameStaticsView updateScore:self.score];
-    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(startScroll)];
-    StartAnimView *startAnimView = [StartAnimView shareInstance];
-    [self.view addSubview:startAnimView];
-    [startAnimView showWithAnimNum:3 CompleteBlock:^{
-        NSLog(@"start displaylink");
-        [self->displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-    }];
+    [self.curAudioManager restartAudio];
+    [self startGame];
 }
 
 #pragma mark - Private Methods
+//结算处理
+- (void)showSettlement{
+    float completeRate = self.score/self.sceneCount;
+    if (completeRate >= 0 && completeRate < 0.3) self.stars = 0;
+    if (completeRate >= 0.3 && completeRate < 0.6) self.stars = 1;
+    if (completeRate >=0.6 && completeRate < 0.9) self.stars = 2;
+    if (completeRate >=0.9 && completeRate <= 1.0) self.stars = 3;
+    int getExp = (self.stars/3.0) * 300;
+    //UIAlertController init
+    NSString *titleString = @"游戏结束";
+    NSString *messageString = [NSString new];
+    if (self.stars == 3){
+        messageString = [NSString stringWithFormat:@"\n星级评定:%d\n\n本次得分：%.f\n历史最高分：%@\n\n恭喜通关！\n\n奖励经验：%d EXP",self.stars,self.score,@"null",getExp];
+    }else{
+        messageString = [NSString stringWithFormat:@"\n星级评定:%d\n\n本次得分：%.f\n历史最高分：%@\n\n未过关，请再接再励\n\n奖励经验：%d EXP",self.stars,self.score,@"null",getExp];
+    }
+    UIAlertController *_alertController = [UIAlertController alertControllerWithTitle:titleString message:messageString preferredStyle:UIAlertControllerStyleAlert];
+    [_alertController addAction:[UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self.curAudioManager exitPlaying];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    [_alertController addAction:[UIAlertAction actionWithTitle:@"重新开始" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self restartGame];
+    }]];
+    
+    [self presentViewController:_alertController animated:YES completion:nil];
+}
 //16进制字符串转10进制浮点数
 - (float)hexToDec:(NSString*)hexString{
     NSString * temp10 = [NSString stringWithFormat:@"%lu",strtoul([hexString UTF8String],0,16)];
@@ -312,11 +355,43 @@
         }
     }];
 }
-#pragma mark - MyBTManagerDelegate
 
+#pragma mark - GameStaticsViewDelegate
+- (void)clickedBackButton{
+    NSLog(@"点击返回2");
+    [self.curAudioManager exitPlaying];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - MyBTManagerDelegate
 - (void)receiveDataFromBLE:(NSString *)sdata{
     NSLog(@"代理人收到了数据： %@",sdata);
     [self seperateDataString:sdata];
 }
+
+#pragma mark - 强制横屏（只能model视图有效）
+//生命周期在viewdidload之后，在viewwillappear之前
+- (BOOL)shouldAutorotate
+{
+    //是否支持转屏
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    //支持哪些转屏方向
+    return UIInterfaceOrientationMaskLandscape;
+}
+//进入界面直接旋转的方向
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationLandscapeRight;
+}
+// 是否隐藏状态栏
+- (BOOL)prefersStatusBarHidden
+{
+    return NO;
+}
+
 
 @end

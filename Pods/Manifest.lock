@@ -1,0 +1,160 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - Aspects (1.4.1)
+  - AVOSCloud (3.10.0)
+  - AVOSCloudIM (3.10.0):
+    - AVOSCloud (= 3.10.0)
+    - AVOSCloudIM/_ARC (= 3.10.0)
+    - AVOSCloudIM/_NOARC (= 3.10.0)
+  - AVOSCloudIM/_ARC (3.10.0):
+    - AVOSCloud (= 3.10.0)
+    - AVOSCloudIM/_NOARC (= 3.10.0)
+  - AVOSCloudIM/_NOARC (3.10.0):
+    - AVOSCloud (= 3.10.0)
+  - Bugly (2.4.8)
+  - ChameleonFramework (2.1.0):
+    - ChameleonFramework/Default (= 2.1.0)
+  - ChameleonFramework/Default (2.1.0)
+  - CRToast (0.0.9)
+  - CYLDeallocBlockExecutor (1.0.0)
+  - DateTools (1.5.0)
+  - DZNEmptyDataSet (1.8.1)
+  - FDFullscreenPopGesture (1.1)
+  - FLAnimatedImage (1.0.12)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - GVUserDefaults (1.0.2)
+  - IQKeyboardManager (6.2.0)
+  - JSBadgeView (1.4.1)
+  - Masonry (1.0.2)
+  - MBProgressHUD (0.9.2)
+  - MJRefresh (3.1.15.7)
+  - pop (1.0.12)
+  - ReactiveCocoa (8.0.2):
+    - ReactiveSwift (~> 4.0)
+  - ReactiveSwift (4.0.0):
+    - Result (~> 4.0)
+  - Result (4.0.0)
+  - RKNotificationHub (2.0.5)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
+  - SVProgressHUD (1.1.3)
+  - SVPullToRefresh (0.4.1)
+  - WZLBadge (1.2.6)
+  - YYCache (1.0.4)
+  - YYModel (1.0.4)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.1.0)
+  - Aspects (~> 1.4.1)
+  - AVOSCloud (~> 3.3)
+  - AVOSCloudIM (~> 3.3)
+  - Bugly (~> 2.4.6)
+  - ChameleonFramework (~> 2.1.0)
+  - CRToast (~> 0.0.9)
+  - CYLDeallocBlockExecutor (~> 1.0.0)
+  - DateTools (~> 1.5.0)
+  - DZNEmptyDataSet (~> 1.8.1)
+  - FDFullscreenPopGesture (~> 1.1)
+  - FLAnimatedImage (~> 1.0)
+  - FMDB (~> 2.5)
+  - GVUserDefaults (~> 1.0.1)
+  - IQKeyboardManager
+  - JSBadgeView (~> 1.4.1)
+  - Masonry (~> 1.0.0)
+  - MBProgressHUD (~> 0.9.2)
+  - MJRefresh (~> 3.1.12)
+  - pop (~> 1.0.10)
+  - ReactiveCocoa
+  - RKNotificationHub (~> 2.0.1)
+  - SDWebImage (~> 3.7.3)
+  - SVProgressHUD (~> 1.1.3)
+  - SVPullToRefresh (~> 0.4.1)
+  - WZLBadge
+  - YYCache
+  - YYModel (~> 1.0.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - Aspects
+    - AVOSCloud
+    - AVOSCloudIM
+    - Bugly
+    - ChameleonFramework
+    - CRToast
+    - CYLDeallocBlockExecutor
+    - DateTools
+    - DZNEmptyDataSet
+    - FDFullscreenPopGesture
+    - FLAnimatedImage
+    - FMDB
+    - GVUserDefaults
+    - IQKeyboardManager
+    - JSBadgeView
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - pop
+    - ReactiveCocoa
+    - ReactiveSwift
+    - Result
+    - RKNotificationHub
+    - SDWebImage
+    - SVProgressHUD
+    - SVPullToRefresh
+    - WZLBadge
+    - YYCache
+    - YYModel
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
+  AVOSCloud: 839b30ac3b382ad56c957ed6dd28a0a537d33d67
+  AVOSCloudIM: 13c9cf14b42304f4243d01906c17b5ee8f5529db
+  Bugly: da3c02408c14838d498429320545a8e439392978
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
+  CYLDeallocBlockExecutor: 13dc997661100052ed24bb918fcc65e8535af59d
+  DateTools: b93a2c2017747329c6077c7d7e8a75106e23d0d7
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  GVUserDefaults: 52d48cf8ba578b40a1a76312b196dfc9134ba36a
+  IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
+  JSBadgeView: 3861ddee41094284d9468e6d0af5107f703aaac5
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
+  ReactiveCocoa: fbd26e9ba60e98417ee47433e59465a98ed9da0f
+  ReactiveSwift: a2bb9ace428a109e9c0209615645d9d286c8c433
+  Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
+  RKNotificationHub: e926748820d719f21ff374657a47fceefa1796b4
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+  WZLBadge: 9ec779dcfd94c825518b395e8315fccaabff1bfa
+  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+
+PODFILE CHECKSUM: 5f6e0d993cfc3e593867a666cc0c6cb8f71e1109
+
+COCOAPODS: 1.5.3
