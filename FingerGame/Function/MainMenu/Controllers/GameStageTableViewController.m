@@ -243,7 +243,15 @@
 }
 
 -(void)chargeEnergy{
-    [GVUserDefaults standardUserDefaults].energy = @"100";
+    NSInteger TNumber = [[GVUserDefaults standardUserDefaults].healthyBeans integerValue];
+    if (TNumber >= 50) {
+        [GVUserDefaults standardUserDefaults].energy = @"100";
+        TNumber = TNumber - 50 ;
+        [GVUserDefaults standardUserDefaults].healthyBeans = [NSString stringWithFormat:@"%ld",TNumber];
+    }else{
+        [[MyAlertCenter defaultCenter] postAlertWithMessage:@"缺健康豆"];
+    }
+    
 }
 
 

@@ -23,7 +23,7 @@
 //@property (weak, nonatomic) IBOutlet UIBarButtonItem *diamondAdd;
 //@property (weak, nonatomic) IBOutlet UIBarButtonItem *healthyBeansAdd;
 //@property (weak, nonatomic) IBOutlet UILabel *levelLabel;
-//@property (weak, nonatomic) IBOutlet UIToolbar *itemToolBar;
+//@property (weak, nonatomic) IBOutlet UIToolbar *itemToolBar;mj
 //@property (weak, nonatomic) IBOutlet UITableView *InTableView;
 @property (strong,nonatomic) RechargeDiomondApiManager *rechargeApiManager;
 @end
@@ -111,8 +111,16 @@
     if (indexPath.section ==0) {
         return;
     }
+    
+    NSInteger lNumber = [[GVUserDefaults standardUserDefaults].diamond integerValue];
+    if (lNumber <= 5) {
+        [self alertViewWithXib];
+    }else{
+        lNumber = lNumber-5;
+        [GVUserDefaults standardUserDefaults].diamond = [NSString stringWithFormat:@"%ld",lNumber];
     GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameName:@"手指操"];
     [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section ==0) {
@@ -176,11 +184,33 @@
     [GVUserDefaults standardUserDefaults].energy = @"100";
 }
 
+- (void)alertViewWithXib{
+    
+    [HLXibAlertView alertWithTittle:@"钻石不足" message:@"请购买钻石" block:^(NSInteger index) {
+        if (index == XibAlertBlockSureButtonClick) {
+            [self alertSureButtonClick];
+        }else{
+            [self alertCauseButtonClick];
+        }
+    }];
+}
+
+- (void)alertSureButtonClick{
+    NSLog(@"点击了确认按钮");
+    [self buyDiomond];
+}
+
+- (void)alertCauseButtonClick{
+    NSLog(@"点击了取消按钮");
+}
+
 -(RechargeDiomondApiManager*) rechargeApiManager{
     if (!_rechargeApiManager) {
         _rechargeApiManager = [[RechargeDiomondApiManager alloc]init];
     }
     return _rechargeApiManager;
 }
+
+
 
 @end
