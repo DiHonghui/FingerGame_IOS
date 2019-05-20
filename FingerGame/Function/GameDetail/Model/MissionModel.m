@@ -19,6 +19,9 @@
              @"musicName" : @[@"music_name"],
              @"musicPath" : @[@"path"],
              @"musictime" : @[@"time"],
+             @"bestScore" : @"playRecord.bestScore",
+             @"star"      : @"playRecord.star",
+             @"like"      : @"playRecord.like",
              };
 }
 

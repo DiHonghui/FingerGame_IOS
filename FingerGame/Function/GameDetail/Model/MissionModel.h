@@ -44,6 +44,29 @@ NS_ASSUME_NONNULL_BEGIN
  音乐时间
  */
 @property(strong,nonatomic) NSString *musicTime;
+/**
+ 星星总数
+ */
+@property(strong,nonatomic) NSString *star;
+/**
+ 游戏价格
+ */
+@property(strong,nonatomic) NSString *price;
+/**
+ 游戏代币
+ */
+@property(strong,nonatomic) NSString *award;
+/**
+ 最高得分
+ */
+@property(strong,nonatomic) NSString *bestScore;
+/**
+ 收藏状态
+ */
+@property(strong,nonatomic) NSString *like;
+
+
+
 
 @end
 

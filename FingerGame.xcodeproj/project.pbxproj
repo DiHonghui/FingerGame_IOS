@@ -10,6 +10,10 @@
 		110D28C5226F56D2008FC5F8 /* LoginFingerprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 110D28C3226F56D2008FC5F8 /* LoginFingerprintViewController.m */; };
 		110D28C8226F571F008FC5F8 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 110D28C6226F571E008FC5F8 /* CustomTableViewCell.m */; };
 		11149E452289535400D34FD5 /* MissionCollectApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11149E442289535400D34FD5 /* MissionCollectApiManager.m */; };
+		111B30EC2290F99700DAF4B1 /* ClassicStageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 111B30EA2290F99700DAF4B1 /* ClassicStageTableViewCell.m */; };
+		111B30ED2290F99700DAF4B1 /* ClassicStageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 111B30EB2290F99700DAF4B1 /* ClassicStageTableViewCell.xib */; };
+		111B30F12291844000DAF4B1 /* CostValueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 111B30EF2291844000DAF4B1 /* CostValueTableViewCell.m */; };
+		111B30F22291844000DAF4B1 /* CostValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 111B30F02291844000DAF4B1 /* CostValueTableViewCell.xib */; };
 		11334ED6223B92F200705971 /* GameStageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11334ED4223B92F200705971 /* GameStageTableViewCell.m */; };
 		11334ED7223B92F200705971 /* GameStageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11334ED5223B92F200705971 /* GameStageTableViewCell.xib */; };
 		11334EDA223B930E00705971 /* MissionlistApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11334ED8223B930E00705971 /* MissionlistApiManager.m */; };
@@ -26,6 +30,10 @@
 		1146A452228599B70054B7CB /* BasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1146A446228599B70054B7CB /* BasicTableViewCell.m */; };
 		1146A453228599B70054B7CB /* PersonalInfoBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1146A447228599B70054B7CB /* PersonalInfoBasicTableViewCell.m */; };
 		1146A4562285AB030054B7CB /* ZHYBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1146A4542285AB020054B7CB /* ZHYBaseNavigationController.m */; };
+		116F6254229236AE00F27261 /* HLXibAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 116F6251229236AD00F27261 /* HLXibAlertView.m */; };
+		116F6255229236AE00F27261 /* HLXibAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 116F6253229236AD00F27261 /* HLXibAlertView.xib */; };
+		116F625822923DC200F27261 /* MyAlertCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 116F625722923DC200F27261 /* MyAlertCenter.m */; };
+		116F625B22928E8900F27261 /* RechargeDiomondApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 116F625A22928E8900F27261 /* RechargeDiomondApiManager.m */; };
 		1193EA7122811CA400368B6E /* ClassicsMissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193EA6E22811CA300368B6E /* ClassicsMissionViewController.m */; };
 		1193EA7222811CA400368B6E /* ClassicsMissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1193EA7022811CA400368B6E /* ClassicsMissionViewController.xib */; };
 		1193EA7522811D0300368B6E /* TabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193EA7322811D0300368B6E /* TabBarControllerConfig.m */; };
@@ -142,6 +150,12 @@
 		110D28C7226F571E008FC5F8 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		11149E432289535400D34FD5 /* MissionCollectApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MissionCollectApiManager.h; sourceTree = "<group>"; };
 		11149E442289535400D34FD5 /* MissionCollectApiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MissionCollectApiManager.m; sourceTree = "<group>"; };
+		111B30E92290F99700DAF4B1 /* ClassicStageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassicStageTableViewCell.h; sourceTree = "<group>"; };
+		111B30EA2290F99700DAF4B1 /* ClassicStageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassicStageTableViewCell.m; sourceTree = "<group>"; };
+		111B30EB2290F99700DAF4B1 /* ClassicStageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassicStageTableViewCell.xib; sourceTree = "<group>"; };
+		111B30EE2291844000DAF4B1 /* CostValueTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CostValueTableViewCell.h; sourceTree = "<group>"; };
+		111B30EF2291844000DAF4B1 /* CostValueTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CostValueTableViewCell.m; sourceTree = "<group>"; };
+		111B30F02291844000DAF4B1 /* CostValueTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CostValueTableViewCell.xib; sourceTree = "<group>"; };
 		11334ED3223B92F200705971 /* GameStageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStageTableViewCell.h; sourceTree = "<group>"; };
 		11334ED4223B92F200705971 /* GameStageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStageTableViewCell.m; sourceTree = "<group>"; };
 		11334ED5223B92F200705971 /* GameStageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameStageTableViewCell.xib; sourceTree = "<group>"; };
@@ -167,6 +181,13 @@
 		1146A447228599B70054B7CB /* PersonalInfoBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoBasicTableViewCell.m; sourceTree = "<group>"; };
 		1146A4542285AB020054B7CB /* ZHYBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYBaseNavigationController.m; sourceTree = "<group>"; };
 		1146A4552285AB020054B7CB /* ZHYBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYBaseNavigationController.h; sourceTree = "<group>"; };
+		116F6251229236AD00F27261 /* HLXibAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLXibAlertView.m; sourceTree = "<group>"; };
+		116F6252229236AD00F27261 /* HLXibAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLXibAlertView.h; sourceTree = "<group>"; };
+		116F6253229236AD00F27261 /* HLXibAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLXibAlertView.xib; sourceTree = "<group>"; };
+		116F625622923DC200F27261 /* MyAlertCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAlertCenter.h; sourceTree = "<group>"; };
+		116F625722923DC200F27261 /* MyAlertCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAlertCenter.m; sourceTree = "<group>"; };
+		116F625922928E8900F27261 /* RechargeDiomondApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RechargeDiomondApiManager.h; sourceTree = "<group>"; };
+		116F625A22928E8900F27261 /* RechargeDiomondApiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RechargeDiomondApiManager.m; sourceTree = "<group>"; };
 		1193EA6E22811CA300368B6E /* ClassicsMissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassicsMissionViewController.m; sourceTree = "<group>"; };
 		1193EA6F22811CA300368B6E /* ClassicsMissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassicsMissionViewController.h; sourceTree = "<group>"; };
 		1193EA7022811CA400368B6E /* ClassicsMissionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassicsMissionViewController.xib; sourceTree = "<group>"; };
@@ -352,6 +373,8 @@
 				11334ED8223B930E00705971 /* MissionlistApiManager.m */,
 				11149E432289535400D34FD5 /* MissionCollectApiManager.h */,
 				11149E442289535400D34FD5 /* MissionCollectApiManager.m */,
+				116F625922928E8900F27261 /* RechargeDiomondApiManager.h */,
+				116F625A22928E8900F27261 /* RechargeDiomondApiManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -366,9 +389,18 @@
 		11334ED2223B92F200705971 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				116F6252229236AD00F27261 /* HLXibAlertView.h */,
+				116F6251229236AD00F27261 /* HLXibAlertView.m */,
+				116F6253229236AD00F27261 /* HLXibAlertView.xib */,
 				11334ED3223B92F200705971 /* GameStageTableViewCell.h */,
 				11334ED4223B92F200705971 /* GameStageTableViewCell.m */,
 				11334ED5223B92F200705971 /* GameStageTableViewCell.xib */,
+				111B30E92290F99700DAF4B1 /* ClassicStageTableViewCell.h */,
+				111B30EA2290F99700DAF4B1 /* ClassicStageTableViewCell.m */,
+				111B30EB2290F99700DAF4B1 /* ClassicStageTableViewCell.xib */,
+				111B30EE2291844000DAF4B1 /* CostValueTableViewCell.h */,
+				111B30EF2291844000DAF4B1 /* CostValueTableViewCell.m */,
+				111B30F02291844000DAF4B1 /* CostValueTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -585,6 +617,8 @@
 				4E985FBC21DE44C7009E5D71 /* Assets.xcassets */,
 				4E985FBE21DE44C7009E5D71 /* LaunchScreen.storyboard */,
 				4E985FC121DE44C7009E5D71 /* Info.plist */,
+				116F625622923DC200F27261 /* MyAlertCenter.h */,
+				116F625722923DC200F27261 /* MyAlertCenter.m */,
 			);
 			path = FingerGame;
 			sourceTree = "<group>";
@@ -878,6 +912,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1146A450228599B70054B7CB /* PersonalInfoBasicTableViewCell.xib in Resources */,
+				111B30ED2290F99700DAF4B1 /* ClassicStageTableViewCell.xib in Resources */,
 				11334ED7223B92F200705971 /* GameStageTableViewCell.xib in Resources */,
 				1146A451228599B70054B7CB /* BasicTableViewCell.xib in Resources */,
 				1146A44C228599B70054B7CB /* OptionsViewController.xib in Resources */,
@@ -888,6 +923,8 @@
 				4E985FBB21DE44C2009E5D71 /* Main.storyboard in Resources */,
 				1193EA7222811CA400368B6E /* ClassicsMissionViewController.xib in Resources */,
 				1146A449228599B70054B7CB /* FavoritesTableViewController.xib in Resources */,
+				111B30F22291844000DAF4B1 /* CostValueTableViewCell.xib in Resources */,
+				116F6255229236AE00F27261 /* HLXibAlertView.xib in Resources */,
 				1146A44A228599B70054B7CB /* UploadAvatarViewController.xib in Resources */,
 				119D8C01223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib in Resources */,
 			);
@@ -1026,6 +1063,7 @@
 				1146A44F228599B70054B7CB /* OptionsViewController.m in Sources */,
 				4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */,
 				11D2C31B226EB5010071562C /* TableViewController.m in Sources */,
+				116F625B22928E8900F27261 /* RechargeDiomondApiManager.m in Sources */,
 				4EC52524227EBC4600225D87 /* FPAccountModel.m in Sources */,
 				110D28C8226F571F008FC5F8 /* CustomTableViewCell.m in Sources */,
 				1146A453228599B70054B7CB /* PersonalInfoBasicTableViewCell.m in Sources */,
@@ -1048,6 +1086,7 @@
 				4E98601A22165B4B009E5D71 /* NSURLRequest+Properties.m in Sources */,
 				4ECF95272227CAED00AC1AED /* MyBTManager.m in Sources */,
 				1193EA7122811CA400368B6E /* ClassicsMissionViewController.m in Sources */,
+				116F625822923DC200F27261 /* MyAlertCenter.m in Sources */,
 				4E8CA113222CFFF100B9E1F0 /* NSObject+ProgressHUD.m in Sources */,
 				4E2BDEF2221ED382001D52FC /* StartAnimView.m in Sources */,
 				4E98601122165B4B009E5D71 /* ZHYRequestGenerator.m in Sources */,
@@ -1057,11 +1096,13 @@
 				11D2C30F226EAC5C0071562C /* GameStageTableViewController.m in Sources */,
 				119D8C04223F7C4300B19B12 /* MissionModel.m in Sources */,
 				11C217F2228BFB89000347E9 /* UploadAvatarApiManager.m in Sources */,
+				111B30F12291844000DAF4B1 /* CostValueTableViewCell.m in Sources */,
 				4ECF95252227CAED00AC1AED /* BTViewController.m in Sources */,
 				119D8BFB223F7AB600B19B12 /* UserLoginAPIManager.m in Sources */,
 				4E98600B22165B4B009E5D71 /* ZHYLogger.m in Sources */,
 				4E98601D22165B4B009E5D71 /* YunzsService.m in Sources */,
 				4E6E6EDA221FD90D0061E599 /* GameStaticsView.m in Sources */,
+				116F6254229236AE00F27261 /* HLXibAlertView.m in Sources */,
 				1193EA7522811D0300368B6E /* TabBarControllerConfig.m in Sources */,
 				4E6E6EDD22238AA50061E599 /* BottomLeftView.m in Sources */,
 				4E8CA110222CD22900B9E1F0 /* GameFileApiManager.m in Sources */,
@@ -1071,6 +1112,7 @@
 				1146A44B228599B70054B7CB /* FavoritesTableViewController.m in Sources */,
 				4EF10405224A13CA00C5EFA0 /* AudioManager.m in Sources */,
 				4E98602622165B4B009E5D71 /* ZHYServiceFactory.m in Sources */,
+				111B30EC2290F99700DAF4B1 /* ClassicStageTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

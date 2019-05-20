@@ -122,11 +122,11 @@
     }
     self.uploadApiManager = [[UploadAvatarApiManager alloc]initWithUserId:[GVUserDefaults standardUserDefaults].userId File:imageData];
     NSLog(@"上传开始");
-    [self.uploadApiManager loadDataWithParams:@{@"user_id":[GVUserDefaults standardUserDefaults].userId,@"file":imageData,@"service":@"App.User.Avatar"} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-        NSLog(@"url = %@", responseData[@"data"][@"url"]);
-        NSLog(@"code = %@", responseData[@"data"][@"code"]);
-        
-    }];
+//    [self.uploadApiManager loadDataWithParams:@{@"user_id":[GVUserDefaults standardUserDefaults].userId,@"file":imageData,@"service":@"App.User.Avatar"} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
+//        NSLog(@"url = %@", responseData[@"data"][@"url"]);
+//        NSLog(@"code = %@", responseData[@"data"][@"code"]);
+//
+//    }];
 //    NSString *urlString = @"http:///XXXXXX";
 //    NSDictionary *params = @{@"login_token":@"220"};
 //    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
