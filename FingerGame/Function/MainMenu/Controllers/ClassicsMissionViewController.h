@@ -7,10 +7,11 @@
 //
 
 #import "TableViewController.h"
+#import "CostValueTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ClassicsMissionViewController : TableViewController
+@interface ClassicsMissionViewController : TableViewController<CostBuyDelegate>
 
 @end
 

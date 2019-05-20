@@ -9,6 +9,8 @@
 #import "GameStageTableViewCell.h"
 #import "GVUserDefaults+Properties.h"
 #import "MissionCollectApiManager.h"
+#import "HLXibAlertView.h"
+#import "MyAlertCenter.h"
 
 @interface GameStageTableViewCell()
 
@@ -50,6 +52,7 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"GameStageTableViewCell" owner:self options:nil]lastObject ];
     }
+    
     return cell;
 }
 
@@ -63,7 +66,7 @@
 }
 
 -(void)configureCell:(MissionModel *)model{
-    self.stageNumberLabel.text= @"1";
+    self.stageNumberLabel.text= @"等级1";
     self.musicNameLabel.text = model.musicName;
     self.collectButton.titleLabel.text = @"已收藏";
     self.missionIdNumber = model.missionID;
@@ -92,12 +95,15 @@
         self.detailTextLabel.text = @"gaibian";
         NSLog(@"触发按钮");
         [self.missionCollectApiManager loadDataWithParams:@{@"user_id":[GVUserDefaults standardUserDefaults].userId,@"game_id":_missionIdNumber,@"service":@"App.User.Like"} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-            NSLog(responseData[@"data"][@"message"]);
-            
+            NSLog(@"%@", responseData[@"data"][@"message"]);
+            NSString *mystring = responseData[@"data"][@"message"];
+            [[MyAlertCenter defaultCenter] postAlertWithMessage:mystring];
         }];
         NSLog(@"update sucess");
     }
 }
+
+
 -(MissionCollectApiManager*) missionCollectApiManager{
     if (!_missionCollectApiManager) {
         _missionCollectApiManager = [[MissionCollectApiManager alloc]initWithMissionId:_missionIdNumber :[GVUserDefaults standardUserDefaults].userId];

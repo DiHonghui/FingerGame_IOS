@@ -12,11 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ClassicsMissionViewController">
             <connections>
-                <outlet property="diamondAdd" destination="R39-1R-fBB" id="WHw-w9-ojD"/>
-                <outlet property="energyAdd" destination="j9K-f0-hok" id="AXw-6p-Dj6"/>
-                <outlet property="healthyBeansAdd" destination="oL4-6J-OVV" id="fDR-f3-ZLH"/>
-                <outlet property="itemToolBar" destination="ntG-fo-JEA" id="lUP-dU-PZ9"/>
-                <outlet property="levelLabel" destination="WoF-ac-Vvc" id="mnM-Sd-cxa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,32 +20,11 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ntG-fo-JEA">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <items>
-                        <barButtonItem title="体力" id="7Zc-wR-2um" userLabel="体力"/>
-                        <barButtonItem title="Item" id="j9K-f0-hok"/>
-                        <barButtonItem title="钻石" id="Snh-vo-HTp"/>
-                        <barButtonItem title="Item" id="R39-1R-fBB"/>
-                        <barButtonItem title="健康豆" id="zIN-Ql-TLZ"/>
-                        <barButtonItem title="Item" id="oL4-6J-OVV"/>
-                    </items>
-                </toolbar>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="等级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WoF-ac-Vvc">
-                    <rect key="frame" x="398" y="14" width="35" height="17"/>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1kk-ZA-I8z">
+                    <rect key="frame" x="-1" y="51" width="414" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.43767024170000002" green="0.51954474009999996" blue="0.84947781739999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="等级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijj-TF-rsC">
-                    <rect key="frame" x="348" y="13" width="35" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.43767024170000002" green="0.51954474009999996" blue="0.84947781739999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

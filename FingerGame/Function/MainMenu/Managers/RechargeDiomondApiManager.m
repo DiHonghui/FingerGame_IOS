@@ -1,20 +1,21 @@
 //
-//  MissionlistApiManager.m
+//  RechargeDiomondApiManager.m
 //  FingerGame
 //
-//  Created by Nao Kunagisa on 2019/3/11.
+//  Created by Nao Kunagisa on 2019/5/20.
 //  Copyright © 2019年 lisy. All rights reserved.
 //
 
-#import "MissionlistApiManager.h"
+#import "RechargeDiomondApiManager.h"
 
-@interface MissionlistApiManager()
+@interface RechargeDiomondApiManager()
 
-@property (nonatomic,strong) NSString *userId;
+@property (nonatomic,strong) NSString *amount;
+@property(nonatomic,strong)NSString *userId;
 
 @end
 
-@implementation MissionlistApiManager
+@implementation RechargeDiomondApiManager
 
 - (instancetype)init{
     self = [super init];
@@ -25,17 +26,16 @@
     return self;
 }
 
--(instancetype)initWithUserId:(NSString *)userId{
+-(instancetype)initWithId:(NSString *)userId :(NSString *)Amount{
     self = [super init];
     if (self) {
         self.validator = self;
         self.paramSource = self;
+        self.amount = Amount;
         self.userId = userId;
     }
     return self;
 }
-
-#pragma mark - ZHYAPIManager
 
 - (NSString *)methodName{
     return @"";
@@ -67,11 +67,10 @@
 
 - (NSDictionary *)paramsForApi:(ZHYAPIBaseManager *)manager{
     return @{
-             @"userId":self.userId,
-             @"service":@"App.Game.GameList"
-             
+             @"amount":self.amount,
+             @"user_id":self.userId,
+             @"service":@"App.User.Recharge"
              };
 }
-
 
 @end
