@@ -39,10 +39,11 @@
 -(void)toMain{
     TabBarControllerConfig *tabBarController =[[TabBarControllerConfig alloc]init];
     self.window.rootViewController =tabBarController.tabBarController;
-    
+
 }
+//test main game
 //-(void)toMain{
-//    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameName:@"手指操"];
+//    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameId:@"1"];
 //    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
 //    self.window.rootViewController =nc;
 //}

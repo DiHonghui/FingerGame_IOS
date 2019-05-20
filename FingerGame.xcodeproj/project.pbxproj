@@ -108,6 +108,7 @@
 		4E98604522165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
 		4EC52524227EBC4600225D87 /* FPAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC52523227EBC4600225D87 /* FPAccountModel.m */; };
 		4EC52527227ED72100225D87 /* FingerprintListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC52526227ED72100225D87 /* FingerprintListTableViewController.m */; };
+		4EC52535228E706300225D87 /* LoadResourceTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC52534228E706300225D87 /* LoadResourceTipView.m */; };
 		4ECF95252227CAED00AC1AED /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95222227CAED00AC1AED /* BTViewController.m */; };
 		4ECF95272227CAED00AC1AED /* MyBTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95242227CAED00AC1AED /* MyBTManager.m */; };
 		4ECF952A2227CE1000AC1AED /* GameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95292227CE1000AC1AED /* GameDetailViewController.m */; };
@@ -271,6 +272,8 @@
 		4EC52523227EBC4600225D87 /* FPAccountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPAccountModel.m; sourceTree = "<group>"; };
 		4EC52525227ED72100225D87 /* FingerprintListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FingerprintListTableViewController.h; sourceTree = "<group>"; };
 		4EC52526227ED72100225D87 /* FingerprintListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FingerprintListTableViewController.m; sourceTree = "<group>"; };
+		4EC52533228E706300225D87 /* LoadResourceTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadResourceTipView.h; sourceTree = "<group>"; };
+		4EC52534228E706300225D87 /* LoadResourceTipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadResourceTipView.m; sourceTree = "<group>"; };
 		4ECF951F2227CAEC00AC1AED /* BTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTViewController.h; sourceTree = "<group>"; };
 		4ECF95202227CAEC00AC1AED /* MyBTManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBTManager.h; sourceTree = "<group>"; };
 		4ECF95222227CAED00AC1AED /* BTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTViewController.m; sourceTree = "<group>"; };
@@ -512,6 +515,7 @@
 		4E8CA1142230F82A00B9E1F0 /* GameDetail */ = {
 			isa = PBXGroup;
 			children = (
+				4EC52532228E6FFA00225D87 /* View */,
 				4E8CA1152230F9C400B9E1F0 /* Model */,
 				4ECF95282227CE1000AC1AED /* GameDetailViewController.h */,
 				4ECF95292227CE1000AC1AED /* GameDetailViewController.m */,
@@ -720,6 +724,15 @@
 				4E98603B22165B78009E5D71 /* BLEInfo.h */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4EC52532228E6FFA00225D87 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4EC52533228E706300225D87 /* LoadResourceTipView.h */,
+				4EC52534228E706300225D87 /* LoadResourceTipView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		4ED934302266FD90003A989D /* Fingerprint */ = {
@@ -1002,6 +1015,7 @@
 				11D2C31E226EEF050071562C /* MissionSimpleForList.m in Sources */,
 				4E8CA11E223100DA00B9E1F0 /* GameOrderFile.m in Sources */,
 				4E98601422165B4B009E5D71 /* ZHYAPIProxy.m in Sources */,
+				4EC52535228E706300225D87 /* LoadResourceTipView.m in Sources */,
 				4E98601722165B4B009E5D71 /* NSMutableString+ZHYNetworingMethods.m in Sources */,
 				4E98600E22165B4B009E5D71 /* ZHYAPIBaseManager.m in Sources */,
 				11334ED6223B92F200705971 /* GameStageTableViewCell.m in Sources */,
@@ -1265,14 +1279,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V6KK735F7M;
+				DEVELOPMENT_TEAM = RV75G22HVG;
 				INFOPLIST_FILE = FingerGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dgy.com.FingerGame;
+				PRODUCT_BUNDLE_IDENTIFIER = fg.sdsda.cv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1287,14 +1301,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V6KK735F7M;
+				DEVELOPMENT_TEAM = RV75G22HVG;
 				INFOPLIST_FILE = FingerGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dgy.com.FingerGame;
+				PRODUCT_BUNDLE_IDENTIFIER = fg.sdsda.cv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
