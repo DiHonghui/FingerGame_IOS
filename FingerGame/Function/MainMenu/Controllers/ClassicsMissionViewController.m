@@ -118,7 +118,7 @@
     }else{
         lNumber = lNumber-5;
         [GVUserDefaults standardUserDefaults].diamond = [NSString stringWithFormat:@"%ld",lNumber];
-    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameName:@"手指操"];
+    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameId:((MissionModel *)self.dataSource[indexPath.row]).missionID];
     [self.navigationController pushViewController:vc animated:YES];
     }
 }

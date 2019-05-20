@@ -136,7 +136,7 @@
     }else{
         energyint = energyint - 20;
         [GVUserDefaults standardUserDefaults].energy = [NSString stringWithFormat:@"%ld", energyint];
-        GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameName:@"手指操"];
+        GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameId:((MissionModel *)self.dataSource[indexPath.row]).missionID];
         [self.navigationController pushViewController:vc animated:YES];
         
     }

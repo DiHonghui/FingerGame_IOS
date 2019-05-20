@@ -14,6 +14,8 @@
 #import "PersonalInfoBasicTableViewCell.h"
 #import "NSObject+ProgressHUD.h"
 #import "AppDelegate.h"
+#import "BTViewController.h"
+#import "FingerprintListTableViewController.h"
 
 @interface OptionsViewController ()
 
@@ -78,7 +80,7 @@
     if (indexPath.section == 2) {
         UITableViewCell *cell = [[UITableViewCell alloc] init];
         //NSString *string = [[NSString alloc] initWithFormat:@"%@%@", @"指纹录入",[NSString stringWithFormat:@"%ld",++number ] ];
-        cell.textLabel.text = @"消息设置";
+        cell.textLabel.text = @"指纹设置";
         cell.textLabel.font = SystemFont(28);
         cell.textLabel.textColor = UIColorFromRGB(0x66666);
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -86,7 +88,7 @@
     }
     if (indexPath.section == 3) {
         UITableViewCell *cell = [[UITableViewCell alloc] init];
-        cell.textLabel.text = @"指纹录入";
+        cell.textLabel.text = @"蓝牙连接";
         cell.textLabel.font = SystemFont(28);
         cell.textLabel.textColor = UIColorFromRGB(0x666666);
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -98,6 +100,18 @@
     cell.textLabel.textColor = UIColorFromRGB(0x666666);
     cell.accessoryType = UITableViewCellAccessoryNone;
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    if (indexPath.section) {
+        FingerprintListTableViewController *ftvc = [[FingerprintListTableViewController alloc]init];
+        [self.navigationController pushViewController:ftvc animated:YES];
+    }
+    if (indexPath.section == 3) {
+        BTViewController *btvc = [[BTViewController alloc]init];
+        [self.navigationController pushViewController:btvc animated:YES];
+    }
+    
 }
 
 -(void)loadData{
