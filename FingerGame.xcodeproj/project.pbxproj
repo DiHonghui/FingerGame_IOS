@@ -54,6 +54,8 @@
 		4E2BDEEA221C0D3C001D52FC /* MainGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEE9221C0D3C001D52FC /* MainGameViewController.m */; };
 		4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEED221C0D84001D52FC /* GameSceneView.m */; };
 		4E2BDEF2221ED382001D52FC /* StartAnimView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEF1221ED382001D52FC /* StartAnimView.m */; };
+		4E2E0966229687A1008D1C25 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E2E0964229684D9008D1C25 /* libsqlite3.tbd */; };
+		4E2E096A2296894F008D1C25 /* YTKKeyValueStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2E09682296894F008D1C25 /* YTKKeyValueStore.m */; };
 		4E6E6EDA221FD90D0061E599 /* GameStaticsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6E6ED9221FD90D0061E599 /* GameStaticsView.m */; };
 		4E6E6EDD22238AA50061E599 /* BottomLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6E6EDC22238AA50061E599 /* BottomLeftView.m */; };
 		4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6E6EDF22238ADD0061E599 /* BottomRightView.m */; };
@@ -226,6 +228,9 @@
 		4E2BDEED221C0D84001D52FC /* GameSceneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameSceneView.m; sourceTree = "<group>"; };
 		4E2BDEF0221ED382001D52FC /* StartAnimView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartAnimView.h; sourceTree = "<group>"; };
 		4E2BDEF1221ED382001D52FC /* StartAnimView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartAnimView.m; sourceTree = "<group>"; };
+		4E2E0964229684D9008D1C25 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		4E2E09682296894F008D1C25 /* YTKKeyValueStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKKeyValueStore.m; sourceTree = "<group>"; };
+		4E2E09692296894F008D1C25 /* YTKKeyValueStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKKeyValueStore.h; sourceTree = "<group>"; };
 		4E6E6ED8221FD90D0061E599 /* GameStaticsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameStaticsView.h; sourceTree = "<group>"; };
 		4E6E6ED9221FD90D0061E599 /* GameStaticsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameStaticsView.m; sourceTree = "<group>"; };
 		4E6E6EDB22238AA50061E599 /* BottomLeftView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomLeftView.h; sourceTree = "<group>"; };
@@ -314,6 +319,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E2E0966229687A1008D1C25 /* libsqlite3.tbd in Frameworks */,
 				6CA7689EB0971694AC95FCBC /* Pods_FingerGame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +344,7 @@
 		04D0EAD28EBF36ACAA8B1F48 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E2E0964229684D9008D1C25 /* libsqlite3.tbd */,
 				25F839D6627D42675A230BB2 /* Pods_FingerGame.framework */,
 			);
 			name = Frameworks;
@@ -544,6 +551,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4E2E09672296894F008D1C25 /* YTKKeyValuesStore */ = {
+			isa = PBXGroup;
+			children = (
+				4E2E09682296894F008D1C25 /* YTKKeyValueStore.m */,
+				4E2E09692296894F008D1C25 /* YTKKeyValueStore.h */,
+			);
+			path = YTKKeyValuesStore;
+			sourceTree = "<group>";
+		};
 		4E8CA1142230F82A00B9E1F0 /* GameDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,6 +593,7 @@
 		4E985FA721DE44C2009E5D71 = {
 			isa = PBXGroup;
 			children = (
+				4E2E09672296894F008D1C25 /* YTKKeyValuesStore */,
 				4E985FE822165B4B009E5D71 /* ZHYNetworking */,
 				4E985FB221DE44C2009E5D71 /* FingerGame */,
 				4E985FCB21DE44C7009E5D71 /* FingerGameTests */,
@@ -1082,6 +1099,7 @@
 				119D8C00223F7AB600B19B12 /* LoginByPhoneNumberViewController.m in Sources */,
 				4E98602322165B4B009E5D71 /* ZHYService.m in Sources */,
 				119D8BFC223F7AB600B19B12 /* UserModel.m in Sources */,
+				4E2E096A2296894F008D1C25 /* YTKKeyValueStore.m in Sources */,
 				4E2BDEEA221C0D3C001D52FC /* MainGameViewController.m in Sources */,
 				4E98601A22165B4B009E5D71 /* NSURLRequest+Properties.m in Sources */,
 				4ECF95272227CAED00AC1AED /* MyBTManager.m in Sources */,
@@ -1321,14 +1339,86 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RV75G22HVG;
+				DEVELOPMENT_TEAM = TMTJSRRHHC;
 				INFOPLIST_FILE = FingerGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fg.sdsda.cv;
+				NEW_SETTING = "";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVOSCloud\"",
+					"-framework",
+					"\"AVOSCloudIM\"",
+					"-framework",
+					"\"Aspects\"",
+					"-framework",
+					"\"Bugly\"",
+					"-framework",
+					"\"CRToast\"",
+					"-framework",
+					"\"CYLDeallocBlockExecutor\"",
+					"-framework",
+					"\"ChameleonFramework\"",
+					"-framework",
+					"\"DZNEmptyDataSet\"",
+					"-framework",
+					"\"DateTools\"",
+					"-framework",
+					"\"FDFullscreenPopGesture\"",
+					"-framework",
+					"\"FLAnimatedImage\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"GVUserDefaults\"",
+					"-framework",
+					"\"IQKeyboardManager\"",
+					"-framework",
+					"\"JSBadgeView\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MJRefresh\"",
+					"-framework",
+					"\"Masonry\"",
+					"-framework",
+					"\"RKNotificationHub\"",
+					"-framework",
+					"\"ReactiveCocoa\"",
+					"-framework",
+					"\"ReactiveSwift\"",
+					"-framework",
+					"\"Result\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"WZLBadge\"",
+					"-framework",
+					"\"YYCache\"",
+					"-framework",
+					"\"YYModel\"",
+					"-framework",
+					"\"pop\"",
+					"-lsqlite3",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dgy.fingergame.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1343,14 +1433,86 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RV75G22HVG;
+				DEVELOPMENT_TEAM = TMTJSRRHHC;
 				INFOPLIST_FILE = FingerGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fg.sdsda.cv;
+				NEW_SETTING = "";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVOSCloud\"",
+					"-framework",
+					"\"AVOSCloudIM\"",
+					"-framework",
+					"\"Aspects\"",
+					"-framework",
+					"\"Bugly\"",
+					"-framework",
+					"\"CRToast\"",
+					"-framework",
+					"\"CYLDeallocBlockExecutor\"",
+					"-framework",
+					"\"ChameleonFramework\"",
+					"-framework",
+					"\"DZNEmptyDataSet\"",
+					"-framework",
+					"\"DateTools\"",
+					"-framework",
+					"\"FDFullscreenPopGesture\"",
+					"-framework",
+					"\"FLAnimatedImage\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"GVUserDefaults\"",
+					"-framework",
+					"\"IQKeyboardManager\"",
+					"-framework",
+					"\"JSBadgeView\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MJRefresh\"",
+					"-framework",
+					"\"Masonry\"",
+					"-framework",
+					"\"RKNotificationHub\"",
+					"-framework",
+					"\"ReactiveCocoa\"",
+					"-framework",
+					"\"ReactiveSwift\"",
+					"-framework",
+					"\"Result\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"WZLBadge\"",
+					"-framework",
+					"\"YYCache\"",
+					"-framework",
+					"\"YYModel\"",
+					"-framework",
+					"\"pop\"",
+					"-lsqlite3",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dgy.fingergame.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

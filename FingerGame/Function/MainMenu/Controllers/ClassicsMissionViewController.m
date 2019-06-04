@@ -111,7 +111,7 @@
     if (indexPath.section ==0) {
         return;
     }
-    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameName:@"手指操"];
+    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameId:((MissionModel *)self.dataSource[indexPath.row]).missionID];
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

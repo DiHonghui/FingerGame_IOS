@@ -28,7 +28,7 @@
  GameSpeed单位为 1/60秒移动的像素
  AllowedDelay为按键指令比对允许的误差区间 精确时间点+-AllowedDelay秒
  **/
-#define GameSpeed 5
+#define GameSpeed 2
 #define AllowedDelay 0.5
 /**
  发给蓝牙的指令（固定）

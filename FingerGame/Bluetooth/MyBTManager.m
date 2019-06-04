@@ -37,8 +37,8 @@ static MyBTManager *sInstance = nil;
     static dispatch_once_t  onceToken;
     dispatch_once(&onceToken, ^{
         sInstance = [[MyBTManager alloc] init];
+        NSLog(@"create Bluetooth instance");
     });
-    NSLog(@"create Bluetooth instance");
     return sInstance;
 }
 
@@ -56,9 +56,14 @@ static MyBTManager *sInstance = nil;
     return self;
 }
 #pragma mark - Object Methods
+//返回手机蓝牙状态
+- (CBManagerState)getCentralManagerState{
+    return _centralManager.state;
+}
+
 - (NSMutableArray *)getSurroundedBLEDevices{
-    [self.centralManager stopScan];
-    NSLog(@"停止搜索");
+//    [self.centralManager stopScan];
+//    NSLog(@"停止搜索");
     NSLog(@"发现设备数量：%lu",(unsigned long)[_deviceArray count]);
     return _deviceArray;
 }

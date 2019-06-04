@@ -97,15 +97,13 @@
     judgeView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:judgeView];
     //生成初始化滑块并绘制
-    float showHeight = ScreenHeightLandscape-[GameStaticsView heightForView]-[BottomLeftView heightForView];
     [self.gameOrderFile.gameOrders enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         int no = ((OrderModel*)obj).no;
         int fingerId = ((OrderModel*)obj).fingerId;
         float startTime = ((OrderModel*)obj).startTime;
         float duration = ((OrderModel*)obj).duration;
         NSLog(@"指令编号：%d手指id：%d开始时间：%.2f时长：%.2f",no,fingerId,startTime,duration);
-        NSLog(@"滑块高度：%.2f",duration*GameSpeed*60-showHeight);
-        GameSceneView *newScene = [[GameSceneView alloc] initWithFrame:CGRectMake(fingerId*(ScreenWidthLandscape+1)/10, ScreenHeightLandscape-[BottomLeftView heightForView]-20-duration*GameSpeed*60-startTime*GameSpeed*60, (ScreenWidthLandscape-9)/10, duration*GameSpeed*60)];
+        GameSceneView *newScene = [[GameSceneView alloc] initWithFrame:CGRectMake(fingerId*(ScreenWidthLandscape+1)/10, ScreenHeightLandscape-[BottomLeftView heightForView]-25-duration*GameSpeed*60-startTime*GameSpeed*60, (ScreenWidthLandscape-9)/10, duration*GameSpeed*60)];
         newScene.completeType = CompleteTypeDefault;
         newScene.tag = no; //scene的编号
         //初始化的scene添加到数组中
@@ -136,7 +134,7 @@
 #pragma mark - Event
 - (void)tapScene:(UIGestureRecognizer *)gesture{
     __weak GameSceneView *targetView = (GameSceneView *)gesture.view;
-    NSLog(@"==%ld",targetView.tag);
+    NSLog(@"==%ld",(long)targetView.tag);
     if (targetView.frame.origin.y <= ScreenWidthLandscape-[BottomLeftView heightForView]-25 && targetView.frame.size.height+targetView.frame.origin.y >= ScreenWidthLandscape-[BottomLeftView heightForView]-25) {
         if (targetView.completeType != CompleteTypeSuccess){
             targetView.backgroundColor = [UIColor greenColor];
@@ -240,6 +238,10 @@
     }];
     [self.curAudioManager restartAudio];
     [self startGame];
+}
+
+- (void)pauseGame{
+    
 }
 
 #pragma mark - Private Methods
@@ -360,6 +362,7 @@
 - (void)clickedBackButton{
     NSLog(@"点击返回2");
     [self.curAudioManager exitPlaying];
+    [displayLink invalidate];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -390,7 +393,7 @@
 // 是否隐藏状态栏
 - (BOOL)prefersStatusBarHidden
 {
-    return NO;
+    return YES;
 }
 
 

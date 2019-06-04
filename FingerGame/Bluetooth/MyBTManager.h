@@ -27,6 +27,8 @@ typedef void(^ReadValueReturnBlock)(NSString *data);
 @property (nonatomic, weak) id<MyBTManagerProtocol> delegate;
 //单例
 + (MyBTManager *)sharedInstance;
+//返回手机蓝牙状态
+- (CBManagerState)getCentralManagerState;
 //获得搜索到的周围设备
 - (NSMutableArray *)getSurroundedBLEDevices;
 //连接外设
