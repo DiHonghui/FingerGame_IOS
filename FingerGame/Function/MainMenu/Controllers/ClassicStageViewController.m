@@ -1,12 +1,12 @@
 //
-//  ClassicsMissionViewController.m
+//  ClassicStageViewController.m
 //  FingerGame
 //
-//  Created by Nao Kunagisa on 2019/5/6.
+//  Created by Nao Kunagisa on 2019/6/4.
 //  Copyright © 2019年 lisy. All rights reserved.
 //
 
-#import "ClassicsMissionViewController.h"
+#import "ClassicStageViewController.h"
 #import "ClassicStageTableViewCell.h"
 #import "MJRefresh.h"
 #import "YYModel.h"
@@ -18,17 +18,11 @@
 #import "HLXibAlertView.h"
 #import "RechargeDiomondApiManager.h"
 
-@interface ClassicsMissionViewController ()
-//@property (weak, nonatomic) IBOutlet UIBarButtonItem *energyAdd;
-//@property (weak, nonatomic) IBOutlet UIBarButtonItem *diamondAdd;
-//@property (weak, nonatomic) IBOutlet UIBarButtonItem *healthyBeansAdd;
-//@property (weak, nonatomic) IBOutlet UILabel *levelLabel;
-//@property (weak, nonatomic) IBOutlet UIToolbar *itemToolBar;mj
-//@property (weak, nonatomic) IBOutlet UITableView *InTableView;
+@interface ClassicStageViewController ()
 @property (strong,nonatomic) RechargeDiomondApiManager *rechargeApiManager;
 @end
 
-@implementation ClassicsMissionViewController
+@implementation ClassicStageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,22 +34,13 @@
     }];
     [weakself loadData];
     [self.tableView.mj_header beginRefreshing];
-
+    
     //self.tableView.userInteractionEnabled = YES;
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)loadData{
-    //[self.dataSource removeAllObjects];
-//    self.energyAdd.title = [GVUserDefaults standardUserDefaults].energy;
-//    self.diamondAdd.title = [GVUserDefaults standardUserDefaults].diamond;
-//    self.healthyBeansAdd.title = [GVUserDefaults standardUserDefaults].healthyBeans;
-//    self.levelLabel.text = [GVUserDefaults standardUserDefaults].level;
-    //[self.tableView addSubview:_itemToolBar];
-    //[self.tableView addSubview:_InTableView];
     [self.tableView reloadData];
-    
-    
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -64,14 +49,14 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
@@ -118,8 +103,8 @@
     }else{
         lNumber = lNumber-5;
         [GVUserDefaults standardUserDefaults].diamond = [NSString stringWithFormat:@"%ld",lNumber];
-//    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameId:((MissionModel *)self.dataSource[indexPath.row]).missionID];
-//    [self.navigationController pushViewController:vc animated:YES];
+        //    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameId:((MissionModel *)self.dataSource[indexPath.row]).missionID];
+        //    [self.navigationController pushViewController:vc animated:YES];
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

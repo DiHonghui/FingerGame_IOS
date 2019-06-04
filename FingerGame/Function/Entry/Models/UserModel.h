@@ -48,6 +48,10 @@ NS_ASSUME_NONNULL_BEGIN
  用户钻石数量
  */
 @property(strong,nonatomic) NSString *userDiamond;
+/**
+ 用户头像
+ */
+@property(strong,nonatomic) NSString *userAvatar;
 
 
 @end

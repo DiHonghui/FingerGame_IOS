@@ -7,6 +7,7 @@
 //
 
 #import "AppMacro.h"
+#import "ClassicStageViewController.h"
 #import "TabBarControllerConfig.h"
 #import "GameStageTableViewController.h"
 #import "GameDetailViewController.h"
@@ -30,7 +31,7 @@
         ZHYBaseNavigationController *nc1 = [[ZHYBaseNavigationController alloc] initWithRootViewController:tvc1];
         nc1.tabBarItem.title = @"游戏列表";
         
-        ClassicsMissionViewController *ctvc = [[ClassicsMissionViewController alloc]init];
+        ClassicStageViewController *ctvc = [[ClassicStageViewController alloc]init];
         ZHYBaseNavigationController *nc2 = [[ZHYBaseNavigationController alloc]initWithRootViewController:ctvc];
         nc2.tabBarItem.title=@"精品列表";
         

@@ -1,12 +1,12 @@
 //
-//  FavoritesTableViewController.m
+//  FAVViewController.m
 //  FingerGame
 //
-//  Created by Nao Kunagisa on 2019/5/6.
+//  Created by Nao Kunagisa on 2019/6/4.
 //  Copyright © 2019年 lisy. All rights reserved.
 //
 
-#import "FavoritesTableViewController.h"
+#import "FAVViewController.h"
 #import "MJRefresh.h"
 #import "PersonalPageViewController.h"
 #import "GVUserDefaults+Properties.h"
@@ -15,11 +15,15 @@
 #import "NSObject+ProgressHUD.h"
 #import "AppDelegate.h"
 
-@interface FavoritesTableViewController ()
+@interface FAVViewController ()
 
 @end
+
+
+
+
 static NSInteger number;
-@implementation FavoritesTableViewController
+@implementation FAVViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -77,23 +81,24 @@ static NSInteger number;
         // 2. 更新UI
         
     }
-];
+                                       ];
     return @[rowAction];
     
 }
 //- (NSArray*)tableView:(UITableView*)tableView editActionsForRowAtIndexPath:(NSIndexPath*)indexPath{
 //    UITableViewRowAction *rowAction =[UITableViewRowActionrowActionWithStyle:UITableViewRowActionStyleDefaulttitle:@"删除"handler:^(UITableViewRowAction*_Nonnullaction,NSIndexPath*_NonnullindexPath) {
 //    NSLog(@"删除要实现的代码");
-//    
+//
 //}];
 //    UITableViewRowAction*rowAction1 = [UITableViewRowActionrowActionWithStyle:UITableViewRowActionStyleDefaulttitle:@"标为已读"handler:^(UITableViewRowAction*_Nonnullaction,NSIndexPath*_NonnullindexPath) {
 //        NSLog(@"标为已读要实现的代码");
-//        
+//
 //    }];
 //    //自定义颜色rowAction.backgroundColor=RGB(231,96,35);rowAction1.backgroundColor=RGB(150,150,150);NSArray*arr =@[rowAction,rowAction1];return arr;}
-//    
+//
 //}
 -(void)loadData{
     number = 0;
 }
+
 @end

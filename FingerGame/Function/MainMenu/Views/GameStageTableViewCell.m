@@ -11,17 +11,23 @@
 #import "MissionCollectApiManager.h"
 #import "HLXibAlertView.h"
 #import "MyAlertCenter.h"
+#import "AutoLayout-umbrella.h"
 
 @interface GameStageTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *stageNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *musicNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *auditionButton;
+@property (weak, nonatomic) IBOutlet UILabel *rankNumberLabel;
 @property (readwrite,nonatomic)NSString *missionIdNumber;
 - (IBAction)collectMission:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *collectButton;
 @property (weak, nonatomic) IBOutlet UIButton *actionButton;
 @property(strong,nonatomic)MissionCollectApiManager *missionCollectApiManager;
+/** 水平方向约束*/
+@property (nonatomic, assign)IBInspectable CGFloat horizontalConstant;
+/** 竖直方向约束 */
+@property (nonatomic, assign)IBInspectable CGFloat verticalConstant;
 
 @end
 
