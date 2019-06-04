@@ -25,6 +25,7 @@
              @"userHealthyBeans" : @[@"healthyBeans"],
              @"userExperience" : @[@"experience"],
              @"userDiamond" : @[@"diamond"],
+             @"userAvatar"  : @[@"avatar"]
              };
 }
 

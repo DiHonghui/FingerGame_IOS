@@ -94,14 +94,15 @@ NSString *text;
 -(void)setMessageText:(NSString *)message{
     
     text=message;
-    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:12]};
     
     CGSize s=[text boundingRectWithSize:CGSizeMake(200, 0) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
     
-    self.bounds = CGRectMake(0, 0, s.width+40, s.height+15+15);
+    self.bounds = CGRectMake(0, 0, s.width+100, s.height+15+15);
     
     messageRect.size = s;
     messageRect.size.height += 5;
+    messageRect.size.width += 50;
     messageRect.origin.x = 20;
     messageRect.origin.y = 15;
     
@@ -117,5 +118,5 @@ NSString *text;
     [text drawInRect:messageRect withAttributes:attrs]; //给文本限制个矩形边界，防止矩形拉伸；
 }
 
-
+// [[MyAlertCenter defaultCenter] postAlertWithMessage:mystring]; 使用方法
 @end

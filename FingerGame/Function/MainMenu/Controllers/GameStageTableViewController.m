@@ -21,7 +21,6 @@
 #import "HLXibAlertView.h"
 #import "RechargeDiomondApiManager.h"
 #import "MyAlertCenter.h"
-#import "MyBTManager.h"
 
 #define GSTVCELL @"GameStageTableViewCell"
 
@@ -32,8 +31,6 @@
 @property (strong,nonatomic) GameFileApiManager *gameFileApiManager;
 
 @property (strong,nonatomic) RechargeDiomondApiManager *rechargeApiManager;
-
-@property (strong,nonatomic) MyBTManager *btManager;
 
 @end
 
@@ -50,7 +47,6 @@
     [weakself loadData];
     [self.tableView.mj_header beginRefreshing];
     
-    _btManager = [MyBTManager sharedInstance];
     // Do any additional setup after loading the view.
 }
 
@@ -140,7 +136,7 @@
     }else{
         energyint = energyint - 20;
         [GVUserDefaults standardUserDefaults].energy = [NSString stringWithFormat:@"%ld", energyint];
-        GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameId:((MissionModel*)self.dataSource[indexPath.row]).missionID];
+        GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameId:((MissionModel *)self.dataSource[indexPath.row]).missionID];
         [self.navigationController pushViewController:vc animated:YES];
         
     }
@@ -247,7 +243,15 @@
 }
 
 -(void)chargeEnergy{
-    [GVUserDefaults standardUserDefaults].energy = @"100";
+    NSInteger TNumber = [[GVUserDefaults standardUserDefaults].healthyBeans integerValue];
+    if (TNumber >= 50) {
+        [GVUserDefaults standardUserDefaults].energy = @"100";
+        TNumber = TNumber - 50 ;
+        [GVUserDefaults standardUserDefaults].healthyBeans = [NSString stringWithFormat:@"%ld",TNumber];
+    }else{
+        [[MyAlertCenter defaultCenter] postAlertWithMessage:@"缺健康豆"];
+    }
+    
 }
 
 

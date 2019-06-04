@@ -14,6 +14,8 @@
 #import "GVUserDefaults+Properties.h"
 #import "RegistViewController.h"
 #import "UserLoginApiManager.h"
+#import "MyAlertCenter.h"
+#import "AFNetworkReachabilityManager.h"
 
 
 @interface LoginViewController () <UITextFieldDelegate>
@@ -110,11 +112,14 @@
     self.loginApimanager = [[UserLoginAPIManager alloc]initWithUserNameAndPassword:self.usernameField.text password:self.passwordField.text];
     [self.loginApimanager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
 //        if (errorType == ZHYAPIManagerErrorTypeSuccess) {
-            if ([responseData[@"msg"] isEqualToString:@"未查询到数据！"]) {
-                NSLog(@"登录失败，用户名或密码错误");
+        NSString *temp = [[NSString alloc]init];
+        temp = responseData[@"data"];
+        NSLog(@"error = %@",temp);
+            if ([temp isKindOfClass:[NSNumber class]]) {
+                [[MyAlertCenter defaultCenter] postAlertWithMessage:@"用户名或密码错误"];
                 return;
             }
-            NSLog(@"登陆成功");
+            [[MyAlertCenter defaultCenter] postAlertWithMessage:@"登陆成功"];
             [GVUserDefaults standardUserDefaults].userId = responseData[@"data"][@"id"];
             [GVUserDefaults standardUserDefaults].userPwd = responseData[@"data"][@"password"];
             [GVUserDefaults standardUserDefaults].userName = responseData[@"data"][@"name"];

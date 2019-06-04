@@ -69,5 +69,10 @@
     [self addSubview:self.costNumber];
     [self addSubview:self.MissionName];
 }
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    
+}
+
 
 @end

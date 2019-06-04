@@ -15,6 +15,7 @@
 #import "OptionsViewController.h"
 #import "UploadAvatarViewController.h"
 #import "FavoritesTableViewController.h"
+#import "FAVViewController.h"
 
 @interface PersonalPageViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *loginout;
@@ -132,7 +133,7 @@
         [self.navigationController pushViewController:upvc animated:YES];
     }
     if (indexPath.section == 2) {
-        FavoritesTableViewController *ftvc = [[FavoritesTableViewController alloc]init];
+        FAVViewController *ftvc = [[FAVViewController alloc]init];
         [self.navigationController pushViewController:ftvc animated:YES];
     }
     if (indexPath.section == 4) {
