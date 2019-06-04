@@ -11,7 +11,6 @@
 #import "MissionCollectApiManager.h"
 #import "HLXibAlertView.h"
 #import "MyAlertCenter.h"
-#import "AutoLayout-umbrella.h"
 
 @interface GameStageTableViewCell()
 

@@ -10,6 +10,8 @@
 		110D28C5226F56D2008FC5F8 /* LoginFingerprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 110D28C3226F56D2008FC5F8 /* LoginFingerprintViewController.m */; };
 		110D28C8226F571F008FC5F8 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 110D28C6226F571E008FC5F8 /* CustomTableViewCell.m */; };
 		11149E452289535400D34FD5 /* MissionCollectApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11149E442289535400D34FD5 /* MissionCollectApiManager.m */; };
+		1118C8F522A69EC4008FD553 /* FAVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1118C8F422A69EC4008FD553 /* FAVViewController.m */; };
+		1118C8F822A69ED5008FD553 /* ClassicStageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1118C8F622A69ED5008FD553 /* ClassicStageViewController.m */; };
 		111B30EC2290F99700DAF4B1 /* ClassicStageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 111B30EA2290F99700DAF4B1 /* ClassicStageTableViewCell.m */; };
 		111B30ED2290F99700DAF4B1 /* ClassicStageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 111B30EB2290F99700DAF4B1 /* ClassicStageTableViewCell.xib */; };
 		111B30F12291844000DAF4B1 /* CostValueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 111B30EF2291844000DAF4B1 /* CostValueTableViewCell.m */; };
@@ -152,6 +154,10 @@
 		110D28C7226F571E008FC5F8 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		11149E432289535400D34FD5 /* MissionCollectApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MissionCollectApiManager.h; sourceTree = "<group>"; };
 		11149E442289535400D34FD5 /* MissionCollectApiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MissionCollectApiManager.m; sourceTree = "<group>"; };
+		1118C8F322A69EC4008FD553 /* FAVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAVViewController.h; sourceTree = "<group>"; };
+		1118C8F422A69EC4008FD553 /* FAVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAVViewController.m; sourceTree = "<group>"; };
+		1118C8F622A69ED5008FD553 /* ClassicStageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassicStageViewController.m; sourceTree = "<group>"; };
+		1118C8F722A69ED5008FD553 /* ClassicStageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassicStageViewController.h; sourceTree = "<group>"; };
 		111B30E92290F99700DAF4B1 /* ClassicStageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassicStageTableViewCell.h; sourceTree = "<group>"; };
 		111B30EA2290F99700DAF4B1 /* ClassicStageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassicStageTableViewCell.m; sourceTree = "<group>"; };
 		111B30EB2290F99700DAF4B1 /* ClassicStageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassicStageTableViewCell.xib; sourceTree = "<group>"; };
@@ -364,6 +370,8 @@
 		11334ECF223B927C00705971 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1118C8F722A69ED5008FD553 /* ClassicStageViewController.h */,
+				1118C8F622A69ED5008FD553 /* ClassicStageViewController.m */,
 				1193EA6F22811CA300368B6E /* ClassicsMissionViewController.h */,
 				1193EA6E22811CA300368B6E /* ClassicsMissionViewController.m */,
 				1193EA7022811CA400368B6E /* ClassicsMissionViewController.xib */,
@@ -442,6 +450,8 @@
 		1146A434228599B70054B7CB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1118C8F322A69EC4008FD553 /* FAVViewController.h */,
+				1118C8F422A69EC4008FD553 /* FAVViewController.m */,
 				1146A435228599B70054B7CB /* FavoritesTableViewController.h */,
 				1146A43B228599B70054B7CB /* FavoritesTableViewController.m */,
 				1146A439228599B70054B7CB /* FavoritesTableViewController.xib */,
@@ -1109,9 +1119,11 @@
 				4E2BDEF2221ED382001D52FC /* StartAnimView.m in Sources */,
 				4E98601122165B4B009E5D71 /* ZHYRequestGenerator.m in Sources */,
 				4E98602022165B4B009E5D71 /* ZHYDefaultService.m in Sources */,
+				1118C8F822A69ED5008FD553 /* ClassicStageViewController.m in Sources */,
 				11D2C321226F18240071562C /* UserRegistAPIManager.m in Sources */,
 				4E985FB821DE44C2009E5D71 /* ViewController.m in Sources */,
 				11D2C30F226EAC5C0071562C /* GameStageTableViewController.m in Sources */,
+				1118C8F522A69EC4008FD553 /* FAVViewController.m in Sources */,
 				119D8C04223F7C4300B19B12 /* MissionModel.m in Sources */,
 				11C217F2228BFB89000347E9 /* UploadAvatarApiManager.m in Sources */,
 				111B30F12291844000DAF4B1 /* CostValueTableViewCell.m in Sources */,
