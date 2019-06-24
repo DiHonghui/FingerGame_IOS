@@ -44,7 +44,7 @@
     NSLog(@"view will appear");
     [super viewWillAppear:animated];
     //隐藏NavigationBar
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     
 }
 

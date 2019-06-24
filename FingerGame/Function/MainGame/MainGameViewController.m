@@ -195,22 +195,22 @@
                 }
             }
             //方块上边框到达判定线后的操作
-            if (scene.frame.origin.y >= ScreenWidthLandscape-[BottomLeftView heightForView]-(15-AllowedDelay*GameSpeed*60)){
+            if (scene.frame.origin.y >= SCREEN_HEIGHT-[BottomLeftView heightForView]-15+AllowedDelay*GameSpeed*60){
                 if (scene.completeType != CompleteTypeSuccess && scene.completeType != CompleteTypeFailure && scene.completeType != CompleteTypeCompleted){
                     scene.backgroundColor = [UIColor redColor];
                     scene.completeType = CompleteTypeFailure;
                     self.failureClick += 1;
-                    NSLog(@"scene:%ld success:%.f failure:%ld",(long)scene.tag,self.score,(long)self.failureClick);
+                    NSLog(@"scene:%ld success:%ld failure:%ld",(long)scene.tag,(long)self.successClick,(long)self.failureClick);
                 }
             }
-            if (scene.frame.origin.y >= ScreenWidthLandscape-[BottomLeftView heightForView]){
+            if (scene.frame.origin.y >= SCREEN_HEIGHT-[BottomLeftView heightForView]-15+AllowedDelay*GameSpeed*60){
                 scene.frame = [[self.frameArray objectAtIndex:idx] CGRectValue];
                 scene.hidden = YES;
                 scene.completeType = CompleteTypeCompleted;
             }
         });
         
-        if (self.score>=18 || self.failureClick>=10 || self.score+self.failureClick==self.sceneCount){
+        if (self.failureClick>=10 || self.successClick+self.failureClick==self.sceneCount){
             [self endGame];
             *stop = YES;
         }
@@ -290,15 +290,15 @@
 #pragma mark - Private Methods
 //结算处理
 - (void)showSettlement{
-    float completeRate = self.score/self.sceneCount;
+    float completeRate = (float)self.successClick/(float)self.sceneCount;
     if (completeRate >= 0 && completeRate < 0.3) self.stars = 0;
     if (completeRate >= 0.3 && completeRate < 0.6) self.stars = 1;
     if (completeRate >=0.6 && completeRate < 0.9) self.stars = 2;
     if (completeRate >=0.9 && completeRate <= 1.0) self.stars = 3;
-    float getExp = self.stars * 10;
-    float getBeans = self.stars * 10;
+    float getExp = completeRate * 100;
+    float getBeans = completeRate * 100;
     float getScore = completeRate * 100;
-    NSLog(@"END %.2f  %d",completeRate,self.stars);
+    NSLog(@"END %.2f  %d %d",completeRate,self.successClick,self.sceneCount);
     _settlementView = [[SettlementView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [self.view addSubview:_settlementView];
     _settlementView.delegate = self;
@@ -335,6 +335,7 @@
                                     scene.completeType = CompleteTypeSuccess;
                                     scene.backgroundColor = [UIColor greenColor];
                                     NSLog(@"抬起成功");
+                                    self.successClick += 1;
                                 }
                             });
                         }

@@ -29,7 +29,7 @@
  AllowedDelay为按键指令比对允许的误差区间 精确时间点+-AllowedDelay秒
  **/
 #define GameSpeed 1
-#define AllowedDelay 0.2
+#define AllowedDelay 0.8
 /**
  发给蓝牙的指令（固定）
  **/

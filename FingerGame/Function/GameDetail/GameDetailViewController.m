@@ -30,7 +30,6 @@
 @property (nonatomic,strong) UILabel *gameNameLb;
 @property (nonatomic,strong) UIButton *linkBleBtn;
 @property (nonatomic,strong) UIButton *startGameBtn;
-@property (nonatomic,strong) UILabel *bleStateLb;
 @property (nonatomic,strong) UIButton *fingerprintBtn;
 //蓝牙连接状态
 @property (nonatomic,assign) BOOL bleState;
@@ -91,11 +90,6 @@
     self.gameNameLb.textAlignment = NSTextAlignmentCenter;
     self.gameNameLb.text = [NSString stringWithFormat:@"游戏名称：%@",@"Default"];
     
-    self.bleStateLb = [[UILabel alloc] initWithFrame:CGRectMake(0, 120, SCREEN_WIDTH, 20)];
-    self.bleStateLb.textColor = [UIColor yellowColor];
-    self.bleStateLb.textAlignment = NSTextAlignmentCenter;
-    self.bleStateLb.text = [NSString stringWithFormat:@"蓝牙连接状态：未连接"];
-    
     self.linkBleBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 150, 100, 40)];
     self.linkBleBtn.backgroundColor = [UIColor blueColor];
     [self.linkBleBtn setTitle:@"蓝牙连接" forState:UIControlStateNormal];
@@ -115,7 +109,6 @@
     [self.fingerprintBtn addTarget:self action:@selector(fingerprintBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.gameNameLb];
-    [self.view addSubview:self.bleStateLb];
     [self.view addSubview:self.linkBleBtn];
     [self.view addSubview:self.startGameBtn];
     [self.view addSubview:self.fingerprintBtn];
@@ -246,21 +239,6 @@
             [self presentViewController:vc animated:YES completion:nil];
         });
     }
-}
-
-- (void)receiveBLELinkState:(BOOL)state{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"%@",[NSThread currentThread]);
-        if (state == YES){
-            self.bleStateLb.textColor = [UIColor greenColor];
-            self.bleStateLb.text = [NSString stringWithFormat:@"蓝牙连接状态：已连接"];
-            self.bleState = YES;
-        }else{
-            self.bleStateLb.textColor = [UIColor yellowColor];
-            self.bleStateLb.text = [NSString stringWithFormat:@"蓝牙连接状态：未连接"];
-            self.bleState = NO;
-        }
-    });
 }
 
 @end
