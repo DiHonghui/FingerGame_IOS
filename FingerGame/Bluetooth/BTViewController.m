@@ -82,7 +82,11 @@
         //[self hideProgress];
         if (state == YES){
             //[self showHUDText:@"连接成功"];
-            [self.navigationController popViewControllerAnimated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"pop %@",[NSThread currentThread]);
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+           
         }
         else{
             //[self showErrorHUD:@"连接失败"];

@@ -29,6 +29,8 @@ typedef void(^ReadValueReturnBlock)(NSString *data);
 + (MyBTManager *)sharedInstance;
 //返回手机蓝牙状态
 - (CBManagerState)getCentralManagerState;
+//返回蓝牙连接状态
+- (BOOL)isBluetoothLinked;
 //获得搜索到的周围设备
 - (NSMutableArray *)getSurroundedBLEDevices;
 //连接外设

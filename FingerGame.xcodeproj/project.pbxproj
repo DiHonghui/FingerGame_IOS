@@ -58,6 +58,7 @@
 		4E2BDEF2221ED382001D52FC /* StartAnimView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEF1221ED382001D52FC /* StartAnimView.m */; };
 		4E2E0966229687A1008D1C25 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E2E0964229684D9008D1C25 /* libsqlite3.tbd */; };
 		4E2E096A2296894F008D1C25 /* YTKKeyValueStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2E09682296894F008D1C25 /* YTKKeyValueStore.m */; };
+		4E2E099822B796C7008D1C25 /* SettlementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2E099722B796C7008D1C25 /* SettlementView.m */; };
 		4E6E6EDA221FD90D0061E599 /* GameStaticsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6E6ED9221FD90D0061E599 /* GameStaticsView.m */; };
 		4E6E6EDD22238AA50061E599 /* BottomLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6E6EDC22238AA50061E599 /* BottomLeftView.m */; };
 		4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6E6EDF22238ADD0061E599 /* BottomRightView.m */; };
@@ -118,6 +119,7 @@
 		4E98604322165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
 		4E98604422165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
 		4E98604522165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
+		4EB83EB922C070490036BC00 /* PauseMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB83EB822C070490036BC00 /* PauseMenuView.m */; };
 		4EC52524227EBC4600225D87 /* FPAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC52523227EBC4600225D87 /* FPAccountModel.m */; };
 		4EC52527227ED72100225D87 /* FingerprintListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC52526227ED72100225D87 /* FingerprintListTableViewController.m */; };
 		4EC52535228E706300225D87 /* LoadResourceTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC52534228E706300225D87 /* LoadResourceTipView.m */; };
@@ -237,6 +239,8 @@
 		4E2E0964229684D9008D1C25 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		4E2E09682296894F008D1C25 /* YTKKeyValueStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKKeyValueStore.m; sourceTree = "<group>"; };
 		4E2E09692296894F008D1C25 /* YTKKeyValueStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKKeyValueStore.h; sourceTree = "<group>"; };
+		4E2E099622B796C7008D1C25 /* SettlementView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettlementView.h; sourceTree = "<group>"; };
+		4E2E099722B796C7008D1C25 /* SettlementView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettlementView.m; sourceTree = "<group>"; };
 		4E6E6ED8221FD90D0061E599 /* GameStaticsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameStaticsView.h; sourceTree = "<group>"; };
 		4E6E6ED9221FD90D0061E599 /* GameStaticsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameStaticsView.m; sourceTree = "<group>"; };
 		4E6E6EDB22238AA50061E599 /* BottomLeftView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomLeftView.h; sourceTree = "<group>"; };
@@ -300,6 +304,8 @@
 		4E98600A22165B4B009E5D71 /* ZHYCacheObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYCacheObject.m; sourceTree = "<group>"; };
 		4E98603A22165B78009E5D71 /* BLEInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEInfo.m; sourceTree = "<group>"; };
 		4E98603B22165B78009E5D71 /* BLEInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEInfo.h; sourceTree = "<group>"; };
+		4EB83EB722C070490036BC00 /* PauseMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PauseMenuView.h; sourceTree = "<group>"; };
+		4EB83EB822C070490036BC00 /* PauseMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PauseMenuView.m; sourceTree = "<group>"; };
 		4EC52522227EBC4600225D87 /* FPAccountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPAccountModel.h; sourceTree = "<group>"; };
 		4EC52523227EBC4600225D87 /* FPAccountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPAccountModel.m; sourceTree = "<group>"; };
 		4EC52525227ED72100225D87 /* FingerprintListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FingerprintListTableViewController.h; sourceTree = "<group>"; };
@@ -553,10 +559,14 @@
 				4E6E6EDF22238ADD0061E599 /* BottomRightView.m */,
 				4E2BDEEC221C0D84001D52FC /* GameSceneView.h */,
 				4E2BDEED221C0D84001D52FC /* GameSceneView.m */,
-				4E6E6ED8221FD90D0061E599 /* GameStaticsView.h */,
-				4E6E6ED9221FD90D0061E599 /* GameStaticsView.m */,
 				4E2BDEF0221ED382001D52FC /* StartAnimView.h */,
 				4E2BDEF1221ED382001D52FC /* StartAnimView.m */,
+				4E6E6ED8221FD90D0061E599 /* GameStaticsView.h */,
+				4E6E6ED9221FD90D0061E599 /* GameStaticsView.m */,
+				4E2E099622B796C7008D1C25 /* SettlementView.h */,
+				4E2E099722B796C7008D1C25 /* SettlementView.m */,
+				4EB83EB722C070490036BC00 /* PauseMenuView.h */,
+				4EB83EB822C070490036BC00 /* PauseMenuView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1091,6 +1101,7 @@
 				4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */,
 				11D2C31B226EB5010071562C /* TableViewController.m in Sources */,
 				116F625B22928E8900F27261 /* RechargeDiomondApiManager.m in Sources */,
+				4E2E099822B796C7008D1C25 /* SettlementView.m in Sources */,
 				4EC52524227EBC4600225D87 /* FPAccountModel.m in Sources */,
 				110D28C8226F571F008FC5F8 /* CustomTableViewCell.m in Sources */,
 				1146A453228599B70054B7CB /* PersonalInfoBasicTableViewCell.m in Sources */,
@@ -1104,6 +1115,7 @@
 				11149E452289535400D34FD5 /* MissionCollectApiManager.m in Sources */,
 				4E8CA11B2230FAA500B9E1F0 /* OrderModel.m in Sources */,
 				1146A448228599B70054B7CB /* PersonalPageViewController.m in Sources */,
+				4EB83EB922C070490036BC00 /* PauseMenuView.m in Sources */,
 				119D8BFD223F7AB600B19B12 /* RegistViewController.m in Sources */,
 				4E98602922165B4B009E5D71 /* TestYunzsService.m in Sources */,
 				119D8C00223F7AB600B19B12 /* LoginByPhoneNumberViewController.m in Sources */,

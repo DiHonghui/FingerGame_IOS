@@ -8,85 +8,138 @@
 
 #import "GameStaticsView.h"
 #import "Masonry.h"
+#import "AppMacro.h"
 
 @interface GameStaticsView()
-//显示当前游戏名称
-@property (nonatomic,strong) UILabel *gameNameLabel;
-//显示当前得分
-@property (nonatomic,strong) UILabel *currentScoreLabel;
-//退出游戏按钮
-@property (nonatomic,strong) UIImageView *backImageView;
+
+@property (nonatomic,strong) UIView *tipView;
+
+@property (nonatomic,strong) UILabel *fixedLabel;
+//显示最高得分
+@property (nonatomic,strong) UIView *bestScoreView;
+@property (nonatomic,strong) UILabel *bestScoreLabel;
+//开始游戏
+@property (nonatomic,strong) UIView *startView;
+@property (nonatomic,strong) UILabel *startLabel;
+
+@property (nonatomic,assign) float bestScore;
 
 @end
 
 @implementation GameStaticsView
 
-- (void)configWithGameName:(NSString *)gameName Score:(float)score{
-    self.backgroundColor = [UIColor grayColor];
-    
-    self.gameNameLabel.text = [NSString stringWithFormat:@"游戏名：%@",gameName];
-    self.gameNameLabel.textColor = [UIColor whiteColor];
-    self.currentScoreLabel.text = [NSString stringWithFormat:@"当前得分：%.f",score];
-    self.currentScoreLabel.textColor = [UIColor whiteColor];
-    [self addSubview:self.gameNameLabel];
-    [self addSubview:self.currentScoreLabel];
-    [self addSubview:self.backImageView];
-    
-    [self.gameNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top);
-        make.left.equalTo(self.mas_left).offset(30);
-        make.height.equalTo(@(ScreenHeightLandscape/10));
-        make.width.equalTo(@(ScreenWidthLandscape/3));
-    }];
-    [self.currentScoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.gameNameLabel.mas_top);
-        make.left.equalTo(self.gameNameLabel.mas_right).offset(30);
-        make.height.equalTo(@(ScreenHeightLandscape/10));
-        make.width.equalTo(@(ScreenWidthLandscape/3));
-    }];
-    [self.backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(10);
-        make.right.equalTo(self.mas_right).offset(-15);
-        make.height.equalTo(@20);
-        make.width.equalTo(@20);
-    }];
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]){
+        self.backgroundColor = [UIColor clearColor];
+        self.alpha = 0.85;
+    }
+    return self;
+}
+
+- (void)configWithBestscore:(float)bestScore{
+    _bestScore = bestScore;
+    [self layoutMySubviews];
 }
 
 - (void)updateScore:(float)score{
-    self.currentScoreLabel.text = [NSString stringWithFormat:@"当前得分：%.f",score];
+    _bestScoreLabel.text = [NSString stringWithFormat:@"%.f分",score];
 }
 
-+ (CGFloat)heightForView{
-    return ScreenHeightLandscape/10;
+- (void)layoutMySubviews{
+    {
+        _tipView = [[UIView alloc] init];
+        _tipView.backgroundColor = [UIColor whiteColor];
+        _tipView.layer.borderWidth = 2;
+        _tipView.layer.borderColor = [UIColorFromRGB(0xf9b130) CGColor];
+        _tipView.layer.cornerRadius = 5;
+    
+        _fixedLabel = [[UILabel alloc] init];
+        _fixedLabel.backgroundColor = [UIColor whiteColor];
+        _fixedLabel.text = @"历史最高分";
+        _fixedLabel.textColor = [UIColor blackColor];
+        _fixedLabel.font = [UIFont systemFontOfSize:25];
+        _fixedLabel.textAlignment = NSTextAlignmentCenter;
+        
+        _bestScoreView = [[UIView alloc] init];
+        _bestScoreView.backgroundColor = UIColorFromRGB(0xf9b130);
+        _bestScoreView.layer.cornerRadius = 15;
+        
+        _bestScoreLabel = [[UILabel alloc] init];
+        _bestScoreLabel.backgroundColor = [UIColor clearColor];
+        _bestScoreLabel.text = [NSString stringWithFormat:@"%.f分",_bestScore];
+        _bestScoreLabel.textColor = UIColorFromRGB(0xffffff);
+        _bestScoreLabel.font = [UIFont fontWithName:@"微软雅黑" size:30];
+        _bestScoreLabel.textAlignment = NSTextAlignmentCenter;
+        
+        _startView = [[UIView alloc] init];
+        _startView.backgroundColor = UIColorFromRGB(0x03b5f5);
+        _startView.layer.cornerRadius = 15;
+        _startView.userInteractionEnabled = YES;
+        [_startView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapStart:)]];
+        
+        _startLabel = [[UILabel alloc] init];
+        _startLabel.backgroundColor = [UIColor clearColor];
+        _startLabel.text = @"开始游戏";
+        _startLabel.textColor = UIColorFromRGB(0xffffff);
+        _startLabel.font = [UIFont fontWithName:@"微软雅黑" size:30];
+        _startLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    
+    [self addSubview:_tipView];
+    [self addSubview:_fixedLabel];
+    [self addSubview:_bestScoreView];
+    [_bestScoreView addSubview:_bestScoreLabel];
+    [self addSubview:_startView];
+    [_startView addSubview:_startLabel];
+    __block CGFloat width = self.frame.size.width;
+    __block CGFloat height = self.frame.size.height;
+    [_tipView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left).offset(width/4);
+        make.top.equalTo(self.mas_top).offset(height/5);
+        make.width.equalTo(@(width/2));
+        make.height.equalTo(@(height/12*7));
+    }];
+    [_fixedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.tipView.mas_centerX);
+        make.top.equalTo(self.tipView.mas_top).offset(5);
+        make.width.equalTo(self.tipView.mas_width).multipliedBy(0.5);
+        make.height.equalTo(@50);
+    }];
+    [_bestScoreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.fixedLabel.mas_centerX);
+        make.top.equalTo(self.fixedLabel.mas_bottom).offset(15);
+        make.width.equalTo(self.fixedLabel.mas_width);
+        make.height.equalTo(@40);
+    }];
+    [_bestScoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.fixedLabel.mas_centerX);
+        make.top.equalTo(self.bestScoreView.mas_top).offset(5);
+        make.width.equalTo(self.bestScoreView.mas_width);
+        make.height.equalTo(@30);
+    }];
+    [_startView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.fixedLabel.mas_centerX);
+        make.top.equalTo(self.bestScoreView.mas_bottom).offset(15);
+        make.width.equalTo(self.fixedLabel.mas_width);
+        make.height.equalTo(@40);
+    }];
+    [_startLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.fixedLabel.mas_centerX);
+        make.top.equalTo(self.startView.mas_top).offset(5);
+        make.width.equalTo(self.startView.mas_width);
+        make.height.equalTo(@30);
+    }];
 }
 
 #pragma mark - event
-- (void)clickBackButton{
-    if ([self.delegate respondsToSelector:@selector(clickedBackButton)])
-        [self.delegate clickedBackButton];
+
+- (void)tapStart:(UIGestureRecognizer *)gr{
+    if (self.delegate){
+        if ([self.delegate respondsToSelector:@selector(clickedStartButton)])
+            [self.delegate clickedStartButton];
+    }
 }
 
 #pragma mark - set&get
-- (UILabel *)gameNameLabel{
-    if(!_gameNameLabel)
-        _gameNameLabel = [[UILabel alloc] init];
-    return _gameNameLabel;
-}
-
-- (UILabel *)currentScoreLabel{
-    if(!_currentScoreLabel)
-        _currentScoreLabel = [[UILabel alloc] init];
-    return _currentScoreLabel;
-}
-
-- (UIImageView *)backImageView{
-    if (!_backImageView) {
-        _backImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"exitIcon"]];
-        _backImageView.backgroundColor = [UIColor clearColor];
-        _backImageView.userInteractionEnabled = YES;
-        [_backImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickBackButton)]];
-    }
-    return _backImageView;
-}
 
 @end

@@ -8,46 +8,43 @@
 
 #import "BottomLeftView.h"
 
+#import "AppMacro.h"
+
 @implementation BottomLeftView
 
 - (void)configView{
-    UILabel *headLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, (ScreenWidthLandscape-9)/2+4, 30)];
-    headLabel.backgroundColor = [UIColor grayColor];
-    headLabel.text = @"左手";
-    headLabel.textColor = [UIColor whiteColor];
-    headLabel.textAlignment = NSTextAlignmentCenter;
+    self.backgroundColor = UIColorFromRGB(0x7ea3de);
     
-    UILabel *l1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, (ScreenWidthLandscape-9)/10, 20)];
-    l1.backgroundColor = [UIColor grayColor];
-    l1.text = @"小指";
-    l1.textColor = [UIColor blackColor];
+    UILabel *l1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, (ScreenWidthLandscape-20)/10, 40)];
+    l1.backgroundColor = UIColorFromRGB(0xff5534);
+    l1.text = @"小拇指";
+    l1.textColor = [UIColor whiteColor];
     l1.textAlignment = NSTextAlignmentCenter;
     
-    UILabel *l2 = [[UILabel alloc] initWithFrame:CGRectMake((ScreenWidthLandscape+1)/10, 30, (ScreenWidthLandscape-9)/10, 20)];
-    l2.backgroundColor = [UIColor grayColor];
+    UILabel *l2 = [[UILabel alloc] initWithFrame:CGRectMake(ScreenWidthLandscape/10-1, 0, (ScreenWidthLandscape-20)/10, 40)];
+    l2.backgroundColor = UIColorFromRGB(0xff8746);
     l2.text = @"无名指";
-    l2.textColor = [UIColor blackColor];
+    l2.textColor = [UIColor whiteColor];
     l2.textAlignment = NSTextAlignmentCenter;
     
-    UILabel *l3 = [[UILabel alloc] initWithFrame:CGRectMake((ScreenWidthLandscape+1)/5, 30, (ScreenWidthLandscape-9)/10, 20)];
-    l3.backgroundColor = [UIColor grayColor];
+    UILabel *l3 = [[UILabel alloc] initWithFrame:CGRectMake((ScreenWidthLandscape/10-1)*2, 0, (ScreenWidthLandscape-20)/10, 40)];
+    l3.backgroundColor = UIColorFromRGB(0xffda46);
     l3.text = @"中指";
-    l3.textColor = [UIColor blackColor];
+    l3.textColor = [UIColor whiteColor];
     l3.textAlignment = NSTextAlignmentCenter;
     
-    UILabel *l4 = [[UILabel alloc] initWithFrame:CGRectMake((ScreenWidthLandscape+1)/10*3, 30, (ScreenWidthLandscape-9)/10, 20)];
-    l4.backgroundColor = [UIColor grayColor];
+    UILabel *l4 = [[UILabel alloc] initWithFrame:CGRectMake((ScreenWidthLandscape/10-1)*3, 0, (ScreenWidthLandscape-20)/10, 40)];
+    l4.backgroundColor = UIColorFromRGB(0x63b55b);
     l4.text = @"食指";
-    l4.textColor = [UIColor blackColor];
+    l4.textColor = [UIColor whiteColor];
     l4.textAlignment = NSTextAlignmentCenter;
 
-    UILabel *l5 = [[UILabel alloc] initWithFrame:CGRectMake((ScreenWidthLandscape+1)/5*2, 30, (ScreenWidthLandscape-9)/10, 20)];
-    l5.backgroundColor = [UIColor grayColor];
-    l5.text = @"拇指";
-    l5.textColor = [UIColor blackColor];
+    UILabel *l5 = [[UILabel alloc] initWithFrame:CGRectMake((ScreenWidthLandscape/10-1)*4, 0, (ScreenWidthLandscape-20)/10, 40)];
+    l5.backgroundColor = UIColorFromRGB(0x4069de);
+    l5.text = @"大拇指";
+    l5.textColor = [UIColor whiteColor];
     l5.textAlignment = NSTextAlignmentCenter;
-    
-    [self addSubview:headLabel];
+
     [self addSubview:l1];
     [self addSubview:l2];
     [self addSubview:l3];
@@ -57,7 +54,7 @@
 }
 
 + (CGFloat)heightForView{
-    return 50;
+    return 40;
 }
 
 @end

@@ -109,7 +109,8 @@
 //    }else{
 //        NSLog(@"userName or passward error");
 //    }
-    self.loginApimanager = [[UserLoginAPIManager alloc]initWithUserNameAndPassword:self.usernameField.text password:self.passwordField.text];
+    self.loginApimanager = [[UserLoginAPIManager alloc]initWithUserNameAndPassword:@"test" password:@"test123"];
+//    self.loginApimanager = [[UserLoginAPIManager alloc]initWithUserNameAndPassword:self.usernameField.text password:self.passwordField.text];
     [self.loginApimanager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
 //        if (errorType == ZHYAPIManagerErrorTypeSuccess) {
         NSString *temp = [[NSString alloc]init];

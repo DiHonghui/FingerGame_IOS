@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) NSMutableArray *deviceArray;
 
+@property (nonatomic, assign) BOOL linkState;
+
 @property (nonatomic,copy) CompleteBlock completeBlock;
 @property (nonatomic,copy) ReadValueReturnBlock readValueReturnBlock;
 
@@ -52,6 +54,7 @@ static MyBTManager *sInstance = nil;
         //
         _deviceArray = [[NSMutableArray alloc] init];
         //
+        _linkState = NO;
     }
     return self;
 }
@@ -59,6 +62,10 @@ static MyBTManager *sInstance = nil;
 //返回手机蓝牙状态
 - (CBManagerState)getCentralManagerState{
     return _centralManager.state;
+}
+//返回蓝牙连接状态
+- (BOOL)isBluetoothLinked{
+    return _linkState;
 }
 
 - (NSMutableArray *)getSurroundedBLEDevices{
@@ -99,8 +106,6 @@ static MyBTManager *sInstance = nil;
     NSLog(@"开始写入数据:%@",value);
     //有回调的写数据
     [self.peripheral writeValue:value forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
-//    //写完数据马上接收蓝牙端的回复数据
-//    [self.peripheral setNotifyValue:YES forCharacteristic:self.characteristic];
 }
 
 #pragma mark - Private Methods
@@ -226,24 +231,31 @@ static MyBTManager *sInstance = nil;
  */
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     NSLog(@"连接蓝牙%@成功",peripheral.name);
-    if (self.delegate)
-        if ([self.delegate respondsToSelector:@selector(receiveBLELinkState:)])
-            [self.delegate receiveBLELinkState:YES];
+    _linkState = YES;
     [self.peripheral setDelegate:self];
     //查找服务
     [self.peripheral discoverServices:nil];
+    //delegate
+    if (self.delegate)
+        if ([self.delegate respondsToSelector:@selector(receiveBLELinkState:)])
+            [self.delegate receiveBLELinkState:YES];
+    if (self.completeBlock){
+        self.completeBlock(YES);
+    }
 }
 /**
  * 连接失败
  */
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error{
     NSLog(@"连接蓝牙%@失败，失败原因：%@",peripheral.name,error.localizedDescription);
+    _linkState = NO;
 }
 /**
  * 已断开
  */
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error {
     NSLog(@"断开与蓝牙%@的连接",peripheral.name);
+    _linkState = NO;
     if (self.delegate)
         if ([self.delegate respondsToSelector:@selector(receiveBLELinkState:)])
             [self.delegate receiveBLELinkState:NO];
@@ -274,7 +286,6 @@ static MyBTManager *sInstance = nil;
                 self.readUUID = c.UUID;
                 NSLog(@"已经发现可读写的特征%@",c.UUID);
                 [self.peripheral setNotifyValue:YES forCharacteristic:self.characteristic];
-                self.completeBlock(YES);
             }
         }
     }else {

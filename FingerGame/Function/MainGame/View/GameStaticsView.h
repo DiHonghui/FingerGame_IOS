@@ -10,17 +10,18 @@
 
 @protocol GameStaticsViewProtocol <NSObject>
 @optional
-- (void)clickedBackButton;
+
+- (void)clickedStartButton;
 
 @end
 
 @interface GameStaticsView : UIView
 
-@property (nonatomic,strong) id<GameStaticsViewProtocol> delegate;
+@property (nonatomic,weak) id<GameStaticsViewProtocol> delegate;
 
-+ (CGFloat)heightForView;
+- (instancetype)initWithFrame:(CGRect)frame;
 //配置view上控件初始值
-- (void)configWithGameName:(NSString *)gameName Score:(float)score;
+- (void)configWithBestscore:(float)bestScore;
 //更新当前分数
 - (void)updateScore:(float)score;
 

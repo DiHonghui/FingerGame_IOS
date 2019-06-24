@@ -77,19 +77,19 @@
             UITextField *textField = alertController.textFields.firstObject;
             if (![textField.text isEqualToString:@""]){
                 for (int i=0; i<8; i++){
-                NSString *accountIdString = [NSString stringWithFormat:@"%d",i];
-                NSString *key = [NSString stringWithFormat:@"FPAccountId-%@",accountIdString];
-                if (![self.curCache containsObjectForKey:key]){
-                    FPAccountModel *model = [[FPAccountModel alloc] init];
-                    model.fpAccountId = accountIdString;
-                    model.fpAccountName = textField.text;
-                    model.userId = self.curUserId;
-                    [self.curCache setObject:model forKey:key];
-                    break;
+                    NSString *accountIdString = [NSString stringWithFormat:@"%d",i];
+                    NSString *key = [NSString stringWithFormat:@"FPAccountId-%@",accountIdString];
+                    if (![self.curCache containsObjectForKey:key]){
+                        FPAccountModel *model = [[FPAccountModel alloc] init];
+                        model.fpAccountId = accountIdString;
+                        model.fpAccountName = textField.text;
+                        model.userId = self.curUserId;
+                        [self.curCache setObject:model forKey:key];
+                        break;
+                    }
                 }
-            }
-            [self showHUDText:@"新建成功"];
-            [self loadData];
+                [self showHUDText:@"新建成功"];
+                [self loadData];
             }else{
                 [self showHUDText:@"新建指纹集名称不能为空"];
             }
@@ -109,7 +109,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
     if (lpGR.state == UIGestureRecognizerStateBegan) {//手势开始
         if(indexPath != nil){
-            NSLog(@"点击的是第%ld行",indexPath.row);
+            NSLog(@"点击的是第%ld行",(long)indexPath.row);
         }
     }
     if (lpGR.state == UIGestureRecognizerStateEnded) {//手势结束
