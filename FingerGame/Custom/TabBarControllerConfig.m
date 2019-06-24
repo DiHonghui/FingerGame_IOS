@@ -14,7 +14,7 @@
 #import "PersonalPageViewController.h"
 #import "ZHYBaseNavigationController.h"
 #import "ClassicsMissionViewController.h"
-
+#import "PCViewController.h"
 
 @interface TabBarControllerConfig()
 @property (strong, nonatomic, readwrite) UITabBarController *tabBarController;
@@ -35,7 +35,7 @@
         ZHYBaseNavigationController *nc2 = [[ZHYBaseNavigationController alloc]initWithRootViewController:ctvc];
         nc2.tabBarItem.title=@"精品列表";
         
-        PersonalPageViewController *pvc1 = [[PersonalPageViewController alloc]init];
+        PCViewController *pvc1 = [[PCViewController alloc]init];
         ZHYBaseNavigationController *nc3 = [[ZHYBaseNavigationController alloc] initWithRootViewController:pvc1];
         nc3.tabBarItem.title=@"个人中心";
         
