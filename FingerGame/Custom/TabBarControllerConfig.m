@@ -30,14 +30,25 @@
         GameStageTableViewController *tvc1 = [[GameStageTableViewController alloc]init];
         ZHYBaseNavigationController *nc1 = [[ZHYBaseNavigationController alloc] initWithRootViewController:tvc1];
         nc1.tabBarItem.title = @"游戏列表";
-        
+        UIImage *imageHome = [UIImage imageNamed:@"tabbar_home"];
+        imageHome = [imageHome imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [nc1.tabBarItem setSelectedImage:imageHome];
+        [nc1.tabBarItem setImage:imageHome];
         ClassicStageViewController *ctvc = [[ClassicStageViewController alloc]init];
         ZHYBaseNavigationController *nc2 = [[ZHYBaseNavigationController alloc]initWithRootViewController:ctvc];
         nc2.tabBarItem.title=@"精品列表";
+        UIImage *imageStar = [UIImage imageNamed:@"tabbar_starlist"];
+        imageStar = [imageStar imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [nc2.tabBarItem setSelectedImage:imageStar];
+        [nc2.tabBarItem setImage:imageStar];
         
         PCViewController *pvc1 = [[PCViewController alloc]init];
         ZHYBaseNavigationController *nc3 = [[ZHYBaseNavigationController alloc] initWithRootViewController:pvc1];
         nc3.tabBarItem.title=@"个人中心";
+        UIImage *imagePerson = [UIImage imageNamed:@"tabbar_person"];
+        imagePerson = [imagePerson imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [nc3.tabBarItem setSelectedImage:imagePerson];
+        [nc3.tabBarItem setImage:imagePerson];
         
         [_tabBarController setViewControllers:@[nc1, nc2, nc3]];
         

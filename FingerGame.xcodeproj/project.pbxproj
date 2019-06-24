@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		110D28C5226F56D2008FC5F8 /* LoginFingerprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 110D28C3226F56D2008FC5F8 /* LoginFingerprintViewController.m */; };
+		110A820622C10B0100C4010F /* StageTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 110A820322C10AFD00C4010F /* StageTestViewController.m */; };
+		110A820722C10B0100C4010F /* StageTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 110A820522C10AFD00C4010F /* StageTestViewController.xib */; };
+		110A821222C10B8C00C4010F /* LoginFingerprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 110A820B22C10B8C00C4010F /* LoginFingerprintViewController.m */; };
+		110A821322C10B8C00C4010F /* FingerprintModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 110A820D22C10B8C00C4010F /* FingerprintModel.m */; };
+		110A821422C10B8C00C4010F /* FPAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 110A821022C10B8C00C4010F /* FPAccountModel.m */; };
+		110A821522C10B8C00C4010F /* FingerprintListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 110A821122C10B8C00C4010F /* FingerprintListTableViewController.m */; };
+		110A821722C10D0200C4010F /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 110A821622C10D0200C4010F /* RegistViewController.m */; };
 		110D28C8226F571F008FC5F8 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 110D28C6226F571E008FC5F8 /* CustomTableViewCell.m */; };
 		11149E452289535400D34FD5 /* MissionCollectApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11149E442289535400D34FD5 /* MissionCollectApiManager.m */; };
 		1118C8F522A69EC4008FD553 /* FAVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1118C8F422A69EC4008FD553 /* FAVViewController.m */; };
@@ -41,7 +47,6 @@
 		1193EA7522811D0300368B6E /* TabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193EA7322811D0300368B6E /* TabBarControllerConfig.m */; };
 		119D8BFB223F7AB600B19B12 /* UserLoginAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8BED223F7AB600B19B12 /* UserLoginAPIManager.m */; };
 		119D8BFC223F7AB600B19B12 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8BEF223F7AB600B19B12 /* UserModel.m */; };
-		119D8BFD223F7AB600B19B12 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8BF2223F7AB600B19B12 /* RegistViewController.m */; };
 		119D8BFE223F7AB600B19B12 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8BF3223F7AB600B19B12 /* LoginViewController.m */; };
 		119D8BFF223F7AB600B19B12 /* RegistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 119D8BF5223F7AB600B19B12 /* RegistViewController.xib */; };
 		119D8C00223F7AB600B19B12 /* LoginByPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8BF8223F7AB600B19B12 /* LoginByPhoneNumberViewController.m */; };
@@ -121,13 +126,10 @@
 		4E98604522165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
 		4EB83EB922C070490036BC00 /* PauseMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB83EB822C070490036BC00 /* PauseMenuView.m */; };
 		4EB83EBC22C0B44C0036BC00 /* PCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB83EBB22C0B44C0036BC00 /* PCViewController.m */; };
-		4EC52524227EBC4600225D87 /* FPAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC52523227EBC4600225D87 /* FPAccountModel.m */; };
-		4EC52527227ED72100225D87 /* FingerprintListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC52526227ED72100225D87 /* FingerprintListTableViewController.m */; };
 		4EC52535228E706300225D87 /* LoadResourceTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC52534228E706300225D87 /* LoadResourceTipView.m */; };
 		4ECF95252227CAED00AC1AED /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95222227CAED00AC1AED /* BTViewController.m */; };
 		4ECF95272227CAED00AC1AED /* MyBTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95242227CAED00AC1AED /* MyBTManager.m */; };
 		4ECF952A2227CE1000AC1AED /* GameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95292227CE1000AC1AED /* GameDetailViewController.m */; };
-		4ED934342266FD91003A989D /* FingerprintModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED934322266FD90003A989D /* FingerprintModel.m */; };
 		4EF10405224A13CA00C5EFA0 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EF10404224A13CA00C5EFA0 /* AudioManager.m */; };
 		6CA7689EB0971694AC95FCBC /* Pods_FingerGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F839D6627D42675A230BB2 /* Pods_FingerGame.framework */; };
 /* End PBXBuildFile section */
@@ -151,8 +153,18 @@
 
 /* Begin PBXFileReference section */
 		087BB4B1C058E65BBB673BD6 /* Pods-FingerGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FingerGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FingerGame/Pods-FingerGame.debug.xcconfig"; sourceTree = "<group>"; };
-		110D28C3226F56D2008FC5F8 /* LoginFingerprintViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginFingerprintViewController.m; sourceTree = "<group>"; };
-		110D28C4226F56D2008FC5F8 /* LoginFingerprintViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginFingerprintViewController.h; sourceTree = "<group>"; };
+		110A820322C10AFD00C4010F /* StageTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageTestViewController.m; sourceTree = "<group>"; };
+		110A820422C10AFD00C4010F /* StageTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageTestViewController.h; sourceTree = "<group>"; };
+		110A820522C10AFD00C4010F /* StageTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageTestViewController.xib; sourceTree = "<group>"; };
+		110A820922C10B8C00C4010F /* LoginFingerprintViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginFingerprintViewController.h; sourceTree = "<group>"; };
+		110A820A22C10B8C00C4010F /* FingerprintListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FingerprintListTableViewController.h; sourceTree = "<group>"; };
+		110A820B22C10B8C00C4010F /* LoginFingerprintViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginFingerprintViewController.m; sourceTree = "<group>"; };
+		110A820D22C10B8C00C4010F /* FingerprintModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FingerprintModel.m; sourceTree = "<group>"; };
+		110A820E22C10B8C00C4010F /* FPAccountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPAccountModel.h; sourceTree = "<group>"; };
+		110A820F22C10B8C00C4010F /* FingerprintModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FingerprintModel.h; sourceTree = "<group>"; };
+		110A821022C10B8C00C4010F /* FPAccountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPAccountModel.m; sourceTree = "<group>"; };
+		110A821122C10B8C00C4010F /* FingerprintListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FingerprintListTableViewController.m; sourceTree = "<group>"; };
+		110A821622C10D0200C4010F /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
 		110D28C6226F571E008FC5F8 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		110D28C7226F571E008FC5F8 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		11149E432289535400D34FD5 /* MissionCollectApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MissionCollectApiManager.h; sourceTree = "<group>"; };
@@ -208,7 +220,6 @@
 		119D8BED223F7AB600B19B12 /* UserLoginAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginAPIManager.m; sourceTree = "<group>"; };
 		119D8BEF223F7AB600B19B12 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		119D8BF0223F7AB600B19B12 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
-		119D8BF2223F7AB600B19B12 /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
 		119D8BF3223F7AB600B19B12 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		119D8BF4223F7AB600B19B12 /* LoginByPhoneNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginByPhoneNumberViewController.h; sourceTree = "<group>"; };
 		119D8BF5223F7AB600B19B12 /* RegistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistViewController.xib; sourceTree = "<group>"; };
@@ -309,10 +320,6 @@
 		4EB83EB822C070490036BC00 /* PauseMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PauseMenuView.m; sourceTree = "<group>"; };
 		4EB83EBA22C0B44C0036BC00 /* PCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PCViewController.h; sourceTree = "<group>"; };
 		4EB83EBB22C0B44C0036BC00 /* PCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PCViewController.m; sourceTree = "<group>"; };
-		4EC52522227EBC4600225D87 /* FPAccountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPAccountModel.h; sourceTree = "<group>"; };
-		4EC52523227EBC4600225D87 /* FPAccountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPAccountModel.m; sourceTree = "<group>"; };
-		4EC52525227ED72100225D87 /* FingerprintListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FingerprintListTableViewController.h; sourceTree = "<group>"; };
-		4EC52526227ED72100225D87 /* FingerprintListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FingerprintListTableViewController.m; sourceTree = "<group>"; };
 		4EC52533228E706300225D87 /* LoadResourceTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadResourceTipView.h; sourceTree = "<group>"; };
 		4EC52534228E706300225D87 /* LoadResourceTipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadResourceTipView.m; sourceTree = "<group>"; };
 		4ECF951F2227CAEC00AC1AED /* BTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTViewController.h; sourceTree = "<group>"; };
@@ -321,8 +328,6 @@
 		4ECF95242227CAED00AC1AED /* MyBTManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBTManager.m; sourceTree = "<group>"; };
 		4ECF95282227CE1000AC1AED /* GameDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameDetailViewController.h; sourceTree = "<group>"; };
 		4ECF95292227CE1000AC1AED /* GameDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameDetailViewController.m; sourceTree = "<group>"; };
-		4ED934322266FD90003A989D /* FingerprintModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FingerprintModel.m; sourceTree = "<group>"; };
-		4ED934332266FD90003A989D /* FingerprintModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FingerprintModel.h; sourceTree = "<group>"; };
 		4EF10403224A13CA00C5EFA0 /* AudioManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		4EF10404224A13CA00C5EFA0 /* AudioManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		4EF10406224DEF7E00C5EFA0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -365,6 +370,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		110A820822C10B8C00C4010F /* Fingerprint */ = {
+			isa = PBXGroup;
+			children = (
+				110A820922C10B8C00C4010F /* LoginFingerprintViewController.h */,
+				110A820A22C10B8C00C4010F /* FingerprintListTableViewController.h */,
+				110A820B22C10B8C00C4010F /* LoginFingerprintViewController.m */,
+				110A820C22C10B8C00C4010F /* Model */,
+				110A821122C10B8C00C4010F /* FingerprintListTableViewController.m */,
+			);
+			path = Fingerprint;
+			sourceTree = "<group>";
+		};
+		110A820C22C10B8C00C4010F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				110A820D22C10B8C00C4010F /* FingerprintModel.m */,
+				110A820E22C10B8C00C4010F /* FPAccountModel.h */,
+				110A820F22C10B8C00C4010F /* FingerprintModel.h */,
+				110A821022C10B8C00C4010F /* FPAccountModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		11334ECE223B921900705971 /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +407,9 @@
 		11334ECF223B927C00705971 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				110A820422C10AFD00C4010F /* StageTestViewController.h */,
+				110A820322C10AFD00C4010F /* StageTestViewController.m */,
+				110A820522C10AFD00C4010F /* StageTestViewController.xib */,
 				1118C8F722A69ED5008FD553 /* ClassicStageViewController.h */,
 				1118C8F622A69ED5008FD553 /* ClassicStageViewController.m */,
 				1193EA6F22811CA300368B6E /* ClassicsMissionViewController.h */,
@@ -526,8 +557,8 @@
 		119D8BF1223F7AB600B19B12 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				110A821622C10D0200C4010F /* RegistViewController.m */,
 				119D8BF6223F7AB600B19B12 /* RegistViewController.h */,
-				119D8BF2223F7AB600B19B12 /* RegistViewController.m */,
 				119D8BF5223F7AB600B19B12 /* RegistViewController.xib */,
 				119D8BF7223F7AB600B19B12 /* LoginViewController.h */,
 				119D8BF3223F7AB600B19B12 /* LoginViewController.m */,
@@ -702,11 +733,11 @@
 		4E985FE721F57263009E5D71 /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				110A820822C10B8C00C4010F /* Fingerprint */,
 				1146A431228599B70054B7CB /* PersonalPage */,
 				119D8BEA223F7AB600B19B12 /* Entry */,
 				11334ECE223B921900705971 /* MainMenu */,
 				4E8CA1142230F82A00B9E1F0 /* GameDetail */,
-				4ED934302266FD90003A989D /* Fingerprint */,
 				4E2BDEE7221C09FD001D52FC /* MainGame */,
 			);
 			path = Function;
@@ -809,29 +840,6 @@
 				4EC52534228E706300225D87 /* LoadResourceTipView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		4ED934302266FD90003A989D /* Fingerprint */ = {
-			isa = PBXGroup;
-			children = (
-				4EC52525227ED72100225D87 /* FingerprintListTableViewController.h */,
-				4EC52526227ED72100225D87 /* FingerprintListTableViewController.m */,
-				110D28C4226F56D2008FC5F8 /* LoginFingerprintViewController.h */,
-				110D28C3226F56D2008FC5F8 /* LoginFingerprintViewController.m */,
-				4ED934312266FD90003A989D /* Model */,
-			);
-			path = Fingerprint;
-			sourceTree = "<group>";
-		};
-		4ED934312266FD90003A989D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				4EC52522227EBC4600225D87 /* FPAccountModel.h */,
-				4EC52523227EBC4600225D87 /* FPAccountModel.m */,
-				4ED934332266FD90003A989D /* FingerprintModel.h */,
-				4ED934322266FD90003A989D /* FingerprintModel.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		6BAFB409FA611116E447C03F /* Pods */ = {
@@ -967,6 +975,7 @@
 				1146A449228599B70054B7CB /* FavoritesTableViewController.xib in Resources */,
 				111B30F22291844000DAF4B1 /* CostValueTableViewCell.xib in Resources */,
 				116F6255229236AE00F27261 /* HLXibAlertView.xib in Resources */,
+				110A820722C10B0100C4010F /* StageTestViewController.xib in Resources */,
 				1146A44A228599B70054B7CB /* UploadAvatarViewController.xib in Resources */,
 				119D8C01223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib in Resources */,
 			);
@@ -1088,9 +1097,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4ED934342266FD91003A989D /* FingerprintModel.m in Sources */,
-				110D28C5226F56D2008FC5F8 /* LoginFingerprintViewController.m in Sources */,
 				119D8BFE223F7AB600B19B12 /* LoginViewController.m in Sources */,
+				110A820622C10B0100C4010F /* StageTestViewController.m in Sources */,
 				11D2C31E226EEF050071562C /* MissionSimpleForList.m in Sources */,
 				4E8CA11E223100DA00B9E1F0 /* GameOrderFile.m in Sources */,
 				4E98601422165B4B009E5D71 /* ZHYAPIProxy.m in Sources */,
@@ -1101,13 +1109,11 @@
 				4E98602C22165B4B009E5D71 /* ZHYURLResponse.m in Sources */,
 				4E98602F22165B4B009E5D71 /* ZHYCache.m in Sources */,
 				4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */,
-				4EC52527227ED72100225D87 /* FingerprintListTableViewController.m in Sources */,
 				1146A44F228599B70054B7CB /* OptionsViewController.m in Sources */,
 				4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */,
 				11D2C31B226EB5010071562C /* TableViewController.m in Sources */,
 				116F625B22928E8900F27261 /* RechargeDiomondApiManager.m in Sources */,
 				4E2E099822B796C7008D1C25 /* SettlementView.m in Sources */,
-				4EC52524227EBC4600225D87 /* FPAccountModel.m in Sources */,
 				110D28C8226F571F008FC5F8 /* CustomTableViewCell.m in Sources */,
 				1146A453228599B70054B7CB /* PersonalInfoBasicTableViewCell.m in Sources */,
 				1146A4562285AB030054B7CB /* ZHYBaseNavigationController.m in Sources */,
@@ -1118,10 +1124,11 @@
 				4ECF952A2227CE1000AC1AED /* GameDetailViewController.m in Sources */,
 				4E05AFD022608A3E006F2670 /* GVUserDefaults+Properties.m in Sources */,
 				11149E452289535400D34FD5 /* MissionCollectApiManager.m in Sources */,
+				110A821422C10B8C00C4010F /* FPAccountModel.m in Sources */,
 				4E8CA11B2230FAA500B9E1F0 /* OrderModel.m in Sources */,
 				1146A448228599B70054B7CB /* PersonalPageViewController.m in Sources */,
 				4EB83EB922C070490036BC00 /* PauseMenuView.m in Sources */,
-				119D8BFD223F7AB600B19B12 /* RegistViewController.m in Sources */,
+				110A821322C10B8C00C4010F /* FingerprintModel.m in Sources */,
 				4E98602922165B4B009E5D71 /* TestYunzsService.m in Sources */,
 				119D8C00223F7AB600B19B12 /* LoginByPhoneNumberViewController.m in Sources */,
 				4E98602322165B4B009E5D71 /* ZHYService.m in Sources */,
@@ -1134,6 +1141,7 @@
 				116F625822923DC200F27261 /* MyAlertCenter.m in Sources */,
 				4E8CA113222CFFF100B9E1F0 /* NSObject+ProgressHUD.m in Sources */,
 				4E2BDEF2221ED382001D52FC /* StartAnimView.m in Sources */,
+				110A821722C10D0200C4010F /* RegistViewController.m in Sources */,
 				4E98601122165B4B009E5D71 /* ZHYRequestGenerator.m in Sources */,
 				4E98602022165B4B009E5D71 /* ZHYDefaultService.m in Sources */,
 				1118C8F822A69ED5008FD553 /* ClassicStageViewController.m in Sources */,
@@ -1151,12 +1159,14 @@
 				4E98601D22165B4B009E5D71 /* YunzsService.m in Sources */,
 				4E6E6EDA221FD90D0061E599 /* GameStaticsView.m in Sources */,
 				116F6254229236AE00F27261 /* HLXibAlertView.m in Sources */,
+				110A821522C10B8C00C4010F /* FingerprintListTableViewController.m in Sources */,
 				1193EA7522811D0300368B6E /* TabBarControllerConfig.m in Sources */,
 				4E6E6EDD22238AA50061E599 /* BottomLeftView.m in Sources */,
 				4E8CA110222CD22900B9E1F0 /* GameFileApiManager.m in Sources */,
 				4E985FC321DE44C7009E5D71 /* main.m in Sources */,
 				1146A44E228599B70054B7CB /* UploadAvatarViewController.m in Sources */,
 				4E985FB521DE44C2009E5D71 /* AppDelegate.m in Sources */,
+				110A821222C10B8C00C4010F /* LoginFingerprintViewController.m in Sources */,
 				1146A44B228599B70054B7CB /* FavoritesTableViewController.m in Sources */,
 				4EF10405224A13CA00C5EFA0 /* AudioManager.m in Sources */,
 				4E98602622165B4B009E5D71 /* ZHYServiceFactory.m in Sources */,

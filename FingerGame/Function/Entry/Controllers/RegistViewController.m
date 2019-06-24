@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "Masonry/Masonry.h"
 #import "AppMacro.h"
+#import "MyAlertCenter.h"
 #import "GVUserDefaults.h"
 #import "UserRegistAPIManager.h"
 #import "GVUserDefaults+Properties.h"
@@ -22,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *getCheckNumberButton;
 @property (weak, nonatomic) IBOutlet UIButton *registButton;
 
-@property(weak,nonatomic) UserRegistAPIManager* userRegistApiManger;
+@property(strong,nonatomic) UserRegistAPIManager* userRegistApiManger;
 
 @end
 
@@ -33,26 +34,23 @@
     // Do any additional setup after loading the view from its nib.
 }
 - (IBAction)registClick:(id)sender {
-    if (![self.userName.text isEqualToString:@""]&&![self.userPassword.text isEqualToString:@""]&&![self.userPhoneNumber.text isEqualToString:@""]) {
+    //
+    NSLog(@"%@",self.userPassword.text);
         self.userRegistApiManger = [[UserRegistAPIManager alloc]initWithUserInfo:self.userName.text password:self.userPassword.text userPhoneNumber:self.userPhoneNumber.text];
-        [self.userRegistApiManger loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-            //        if (errorType == ZHYAPIManagerErrorTypeSuccess) {
-            if ([responseData[@"data"] isEqualToString:@"该用户名已注册"]) {
-                NSLog(@"注册失败，用户名已注册");
+        [self.userRegistApiManger loadDataWithParams:@{@"service":@"App.User.Register",@"username":self.userName.text,@"password":self.userPassword.text,@"phoneNum":self.userPhoneNumber.text} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
+            NSString* temp = [[NSString alloc]init];
+            temp = responseData[@"data"];
+            NSLog(@"error = %@",temp);
+            NSLog(@"是否为string类型 %d",([temp isKindOfClass:[NSString class]]));
+            
+            if ([temp isKindOfClass:[NSString class]]) {
+                [[MyAlertCenter defaultCenter] postAlertWithMessage:@"昵称/手机号已注册"];
                 return;
-            }
-            NSLog(@"登陆成功");
-            [GVUserDefaults standardUserDefaults].userId = responseData[@"data"][@"id"];
-            [GVUserDefaults standardUserDefaults].userPwd = responseData[@"data"][@"password"];
-            [GVUserDefaults standardUserDefaults].userName = responseData[@"data"][@"name"];
+            }else{
+            [[MyAlertCenter defaultCenter] postAlertWithMessage:@"注册成功"];
             NSLog(@"用户ID = %@",[GVUserDefaults standardUserDefaults].userId);
-            AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            [delegate toMain2];
-        
-        //AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        //[delegate toMainGame];
+            }
         }];
-}
 }
 - (IBAction)getCheckNumber:(id)sender {
     __block int timeout = 59;//倒计时时间
@@ -91,5 +89,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(UserRegistAPIManager*) userRegistApiManger{
+    if (!_userRegistApiManger) {
+        _userRegistApiManger = [[UserRegistAPIManager alloc]init];
+    }
+    return _userRegistApiManger;
+}
 
 @end
