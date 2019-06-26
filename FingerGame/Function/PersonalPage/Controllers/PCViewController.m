@@ -12,16 +12,25 @@
 #import "NSObject+ProgressHUD.h"
 #import "AppDelegate.h"
 #import "Masonry.h"
+#import <AFNetworking/AFNetworking.h>
+#import "UIImage+ZipSizeAndLength.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
+#import "UserLoginApiManager.h"
 #import "MyBTManager.h"
+#import "EditNicknameApiManager.h"
+
 #import "BTViewController.h"
 #import "FingerprintListTableViewController.h"
 #import "FavoritesTableViewController.h"
 
-@interface PCViewController ()
+@interface PCViewController () <UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 //蓝牙操作工具
 @property (nonatomic,strong) MyBTManager *curBTManager;
+
+@property (nonatomic,strong) UIImageView *avaterIv;
+@property (nonatomic,strong) UILabel *nameLB;
 
 @end
 
@@ -56,16 +65,19 @@
 #pragma mark - private methods
 - (void)layoutMySubviews{
     //
-    UIImageView *avaterIv = [[UIImageView alloc] initWithFrame:CGRectMake(15, 65, 70, 70)];
-    avaterIv.image = [UIImage imageNamed:@"Avater_Default"];
-    avaterIv.layer.cornerRadius = 35;
-    [self.view addSubview:avaterIv];
+    _avaterIv = [[UIImageView alloc] initWithFrame:CGRectMake(15, 65, 70, 70)];
+    _avaterIv.layer.masksToBounds = YES;
+    _avaterIv.layer.cornerRadius = 35;
+    [_avaterIv sd_setImageWithURL:[NSURL URLWithString:[GVUserDefaults standardUserDefaults].avatar] placeholderImage:[UIImage imageNamed:@"Avater_Default"]];
+    [self.view addSubview:_avaterIv];
+    _avaterIv.userInteractionEnabled = YES;
+    [_avaterIv addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapUploadAvater:)]];
     //
-    UILabel *nameLB = [[UILabel alloc] initWithFrame:CGRectMake(110, 70, 80, 20)];
-    nameLB.textAlignment = NSTextAlignmentLeft;
-    nameLB.textColor = [UIColor whiteColor];
-    nameLB.text = [GVUserDefaults standardUserDefaults].userName;
-    [self.view addSubview:nameLB];
+    _nameLB = [[UILabel alloc] initWithFrame:CGRectMake(110, 70, 80, 20)];
+    _nameLB.textAlignment = NSTextAlignmentLeft;
+    _nameLB.textColor = [UIColor whiteColor];
+    _nameLB.text = [GVUserDefaults standardUserDefaults].userName;
+    [self.view addSubview:_nameLB];
     UILabel *levelLB = [[UILabel alloc] initWithFrame:CGRectMake(110, 100, 80, 20)];
     levelLB.textAlignment = NSTextAlignmentLeft;
     levelLB.textColor = [UIColor whiteColor];
@@ -74,6 +86,8 @@
     UIImageView *editIv = [[UIImageView alloc] initWithFrame:CGRectMake(190, 70, 20, 20)];
     editIv.image = [UIImage imageNamed:@"Edit"];
     [self.view addSubview:editIv];
+    editIv.userInteractionEnabled = YES;
+    [editIv addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapEditNickname:)]];
     //
     UIView *whiteBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 150, SCREEN_WIDTH, 60)];
     whiteBgView.backgroundColor = [UIColor whiteColor];
@@ -197,6 +211,7 @@
     return view;
 }
 
+#pragma mark - event
 - (void)singleTap:(UITapGestureRecognizer *)gr{
     UIView *view = gr.view;
     switch (view.tag) {
@@ -237,6 +252,105 @@
             }
             break;
         default:break;
+    }
+}
+
+- (void)tapEditNickname:(UIGestureRecognizer *)gr{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"更改" message:@"请输入新的用户名" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //获取第1个输入框
+        UITextField *textField = alertController.textFields.firstObject;
+        if (![textField.text isEqualToString:@""]){
+            [self showProgress];
+            EditNicknameApiManager *editNicknameApiManager = [[EditNicknameApiManager alloc] init];
+            [editNicknameApiManager loadDataWithParams:@{@"service":@"App.User.Nickname",@"user_id":[GVUserDefaults standardUserDefaults].userId,@"new_name":textField.text} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
+                if ([responseData[@"data"][@"code"] intValue] != 1){
+                    [self showHUDText:responseData[@"data"][@"message"]];
+                }else{
+                    NSLog(@"success");
+                    [GVUserDefaults standardUserDefaults].userName = textField.text;
+                    [self refresh];
+                }
+            }];
+        }else{
+            [self showHUDText:@"新用户名不能为空"];
+        }
+    }]];
+    //定义第一个输入框
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = [GVUserDefaults standardUserDefaults].userName;
+    }];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)tapUploadAvater:(UIGestureRecognizer *)gr{
+    //打开本地相册
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)uploadImageWithData:(NSData *)data{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    [dic setValue:@"App.User.Avatar" forKey:@"service"];
+    [dic setValue:[GVUserDefaults standardUserDefaults].userId forKey:@"user_id"];
+    NSString *requestUrl = @"http://shouzhi.yiyon.com.cn/";
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showProgress];
+    });
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSURLSessionDataTask *datatask = [manager POST:requestUrl
+                                               parameters:dic
+                                constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                                    [formData appendPartWithFileData:data name:@"file" fileName:@"avatarfile.jpeg" mimeType:@"image/jpeg"];
+                                    
+                                } progress:^(NSProgress * _Nonnull uploadProgress) {
+                                    NSLog(@"-----%.2f",uploadProgress.fractionCompleted);
+                                } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                    NSLog(@"上传成功--%@",responseObject);
+                                    [self refresh];
+                                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                    NSLog(@"上传失败%@",error);
+                                }];
+    [datatask resume];
+}
+
+- (void)refresh{
+    UserLoginAPIManager *loginApimanager = [[UserLoginAPIManager alloc] initWithUserNameAndPassword:[GVUserDefaults standardUserDefaults].userName password:[GVUserDefaults standardUserDefaults].userPwd];
+    [loginApimanager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self hideProgress];
+            });
+            [GVUserDefaults standardUserDefaults].userId = responseData[@"data"][@"id"];
+            [GVUserDefaults standardUserDefaults].userName = responseData[@"data"][@"name"];
+            [GVUserDefaults standardUserDefaults].avatar = responseData[@"data"][@"avatar"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.avaterIv sd_setImageWithURL:[NSURL URLWithString:[GVUserDefaults standardUserDefaults].avatar] placeholderImage:[UIImage imageNamed:@"Avater_Default"]];
+                self.nameLB.text = [GVUserDefaults standardUserDefaults].userName;
+            });
+    }];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    __block UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSString *assetString = [[info objectForKey:UIImagePickerControllerReferenceURL] absoluteString];
+    __block NSData *data = [NSData data];
+    NSLog(@"%@",assetString);
+    if([assetString hasSuffix:@"GIF"]){
+        //这个图片是GIF图,这一部分后续怎么处理
+    } else {
+        //准备图片的二进制数据
+        image = [image zip];
+//        data = UIImagePNGRepresentation(image);
+        data = UIImageJPEGRepresentation(image, 1);
+        //上传图片
+        [self uploadImageWithData:data];
     }
 }
 

@@ -15,6 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - Aspects (1.4.1)
+  - AutoLayout (1.0.5)
   - AVOSCloud (3.10.0)
   - AVOSCloudIM (3.10.0):
     - AVOSCloud (= 3.10.0)
@@ -63,6 +64,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - Aspects (~> 1.4.1)
+  - AutoLayout (~> 1.0.5)
   - AVOSCloud (~> 3.3)
   - AVOSCloudIM (~> 3.3)
   - Bugly (~> 2.4.6)
@@ -94,6 +96,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
     - Aspects
+    - AutoLayout
     - AVOSCloud
     - AVOSCloudIM
     - Bugly
@@ -126,6 +129,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
+  AutoLayout: bc90b6937f5553b7c4fdeecc259012378cd2f7f5
   AVOSCloud: 839b30ac3b382ad56c957ed6dd28a0a537d33d67
   AVOSCloudIM: 13c9cf14b42304f4243d01906c17b5ee8f5529db
   Bugly: da3c02408c14838d498429320545a8e439392978
@@ -155,6 +159,6 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 5f6e0d993cfc3e593867a666cc0c6cb8f71e1109
+PODFILE CHECKSUM: 81bed1546f0f8c745eb9c2c94fea94615dd7300b
 
 COCOAPODS: 1.5.3

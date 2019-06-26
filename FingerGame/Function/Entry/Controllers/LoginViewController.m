@@ -109,8 +109,8 @@
 //    }else{
 //        NSLog(@"userName or passward error");
 //    }
-    self.loginApimanager = [[UserLoginAPIManager alloc]initWithUserNameAndPassword:@"test" password:@"test123"];
-//    self.loginApimanager = [[UserLoginAPIManager alloc]initWithUserNameAndPassword:self.usernameField.text password:self.passwordField.text];
+//    self.loginApimanager = [[UserLoginAPIManager alloc]initWithUserNameAndPassword:@"test" password:@"test123"];
+    self.loginApimanager = [[UserLoginAPIManager alloc]initWithUserNameAndPassword:self.usernameField.text password:self.passwordField.text];
     [self.loginApimanager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
 //        if (errorType == ZHYAPIManagerErrorTypeSuccess) {
         NSString *temp = [[NSString alloc]init];
@@ -128,6 +128,7 @@
             [GVUserDefaults standardUserDefaults].healthyBeans = responseData[@"data"][@"healthyBeans"];
             [GVUserDefaults standardUserDefaults].diamond = responseData[@"data"][@"diamond"];
             [GVUserDefaults standardUserDefaults].level = responseData[@"data"][@"level"];
+            [GVUserDefaults standardUserDefaults].avatar = responseData[@"data"][@"avatar"];
             NSLog(@"用户ID = %@",[GVUserDefaults standardUserDefaults].userId);
             AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
             [delegate toMain];

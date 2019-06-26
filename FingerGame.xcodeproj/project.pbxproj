@@ -126,6 +126,8 @@
 		4E98604522165B78009E5D71 /* BLEInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98603A22165B78009E5D71 /* BLEInfo.m */; };
 		4EB83EB922C070490036BC00 /* PauseMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB83EB822C070490036BC00 /* PauseMenuView.m */; };
 		4EB83EBC22C0B44C0036BC00 /* PCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB83EBB22C0B44C0036BC00 /* PCViewController.m */; };
+		4EB83EBF22C20AF00036BC00 /* UIImage+ZipSizeAndLength.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB83EBE22C20AF00036BC00 /* UIImage+ZipSizeAndLength.m */; };
+		4EB83EC222C22D760036BC00 /* EditNicknameApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB83EC122C22D760036BC00 /* EditNicknameApiManager.m */; };
 		4EC52535228E706300225D87 /* LoadResourceTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC52534228E706300225D87 /* LoadResourceTipView.m */; };
 		4ECF95252227CAED00AC1AED /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95222227CAED00AC1AED /* BTViewController.m */; };
 		4ECF95272227CAED00AC1AED /* MyBTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95242227CAED00AC1AED /* MyBTManager.m */; };
@@ -320,6 +322,10 @@
 		4EB83EB822C070490036BC00 /* PauseMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PauseMenuView.m; sourceTree = "<group>"; };
 		4EB83EBA22C0B44C0036BC00 /* PCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PCViewController.h; sourceTree = "<group>"; };
 		4EB83EBB22C0B44C0036BC00 /* PCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PCViewController.m; sourceTree = "<group>"; };
+		4EB83EBD22C20AF00036BC00 /* UIImage+ZipSizeAndLength.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZipSizeAndLength.h"; sourceTree = "<group>"; };
+		4EB83EBE22C20AF00036BC00 /* UIImage+ZipSizeAndLength.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZipSizeAndLength.m"; sourceTree = "<group>"; };
+		4EB83EC022C22D760036BC00 /* EditNicknameApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditNicknameApiManager.h; sourceTree = "<group>"; };
+		4EB83EC122C22D760036BC00 /* EditNicknameApiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditNicknameApiManager.m; sourceTree = "<group>"; };
 		4EC52533228E706300225D87 /* LoadResourceTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadResourceTipView.h; sourceTree = "<group>"; };
 		4EC52534228E706300225D87 /* LoadResourceTipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadResourceTipView.m; sourceTree = "<group>"; };
 		4ECF951F2227CAEC00AC1AED /* BTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTViewController.h; sourceTree = "<group>"; };
@@ -476,6 +482,8 @@
 			children = (
 				11C217F0228BFB89000347E9 /* UploadAvatarApiManager.h */,
 				11C217F1228BFB89000347E9 /* UploadAvatarApiManager.m */,
+				4EB83EC022C22D760036BC00 /* EditNicknameApiManager.h */,
+				4EB83EC122C22D760036BC00 /* EditNicknameApiManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -506,6 +514,8 @@
 				1146A43A228599B70054B7CB /* UploadAvatarViewController.xib */,
 				4EB83EBA22C0B44C0036BC00 /* PCViewController.h */,
 				4EB83EBB22C0B44C0036BC00 /* PCViewController.m */,
+				4EB83EBD22C20AF00036BC00 /* UIImage+ZipSizeAndLength.h */,
+				4EB83EBE22C20AF00036BC00 /* UIImage+ZipSizeAndLength.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1009,6 +1019,7 @@
 				"${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework",
 				"${BUILT_PRODUCTS_DIR}/AVOSCloudIM/AVOSCloudIM.framework",
 				"${BUILT_PRODUCTS_DIR}/Aspects/Aspects.framework",
+				"${BUILT_PRODUCTS_DIR}/AutoLayout/AutoLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/CRToast/CRToast.framework",
 				"${BUILT_PRODUCTS_DIR}/CYLDeallocBlockExecutor/CYLDeallocBlockExecutor.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
@@ -1041,6 +1052,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloud.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloudIM.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Aspects.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AutoLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CRToast.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CYLDeallocBlockExecutor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
@@ -1134,6 +1146,7 @@
 				4E98602322165B4B009E5D71 /* ZHYService.m in Sources */,
 				119D8BFC223F7AB600B19B12 /* UserModel.m in Sources */,
 				4E2E096A2296894F008D1C25 /* YTKKeyValueStore.m in Sources */,
+				4EB83EBF22C20AF00036BC00 /* UIImage+ZipSizeAndLength.m in Sources */,
 				4E2BDEEA221C0D3C001D52FC /* MainGameViewController.m in Sources */,
 				4E98601A22165B4B009E5D71 /* NSURLRequest+Properties.m in Sources */,
 				4ECF95272227CAED00AC1AED /* MyBTManager.m in Sources */,
@@ -1144,6 +1157,7 @@
 				110A821722C10D0200C4010F /* RegistViewController.m in Sources */,
 				4E98601122165B4B009E5D71 /* ZHYRequestGenerator.m in Sources */,
 				4E98602022165B4B009E5D71 /* ZHYDefaultService.m in Sources */,
+				4EB83EC222C22D760036BC00 /* EditNicknameApiManager.m in Sources */,
 				1118C8F822A69ED5008FD553 /* ClassicStageViewController.m in Sources */,
 				11D2C321226F18240071562C /* UserRegistAPIManager.m in Sources */,
 				4EB83EBC22C0B44C0036BC00 /* PCViewController.m in Sources */,

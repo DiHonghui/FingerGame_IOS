@@ -74,6 +74,7 @@ static AudioManager *sInstance = nil;
         _myAudioPlayer.numberOfLoops=0;//设置为0不循环
         _myAudioPlayer.delegate=self;
         [_myAudioPlayer prepareToPlay];//加载音频文件到缓存
+        NSLog(@"ready for playing");
         if(error){
             NSLog(@"初始化播放器过程发生错误,错误信息:%@",error.localizedDescription);
         }
