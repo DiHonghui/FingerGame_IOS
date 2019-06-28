@@ -128,6 +128,7 @@
 		4EB83EBC22C0B44C0036BC00 /* PCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB83EBB22C0B44C0036BC00 /* PCViewController.m */; };
 		4EB83EBF22C20AF00036BC00 /* UIImage+ZipSizeAndLength.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB83EBE22C20AF00036BC00 /* UIImage+ZipSizeAndLength.m */; };
 		4EB83EC222C22D760036BC00 /* EditNicknameApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB83EC122C22D760036BC00 /* EditNicknameApiManager.m */; };
+		4EB83EC522C34A0B0036BC00 /* MyCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB83EC422C34A0B0036BC00 /* MyCacheManager.m */; };
 		4EC52535228E706300225D87 /* LoadResourceTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC52534228E706300225D87 /* LoadResourceTipView.m */; };
 		4ECF95252227CAED00AC1AED /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95222227CAED00AC1AED /* BTViewController.m */; };
 		4ECF95272227CAED00AC1AED /* MyBTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95242227CAED00AC1AED /* MyBTManager.m */; };
@@ -326,6 +327,8 @@
 		4EB83EBE22C20AF00036BC00 /* UIImage+ZipSizeAndLength.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZipSizeAndLength.m"; sourceTree = "<group>"; };
 		4EB83EC022C22D760036BC00 /* EditNicknameApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditNicknameApiManager.h; sourceTree = "<group>"; };
 		4EB83EC122C22D760036BC00 /* EditNicknameApiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditNicknameApiManager.m; sourceTree = "<group>"; };
+		4EB83EC322C34A0B0036BC00 /* MyCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCacheManager.h; sourceTree = "<group>"; };
+		4EB83EC422C34A0B0036BC00 /* MyCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCacheManager.m; sourceTree = "<group>"; };
 		4EC52533228E706300225D87 /* LoadResourceTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadResourceTipView.h; sourceTree = "<group>"; };
 		4EC52534228E706300225D87 /* LoadResourceTipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadResourceTipView.m; sourceTree = "<group>"; };
 		4ECF951F2227CAEC00AC1AED /* BTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTViewController.h; sourceTree = "<group>"; };
@@ -637,6 +640,8 @@
 				4E8CA10F222CD22900B9E1F0 /* GameFileApiManager.m */,
 				4EF10403224A13CA00C5EFA0 /* AudioManager.h */,
 				4EF10404224A13CA00C5EFA0 /* AudioManager.m */,
+				4EB83EC322C34A0B0036BC00 /* MyCacheManager.h */,
+				4EB83EC422C34A0B0036BC00 /* MyCacheManager.m */,
 			);
 			path = GameDetail;
 			sourceTree = "<group>";
@@ -1122,6 +1127,7 @@
 				4E98602F22165B4B009E5D71 /* ZHYCache.m in Sources */,
 				4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */,
 				1146A44F228599B70054B7CB /* OptionsViewController.m in Sources */,
+				4EB83EC522C34A0B0036BC00 /* MyCacheManager.m in Sources */,
 				4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */,
 				11D2C31B226EB5010071562C /* TableViewController.m in Sources */,
 				116F625B22928E8900F27261 /* RechargeDiomondApiManager.m in Sources */,

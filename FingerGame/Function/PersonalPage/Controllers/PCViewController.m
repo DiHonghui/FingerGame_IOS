@@ -19,6 +19,7 @@
 #import "UserLoginApiManager.h"
 #import "MyBTManager.h"
 #import "EditNicknameApiManager.h"
+#import "MyCacheManager.h"
 
 #import "BTViewController.h"
 #import "FingerprintListTableViewController.h"
