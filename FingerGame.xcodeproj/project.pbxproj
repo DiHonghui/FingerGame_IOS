@@ -57,6 +57,9 @@
 		11D2C31B226EB5010071562C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D2C31A226EB5010071562C /* TableViewController.m */; };
 		11D2C31E226EEF050071562C /* MissionSimpleForList.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D2C31D226EEF050071562C /* MissionSimpleForList.m */; };
 		11D2C321226F18240071562C /* UserRegistAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D2C320226F18240071562C /* UserRegistAPIManager.m */; };
+		11E4C46B22C921ED0094C1A0 /* GameStageTeseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E4C46922C921ED0094C1A0 /* GameStageTeseTableViewCell.m */; };
+		11E4C46C22C921ED0094C1A0 /* GameStageTeseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11E4C46A22C921ED0094C1A0 /* GameStageTeseTableViewCell.xib */; };
+		11E4C46F22C9FF860094C1A0 /* CostValueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E4C46E22C9FF860094C1A0 /* CostValueView.m */; };
 		4E05AFD022608A3E006F2670 /* GVUserDefaults+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E05AFCF22608A3E006F2670 /* GVUserDefaults+Properties.m */; };
 		4E2BDEEA221C0D3C001D52FC /* MainGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEE9221C0D3C001D52FC /* MainGameViewController.m */; };
 		4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BDEED221C0D84001D52FC /* GameSceneView.m */; };
@@ -242,6 +245,11 @@
 		11D2C31D226EEF050071562C /* MissionSimpleForList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MissionSimpleForList.m; sourceTree = "<group>"; };
 		11D2C31F226F18240071562C /* UserRegistAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserRegistAPIManager.h; sourceTree = "<group>"; };
 		11D2C320226F18240071562C /* UserRegistAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserRegistAPIManager.m; sourceTree = "<group>"; };
+		11E4C46822C921ED0094C1A0 /* GameStageTeseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameStageTeseTableViewCell.h; sourceTree = "<group>"; };
+		11E4C46922C921ED0094C1A0 /* GameStageTeseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameStageTeseTableViewCell.m; sourceTree = "<group>"; };
+		11E4C46A22C921ED0094C1A0 /* GameStageTeseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameStageTeseTableViewCell.xib; sourceTree = "<group>"; };
+		11E4C46D22C9FF860094C1A0 /* CostValueView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CostValueView.h; sourceTree = "<group>"; };
+		11E4C46E22C9FF860094C1A0 /* CostValueView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CostValueView.m; sourceTree = "<group>"; };
 		25F839D6627D42675A230BB2 /* Pods_FingerGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FingerGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E05AFCE22608A3E006F2670 /* GVUserDefaults+Properties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+Properties.h"; sourceTree = "<group>"; };
 		4E05AFCF22608A3E006F2670 /* GVUserDefaults+Properties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+Properties.m"; sourceTree = "<group>"; };
@@ -465,6 +473,11 @@
 				111B30EE2291844000DAF4B1 /* CostValueTableViewCell.h */,
 				111B30EF2291844000DAF4B1 /* CostValueTableViewCell.m */,
 				111B30F02291844000DAF4B1 /* CostValueTableViewCell.xib */,
+				11E4C46822C921ED0094C1A0 /* GameStageTeseTableViewCell.h */,
+				11E4C46922C921ED0094C1A0 /* GameStageTeseTableViewCell.m */,
+				11E4C46A22C921ED0094C1A0 /* GameStageTeseTableViewCell.xib */,
+				11E4C46D22C9FF860094C1A0 /* CostValueView.h */,
+				11E4C46E22C9FF860094C1A0 /* CostValueView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -989,6 +1002,7 @@
 				1193EA7222811CA400368B6E /* ClassicsMissionViewController.xib in Resources */,
 				1146A449228599B70054B7CB /* FavoritesTableViewController.xib in Resources */,
 				111B30F22291844000DAF4B1 /* CostValueTableViewCell.xib in Resources */,
+				11E4C46C22C921ED0094C1A0 /* GameStageTeseTableViewCell.xib in Resources */,
 				116F6255229236AE00F27261 /* HLXibAlertView.xib in Resources */,
 				110A820722C10B0100C4010F /* StageTestViewController.xib in Resources */,
 				1146A44A228599B70054B7CB /* UploadAvatarViewController.xib in Resources */,
@@ -1114,6 +1128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11E4C46F22C9FF860094C1A0 /* CostValueView.m in Sources */,
 				119D8BFE223F7AB600B19B12 /* LoginViewController.m in Sources */,
 				110A820622C10B0100C4010F /* StageTestViewController.m in Sources */,
 				11D2C31E226EEF050071562C /* MissionSimpleForList.m in Sources */,
@@ -1130,6 +1145,7 @@
 				4EB83EC522C34A0B0036BC00 /* MyCacheManager.m in Sources */,
 				4E6E6EE022238ADD0061E599 /* BottomRightView.m in Sources */,
 				11D2C31B226EB5010071562C /* TableViewController.m in Sources */,
+				11E4C46B22C921ED0094C1A0 /* GameStageTeseTableViewCell.m in Sources */,
 				116F625B22928E8900F27261 /* RechargeDiomondApiManager.m in Sources */,
 				4E2E099822B796C7008D1C25 /* SettlementView.m in Sources */,
 				110D28C8226F571F008FC5F8 /* CustomTableViewCell.m in Sources */,
