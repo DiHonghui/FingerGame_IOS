@@ -52,6 +52,11 @@
 		119D8C00223F7AB600B19B12 /* LoginByPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8BF8223F7AB600B19B12 /* LoginByPhoneNumberViewController.m */; };
 		119D8C01223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 119D8BF9223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib */; };
 		119D8C04223F7C4300B19B12 /* MissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 119D8C03223F7C4200B19B12 /* MissionModel.m */; };
+		11BD305022CF870500E8382C /* FingerprintManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BD304F22CF870500E8382C /* FingerprintManagementViewController.m */; };
+		11BD305322CF870E00E8382C /* FpInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BD305122CF870D00E8382C /* FpInfoModel.m */; };
+		11BD305922CF873000E8382C /* LoginFingerprintApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BD305522CF872F00E8382C /* LoginFingerprintApiManager.m */; };
+		11BD305A22CF873000E8382C /* FingerprintInfoApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BD305822CF872F00E8382C /* FingerprintInfoApiManager.m */; };
+		11BD305E22CF874C00E8382C /* DefaultApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BD305D22CF874C00E8382C /* DefaultApiManager.m */; };
 		11C217F2228BFB89000347E9 /* UploadAvatarApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C217F1228BFB89000347E9 /* UploadAvatarApiManager.m */; };
 		11D2C30F226EAC5C0071562C /* GameStageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D2C30E226EAC5C0071562C /* GameStageTableViewController.m */; };
 		11D2C31B226EB5010071562C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D2C31A226EB5010071562C /* TableViewController.m */; };
@@ -135,7 +140,6 @@
 		4EC52535228E706300225D87 /* LoadResourceTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC52534228E706300225D87 /* LoadResourceTipView.m */; };
 		4ECF95252227CAED00AC1AED /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95222227CAED00AC1AED /* BTViewController.m */; };
 		4ECF95272227CAED00AC1AED /* MyBTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95242227CAED00AC1AED /* MyBTManager.m */; };
-		4ECF952A2227CE1000AC1AED /* GameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF95292227CE1000AC1AED /* GameDetailViewController.m */; };
 		4EF10405224A13CA00C5EFA0 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EF10404224A13CA00C5EFA0 /* AudioManager.m */; };
 		6CA7689EB0971694AC95FCBC /* Pods_FingerGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F839D6627D42675A230BB2 /* Pods_FingerGame.framework */; };
 /* End PBXBuildFile section */
@@ -235,6 +239,16 @@
 		119D8BF9223F7AB600B19B12 /* LoginByPhoneNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginByPhoneNumberViewController.xib; sourceTree = "<group>"; };
 		119D8C02223F7C4200B19B12 /* MissionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionModel.h; sourceTree = "<group>"; };
 		119D8C03223F7C4200B19B12 /* MissionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionModel.m; sourceTree = "<group>"; };
+		11BD304E22CF870500E8382C /* FingerprintManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FingerprintManagementViewController.h; sourceTree = "<group>"; };
+		11BD304F22CF870500E8382C /* FingerprintManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FingerprintManagementViewController.m; sourceTree = "<group>"; };
+		11BD305122CF870D00E8382C /* FpInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FpInfoModel.m; sourceTree = "<group>"; };
+		11BD305222CF870D00E8382C /* FpInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FpInfoModel.h; sourceTree = "<group>"; };
+		11BD305522CF872F00E8382C /* LoginFingerprintApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginFingerprintApiManager.m; sourceTree = "<group>"; };
+		11BD305622CF872F00E8382C /* FingerprintInfoApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FingerprintInfoApiManager.h; sourceTree = "<group>"; };
+		11BD305722CF872F00E8382C /* LoginFingerprintApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginFingerprintApiManager.h; sourceTree = "<group>"; };
+		11BD305822CF872F00E8382C /* FingerprintInfoApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FingerprintInfoApiManager.m; sourceTree = "<group>"; };
+		11BD305C22CF874C00E8382C /* DefaultApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultApiManager.h; sourceTree = "<group>"; };
+		11BD305D22CF874C00E8382C /* DefaultApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultApiManager.m; sourceTree = "<group>"; };
 		11C217F0228BFB89000347E9 /* UploadAvatarApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UploadAvatarApiManager.h; sourceTree = "<group>"; };
 		11C217F1228BFB89000347E9 /* UploadAvatarApiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UploadAvatarApiManager.m; sourceTree = "<group>"; };
 		11D2C30D226EAC5B0071562C /* GameStageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStageTableViewController.h; sourceTree = "<group>"; };
@@ -343,8 +357,6 @@
 		4ECF95202227CAEC00AC1AED /* MyBTManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBTManager.h; sourceTree = "<group>"; };
 		4ECF95222227CAED00AC1AED /* BTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTViewController.m; sourceTree = "<group>"; };
 		4ECF95242227CAED00AC1AED /* MyBTManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBTManager.m; sourceTree = "<group>"; };
-		4ECF95282227CE1000AC1AED /* GameDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameDetailViewController.h; sourceTree = "<group>"; };
-		4ECF95292227CE1000AC1AED /* GameDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameDetailViewController.m; sourceTree = "<group>"; };
 		4EF10403224A13CA00C5EFA0 /* AudioManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		4EF10404224A13CA00C5EFA0 /* AudioManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		4EF10406224DEF7E00C5EFA0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -390,6 +402,9 @@
 		110A820822C10B8C00C4010F /* Fingerprint */ = {
 			isa = PBXGroup;
 			children = (
+				11BD305422CF872F00E8382C /* Managers */,
+				11BD304E22CF870500E8382C /* FingerprintManagementViewController.h */,
+				11BD304F22CF870500E8382C /* FingerprintManagementViewController.m */,
 				110A820922C10B8C00C4010F /* LoginFingerprintViewController.h */,
 				110A820A22C10B8C00C4010F /* FingerprintListTableViewController.h */,
 				110A820B22C10B8C00C4010F /* LoginFingerprintViewController.m */,
@@ -402,6 +417,8 @@
 		110A820C22C10B8C00C4010F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				11BD305222CF870D00E8382C /* FpInfoModel.h */,
+				11BD305122CF870D00E8382C /* FpInfoModel.m */,
 				110A820D22C10B8C00C4010F /* FingerprintModel.m */,
 				110A820E22C10B8C00C4010F /* FPAccountModel.h */,
 				110A820F22C10B8C00C4010F /* FingerprintModel.h */,
@@ -602,9 +619,30 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		11BD305422CF872F00E8382C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				11BD305522CF872F00E8382C /* LoginFingerprintApiManager.m */,
+				11BD305622CF872F00E8382C /* FingerprintInfoApiManager.h */,
+				11BD305722CF872F00E8382C /* LoginFingerprintApiManager.h */,
+				11BD305822CF872F00E8382C /* FingerprintInfoApiManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		11BD305B22CF874C00E8382C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				11BD305C22CF874C00E8382C /* DefaultApiManager.h */,
+				11BD305D22CF874C00E8382C /* DefaultApiManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		4E2BDEE7221C09FD001D52FC /* MainGame */ = {
 			isa = PBXGroup;
 			children = (
+				11BD305B22CF874C00E8382C /* Managers */,
 				4E2BDEEB221C0D59001D52FC /* View */,
 				4E2BDEE8221C0D3C001D52FC /* MainGameViewController.h */,
 				4E2BDEE9221C0D3C001D52FC /* MainGameViewController.m */,
@@ -647,8 +685,6 @@
 			children = (
 				4EC52532228E6FFA00225D87 /* View */,
 				4E8CA1152230F9C400B9E1F0 /* Model */,
-				4ECF95282227CE1000AC1AED /* GameDetailViewController.h */,
-				4ECF95292227CE1000AC1AED /* GameDetailViewController.m */,
 				4E8CA10E222CD22900B9E1F0 /* GameFileApiManager.h */,
 				4E8CA10F222CD22900B9E1F0 /* GameFileApiManager.m */,
 				4EF10403224A13CA00C5EFA0 /* AudioManager.h */,
@@ -1140,6 +1176,7 @@
 				11334ED6223B92F200705971 /* GameStageTableViewCell.m in Sources */,
 				4E98602C22165B4B009E5D71 /* ZHYURLResponse.m in Sources */,
 				4E98602F22165B4B009E5D71 /* ZHYCache.m in Sources */,
+				11BD305E22CF874C00E8382C /* DefaultApiManager.m in Sources */,
 				4E2BDEEE221C0D84001D52FC /* GameSceneView.m in Sources */,
 				1146A44F228599B70054B7CB /* OptionsViewController.m in Sources */,
 				4EB83EC522C34A0B0036BC00 /* MyCacheManager.m in Sources */,
@@ -1154,8 +1191,8 @@
 				4E98603222165B4B009E5D71 /* ZHYCacheObject.m in Sources */,
 				1146A452228599B70054B7CB /* BasicTableViewCell.m in Sources */,
 				4E98604322165B78009E5D71 /* BLEInfo.m in Sources */,
+				11BD305322CF870E00E8382C /* FpInfoModel.m in Sources */,
 				11334EDA223B930E00705971 /* MissionlistApiManager.m in Sources */,
-				4ECF952A2227CE1000AC1AED /* GameDetailViewController.m in Sources */,
 				4E05AFD022608A3E006F2670 /* GVUserDefaults+Properties.m in Sources */,
 				11149E452289535400D34FD5 /* MissionCollectApiManager.m in Sources */,
 				110A821422C10B8C00C4010F /* FPAccountModel.m in Sources */,
@@ -1170,6 +1207,7 @@
 				4E2E096A2296894F008D1C25 /* YTKKeyValueStore.m in Sources */,
 				4EB83EBF22C20AF00036BC00 /* UIImage+ZipSizeAndLength.m in Sources */,
 				4E2BDEEA221C0D3C001D52FC /* MainGameViewController.m in Sources */,
+				11BD305A22CF873000E8382C /* FingerprintInfoApiManager.m in Sources */,
 				4E98601A22165B4B009E5D71 /* NSURLRequest+Properties.m in Sources */,
 				4ECF95272227CAED00AC1AED /* MyBTManager.m in Sources */,
 				1193EA7122811CA400368B6E /* ClassicsMissionViewController.m in Sources */,
@@ -1180,6 +1218,8 @@
 				4E98601122165B4B009E5D71 /* ZHYRequestGenerator.m in Sources */,
 				4E98602022165B4B009E5D71 /* ZHYDefaultService.m in Sources */,
 				4EB83EC222C22D760036BC00 /* EditNicknameApiManager.m in Sources */,
+				11BD305922CF873000E8382C /* LoginFingerprintApiManager.m in Sources */,
+				11BD305022CF870500E8382C /* FingerprintManagementViewController.m in Sources */,
 				1118C8F822A69ED5008FD553 /* ClassicStageViewController.m in Sources */,
 				11D2C321226F18240071562C /* UserRegistAPIManager.m in Sources */,
 				4EB83EBC22C0B44C0036BC00 /* PCViewController.m in Sources */,

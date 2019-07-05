@@ -16,7 +16,6 @@
 #import "MissionlistApiManager.h"
 #import "GameFileApiManager.h"
 #import "GVUserDefaults+Properties.h"
-#import "GameDetailViewController.h"
 #import "CostValueTableViewCell.h"
 #import "HLXibAlertView.h"
 #import "RechargeDiomondApiManager.h"

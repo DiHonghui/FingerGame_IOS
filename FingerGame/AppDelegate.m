@@ -10,7 +10,6 @@
 #import "LoginViewController.h"
 #import "ViewController.h"
 #import "GameStageTableViewController.h"
-#import "GameDetailViewController.h"
 #import "TabBarControllerConfig.h"
 
 @interface AppDelegate ()

@@ -24,6 +24,7 @@
 #import "BTViewController.h"
 #import "FingerprintListTableViewController.h"
 #import "FavoritesTableViewController.h"
+#import "FingerprintManagementViewController.h"
 
 @interface PCViewController () <UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
@@ -219,9 +220,25 @@
         case 0:
             NSLog(@"Tap 0");
             if ([self.curBTManager isBluetoothLinked]){
-                FingerprintListTableViewController *vc = [[FingerprintListTableViewController alloc] initWithUserId:[GVUserDefaults standardUserDefaults].userId];
-                [self.navigationController pushViewController:vc animated:YES];
-            }else{
+                __block NSString *result = @"";
+                [self.curBTManager writeToPeripheral:kGetMachineCodeOrder];
+                [self.curBTManager readValueWithBlock:^(NSString *data) {
+                    if ([data containsString:@"aa0405"]){
+                        result = [data substringWithRange:NSMakeRange(6, 6)];
+                        NSLog(@"机器码是：%@",result);
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            FingerprintManagementViewController *vc = [[FingerprintManagementViewController alloc] initWithUserId:[GVUserDefaults standardUserDefaults].userId MachineId:result];
+                            [self presentViewController:vc animated:NO completion:nil];
+                        });
+                    }
+                    else{
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self showErrorHUD:@"未获取到硬件编码，无法正常录入指纹"];
+                        });
+                    }
+                }];
+            }
+            else{
                 UIAlertController *_alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您尚未连接蓝牙，无法录入指纹，请连接蓝牙后尝试" preferredStyle:UIAlertControllerStyleAlert];
                 [_alertController addAction:[UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                     [self dismissViewControllerAnimated:YES completion:nil];

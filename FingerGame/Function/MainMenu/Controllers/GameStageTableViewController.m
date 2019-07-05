@@ -8,7 +8,6 @@
 
 #import "GameStageTableViewController.h"
 #import "GameStageTeseTableViewCell.h"
-#import "GameDetailViewController.h"
 #import "MainGameViewController.h"
 
 #import "GameStageTableViewCell.h"
@@ -74,12 +73,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //添加顶部视图
     _mybuttonView = [[UIView alloc]initWithFrame:CGRectMake(0.0, 60, SCREEN_WIDTH, 120)];
     UIColor *bgColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"顶栏.png"]];
     [_mybuttonView setBackgroundColor:bgColor];
+    //能够点击
     _mybuttonView.userInteractionEnabled = YES;
     [self.tableView addSubview:self.mybuttonView];
+    //添加点击手势事件
     [_mybuttonView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)]];
+    
     self.title = @"游戏列表";
     UIColor *bgTVCColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"Game_Background.png"]];
     [self.tableView setBackgroundColor:bgTVCColor];
@@ -249,11 +252,13 @@
     }else{
         energyint = energyint - 20;
         
+        NSLog(@"GameBestScore:%@",((MissionModel *)self.dataSource[indexPath.row]).bestScore);
+        
         self.ordersArray = [NSMutableArray array];
         self.gameOrderFile = [[GameOrderFile alloc] init];
         self.curMissionModel = [[MissionModel alloc] init];
         
-        GameFileApiManager *gameFileApiManager = [[GameFileApiManager alloc] initWithGameId:((MissionModel *)self.dataSource[indexPath.row]).missionID];
+        GameFileApiManager *gameFileApiManager = [[GameFileApiManager alloc] initWithGameId:((MissionModel *)self.dataSource[indexPath.row]).missionID UserId:[GVUserDefaults standardUserDefaults].userId];
         [gameFileApiManager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
             if (errorType == ZHYAPIManagerErrorTypeSuccess){
                 [self analyzeServiceData:responseData];
@@ -265,6 +270,7 @@
             }
         }];
     }
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -418,85 +424,82 @@
     self.curBTManager = [MyBTManager sharedInstance];
     self.curBTManager.delegate = self;
     self.curAudioManager = [AudioManager sharedInstance];
-//        if ([self.curBTManager isBluetoothLinked]){
-//            //蓝牙已连接，准备发送给蓝牙指令集
-//            [self.ordersArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                [self.curBTManager writeToPeripheral:(NSString *)obj];
-//            }];
-//            //指令集发送结束 指令
-//            [self.curBTManager writeToPeripheral:@"aa02010506"];
-//            [self.curBTManager readValueWithBlock:^(NSString *data) {
-//                NSLog(@"收到蓝牙数据为 %@",data);
-//                if ([data containsString:@"aa02030104"]){
-//                    if ([self existsCacheForCurrentGame:self.gameOrderFile.gameId]){
-//                        NSString *localPath = [self.cacheManager getStringWithKey:self.gameOrderFile.gameId];
-//                        [self.curAudioManager prepareForAudioPlayer:localPath];
-//                        MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
-//                        [self presentViewController:vc animated:YES completion:nil];
-//                    }else{
-//
-//                        dispatch_async(dispatch_get_main_queue(), ^{
-//                            LoadResourceTipView *tv = [[LoadResourceTipView alloc] initWithFrame:self.view.frame];
-//                            [self.view addSubview:tv];
-//
-//                            [self.curAudioManager downloadAudioWithURL:[NSString stringWithFormat:@"http://shouzhi.yunzs.net/music/%@",self.curMissionModel.musicPath] fileName:self.curMissionModel.musicName downloadProgressBlock:^(CGFloat p) {
-//                                [tv updateProgress:p];
-//                            }  downloadReturnBlock:^(bool state, NSString * _Nonnull localPath) {
-//                                if (state == YES){
-//                                    [self.curAudioManager prepareForAudioPlayer:localPath];
-//                                    [tv removeFromSuperview];
-//                                    [self.cacheManager storeString:localPath WithKey:self.gameOrderFile.gameId];
-//                                    MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
-//                                    [self presentViewController:vc animated:YES completion:nil];
-//                                }else{
-//                                    [self showErrorHUD:@"游戏音乐下载失败"];
-//                                }
-//                            }];
-//                        });
-//
-//                    }
-//                }
-//            }];
-//        }else{
-//            UIAlertController *_alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您尚未连接蓝牙，无法开始游戏，请连接蓝牙后尝试" preferredStyle:UIAlertControllerStyleAlert];
-//            [_alertController addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//                [self dismissViewControllerAnimated:YES completion:nil];
-//            }]];
-//            [self presentViewController:_alertController animated:YES completion:nil];
-//        }
-//test no bluetooth
-    if ([self existsCacheForCurrentGame:self.gameOrderFile.gameId]){
-        NSString *localPath = [self.cacheManager getStringWithKey:self.gameOrderFile.gameId];
-        [self.curAudioManager prepareForAudioPlayer:localPath];
-        MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
-        [self presentViewController:vc animated:YES completion:nil];
-    }else{
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            LoadResourceTipView *tv = [[LoadResourceTipView alloc] initWithFrame:self.view.frame];
-            [self.view addSubview:tv];
+    if ([self.curBTManager isBluetoothLinked]){
+        //蓝牙已连接，准备发送给蓝牙指令集
+        [self.ordersArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.curBTManager writeToPeripheral:(NSString *)obj];
+        }];
+        //指令集发送结束 指令
+        [self.curBTManager writeToPeripheral:@"aa02010506"];
+        if ([self existsCacheForCurrentGame:self.gameOrderFile.gameId]){
+            NSString *localPath = [self.cacheManager getStringWithKey:self.gameOrderFile.gameId];
+            [self.curAudioManager prepareForAudioPlayer:localPath];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile AndMissionModel:self.curMissionModel];
+                [self presentViewController:vc animated:YES completion:nil];
+            });
+        }else{
             
-            [self.curAudioManager downloadAudioWithURL:[NSString stringWithFormat:@"http://shouzhi.yunzs.net/music/%@",self.curMissionModel.musicPath] fileName:self.curMissionModel.musicName downloadProgressBlock:^(CGFloat p) {
-                [tv updateProgress:p];
-            }  downloadReturnBlock:^(bool state, NSString * _Nonnull localPath) {
-                if (state == YES){
-                    [self.curAudioManager prepareForAudioPlayer:localPath];
-                    [tv removeFromSuperview];
-                    [self.cacheManager storeString:localPath WithKey:self.gameOrderFile.gameId];
-                    MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
-                    [self presentViewController:vc animated:YES completion:nil];
-                }else{
-                    [self showErrorHUD:@"游戏音乐下载失败"];
-                }
-            }];
-        });
-        
+            dispatch_async(dispatch_get_main_queue(), ^{
+                LoadResourceTipView *tv = [[LoadResourceTipView alloc] initWithFrame:self.view.frame];
+                [self.view addSubview:tv];
+                
+                [self.curAudioManager downloadAudioWithURL:[NSString stringWithFormat:@"http://shouzhi.yunzs.net/music/%@",self.curMissionModel.musicPath] fileName:self.curMissionModel.musicName downloadProgressBlock:^(CGFloat p) {
+                    [tv updateProgress:p];
+                }  downloadReturnBlock:^(bool state, NSString * _Nonnull localPath) {
+                    if (state == YES){
+                        [self.curAudioManager prepareForAudioPlayer:localPath];
+                        [tv removeFromSuperview];
+                        [self.cacheManager storeString:localPath WithKey:self.gameOrderFile.gameId];
+                        MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile AndMissionModel:self.curMissionModel];
+                        [self presentViewController:vc animated:YES completion:nil];
+                    }else{
+                        [self showErrorHUD:@"游戏音乐下载失败"];
+                    }
+                }];
+            });
+            
+        }
+    }else{
+        UIAlertController *_alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您尚未连接蓝牙，无法开始游戏，请连接蓝牙后尝试" preferredStyle:UIAlertControllerStyleAlert];
+        [_alertController addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        [self presentViewController:_alertController animated:YES completion:nil];
     }
+    //test no bluetooth
+    //    if ([self existsCacheForCurrentGame:self.gameOrderFile.gameId]){
+    //        NSString *localPath = [self.cacheManager getStringWithKey:self.gameOrderFile.gameId];
+    //        [self.curAudioManager prepareForAudioPlayer:localPath];
+    //        MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
+    //        [self presentViewController:vc animated:YES completion:nil];
+    //    }else{
+    //        dispatch_async(dispatch_get_main_queue(), ^{
+    //            LoadResourceTipView *tv = [[LoadResourceTipView alloc] initWithFrame:self.view.frame];
+    //            [self.view addSubview:tv];
+    //
+    //            [self.curAudioManager downloadAudioWithURL:[NSString stringWithFormat:@"http://shouzhi.yunzs.net/music/%@",self.curMissionModel.musicPath] fileName:self.curMissionModel.musicName downloadProgressBlock:^(CGFloat p) {
+    //                [tv updateProgress:p];
+    //            }  downloadReturnBlock:^(bool state, NSString * _Nonnull localPath) {
+    //                if (state == YES){
+    //                    [self.curAudioManager prepareForAudioPlayer:localPath];
+    //                    [tv removeFromSuperview];
+    //                    [self.cacheManager storeString:localPath WithKey:self.gameOrderFile.gameId];
+    //                    MainGameViewController *vc = [[MainGameViewController alloc] initWithGameOrderFile:self.gameOrderFile];
+    //                    [self presentViewController:vc animated:YES completion:nil];
+    //                }else{
+    //                    [self showErrorHUD:@"游戏音乐下载失败"];
+    //                }
+    //            }];
+    //        });
+    //    }
 }
 
 
+
 - (void)analyzeServiceData:(id)data{
-    [self.curMissionModel yy_modelSetWithJSON:data[@"data"][0]];
+    self.curMissionModel = [MissionModel yy_modelWithJSON:data[@"data"][0]];
+    NSLog(@"EXP:%@ AWARD:%@ BESTSCORE:%@",self.curMissionModel.missionExperience,self.curMissionModel.award,self.curMissionModel.bestScore);
     self.gameOrderFile.gameId = data[@"data"][0][@"id"];
     self.gameOrderFile.gameName = data[@"data"][0][@"name"];
     self.gameOrderFile.gameOrders = [NSMutableArray array];
@@ -517,6 +520,7 @@
         [self.gameOrderFile.gameOrders addObject:orderModel];
     }];
 }
+
 
 - (BOOL)existsCacheForCurrentGame:(NSString *)gameId{
     BOOL result = NO;

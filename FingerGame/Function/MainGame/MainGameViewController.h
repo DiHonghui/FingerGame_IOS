@@ -10,11 +10,12 @@
 
 #import "OrderModel.h"
 #import "GameOrderFile.h"
+#import "MissionModel.h"
 
 #import "MyBTManager.h"
 
 @interface MainGameViewController : UIViewController
 
-- (id)initWithGameOrderFile:(GameOrderFile *)gameOrderFile;
+- (id)initWithGameOrderFile:(GameOrderFile *)gameOrderFile AndMissionModel:(MissionModel *)missionModel;
 
 @end

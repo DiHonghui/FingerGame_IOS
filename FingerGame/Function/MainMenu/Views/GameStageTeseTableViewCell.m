@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *collectButton;
 @property (strong,nonatomic)MissionCollectApiManager *missionCollectApiManager;
 @property (weak,nonatomic)NSString *likeOrNot;
+@property(nonatomic,strong)NSString *missionId;
 
 @end
 
@@ -76,11 +77,14 @@
     }
     return cell;
 }
-
+/**
+ cell内容
+ */
 -(void)configureCell:(MissionModel *)model{
     self.rankNum.text = model.missionLevel;
     self.musicName.text = model.musicName;
     self.authorName.text = model.missionName;
+    self.missionId = model.missionID;
     self.likeOrNot = model.like;
     if ([self.likeOrNot isEqualToString:@"1"]) {
         UIImage *image = [UIImage imageNamed:@"收藏2"];
@@ -105,18 +109,26 @@
 //    [self.likeIcon addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(collect)]];
     
 }
+
+/**
+ 收藏按钮
+ */
 - (IBAction)collect:(id)sender {
     NSLog(@"触发收藏按钮");
+    if (self.missionId!=nil) {
+        [self.missionCollectApiManager loadDataWithParams:@{@"user_id":[GVUserDefaults standardUserDefaults].userId,@"game_id":_missionId,@"service":@"App.User.Like"} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
+            NSLog(@"收藏状态为%@", responseData[@"data"][@"message"]);
+        }];
+    }
     if ([self.likeOrNot isEqualToString:@"1"]) {
         UIImage *image = [UIImage imageNamed:@"收藏1"];
         [self.likeIcon setImage:image];
         self.likeOrNot = @"0";
     }else{
-    UIImage *image = [UIImage imageNamed:@"收藏2"];
-    [self.likeIcon setImage:image];
-    self.likeOrNot = @"1";
+        UIImage *image = [UIImage imageNamed:@"收藏2"];
+        [self.likeIcon setImage:image];
+        self.likeOrNot = @"1";
     }
-    //[[MyAlertCenter defaultCenter] postAlertWithMessage:@"触发收藏按钮"];
 }
 
 -(MissionCollectApiManager*) missionCollectApiManager{

@@ -10,6 +10,6 @@
 
 @interface GameFileApiManager : ZHYAPIBaseManager<ZHYAPIManager, ZHYAPIManagerValidator, ZHYAPIManagerParamSourceDelegate>
 
-- (instancetype)initWithGameId:(NSString *)gameId;
+- (instancetype)initWithGameId:(NSString *)gameId UserId:(NSString *)userId;
 
 @end

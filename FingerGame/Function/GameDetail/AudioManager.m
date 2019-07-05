@@ -45,7 +45,7 @@ static AudioManager *sInstance = nil;
         NSLog(@"本地目标路径：%@",afilePath);
         /* 开始请求下载 */
         NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
-            NSLog(@"下载进度：%.2f％", downloadProgress.fractionCompleted * 100);
+            //NSLog(@"下载进度：%.2f％", downloadProgress.fractionCompleted * 100);
             progressBlock(downloadProgress.fractionCompleted);
             
         } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {

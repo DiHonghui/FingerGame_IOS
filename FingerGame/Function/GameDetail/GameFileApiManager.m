@@ -11,17 +11,19 @@
 @interface GameFileApiManager()
 
 @property (nonatomic,strong) NSString *gameId;
+@property (nonatomic,strong) NSString *userId;
 
 @end
 
 @implementation GameFileApiManager
 
-- (instancetype)initWithGameId:(NSString *)gameId{
+- (instancetype)initWithGameId:(NSString *)gameId UserId:(NSString *)userId{
     self = [super init];
     if (self){
         self.validator = self;
         self.paramSource = self;
         self.gameId = gameId;
+        self.userId = userId;
     }
     return self;
 }
@@ -50,8 +52,9 @@
 
 - (NSDictionary *)paramsForApi:(ZHYAPIBaseManager *)manager{
     return @{
-             @"id":self.gameId,
-             @"service":@"App.Game.FindByID"
+             @"userId":self.userId,
+             @"gameId":self.gameId,
+             @"service":@"App.Game.FindByTwoID"
              };
 }
 

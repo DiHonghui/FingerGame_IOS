@@ -10,7 +10,6 @@
 #import "ClassicStageViewController.h"
 #import "TabBarControllerConfig.h"
 #import "GameStageTableViewController.h"
-#import "GameDetailViewController.h"
 #import "PersonalPageViewController.h"
 #import "ZHYBaseNavigationController.h"
 #import "ClassicsMissionViewController.h"

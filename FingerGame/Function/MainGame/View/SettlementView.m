@@ -314,6 +314,9 @@
 }
 
 - (void)tapNext:(UIGestureRecognizer *)gr{
+    if (self.delegate)
+        if ([self.delegate respondsToSelector:@selector(clickedNextGameButton)])
+            [self.delegate clickedNextGameButton];
 }
 
 @end

@@ -12,7 +12,6 @@
 #import "YYModel.h"
 #import "AppDelegate.h"
 #import "GVUserDefaults+Properties.h"
-#import "GameDetailViewController.h"
 #import "CostValueTableViewCell.h"
 #import "MyAlertCenter.h"
 #import "HLXibAlertView.h"

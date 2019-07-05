@@ -8,7 +8,7 @@
 
 #import "StartAnimView.h"
 
-@interface StartAnimView()
+@interface StartAnimView() <CAAnimationDelegate>
 
 @property (nonatomic,strong) UILabel *animLabel;
 
@@ -90,7 +90,7 @@ static StartAnimView *instance;
         if (_completeBlock != nil) {
             self.hidden = true;
             WeakSelf;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 NSLog(@"ready to enter the completeBlock");
                 self.completeBlock();
                 self.completeBlock = nil;
