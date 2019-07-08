@@ -277,16 +277,35 @@
     if (completeRate >=0.9 && completeRate <= 1.0) self.stars = 3;
     float getExp = completeRate * [self.curMissionModel.missionExperience floatValue];
     float getBeans = completeRate * [self.curMissionModel.award floatValue];
+    [self uploadGotAwards:getBeans];
+    //最高分判断
     float getScore = completeRate * 100 + self.fpSuccessCount * 2;
     getScore = (getScore>=100)?100:getScore;
-    //
     if (getScore > [self.curMissionModel.bestScore floatValue]) [self uploadNewBestScore:getScore];
-    //
+    //上传用户经验等级
+    int finalExp = getExp + [[GVUserDefaults standardUserDefaults].experience intValue];
+    int finalLevel = [[GVUserDefaults standardUserDefaults].level intValue];
+    NSLog(@"计算后的经验和等级：%d  %d",finalExp,finalLevel);
+    if (finalExp>=100) {
+        finalExp = finalExp - 100;
+        finalLevel ++;
+    }
+    [self uploadUserLevel:finalLevel EXP:finalExp];
+    //显示结算弹窗
     NSLog(@"END %.2f  %d %d %d %.2f",completeRate,self.successClick,self.failureClick,self.sceneCount,getScore);
     _settlementView = [[SettlementView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [self.view addSubview:_settlementView];
     _settlementView.delegate = self;
     [_settlementView configWithScore:getScore Stars:self.stars Beans:getBeans Exp:getExp];
+}
+//上传用户获得的奖励数据
+- (void)uploadGotAwards:(float)beans{
+    DefaultApiManager *m = [[DefaultApiManager alloc] init];
+    [m loadDataWithParams:@{@"service":@"App.User.Currency",@"user_id":[GVUserDefaults standardUserDefaults].userId,@"healthyBeans":[NSString stringWithFormat:@"%.f",beans]} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
+        if (errorType == ZHYAPIManagerErrorTypeSuccess){
+            NSLog(@"上传游戏奖励成功");
+        }
+    }];
 }
 //上传新的最高分
 - (void)uploadNewBestScore:(float)score{
@@ -294,6 +313,15 @@
     [m loadDataWithParams:@{@"service":@"App.Game.Complete",@"userId":[GVUserDefaults standardUserDefaults].userId,@"gameId":self.curMissionModel.missionID,@"score":[NSString stringWithFormat:@"%.f",score],@"star":[NSString stringWithFormat:@"%d",self.stars]} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
         if (errorType == ZHYAPIManagerErrorTypeSuccess){
             NSLog(@"上传新的最高分成功");
+        }
+    }];
+}
+//上传经验值 等级
+- (void)uploadUserLevel:(int)lv EXP:(int)exp{
+    DefaultApiManager *m = [[DefaultApiManager alloc] init];
+    [m loadDataWithParams:@{@"service":@"App.User.Experience",@"user_id":[GVUserDefaults standardUserDefaults].userId,@"exp":[NSString stringWithFormat:@"%d",exp],@"level":[NSString stringWithFormat:@"%d",lv]} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
+        if (errorType == ZHYAPIManagerErrorTypeSuccess){
+            NSLog(@"更新用户经验等级成功");
         }
     }];
 }
