@@ -19,4 +19,6 @@
 @dynamic level;
 @dynamic phoneNumber;
 @dynamic avatar;
+@dynamic experience;
+
 @end

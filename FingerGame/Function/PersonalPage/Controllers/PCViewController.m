@@ -285,9 +285,11 @@
             EditNicknameApiManager *editNicknameApiManager = [[EditNicknameApiManager alloc] init];
             [editNicknameApiManager loadDataWithParams:@{@"service":@"App.User.Nickname",@"user_id":[GVUserDefaults standardUserDefaults].userId,@"new_name":textField.text} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
                 if ([responseData[@"data"][@"code"] intValue] != 1){
-                    [self showHUDText:responseData[@"data"][@"message"]];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self hideProgress];
+                        [self showHUDText:responseData[@"data"][@"message"]];
+                    });
                 }else{
-                    NSLog(@"success");
                     [GVUserDefaults standardUserDefaults].userName = textField.text;
                     [self refresh];
                 }
@@ -342,6 +344,7 @@
     [loginApimanager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self hideProgress];
+                [self showHUDText:@"更改成功"];
             });
             [GVUserDefaults standardUserDefaults].userId = responseData[@"data"][@"id"];
             [GVUserDefaults standardUserDefaults].userName = responseData[@"data"][@"name"];

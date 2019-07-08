@@ -129,6 +129,7 @@
             [GVUserDefaults standardUserDefaults].diamond = responseData[@"data"][@"diamond"];
             [GVUserDefaults standardUserDefaults].level = responseData[@"data"][@"level"];
             [GVUserDefaults standardUserDefaults].avatar = responseData[@"data"][@"avatar"];
+            [GVUserDefaults standardUserDefaults].experience = responseData[@"data"][@"experience"];
             NSLog(@"用户ID = %@",[GVUserDefaults standardUserDefaults].userId);
             AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
             [delegate toMain];

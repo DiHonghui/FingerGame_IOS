@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,weak) NSString *energy;
 @property (nonatomic,weak) NSString *level;
 @property (nonatomic,weak) NSString *avatar;
+@property (nonatomic,weak) NSString *experience;
 
 @end
 
