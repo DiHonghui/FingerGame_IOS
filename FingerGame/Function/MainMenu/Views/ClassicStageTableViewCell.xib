@@ -72,12 +72,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="MissionName" destination="6xL-Pv-ojh" id="Udn-YY-ozu"/>
-                <outlet property="costLabe" destination="EeY-7R-b4O" id="VMJ-qX-tEJ"/>
-                <outlet property="nameLabel" destination="ECO-vt-8ra" id="GG9-4A-yX0"/>
+                <outlet property="MissionName" destination="ECO-vt-8ra" id="cwM-PZ-tqd"/>
+                <outlet property="authorName" destination="6xL-Pv-ojh" id="tdS-0J-sCU"/>
+                <outlet property="costLabe" destination="uFQ-Lt-Vre" id="xUz-9o-VxK"/>
             </connections>
             <point key="canvasLocation" x="-268.80000000000001" y="100.74962518740631"/>
         </tableViewCell>

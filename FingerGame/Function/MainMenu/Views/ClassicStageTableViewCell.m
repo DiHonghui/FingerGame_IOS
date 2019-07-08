@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *actionBtn;
 @property (weak, nonatomic) IBOutlet UILabel *MissionName;
 @property (weak, nonatomic) IBOutlet UILabel *costNumber;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *authorName;
 @property (weak, nonatomic) IBOutlet UILabel *costLabe;
 
 @end
@@ -56,7 +56,7 @@
 
 -(void)configureCell{
     self.MissionName.text= @"洪湖水浪打浪";
-    self.costNumber.text = @"5";
+    self.authorName.text = @"常世全";
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

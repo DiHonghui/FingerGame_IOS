@@ -10,14 +10,12 @@
 #import "GameStageTeseTableViewCell.h"
 #import "MainGameViewController.h"
 
-#import "GameStageTableViewCell.h"
 #import "MJRefresh.h"
 #import "MissionSimpleForList.h"
 #import "YYModel.h"
 #import "Masonry.h"
 #import "AppDelegate.h"
 #import "GVUserDefaults+Properties.h"
-#import "CostValueTableViewCell.h"
 #import "HLXibAlertView.h"
 #import "NSObject+ProgressHUD.h"
 
@@ -60,6 +58,8 @@
 
 @property(strong,nonatomic) UIView *mybuttonView;
 
+@property(strong,nonatomic) NSMutableArray* tempdataSource;
+
 
 
 @end
@@ -74,7 +74,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //添加顶部视图
-    _mybuttonView = [[UIView alloc]initWithFrame:CGRectMake(0.0, 60, SCREEN_WIDTH, 120)];
+    _mybuttonView = [[UIView alloc]initWithFrame:CGRectMake(0.0, 0, SCREEN_WIDTH, 60)];
     UIColor *bgColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"顶栏.png"]];
     [_mybuttonView setBackgroundColor:bgColor];
     //能够点击
@@ -83,9 +83,10 @@
     //添加点击手势事件
     [_mybuttonView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)]];
     
-    self.title = @"游戏列表";
+    //self.title = @"游戏列表";
     UIColor *bgTVCColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"Game_Background.png"]];
     [self.tableView setBackgroundColor:bgTVCColor];
+    
     self.tableView.alpha = 1;
     UIView *view1 = [self costViewWithImage:@"昵称.png" tag:0 string:@"name" add:false];
     UIView *view2 = [self costViewWithImage:@"体力.png" tag:1 string:[GVUserDefaults standardUserDefaults].energy add:true];
@@ -109,9 +110,8 @@
     self.tableView.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakself loadData];
     }];
-    
     [weakself loadData];
-    [self.tableView.mj_header beginRefreshing];
+    
     //
 }
 
@@ -120,30 +120,30 @@
     CGFloat viewWidth = SCREEN_WIDTH*4/17;
     NSLog(@"屏幕尺寸为，宽 %f ，高 %f",SCREEN_WIDTH,SCREEN_HEIGHT);
     CGFloat ViewHeight = 60;
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(5+tag*viewWidth, 60, viewWidth, ViewHeight)];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(5+tag*(viewWidth+5), 0, viewWidth, ViewHeight)];
     view.tag = tag;
-    UILabel *titleBglb = [[UILabel alloc]initWithFrame:CGRectMake(5, 30, viewWidth-5, ViewHeight-35)];
+    UILabel *titleBglb = [[UILabel alloc]initWithFrame:CGRectMake(5, 20, viewWidth-5, ViewHeight-35)];
     titleBglb.backgroundColor = UIColorFromRGB(0x5aafe0);
     titleBglb.layer.cornerRadius = 10;
     titleBglb.layer.masksToBounds = YES;
     [view addSubview:titleBglb];
     if (add) {
-        UIImageView *uiv2 = [[UIImageView alloc]initWithFrame:CGRectMake(viewWidth-12, 38, 10, 10)];
+        UIImageView *uiv2 = [[UIImageView alloc]initWithFrame:CGRectMake(viewWidth-12, 28, 10, 10)];
         uiv2.image = [UIImage imageNamed:@"加号"];
         [view addSubview:uiv2];
-        UIButton *addbutton = [[UIButton alloc]initWithFrame:(CGRect)CGRectMake(viewWidth-12, 43, 10, 10)];
+        UIButton *addbutton = [[UIButton alloc]initWithFrame:(CGRect)CGRectMake(viewWidth-12, 33, 10, 10)];
         [view addSubview:addbutton];
     }else{
         
     }
     
-    UILabel *titlelb = [[UILabel alloc]initWithFrame:CGRectMake(35, 30, viewWidth-37, ViewHeight-35)];
+    UILabel *titlelb = [[UILabel alloc]initWithFrame:CGRectMake(35, 20, viewWidth-37, ViewHeight-35)];
     titlelb.textColor = [UIColor whiteColor];
     titlelb.font = [UIFont systemFontOfSize:11];
     titlelb.text = title;
     [view addSubview:titlelb];
     
-    UIImageView *uiv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 25, 30, 30)];
+    UIImageView *uiv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 15, 30, 30)];
     uiv.image = [UIImage imageNamed:image];
     [view addSubview:uiv];
     
@@ -175,28 +175,30 @@
         NSLog(@"datasource 删除了数据");
             NSDictionary *news = responseData[@"data"];
             for (NSDictionary *tmp in news) {
-                MissionModel *modelForList = [MissionModel yy_modelWithJSON:tmp];
-                NSLog(@"loadData simpleModel = %@",modelForList);
+                MissionModel *modelForList = [MissionModel yy_modelWithJSON:tmp];                
                 [self.dataSource addObject:modelForList];
-                //[self.dataSource addObject:modelForList];
+                
             }
-        NSLog(@"datasource 里面是%@",tempdataSource);
-//        for (MissionSimpleForList *modelForlist in tempdataSource) {
-//            self.gameFileApiManager = [[GameFileApiManager alloc]initWithGameId:modelForlist.gameId];
-//            [self.gameFileApiManager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-//                NSDictionary *news = responseData[@"data"];
-//                for (NSDictionary *tmp in news) {
-//                    MissionModel *model = [MissionModel yy_modelWithJSON:tmp];
-//                    NSLog(@"loadData model = %@",model);
-//                    [self.dataSource addObject:model];
-//                    NSLog(@"datasource 添加了数据");
-//                }
-//            }];
-//        }
     }];
+
     [self.tableView reloadData];
     
+    
 }
+
+-(void) viewWillAppear:(BOOL)animated{
+    NSLog(@"view will appear");
+    [super viewWillAppear:animated];
+    //隐藏NavigationBar
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [super viewWillDisappear:animated];
+}
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.tableView.mj_header beginRefreshing];
@@ -225,7 +227,31 @@
     if (indexPath.section ==0) {
         UITableViewCell *cell = [[UITableViewCell alloc] init];
         cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryNone;
+            if ([self.dataSource count]!=0) {
+                _tempdataSource = [self.dataSource sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+
+                    MissionModel *mission1 = obj1;
+
+                    MissionModel *mission2 = obj2;
+
+                    NSInteger mission1Level = [mission1.missionLevel integerValue];
+
+                    NSInteger mission2Level = [mission2.missionLevel integerValue];
+
+                    if (mission1Level>mission2Level) {
+                        return NSOrderedDescending;//降序
+                    }else if (mission1Level<mission2Level)
+                    {
+                        return NSOrderedAscending;//升序
+                    }else
+                    {
+                        return NSOrderedSame;//相等
+                    }
+
+                }];
+            }
         return cell;
     }
     
@@ -234,8 +260,10 @@
         UINib* nib = [UINib nibWithNibName:GSTTVCELL bundle:nil];
         [tableView registerNib:nib forCellReuseIdentifier:GSTTVCELL];
         cell = [tableView dequeueReusableCellWithIdentifier:GSTTVCELL];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    MissionModel *missionModel = self.dataSource[indexPath.row];
+    MissionModel *missionModel = _tempdataSource[indexPath.row];
+    NSLog(@"datasource type is %@",self.dataSource);
     NSLog(@"收藏状态是%@",missionModel.like);
     [cell configureCell:missionModel];
     cell.delegate = self;
@@ -549,6 +577,16 @@
         result = NO;
     }
     return result;
+}
+
+#pragma mark - screen
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

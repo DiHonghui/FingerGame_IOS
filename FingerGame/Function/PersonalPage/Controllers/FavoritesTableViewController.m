@@ -2,98 +2,133 @@
 //  FavoritesTableViewController.m
 //  FingerGame
 //
-//  Created by Nao Kunagisa on 2019/5/6.
+//  Created by Nao Kunagisa on 2019/7/8.
 //  Copyright © 2019年 lisy. All rights reserved.
 //
 
 #import "FavoritesTableViewController.h"
-#import "MJRefresh.h"
-#import "PersonalPageViewController.h"
-#import "GVUserDefaults+Properties.h"
-#import "BasicTableViewCell.h"
-#import "PersonalInfoBasicTableViewCell.h"
-#import "NSObject+ProgressHUD.h"
-#import "AppDelegate.h"
+#import "GameStageTeseTableViewCell.h"
+#import "MainGameViewController.h"
 
-@interface FavoritesTableViewController ()
+#import "MJRefresh.h"
+#import "MissionSimpleForList.h"
+#import "YYModel.h"
+#import "Masonry.h"
+#import "AppDelegate.h"
+#import "GVUserDefaults+Properties.h"
+#import "HLXibAlertView.h"
+#import "NSObject+ProgressHUD.h"
+
+#import "MissionlistApiManager.h"
+#import "GameFileApiManager.h"
+#import "RechargeDiomondApiManager.h"
+#import "MyAlertCenter.h"
+#import "AudioManager.h"
+#import "MyBTManager.h"
+#import "MyCacheManager.h"
+
+#import "MissionModel.h"
+#import "OrderModel.h"
+#import "GameOrderFile.h"
+#import "MissionModel.h"
+
+#import "LoadResourceTipView.h"
+#define GSTVCELL @"GameStageTableViewCell"
+#define GSTTVCELL @"GameStageTeseTableViewCell"
+
+@interface FavoritesTableViewController()<MyBTManagerProtocol>
+
+@property (strong, nonatomic) MissionlistApiManager *missionlistApiManager;
+
+@property (strong,nonatomic) GameFileApiManager *gameFileApiManager;
+
+@property (strong,nonatomic) RechargeDiomondApiManager *rechargeApiManager;
+
+@property (nonatomic,strong) MyBTManager *curBTManager;
+@property (nonatomic,strong) MyCacheManager *cacheManager;
+
+//准备发送给蓝牙串口的指令数组
+@property (nonatomic,strong) NSMutableArray *ordersArray;
+//本地游戏指令保存，用于游戏滑块的初始化
+@property (nonatomic,strong) GameOrderFile *gameOrderFile;
+//音频下载、播放操作工具
+@property (nonatomic,strong) AudioManager *curAudioManager;
+//
+@property (nonatomic,strong) MissionModel *curMissionModel;
+
+@property(strong,nonatomic) UIView *mybuttonView;
+
+@property(strong,nonatomic) NSMutableArray* tempdataSource;
+
+
 
 @end
-static NSInteger number;
+
 @implementation FavoritesTableViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [super viewDidLoad];
+    UIColor *bgTVCColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"Game_Background.png"]];
+    [self.tableView setBackgroundColor:bgTVCColor];
     self.title = @"收藏列表";
     __weak typeof (self) weakself = self;
     self.tableView.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakself loadData];
-    }];}
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    //[self.tableView.mj_header beginRefreshing];
+    }];
+    
 }
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
-    //NSLog(@"dataSource count = @%@",self.dataSource);
-    //return [self.dataSource count];
+    return [self.dataSource count];
     //返回显示几条数据
 }
 
+-(void)loadData{
+    NSMutableArray* tempdataSource = [[NSMutableArray alloc]init];
+    [self.missionlistApiManager loadDataWithParams:@{@"service":@"App.Game.GameList",@"userId":[GVUserDefaults standardUserDefaults].userId} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
+        [self.tableView.mj_header endRefreshing];
+        [self.dataSource removeAllObjects];
+        NSLog(@"datasource 删除了数据");
+        NSDictionary *news = responseData[@"data"];
+        for (NSDictionary *tmp in news) {
+            MissionModel *modelForList = [MissionModel yy_modelWithJSON:tmp];
+            if ([modelForList.like isEqualToString:@"1"]) {
+                [self.dataSource addObject:modelForList];
+            }
+            
+        }
+    }];
+    
+    [self.tableView reloadData];
+    
+    
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row>=[self.dataSource count]) {
+        return 0;
+    }
+    return 90;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
-    NSString *string = [[NSString alloc] initWithFormat:@"%@%@", @"已收藏歌曲 ",[NSString stringWithFormat:@"%ld",++number ] ];
-    cell.textLabel.text = string;
-    cell.textLabel.font = SystemFont(14);
-    cell.textLabel.textColor = UIColorFromRGB(0x666666);
-    cell.accessoryType = UITableViewCellAccessoryNone;
+    GameStageTeseTableViewCell *cell = (GameStageTeseTableViewCell *)[tableView dequeueReusableCellWithIdentifier:GSTTVCELL];
+    if (!cell) {
+        UINib* nib = [UINib nibWithNibName:GSTTVCELL bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:GSTTVCELL];
+        cell = [tableView dequeueReusableCellWithIdentifier:GSTTVCELL];
+    }
+    MissionModel *missionModel = _tempdataSource[indexPath.row];
+    [cell configureCell:missionModel];
+    cell.delegate = self;
     return cell;
 }
 
-- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewRowAction *rowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"删除" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        
-        NSLog(@"点击了删除");
-        // 1. 更新数据
-        
-        //[self.dataSource removeObjectAtIndex:indexPath.row];
-        
-        // 2. 更新UI
-        
-    }
-];
-    return @[rowAction];
-    
-}
-//- (NSArray*)tableView:(UITableView*)tableView editActionsForRowAtIndexPath:(NSIndexPath*)indexPath{
-//    UITableViewRowAction *rowAction =[UITableViewRowActionrowActionWithStyle:UITableViewRowActionStyleDefaulttitle:@"删除"handler:^(UITableViewRowAction*_Nonnullaction,NSIndexPath*_NonnullindexPath) {
-//    NSLog(@"删除要实现的代码");
-//    
-//}];
-//    UITableViewRowAction*rowAction1 = [UITableViewRowActionrowActionWithStyle:UITableViewRowActionStyleDefaulttitle:@"标为已读"handler:^(UITableViewRowAction*_Nonnullaction,NSIndexPath*_NonnullindexPath) {
-//        NSLog(@"标为已读要实现的代码");
-//        
-//    }];
-//    //自定义颜色rowAction.backgroundColor=RGB(231,96,35);rowAction1.backgroundColor=RGB(150,150,150);NSArray*arr =@[rowAction,rowAction1];return arr;}
-//    
-//}
--(void)loadData{
-    number = 0;
-}
 @end

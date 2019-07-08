@@ -28,6 +28,8 @@
 
 @property (strong, nonatomic) UILabel *usernameLabel;
 @property (strong, nonatomic) UILabel *passwordLabel;
+@property (strong ,nonatomic) UILabel *forgotPassword;
+
 
 @property (strong,nonatomic) UserLoginAPIManager *loginApimanager;
 @end
@@ -36,27 +38,55 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.view.backgroundColor = UIColorFromRGB(0xEFEFEF);
+    UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    imageView.image=[UIImage imageNamed:@"Game_Background"];
+    imageView.alpha = 1;
+    [self.view insertSubview:imageView atIndex:0];
+    UIImageView *logoView=[[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/3, 80, SCREEN_WIDTH/3, SCREEN_WIDTH/3)];
+    logoView.image=[UIImage imageNamed:@"登录页图的副本"];
+    [self.view addSubview:logoView];
     [self.view addSubview:self.usernameField];
     [self.view addSubview:self.passwordField];
     [self.view addSubview:self.usernameLabel];
     [self.view addSubview:self.passwordLabel];
+    [self.view addSubview:self.forgotPassword];
     
     [self.view addSubview:self.loginButton];
     [self.view addSubview:self.registButton];
     [self layoutSubviews];
     
 }
+-(void) viewWillAppear:(BOOL)animated{
+    NSLog(@"view will appear");
+    [super viewWillAppear:animated];
+    //隐藏NavigationBar
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [super viewWillDisappear:animated];
+}
 
 -(void)layoutSubviews{
-    
+//    [self.logoImage mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.view.mas_top).offset(40);
+//        make.width.equalTo(@180);
+//        make.height.equalTo(@180);
+//        make.centerX.equalTo(self.view.mas_centerX);
+//    }];
+//    self.logoImage.image = [UIImage imageNamed:@"健康豆.png"];
+//    NSLog(@"logo 位置 %@",self.logoImage.bounds);
+   
     [self.usernameField mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.width.equalTo(@200);
+        make.top.equalTo(self.view.mas_top).offset(280);
+        make.width.equalTo(@240);
         make.height.equalTo(@40);
         make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(self.view.mas_top).with.offset(200);
     }];
+    self.usernameField.layer.cornerRadius = 6;
+    
     
     [self.passwordField mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -66,10 +96,13 @@
         make.top.equalTo(self.usernameField.mas_bottom).offset(28);
     }];
     
+    self.passwordField.layer.cornerRadius = 6;
+    
     [self.usernameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.right.equalTo(self.usernameField.mas_left).offset(-10);
+        //make.right.equalTo(self.usernameField.mas_left).offset(100);
         make.centerY.equalTo(self.usernameField.mas_centerY);
+        make.centerX.equalTo(self.usernameField.mas_centerX).offset(40);
     }];
     
     [self.passwordLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -78,12 +111,19 @@
         make.centerY.equalTo(self.passwordField.mas_centerY);
     }];
     
+    [self.forgotPassword mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.passwordField.mas_bottom).offset(5);
+        make.right.equalTo(self.passwordField.mas_right).offset(-5);
+        make.width.equalTo(@60);
+        make.height.equalTo(@20);
+    }];
+    
     [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.width.equalTo(self.usernameField.mas_width);
         make.height.equalTo(self.usernameField.mas_height);
         make.left.equalTo(self.usernameField.mas_left);
-        make.top.equalTo(self.passwordField.mas_bottom).offset(38);
+        make.top.equalTo(self.passwordField.mas_bottom).offset(58);
     }];
     [self.registButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -92,6 +132,8 @@
         make.left.equalTo(self.usernameField.mas_left);
         make.bottom.equalTo(self.loginButton.mas_bottom).offset(58);
     }];
+    self.loginButton.layer.cornerRadius = 6;
+    self.registButton.layer.cornerRadius = 6;
     
 }
 
@@ -99,17 +141,6 @@
 
 - (void)loginbuttonClicked:(id)sender{
     
-//    NSString *userNameTemp = @"12345";
-//    NSString *passwardTemp = @"12345";
-//    if ([userNameTemp isEqualToString:self.usernameField.text]&[passwardTemp isEqualToString:self.passwordField.text]){
-//        NSLog(@"Entry game");
-//        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//        //[delegate toMainGame];
-//
-//    }else{
-//        NSLog(@"userName or passward error");
-//    }
-//    self.loginApimanager = [[UserLoginAPIManager alloc]initWithUserNameAndPassword:@"test" password:@"test123"];
     self.loginApimanager = [[UserLoginAPIManager alloc]initWithUserNameAndPassword:self.usernameField.text password:self.passwordField.text];
     [self.loginApimanager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
 //        if (errorType == ZHYAPIManagerErrorTypeSuccess) {
@@ -129,6 +160,8 @@
             [GVUserDefaults standardUserDefaults].diamond = responseData[@"data"][@"diamond"];
             [GVUserDefaults standardUserDefaults].level = responseData[@"data"][@"level"];
             [GVUserDefaults standardUserDefaults].avatar = responseData[@"data"][@"avatar"];
+            [GVUserDefaults standardUserDefaults].experience = responseData[@"data"][@"experience"];
+
             NSLog(@"用户ID = %@",[GVUserDefaults standardUserDefaults].userId);
             AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
             [delegate toMain];
@@ -141,11 +174,14 @@
 
     
 }
+
+
+
 - (UITextField *)usernameField {
     if (!_usernameField){
-        _usernameField = [[UITextField alloc] init];
-        _usernameField.placeholder = @"用户名";
-        
+        _usernameField = [[UITextField alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/6, SCREEN_HEIGHT/2+20, SCREEN_WIDTH*2/3, 40)];
+        _usernameField.placeholder = @"   请 输 入 用 户 名";
+        _usernameField.backgroundColor = [UIColor whiteColor];
         _usernameField.returnKeyType = UIReturnKeyDone;
         _usernameField.delegate = self;
     }
@@ -154,19 +190,31 @@
 - (UITextField *)passwordField {
     if (!_passwordField){
         _passwordField = [[UITextField alloc] init];
-        _passwordField.placeholder = @"密码";
+        _passwordField.placeholder = @"   请 输 入 密 码";
+        _passwordField.backgroundColor = [UIColor whiteColor];
         _passwordField.secureTextEntry = YES;
         _passwordField.returnKeyType = UIReturnKeyDone;
         _passwordField.delegate = self;
     }
     return _passwordField;
 }
+-(UILabel *)forgotPassword{
+    if (!_forgotPassword) {
+        _forgotPassword = [[UILabel alloc]init];
+        _forgotPassword.text = @"忘记密码";
+        _forgotPassword.textColor = [UIColor lightGrayColor];
+        _forgotPassword.font = [UIFont systemFontOfSize:12];
+        _forgotPassword.backgroundColor = [UIColor clearColor];
+    }
+    return _forgotPassword;
+}
+
 - (UIButton *)loginButton{
     if (!_loginButton) {
         _loginButton = [[UIButton alloc]init];
-        
-        [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
-        _loginButton.backgroundColor= [UIColor darkGrayColor];
+        _loginButton.backgroundColor = [UIColor blueColor];
+        [_loginButton setTitle:@"登  录" forState:UIControlStateNormal];
+
         [_loginButton addTarget:self action:@selector(loginbuttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _loginButton;
@@ -182,7 +230,7 @@
         //_registButton.layer.borderWidth = 2.0;
         //_registButton.layer.borderColor = UIColorFromRGB(0x1EB19E).CGColor;
         [_registButton setTintColor:UIColorFromRGB(0x1EB19E)];
-        _registButton.backgroundColor=[UIColor lightGrayColor];
+        _registButton.backgroundColor=[UIColor orangeColor];
         //[_registButton setBackgroundColor:UIColorFromRGB(0xffffff)];
         [_registButton addTarget:self action:@selector(regist:) forControlEvents:UIControlEventTouchUpInside];
     }

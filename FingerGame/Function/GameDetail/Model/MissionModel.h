@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  关卡等级
  */
-@property(strong,nonatomic) NSString *missionLevel;
+@property(strong, nonatomic) NSString *missionLevel;
 /**
  关卡通关获得经验值
  */

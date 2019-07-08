@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CostValueTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PCViewController : UIViewController
+@interface PCViewController : UIViewController<CostBuyDelegate>
 
 @end
 

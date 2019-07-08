@@ -2,7 +2,7 @@
 //  FavoritesTableViewController.h
 //  FingerGame
 //
-//  Created by Nao Kunagisa on 2019/5/6.
+//  Created by Nao Kunagisa on 2019/7/8.
 //  Copyright © 2019年 lisy. All rights reserved.
 //
 

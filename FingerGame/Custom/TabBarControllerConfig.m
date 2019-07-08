@@ -12,7 +12,6 @@
 #import "GameStageTableViewController.h"
 #import "PersonalPageViewController.h"
 #import "ZHYBaseNavigationController.h"
-#import "ClassicsMissionViewController.h"
 #import "PCViewController.h"
 
 @interface TabBarControllerConfig()
@@ -29,17 +28,15 @@
         
         GameStageTableViewController *tvc1 = [[GameStageTableViewController alloc]init];
         ZHYBaseNavigationController *nc1 = [[ZHYBaseNavigationController alloc] initWithRootViewController:tvc1];
-        nc1.tabBarItem.title = @"游戏列表";
-        //nc1.tabBarItem.selectedImage = [[SmallTools imageResize:[UIImage imageNamed:selected] andResizeTo:CGSizeMake(25, 25)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         UIImage *imagehome = [UIImage imageNamed:@"底个首页"];
         UIImage *imageHome = [self imageResize:imagehome andResizeTo:CGSizeMake(SCREEN_WIDTH/3, SCREEN_WIDTH*3/20)];
         
         imageHome = [imageHome imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [nc1.tabBarItem setSelectedImage:imageHome];
         [nc1.tabBarItem setImage:imageHome];
+        
         ClassicStageViewController *ctvc = [[ClassicStageViewController alloc]init];
         ZHYBaseNavigationController *nc2 = [[ZHYBaseNavigationController alloc]initWithRootViewController:ctvc];
-        nc2.tabBarItem.title=@"精品列表";
         UIImage *imagestar = [UIImage imageNamed:@"底个精品"];
         UIImage *imageStar = [self imageResize:imagestar andResizeTo:CGSizeMake(SCREEN_WIDTH/3, SCREEN_WIDTH*3/20)];
         imageStar = [imageStar imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -48,7 +45,6 @@
         
         PCViewController *pvc1 = [[PCViewController alloc]init];
         ZHYBaseNavigationController *nc3 = [[ZHYBaseNavigationController alloc] initWithRootViewController:pvc1];
-        nc3.tabBarItem.title=@"个人中心";
         UIImage *imageperson = [UIImage imageNamed:@"底个人中心"];
         UIImage *imagePerson = [self imageResize:imageperson andResizeTo:CGSizeMake(SCREEN_WIDTH/3, SCREEN_WIDTH*3/20)];
         imagePerson = [imagePerson imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

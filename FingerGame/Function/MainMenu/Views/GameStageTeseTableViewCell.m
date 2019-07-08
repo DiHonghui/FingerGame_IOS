@@ -90,6 +90,18 @@
         UIImage *image = [UIImage imageNamed:@"收藏2"];
         [self.likeIcon setImage:image];
     }
+    UIImage *image = [UIImage imageNamed:@"星星小"];
+    if ([model.star isEqualToString:@"1"]) {
+        [self.star1 setImage:image];
+        
+    }else if ([model.star isEqualToString:@"2"]){
+        [self.star1 setImage:image];
+        [self.star2 setImage:image];
+    }else if ([model.star isEqualToString:@"3"]){
+        [self.star1 setImage:image];
+        [self.star2 setImage:image];
+        [self.star3 setImage:image];
+    }
     
 }
 
