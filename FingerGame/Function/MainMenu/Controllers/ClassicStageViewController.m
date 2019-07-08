@@ -91,30 +91,39 @@
     CGFloat viewWidth = SCREEN_WIDTH*4/17;
     NSLog(@"屏幕尺寸为，宽 %f ，高 %f",SCREEN_WIDTH,SCREEN_HEIGHT);
     CGFloat ViewHeight = 60;
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(5+tag*viewWidth, 0, viewWidth, ViewHeight)];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(5+tag*(viewWidth+5), 0, viewWidth, ViewHeight)];
     view.tag = tag;
-    UILabel *titleBglb = [[UILabel alloc]initWithFrame:CGRectMake(5, 30, viewWidth-5, ViewHeight-35)];
+    UILabel *titleBglb = [[UILabel alloc]initWithFrame:CGRectMake(5, 20, viewWidth-5, ViewHeight-35)];
     titleBglb.backgroundColor = UIColorFromRGB(0x5aafe0);
     titleBglb.layer.cornerRadius = 10;
     titleBglb.layer.masksToBounds = YES;
     [view addSubview:titleBglb];
     if (add) {
-        UIImageView *uiv2 = [[UIImageView alloc]initWithFrame:CGRectMake(viewWidth-12, 38, 10, 10)];
+        UIImageView *uiv2 = [[UIImageView alloc]initWithFrame:CGRectMake(viewWidth-12, 28, 10, 10)];
         uiv2.image = [UIImage imageNamed:@"加号"];
         [view addSubview:uiv2];
-        UIButton *addbutton = [[UIButton alloc]initWithFrame:(CGRect)CGRectMake(viewWidth-12, 43, 10, 10)];
+        UIButton *addbutton = [[UIButton alloc]initWithFrame:(CGRect)CGRectMake(viewWidth-12, 33, 10, 10)];
         [view addSubview:addbutton];
     }else{
+        UIProgressView *proView = [[UIProgressView alloc]initWithFrame:CGRectMake(5, 52, viewWidth-10, 2)];
+        proView.progressViewStyle = UIProgressViewStyleBar;
+        proView.progress = ([[GVUserDefaults standardUserDefaults].experience intValue]/100);
+        NSLog(@"经验值%@",[GVUserDefaults standardUserDefaults].experience);
+        // 设置走过的颜色
+        proView.progressTintColor = [UIColor orangeColor];
         
+        // 设置未走过的颜色
+        proView.trackTintColor = [UIColor lightGrayColor];
+        [view addSubview:proView];
     }
     
-    UILabel *titlelb = [[UILabel alloc]initWithFrame:CGRectMake(35, 30, viewWidth-37, ViewHeight-35)];
+    UILabel *titlelb = [[UILabel alloc]initWithFrame:CGRectMake(35, 20, viewWidth-37, ViewHeight-35)];
     titlelb.textColor = [UIColor whiteColor];
     titlelb.font = [UIFont systemFontOfSize:11];
     titlelb.text = title;
     [view addSubview:titlelb];
     
-    UIImageView *uiv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 25, 30, 30)];
+    UIImageView *uiv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 15, 30, 30)];
     uiv.image = [UIImage imageNamed:image];
     [view addSubview:uiv];
     
@@ -181,6 +190,7 @@
     if (indexPath.section ==0) {
         UITableViewCell *cell = [[UITableViewCell alloc] init];
         cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryNone;
         return cell;
     }else if (indexPath.section==1)
@@ -191,6 +201,7 @@
             [tableView registerNib:nib forCellReuseIdentifier:@"ClassicThemeTableViewCell"];
             cell = [tableView dequeueReusableCellWithIdentifier:@"ClassicThemeTableViewCell"];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     ClassicStageTableViewCell *cell = (ClassicStageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ClassicStageTableViewCell"];
@@ -198,6 +209,7 @@
         UINib* nib = [UINib nibWithNibName:@"ClassicStageTableViewCell" bundle:nil];
         [tableView registerNib:nib forCellReuseIdentifier:@"ClassicStageTableViewCell"];
         cell = [tableView dequeueReusableCellWithIdentifier:@"ClassicStageTableViewCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     //MissionModel *missionModel = self.dataSource[indexPath.row];
     //[cell configureCell:missionModel];

@@ -1,5 +1,5 @@
 //
-//  FavoritesTableViewController.h
+//  FavoViewController.h
 //  FingerGame
 //
 //  Created by Nao Kunagisa on 2019/7/8.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FavoritesTableViewController : UITableViewController
+@interface FavoViewController : TableViewController
 
 @end
 

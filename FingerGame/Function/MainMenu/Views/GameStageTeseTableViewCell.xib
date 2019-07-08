@@ -60,11 +60,11 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="星星小" translatesAutoresizingMaskIntoConstraints="NO" id="39D-Kc-SFr">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="星星小灰" translatesAutoresizingMaskIntoConstraints="NO" id="39D-Kc-SFr">
                         <rect key="frame" x="60" y="55" width="24" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="星星小" translatesAutoresizingMaskIntoConstraints="NO" id="70Z-10-hvc">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="星星小灰" translatesAutoresizingMaskIntoConstraints="NO" id="70Z-10-hvc">
                         <rect key="frame" x="92" y="55" width="24" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                     </imageView>
@@ -120,7 +120,6 @@
     </objects>
     <resources>
         <image name="收藏1" width="40" height="38"/>
-        <image name="星星小" width="28" height="28"/>
         <image name="星星小灰" width="28" height="28"/>
         <image name="黄色条" width="713" height="133"/>
     </resources>
