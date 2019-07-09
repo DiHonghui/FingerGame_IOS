@@ -348,7 +348,7 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
                     fp6.fingerId = @"5"; fp6.fingerName = @"大拇指"; fp6.storeLocation = responseData[@"data"][@"info"][@"f5"];
                     [self.fpArray addObject:fp6];
                     FpInfoModel *fp7 = [[FpInfoModel alloc] init];
-                    fp7.fingerId = @"6"; fp7.fingerName = @"中指"; fp7.storeLocation = responseData[@"data"][@"info"][@"f6"];
+                    fp7.fingerId = @"6"; fp7.fingerName = @"食指"; fp7.storeLocation = responseData[@"data"][@"info"][@"f6"];
                     [self.fpArray addObject:fp7];
                     FpInfoModel *fp8 = [[FpInfoModel alloc] init];
                     fp8.fingerId = @"7"; fp8.fingerName = @"中指"; fp8.storeLocation = responseData[@"data"][@"info"][@"f7"];
@@ -387,7 +387,7 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
                 fp6.fingerId = @"5"; fp6.fingerName = @"大拇指"; fp6.storeLocation = @"-1";
                 [self.fpArray addObject:fp6];
                 FpInfoModel *fp7 = [[FpInfoModel alloc] init];
-                fp7.fingerId = @"6"; fp7.fingerName = @"中指"; fp7.storeLocation = @"-1";
+                fp7.fingerId = @"6"; fp7.fingerName = @"食指"; fp7.storeLocation = @"-1";
                 [self.fpArray addObject:fp7];
                 FpInfoModel *fp8 = [[FpInfoModel alloc] init];
                 fp8.fingerId = @"7"; fp8.fingerName = @"中指"; fp8.storeLocation = @"-1";

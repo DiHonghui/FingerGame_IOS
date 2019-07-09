@@ -22,6 +22,7 @@
              @"bestScore" : @"playRecord.bestScore",
              @"star"      : @"playRecord.star",
              @"like"      : @"playRecord.like",
+             @"missionSmallLevel":@[@"small_level"]
              };
 }
 

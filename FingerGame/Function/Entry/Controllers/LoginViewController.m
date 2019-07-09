@@ -16,7 +16,7 @@
 #import "UserLoginApiManager.h"
 #import "MyAlertCenter.h"
 #import "AFNetworkReachabilityManager.h"
-
+#import "OfflineManager.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -265,5 +265,8 @@
 -(void)loginOfflineClick:(id)sender{
 //离线进入主页面
     NSLog(@"进入离线模式");
+    OfflineManager *m = [OfflineManager sharedInstance];
+    [m initMyOfflineData];
+
 }
 @end

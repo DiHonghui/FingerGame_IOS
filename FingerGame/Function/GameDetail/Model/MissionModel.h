@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(strong,nonatomic) NSString *like;
 
-
+@property(strong,nonatomic) NSString *missionSmallLevel;
 
 
 @end
