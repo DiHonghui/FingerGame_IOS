@@ -36,7 +36,7 @@
 #define GSTVCELL @"GameStageTableViewCell"
 #define GSTTVCELL @"GameStageTeseTableViewCell"
 
-@interface GameStageTableViewController () <MyBTManagerProtocol>
+@interface GameStageTableViewController () <MyBTManagerProtocol,GameStageTeseTableViewCellDelegate>
 
 @property (strong, nonatomic) MissionlistApiManager *missionlistApiManager;
 
@@ -88,7 +88,7 @@
     [self.tableView setBackgroundColor:bgTVCColor];
     
     self.tableView.alpha = 1;
-    UIView *view1 = [self costViewWithImage:@"昵称.png" tag:0 string:@"name" add:false];
+    UIView *view1 = [self costViewWithImage:@"昵称.png" tag:0 string:[GVUserDefaults standardUserDefaults].userName add:false];
     UIView *view2 = [self costViewWithImage:@"体力.png" tag:1 string:[GVUserDefaults standardUserDefaults].energy add:true];
     UIView *view3 = [self costViewWithImage:@"健康豆.png" tag:2 string:[GVUserDefaults standardUserDefaults].healthyBeans add:true];
     UIView *view4 = [self costViewWithImage:@"钻石小.png" tag:3 string:[GVUserDefaults standardUserDefaults].diamond add:true];
@@ -276,6 +276,7 @@
     NSLog(@"收藏状态是%@",missionModel.like);
     [cell configureCell:missionModel];
     cell.delegate = self;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

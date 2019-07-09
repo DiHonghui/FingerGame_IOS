@@ -522,7 +522,7 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
             [self uploadFpToServerWithId:[NSString stringWithFormat:@"%d",self.curOperatingFinger] Location:self.curLoginLocation];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self hideProgress];
-                //[self loadData];
+                [self showHUDText:[NSString stringWithFormat:@"手指%d指纹录入成功",self.curOperatingFinger]];
             });
         }
         if ([sdata containsString:@"aa02030e11"]){
@@ -530,6 +530,7 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
             self.loginState = LoginStateDefault;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self hideProgress];
+                [self showHUDText:[NSString stringWithFormat:@"手指%d指纹录入失败",self.curOperatingFinger]];
             });
         }
     }else{

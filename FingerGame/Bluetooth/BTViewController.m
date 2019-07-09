@@ -24,7 +24,13 @@
     [super viewDidLoad];
 
     self.navigationItem.title=@"蓝牙搜索";
-    self.navigationController.navigationBar.topItem.title = @"";
+    UIColor *bgColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"顶栏.png"]];
+    self.navigationController.navigationBar.barTintColor = bgColor;
+    UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    imageView.image=[UIImage imageNamed:@"Game_Background"];
+    imageView.alpha = 0.4;
+    [self.view insertSubview:imageView atIndex:0];
+    
     self.arrayBLE = [[NSMutableArray alloc] init];
 }
 
@@ -69,7 +75,8 @@
     BLEInfo *thisBLEInfo=[self.arrayBLE objectAtIndex:indexPath.row];
     cell.textLabel.text=[NSString stringWithFormat:@"%@ %@",thisBLEInfo.discoveredPeripheral.name,thisBLEInfo.rssi];
     cell.detailTextLabel.text=[NSString stringWithFormat:@"UUID:%@",thisBLEInfo.discoveredPeripheral.identifier.UUIDString];
-
+    cell.backgroundColor = [UIColor clearColor];
+    
     return cell;
 }
 

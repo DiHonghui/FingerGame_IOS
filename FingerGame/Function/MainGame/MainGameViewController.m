@@ -229,7 +229,7 @@
             }
         });
         
-        if (self.failureClick>=10 || self.successClick+self.failureClick==self.sceneCount){
+        if (self.successClick+self.failureClick==self.sceneCount){
             [self endGame];
             *stop = YES;
         }
@@ -362,11 +362,11 @@
 - (void)tapScene:(UIGestureRecognizer *)gesture{
     __weak GameSceneView *targetView = (GameSceneView *)gesture.view;
     NSLog(@"==%ld",(long)targetView.tag);
-    if (targetView.frame.origin.y <= SCREEN_HEIGHT-[BottomLeftView heightForView]-25 && targetView.frame.size.height+targetView.frame.origin.y >= SCREEN_HEIGHT-[BottomLeftView heightForView]-25) {
+    if (targetView.frame.origin.y <= SCREEN_HEIGHT-[BottomLeftView heightForView]-15 && targetView.frame.size.height+targetView.frame.origin.y >= SCREEN_HEIGHT-[BottomLeftView heightForView]-15){
         if (targetView.completeType != CompleteTypeSuccess){
             targetView.backgroundColor = [UIColor greenColor];
             targetView.completeType = CompleteTypeSuccess;
-            self.score +=1;
+            self.successClick +=1;
             NSLog(@"Touched Success");
         }
     }
