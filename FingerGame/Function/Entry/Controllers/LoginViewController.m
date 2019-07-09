@@ -25,6 +25,7 @@
 
 @property (strong,nonatomic) UIButton *loginButton;
 @property (strong, nonatomic) UIButton *registButton;
+@property (strong,nonatomic) UIButton *loginOffLine;
 
 @property (strong, nonatomic) UILabel *usernameLabel;
 @property (strong, nonatomic) UILabel *passwordLabel;
@@ -53,6 +54,7 @@
     
     [self.view addSubview:self.loginButton];
     [self.view addSubview:self.registButton];
+    [self.view addSubview:self.loginOffLine];
     [self layoutSubviews];
     
 }
@@ -82,7 +84,7 @@
     [self.usernameField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top).offset(280);
         make.width.equalTo(@240);
-        make.height.equalTo(@40);
+        make.height.equalTo(@30);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
     self.usernameField.layer.cornerRadius = 6;
@@ -123,17 +125,25 @@
         make.width.equalTo(self.usernameField.mas_width);
         make.height.equalTo(self.usernameField.mas_height);
         make.left.equalTo(self.usernameField.mas_left);
-        make.top.equalTo(self.passwordField.mas_bottom).offset(58);
+        make.top.equalTo(self.passwordField.mas_bottom).offset(40);
     }];
     [self.registButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.width.equalTo(self.usernameField.mas_width);
         make.height.equalTo(self.usernameField.mas_height);
         make.left.equalTo(self.usernameField.mas_left);
-        make.bottom.equalTo(self.loginButton.mas_bottom).offset(58);
+        make.bottom.equalTo(self.loginButton.mas_bottom).offset(40);
+    }];
+    [self.loginOffLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.width.equalTo(self.usernameField.mas_width);
+        make.height.equalTo(self.usernameField.mas_height);
+        make.left.equalTo(self.usernameField.mas_left);
+        make.bottom.equalTo(self.registButton.mas_bottom).offset(40);
     }];
     self.loginButton.layer.cornerRadius = 6;
     self.registButton.layer.cornerRadius = 6;
+    self.loginOffLine.layer.cornerRadius = 6;
     
 }
 
@@ -219,6 +229,16 @@
     }
     return _loginButton;
 }
+- (UIButton *)loginOffLine{
+    if (!_loginOffLine) {
+        _loginOffLine = [[UIButton alloc]init];
+        _loginOffLine.backgroundColor = [UIColor darkGrayColor];
+        [_loginOffLine setTitle:@"离  线  测   试" forState:UIControlStateNormal];
+        
+        [_loginOffLine addTarget:self action:@selector(loginOfflineClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _loginOffLine;
+}
 
 - (UIButton *)registButton{
     if (!_registButton) {
@@ -242,4 +262,8 @@
     [self.navigationController pushViewController:rv animated:YES];
 }
 
+-(void)loginOfflineClick:(id)sender{
+//离线进入主页面
+    NSLog(@"进入离线模式");
+}
 @end
