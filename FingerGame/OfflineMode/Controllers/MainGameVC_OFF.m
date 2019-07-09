@@ -1,12 +1,12 @@
 //
-//  MainGameViewController.m
+//  MainGameVC_OFF.m
 //  FingerGame
 //
-//  Created by lisy on 2019/2/19.
+//  Created by lisy on 2019/7/9.
 //  Copyright © 2019 lisy. All rights reserved.
 //
 
-#import "MainGameViewController.h"
+#import "MainGameVC_OFF.h"
 
 #import "GameSceneView.h"
 #import "StartAnimView.h"
@@ -19,14 +19,14 @@
 
 #import "AudioManager.h"
 #import "MyCacheManager.h"
-#import "DefaultApiManager.h"
+#import "OfflineManager.h"
 
 #import "YYModel.h"
 #import "AppMacro.h"
 #import "NSObject+ProgressHUD.h"
 #import "GVUserDefaults+Properties.h"
 
-@interface MainGameViewController ()<MyBTManagerProtocol,GameStaticsViewProtocol,SettlementViewProtocol,PauseMenuViewProtocol>
+@interface MainGameVC_OFF () <MyBTManagerProtocol,GameStaticsViewProtocol,SettlementViewProtocol,PauseMenuViewProtocol>
 
 //方块的数量（指令的个数）
 @property (nonatomic,assign) NSInteger sceneCount;
@@ -72,9 +72,11 @@
 
 @property (nonatomic,assign) BOOL isPaused;
 
+@property (nonatomic,strong) OfflineManager *offlineManager;
+
 @end
 
-@implementation MainGameViewController
+@implementation MainGameVC_OFF
 {
     __block CADisplayLink *displayLink;
 }
@@ -103,6 +105,7 @@
     self.curBTManager = [MyBTManager sharedInstance];
     self.curBTManager.delegate = self;
     self.curAudioManager = [AudioManager sharedInstance];
+    self.offlineManager = [OfflineManager sharedInstance];
     
     [self startGame];
 }
@@ -300,33 +303,42 @@
 }
 //上传用户获得的奖励数据
 - (void)uploadGotAwards:(float)beans{
-    int t = [[GVUserDefaults standardUserDefaults].healthyBeans intValue];
-    t += beans;
-    DefaultApiManager *m = [[DefaultApiManager alloc] init];
-    [m loadDataWithParams:@{@"service":@"App.User.Currency",@"user_id":[GVUserDefaults standardUserDefaults].userId,@"healthyBeans":[NSString stringWithFormat:@"%d",t]} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-        if (errorType == ZHYAPIManagerErrorTypeSuccess){
-            NSLog(@"上传游戏奖励成功");
-        }
-    }];
+    [self.offlineManager setOperatingTable:@"user_table"];
+    int cbeans = [[self.offlineManager getStringWithKey:@"healthyBeans"] intValue];
+    cbeans += beans;
+    [self.offlineManager storeString:[NSString stringWithFormat:@"%d",cbeans] WithKey:@"healthyBeans"];
+    NSLog(@"%@",[self.offlineManager getStringWithKey:@"healthyBeans"]);
+    NSLog(@"上传游戏奖励成功");
 }
 //上传新的最高分
 - (void)uploadNewBestScore:(float)score{
-    DefaultApiManager *m = [[DefaultApiManager alloc] init];
-    [m loadDataWithParams:@{@"service":@"App.Game.Complete",@"userId":[GVUserDefaults standardUserDefaults].userId,@"gameId":self.curMissionModel.missionID,@"score":[NSString stringWithFormat:@"%.f",score],@"star":[NSString stringWithFormat:@"%d",self.stars]} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-        if (errorType == ZHYAPIManagerErrorTypeSuccess){
-            NSLog(@"上传新的最高分成功");
-            self.curMissionModel.bestScore = [NSString stringWithFormat:@"%.f",score];
-        }
-    }];
+    [self.offlineManager setOperatingTable:@"gameInfo_table"];
+    NSDictionary *dic = @{@"missionID":self.curMissionModel.missionID,
+                          @"missionName":self.curMissionModel.missionName,
+                          @"missionLevel":self.curMissionModel.missionLevel,
+                          @"missionExperience":self.curMissionModel.missionExperience,
+                          @"missionDifficulty":self.curMissionModel.missionDifficulty,
+                          @"musicName":self.curMissionModel.musicName,
+                          @"musicPath":self.curMissionModel.musicPath,
+                          @"musicTime":self.curMissionModel.musicTime,
+                          @"star":self.curMissionModel.star,
+                          @"price":self.curMissionModel.price,
+                          @"award":self.curMissionModel.award,
+                          @"bestScore":[NSString stringWithFormat:@"%.f",score],
+                          @"like":self.curMissionModel.like,
+                          @"missionSmallLevel":self.curMissionModel.missionSmallLevel};
+    NSLog(@"%@",dic);
+    [self.offlineManager storeObject:dic WithKey:self.curMissionModel.missionID];
+    self.curMissionModel.bestScore = [NSString stringWithFormat:@"%.f",score];
+    NSLog(@"上传新的最高分成功");
 }
 //上传经验值 等级
 - (void)uploadUserLevel:(int)lv EXP:(int)exp{
-    DefaultApiManager *m = [[DefaultApiManager alloc] init];
-    [m loadDataWithParams:@{@"service":@"App.User.Experience",@"user_id":[GVUserDefaults standardUserDefaults].userId,@"exp":[NSString stringWithFormat:@"%d",exp],@"level":[NSString stringWithFormat:@"%d",lv]} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-        if (errorType == ZHYAPIManagerErrorTypeSuccess){
-            NSLog(@"更新用户经验等级成功");
-        }
-    }];
+    [self.offlineManager setOperatingTable:@"user_table"];
+    [self.offlineManager storeString:[NSString stringWithFormat:@"%d",lv] WithKey:@"level"];
+    [self.offlineManager storeString:[NSString stringWithFormat:@"%d",exp] WithKey:@"experience"];
+    NSLog(@"%@",[self.offlineManager getStringWithKey:@"healthyBeans"]);
+    NSLog(@"更新用户经验等级成功");
 }
 //重新开始游戏
 - (void)restartGame{
@@ -395,65 +407,65 @@
         NSLog(@"游戏状态为暂停，不解析蓝牙指令");
     }
     else{
-    //处理返回按键指令
-    if ([order hasPrefix:@"aa05"]){//aa0501 aa050b aa0503
-        NSString *typeString = [order substringWithRange:NSMakeRange(4, 2)];
-        NSString *idString = [order substringWithRange:NSMakeRange(6, 2)];
-        NSString *string1 = [order substringWithRange:NSMakeRange(8, 2)];
-        NSString *string2 = [order substringWithRange:NSMakeRange(10, 2)];
-        NSString *string3 = [order substringWithRange:NSMakeRange(12, 2)];
-        int returnId = [idString intValue];
-        float returnTime = [self hexToDec:string1]*60 + [self hexToDec:string2] + [self hexToDec:string3]/100;
-        //分不同指令类型和滑块当前状态进行比对
-        if ([typeString isEqualToString:@"0b"]){
-            NSLog(@"这是一条按键抬起指令,手指id为%d ,抬起时间点为%.2f",returnId,returnTime);
-            if (self.gameOrderFile){
-                [self.gameOrderFile.gameOrders enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if ( ((OrderModel*)obj).fingerId == returnId ){
-                        if ( returnTime >= ((OrderModel*)obj).startTime+((OrderModel*)obj).duration-AllowedDelay && returnTime <= ((OrderModel*)obj).startTime+((OrderModel*)obj).duration+AllowedDelay ){
+        //处理返回按键指令
+        if ([order hasPrefix:@"aa05"]){//aa0501 aa050b aa0503
+            NSString *typeString = [order substringWithRange:NSMakeRange(4, 2)];
+            NSString *idString = [order substringWithRange:NSMakeRange(6, 2)];
+            NSString *string1 = [order substringWithRange:NSMakeRange(8, 2)];
+            NSString *string2 = [order substringWithRange:NSMakeRange(10, 2)];
+            NSString *string3 = [order substringWithRange:NSMakeRange(12, 2)];
+            int returnId = [idString intValue];
+            float returnTime = [self hexToDec:string1]*60 + [self hexToDec:string2] + [self hexToDec:string3]/100;
+            //分不同指令类型和滑块当前状态进行比对
+            if ([typeString isEqualToString:@"0b"]){
+                NSLog(@"这是一条按键抬起指令,手指id为%d ,抬起时间点为%.2f",returnId,returnTime);
+                if (self.gameOrderFile){
+                    [self.gameOrderFile.gameOrders enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if ( ((OrderModel*)obj).fingerId == returnId ){
+                            if ( returnTime >= ((OrderModel*)obj).startTime+((OrderModel*)obj).duration-AllowedDelay && returnTime <= ((OrderModel*)obj).startTime+((OrderModel*)obj).duration+AllowedDelay ){
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    NSLog(@"按键抬起指令，手指id为%d，抬起时间符合指令序列下标为%d的指令区间",returnId,((OrderModel*)obj).no);
+                                    GameSceneView *scene = (GameSceneView *)[self.operateArray objectAtIndex:((OrderModel*)obj).no];
+                                    NSLog(@"type%ld",(long)scene.completeType);
+                                    if (scene.completeType == CompleteTypeTouched){
+                                        scene.completeType = CompleteTypeSuccess;
+                                        scene.backgroundColor = [UIColor greenColor];
+                                        NSLog(@"抬起成功");
+                                        self.successClick += 1;
+                                    }
+                                });
+                            }
+                        }
+                    }];
+                }
+            }
+            if ([typeString isEqualToString:@"01"]){
+                NSLog(@"这是一条按键按下指令,手指id为%d ,按下时间点为%.2f",returnId,returnTime);
+                if (self.gameOrderFile){
+                    [self.gameOrderFile.gameOrders enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if ( ((OrderModel*)obj).fingerId == returnId && returnTime >= ((OrderModel*)obj).startTime-AllowedDelay && returnTime <= ((OrderModel*)obj).startTime+AllowedDelay ){
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                NSLog(@"按键抬起指令，手指id为%d，抬起时间符合指令序列下标为%d的指令区间",returnId,((OrderModel*)obj).no);
+                                NSLog(@"按键按下指令，手指id为%d，按下时间符合指令序列下标为%d的指令区间",returnId,((OrderModel*)obj).no);
                                 GameSceneView *scene = (GameSceneView *)[self.operateArray objectAtIndex:((OrderModel*)obj).no];
                                 NSLog(@"type%ld",(long)scene.completeType);
-                                if (scene.completeType == CompleteTypeTouched){
-                                    scene.completeType = CompleteTypeSuccess;
-                                    scene.backgroundColor = [UIColor greenColor];
-                                    NSLog(@"抬起成功");
-                                    self.successClick += 1;
+                                if (scene.completeType == CompleteTypeDefault){
+                                    scene.completeType = CompleteTypeTouched;
+                                    scene.backgroundColor = [UIColor yellowColor];
+                                    NSLog(@"type%ld",(long)scene.completeType);
+                                    NSLog(@"按下成功");
                                 }
                             });
                         }
-                    }
-                }];
+                    }];
+                }
             }
-        }
-        if ([typeString isEqualToString:@"01"]){
-            NSLog(@"这是一条按键按下指令,手指id为%d ,按下时间点为%.2f",returnId,returnTime);
-            if (self.gameOrderFile){
-                [self.gameOrderFile.gameOrders enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if ( ((OrderModel*)obj).fingerId == returnId && returnTime >= ((OrderModel*)obj).startTime-AllowedDelay && returnTime <= ((OrderModel*)obj).startTime+AllowedDelay ){
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            NSLog(@"按键按下指令，手指id为%d，按下时间符合指令序列下标为%d的指令区间",returnId,((OrderModel*)obj).no);
-                            GameSceneView *scene = (GameSceneView *)[self.operateArray objectAtIndex:((OrderModel*)obj).no];
-                            NSLog(@"type%ld",(long)scene.completeType);
-                            if (scene.completeType == CompleteTypeDefault){
-                                scene.completeType = CompleteTypeTouched;
-                                scene.backgroundColor = [UIColor yellowColor];
-                                NSLog(@"type%ld",(long)scene.completeType);
-                                NSLog(@"按下成功");
-                            }
-                        });
-                    }
-                }];
+            if ([typeString isEqualToString:@"03"]){
+                NSLog(@"这是一条指纹识别指令，指纹对应手指id为%d",returnId);
+                self.fpSuccessCount ++;
             }
+        }else{
+            NSLog(@"该指令不是按键按下或者抬起指令");
         }
-        if ([typeString isEqualToString:@"03"]){
-            NSLog(@"这是一条指纹识别指令，指纹对应手指id为%d",returnId);
-            self.fpSuccessCount ++;
-        }
-    }else{
-        NSLog(@"该指令不是按键按下或者抬起指令");
-    }
     }
 }
 
@@ -547,89 +559,63 @@
 #pragma mark - Test Next Game
 - (void)prepareForNextGame:(NSString *)gameId{
     NSLog(@"准备访问下一关的信息");
-    DefaultApiManager *manager = [[DefaultApiManager alloc] init];
-    [manager loadDataWithParams:@{@"service":@"App.Game.FindByTwoID",@"gameId":gameId,@"userId":[GVUserDefaults standardUserDefaults].userId} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-        if (errorType == ZHYAPIManagerErrorTypeSuccess){
-            self.curLevel = responseData[@"data"][0][@"level"];
-            self.curSmallLevel = responseData[@"data"][0][@"small_level"];
-            NSLog(@"curLevel:%@  curSmallLevel%@",self.curLevel,self.curSmallLevel);
-            DefaultApiManager *m1 = [[DefaultApiManager alloc] init];
-            [m1 loadDataWithParams:@{@"service":@"App.Game.NextGame",@"level":self.curLevel,@"small_level":self.curSmallLevel} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-                NSString *nextGameId = responseData[@"data"];
-                NSLog(@"%@",nextGameId);
-                if ([[NSString stringWithFormat:@"%@",nextGameId] isEqualToString:@"-1"]){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self showErrorHUD:@"不存在下一关了,即将返回首页"];
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [self dismissViewControllerAnimated:YES completion:nil];
-                        });
-                    });
-                }
-                else{
-                    NSLog(@"nextGameId:%@",nextGameId);
-                    DefaultApiManager *m2 = [[DefaultApiManager alloc] init];
-                    [m2 loadDataWithParams:@{@"service":@"App.Game.FindByTwoID",@"gameId":nextGameId,@"userId":[GVUserDefaults standardUserDefaults].userId} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-                        if (errorType == ZHYAPIManagerErrorTypeSuccess){
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [self.settlementView removeFromSuperview];
-                                [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-                            });
-                            [self analyzeServiceData:responseData];
-                            //开始下一个游戏
-                            //蓝牙已连接，准备发送给蓝牙指令集
-                            [self.ordersArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                                [self.curBTManager writeToPeripheral:(NSString *)obj];
-                            }];
-                            //指令集发送结束 指令
-                            [self.curBTManager writeToPeripheral:@"aa02010506"];
-                            //
-                                    if ([self existsCacheForCurrentGame:self.gameOrderFile.gameId]){
-                                        NSString *localPath = [self.cacheManager getStringWithKey:self.gameOrderFile.gameId];
-                                        [self.curAudioManager prepareForAudioPlayer:localPath];
-                                        [self buildNextGameMainView];
-                                        
-                                    }else{
-                                        //d
-                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                            LoadResourceTipView *tv = [[LoadResourceTipView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-                                            [self.view addSubview:tv];
-                                            
-                                            [self.curAudioManager downloadAudioWithURL:[NSString stringWithFormat:@"http://shouzhi.yunzs.net/music/%@",self.curMissionModel.musicPath] fileName:self.curMissionModel.musicName downloadProgressBlock:^(CGFloat p) {
-                                                [tv updateProgress:p];
-                                            }  downloadReturnBlock:^(bool state, NSString * _Nonnull localPath) {
-                                                if (state == YES){
-                                                    [self.curAudioManager prepareForAudioPlayer:localPath];
-                                                    [tv removeFromSuperview];
-                                                    [self.cacheManager storeString:localPath WithKey:self.gameOrderFile.gameId];
-                                                    [self buildNextGameMainView];
-                                                }else{
-                                                    [self showErrorHUD:@"游戏音乐下载失败"];
-                                                    [self dismissViewControllerAnimated:NO completion:nil];
-                                                }
-                                            }];
-                                        });
-                                        //d
-                                    }
-                            //
-                        }
-                    }];
-                }
-            }];
-        }
-    }];
+    [self.offlineManager setOperatingTable:@"gameInfo_table"];
+    if ([gameId isEqualToString:@"4"]){
+        [self showErrorHUD:@"不存在下一关了,即将返回首页"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        });
+    }else{
+        NSString *nextGameId = [NSString stringWithFormat:@"%d",[gameId intValue]+1 ];
+        id obj = [self.offlineManager getObjectWithKey:nextGameId];
+        NSLog(@"nextGameInfo: %@",obj);
+        MissionModel *m = [MissionModel new];
+        m.missionID = obj[@"missionID"];
+        m.award = obj[@"award"];
+        m.bestScore = obj[@"bestScore"];
+        m.like = obj[@"like"];
+        m.missionDifficulty = obj[@"missionDifficulty"];
+        m.missionExperience = obj[@"missionExperience"];
+        m.missionLevel = obj[@"missionLevel"];
+        m.missionName = obj[@"missionName"];
+        m.missionSmallLevel = obj[@"missionSmallLevel"];
+        m.musicName = obj[@"musicName"];
+        m.musicPath = obj[@"musicPath"];
+        m.musicTime = obj[@"musicTime"];
+        m.price = obj[@"price"];
+        m.star = obj[@"star"];
+        self.curMissionModel = m;
+        
+        [self.offlineManager setOperatingTable:@"gameOrders_table"];
+        NSObject *data = [self.offlineManager getObjectWithKey:self.curMissionModel.missionID];
+        [self analyzeServiceData:data];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.settlementView removeFromSuperview];
+            [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        });
+        
+        //开始下一个游戏
+        //蓝牙已连接，准备发送给蓝牙指令集
+        [self.ordersArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.curBTManager writeToPeripheral:(NSString *)obj];
+        }];
+        //指令集发送结束 指令
+        [self.curBTManager writeToPeripheral:@"aa02010506"];
+        //
+        //[self.curAudioManager prepareForAudioPlayer:self.curMissionModel.musicPath];
+        [self buildNextGameMainView];
+        
+    }
 }
 
 - (void)analyzeServiceData:(id)data{
-    self.ordersArray = [NSMutableArray array];
-    if (!self.curMissionModel) self.curMissionModel = [[MissionModel alloc] init];
-    self.curMissionModel = [MissionModel yy_modelWithJSON:data[@"data"][0]];
-    NSLog(@"EXP:%@ AWARD:%@ BESTSCORE:%@ MusicPath:%@",self.curMissionModel.missionExperience,self.curMissionModel.award,self.curMissionModel.bestScore,self.curMissionModel.musicPath);
-    self.gameOrderFile.gameId = data[@"data"][0][@"id"];
-    self.gameOrderFile.gameName = data[@"data"][0][@"name"];
+    NSLog(@"EXP:%@ AWARD:%@ BESTSCORE:%@",self.curMissionModel.missionExperience,self.curMissionModel.award,self.curMissionModel.bestScore);
+    self.gameOrderFile.gameId = self.curMissionModel.missionID;
+    self.gameOrderFile.gameName = self.curMissionModel.missionName;
     self.gameOrderFile.gameOrders = [NSMutableArray array];
-    NSMutableArray *cArray = [NSMutableArray arrayWithArray:data[@"data"][0][@"instruction"]];
-    [cArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *str = obj[@"instruction"];
+    [data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *str = [NSString stringWithFormat:@"%@",obj];
         NSLog(@"index:%lu == %@",(unsigned long)idx,str);
         //保存到ordersArray，准备发送给蓝牙串口
         [self.ordersArray addObject:str];

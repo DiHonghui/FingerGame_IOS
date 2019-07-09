@@ -1,12 +1,12 @@
 //
-//  PCViewController.m
+//  PersonalCenterVC_OFF.m
 //  FingerGame
 //
-//  Created by lisy on 2019/6/24.
+//  Created by lisy on 2019/7/9.
 //  Copyright © 2019 lisy. All rights reserved.
 //
 
-#import "PCViewController.h"
+#import "PersonalCenterVC_OFF.h"
 
 #import "GVUserDefaults+Properties.h"
 #import "NSObject+ProgressHUD.h"
@@ -25,12 +25,11 @@
 #import "HLXibAlertView.h"
 
 #import "BTViewController.h"
-#import "FingerprintListTableViewController.h"
 #import "FavoViewController.h"
-#import "FingerprintManagementViewController.h"
+#import "FingerprintManagementVC_OFF.h"
+#import "OfflineManager.h"
 
-
-@interface PCViewController () <UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface PersonalCenterVC_OFF ()
 
 //蓝牙操作工具
 @property (nonatomic,strong) MyBTManager *curBTManager;
@@ -38,12 +37,15 @@
 @property(strong,nonatomic) UIView *mybuttonView;
 @property (nonatomic,strong) UIImageView *avaterIv;
 @property (nonatomic,strong) UILabel *nameLB;
+@property (nonatomic,strong) OfflineManager *offlineManager;
 
 @end
 
-@implementation PCViewController
+@implementation PersonalCenterVC_OFF
 
 - (void)viewDidLoad {
+    self.offlineManager = [OfflineManager sharedInstance];
+    self.curBTManager = [MyBTManager sharedInstance];
     
     _mybuttonView = [[UIView alloc]initWithFrame:CGRectMake(0.0, 0, SCREEN_WIDTH, 60)];
     UIColor *bgColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"顶栏.png"]];
@@ -62,17 +64,17 @@
     imageView.alpha = 1;
     [self.view insertSubview:imageView atIndex:0];
     
-    UIView *view1 = [self costViewWithImage:@"昵称.png" tag:0 string:[GVUserDefaults standardUserDefaults].userName add:false];
+    [self.offlineManager setOperatingTable:@"user_table"];
+    UIView *view1 = [self costViewWithImage:@"昵称.png" tag:0 string:[self.offlineManager getStringWithKey:@"userName"] add:false];
     UIView *view2 = [self costViewWithImage:@"体力.png" tag:1 string:[GVUserDefaults standardUserDefaults].energy add:true];
-    UIView *view3 = [self costViewWithImage:@"健康豆.png" tag:2 string:[GVUserDefaults standardUserDefaults].healthyBeans add:true];
-    UIView *view4 = [self costViewWithImage:@"钻石小.png" tag:3 string:[GVUserDefaults standardUserDefaults].diamond add:true];
+    UIView *view3 = [self costViewWithImage:@"健康豆.png" tag:2 string:[self.offlineManager getStringWithKey:@"healthyBeans"] add:true];
+    UIView *view4 = [self costViewWithImage:@"钻石小.png" tag:3 string:[self.offlineManager getStringWithKey:@"diamond"] add:true];
     
     [self.mybuttonView addSubview:view1];
     [self.mybuttonView addSubview:view2];
     [self.mybuttonView addSubview:view3];
     [self.mybuttonView addSubview:view4];
-    
-    self.curBTManager = [MyBTManager sharedInstance];
+
     [self layoutMySubviews];
 }
 
@@ -112,8 +114,8 @@
     }else{
         UIProgressView *proView = [[UIProgressView alloc]initWithFrame:CGRectMake(5, 52, viewWidth-10, 2)];
         proView.progressViewStyle = UIProgressViewStyleBar;
-        proView.progress = ([[GVUserDefaults standardUserDefaults].experience intValue]/100);
-        NSLog(@"经验值%@",[GVUserDefaults standardUserDefaults].experience);
+        proView.progress = ([[self.offlineManager getStringWithKey:@"experience"] intValue]/100);
+        NSLog(@"经验值%@",[self.offlineManager getStringWithKey:@"experience"]);
         // 设置走过的颜色
         proView.progressTintColor = [UIColor orangeColor];
         
@@ -153,11 +155,12 @@
 }
 
 - (void)layoutMySubviews{
+    [self.offlineManager setOperatingTable:@"user_table"];
     //
     _avaterIv = [[UIImageView alloc] initWithFrame:CGRectMake(15, 65, 70, 70)];
     _avaterIv.layer.masksToBounds = YES;
     _avaterIv.layer.cornerRadius = 35;
-    [_avaterIv sd_setImageWithURL:[NSURL URLWithString:[GVUserDefaults standardUserDefaults].avatar] placeholderImage:[UIImage imageNamed:@"Avater_Default"]];
+    [_avaterIv sd_setImageWithURL:[NSURL URLWithString:[self.offlineManager getStringWithKey:@"avatar"]] placeholderImage:[UIImage imageNamed:@"Avater_Default"]];
     [self.view addSubview:_avaterIv];
     _avaterIv.userInteractionEnabled = YES;
     [_avaterIv addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapUploadAvater:)]];
@@ -165,12 +168,12 @@
     _nameLB = [[UILabel alloc] initWithFrame:CGRectMake(110, 70, 80, 20)];
     _nameLB.textAlignment = NSTextAlignmentLeft;
     _nameLB.textColor = [UIColor whiteColor];
-    _nameLB.text = [GVUserDefaults standardUserDefaults].userName;
+    _nameLB.text = [self.offlineManager getStringWithKey:@"userName"];
     [self.view addSubview:_nameLB];
     UILabel *levelLB = [[UILabel alloc] initWithFrame:CGRectMake(110, 100, 80, 20)];
     levelLB.textAlignment = NSTextAlignmentLeft;
     levelLB.textColor = [UIColor whiteColor];
-    levelLB.text = [NSString stringWithFormat:@"等级 %@",[GVUserDefaults standardUserDefaults].level];
+    levelLB.text = [NSString stringWithFormat:@"等级 %@",[self.offlineManager getStringWithKey:@"level"]];
     [self.view addSubview:levelLB];
     UIImageView *editIv = [[UIImageView alloc] initWithFrame:CGRectMake(190, 70, 20, 20)];
     editIv.image = [UIImage imageNamed:@"Edit"];
@@ -205,7 +208,7 @@
     beansLB.textColor = UIColorFromRGB(0xd89700);
     UILabel *beansLB2 = [[UILabel alloc] init];
     beansLB2.textAlignment = NSTextAlignmentCenter;
-    beansLB2.text = [GVUserDefaults standardUserDefaults].healthyBeans;
+    beansLB2.text = [self.offlineManager getStringWithKey:@"healthyBeans"];
     beansLB2.textColor = [UIColor whiteColor];
     UILabel *diamondLB = [[UILabel alloc] init];
     diamondLB.textAlignment = NSTextAlignmentCenter;
@@ -213,7 +216,7 @@
     diamondLB.textColor = UIColorFromRGB(0x9558e8);
     UILabel *diamondLB2 = [[UILabel alloc] init];
     diamondLB2.textAlignment = NSTextAlignmentCenter;
-    diamondLB2.text = [GVUserDefaults standardUserDefaults].diamond;
+    diamondLB2.text = [self.offlineManager getStringWithKey:@"diamond"];
     diamondLB2.textColor = [UIColor whiteColor];
     [self.view addSubview:energyLB];
     [self.view addSubview:energyLB2];
@@ -314,7 +317,7 @@
                         result = [data substringWithRange:NSMakeRange(6, 6)];
                         NSLog(@"机器码是：%@",result);
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            FingerprintManagementViewController *vc = [[FingerprintManagementViewController alloc] initWithUserId:[GVUserDefaults standardUserDefaults].userId MachineId:result];
+                            FingerprintManagementVC_OFF *vc = [[FingerprintManagementVC_OFF alloc] initWithUserId:[GVUserDefaults standardUserDefaults].userId MachineId:result];
                             [self presentViewController:vc animated:NO completion:nil];
                         });
                     }
@@ -346,10 +349,10 @@
             break;
         case 2:
             NSLog(@"Tap 2");
-            {
-                BTViewController *btvc = [[BTViewController alloc] init];
-                [self.navigationController pushViewController:btvc animated:YES];
-            }
+        {
+            BTViewController *btvc = [[BTViewController alloc] init];
+            [self.navigationController pushViewController:btvc animated:YES];
+        }
             break;
         case 3:
             NSLog(@"Tap 3");
@@ -359,10 +362,10 @@
             break;
         case 5:
             NSLog(@"Tap 5");
-            {
-                AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-                [delegate toLogin];
-            }
+        {
+            AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [delegate toLogin];
+        }
             break;
         default:break;
     }
@@ -376,20 +379,21 @@
         //获取第1个输入框
         UITextField *textField = alertController.textFields.firstObject;
         if (![textField.text isEqualToString:@""]){
-            [self showProgress];
-            EditNicknameApiManager *editNicknameApiManager = [[EditNicknameApiManager alloc] init];
-            [editNicknameApiManager loadDataWithParams:@{@"service":@"App.User.Nickname",@"user_id":[GVUserDefaults standardUserDefaults].userId,@"new_name":textField.text} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-                if ([responseData[@"data"][@"code"] intValue] != 1){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self hideProgress];
-                        [self showHUDText:responseData[@"data"][@"message"]];
-                    });
-
-                }else{
-                    [GVUserDefaults standardUserDefaults].userName = textField.text;
-                    [self refresh];
-                }
-            }];
+            self.nameLB.text = textField.text;
+//            [self showProgress];
+//            EditNicknameApiManager *editNicknameApiManager = [[EditNicknameApiManager alloc] init];
+//            [editNicknameApiManager loadDataWithParams:@{@"service":@"App.User.Nickname",@"user_id":[GVUserDefaults standardUserDefaults].userId,@"new_name":textField.text} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
+//                if ([responseData[@"data"][@"code"] intValue] != 1){
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [self hideProgress];
+//                        [self showHUDText:responseData[@"data"][@"message"]];
+//                    });
+//
+//                }else{
+//                    [GVUserDefaults standardUserDefaults].userName = textField.text;
+//                    [self refresh];
+//                }
+//            }];
         }else{
             [self showHUDText:@"新用户名不能为空"];
         }
@@ -403,11 +407,11 @@
 
 - (void)tapUploadAvater:(UIGestureRecognizer *)gr{
     //打开本地相册
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    [self presentViewController:picker animated:YES completion:nil];
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//    picker.delegate = self;
+//    picker.allowsEditing = YES;
+//    [self presentViewController:picker animated:YES completion:nil];
 }
 
 - (void)uploadImageWithData:(NSData *)data{
@@ -420,39 +424,36 @@
     });
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSURLSessionDataTask *datatask = [manager POST:requestUrl
-                                               parameters:dic
-                                constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-                                    [formData appendPartWithFileData:data name:@"file" fileName:@"avatarfile.jpeg" mimeType:@"image/jpeg"];
-                                    
-                                } progress:^(NSProgress * _Nonnull uploadProgress) {
-                                    NSLog(@"-----%.2f",uploadProgress.fractionCompleted);
-                                } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                                    NSLog(@"上传成功--%@",responseObject);
-                                    [self refresh];
-                                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                                    NSLog(@"上传失败%@",error);
-                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                        [self hideProgress];
-                                        [self showHUDText:@"更改失败"];
-                                    });
-                                }];
+                                        parameters:dic
+                         constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                             [formData appendPartWithFileData:data name:@"file" fileName:@"avatarfile.jpeg" mimeType:@"image/jpeg"];
+                             
+                         } progress:^(NSProgress * _Nonnull uploadProgress) {
+                             NSLog(@"-----%.2f",uploadProgress.fractionCompleted);
+                         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                             NSLog(@"上传成功--%@",responseObject);
+                             [self refresh];
+                         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                             NSLog(@"上传失败%@",error);
+                             [self refresh];
+                         }];
     [datatask resume];
 }
 
 - (void)refresh{
     UserLoginAPIManager *loginApimanager = [[UserLoginAPIManager alloc] initWithUserNameAndPassword:[GVUserDefaults standardUserDefaults].userName password:[GVUserDefaults standardUserDefaults].userPwd];
     [loginApimanager loadDataCompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self hideProgress];
-                [self showHUDText:@"更改成功"];
-            });
-            [GVUserDefaults standardUserDefaults].userId = responseData[@"data"][@"id"];
-            [GVUserDefaults standardUserDefaults].userName = responseData[@"data"][@"name"];
-            [GVUserDefaults standardUserDefaults].avatar = responseData[@"data"][@"avatar"];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.avaterIv sd_setImageWithURL:[NSURL URLWithString:[GVUserDefaults standardUserDefaults].avatar] placeholderImage:[UIImage imageNamed:@"Avater_Default"]];
-                self.nameLB.text = [GVUserDefaults standardUserDefaults].userName;
-            });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self hideProgress];
+            [self showHUDText:@"更改成功"];
+        });
+        [GVUserDefaults standardUserDefaults].userId = responseData[@"data"][@"id"];
+        [GVUserDefaults standardUserDefaults].userName = responseData[@"data"][@"name"];
+        [GVUserDefaults standardUserDefaults].avatar = responseData[@"data"][@"avatar"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.avaterIv sd_setImageWithURL:[NSURL URLWithString:[GVUserDefaults standardUserDefaults].avatar] placeholderImage:[UIImage imageNamed:@"Avater_Default"]];
+            self.nameLB.text = [GVUserDefaults standardUserDefaults].userName;
+        });
     }];
 }
 
@@ -468,7 +469,7 @@
     } else {
         //准备图片的二进制数据
         image = [image zip];
-//        data = UIImagePNGRepresentation(image);
+        //        data = UIImagePNGRepresentation(image);
         data = UIImageJPEGRepresentation(image, 1);
         //上传图片
         [self uploadImageWithData:data];

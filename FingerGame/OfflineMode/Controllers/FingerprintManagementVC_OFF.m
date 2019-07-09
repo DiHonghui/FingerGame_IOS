@@ -1,12 +1,12 @@
 //
-//  FingerprintManagementViewController.m
+//  FingerprintManagementVC_OFF.m
 //  FingerGame
 //
-//  Created by lisy on 2019/6/28.
+//  Created by lisy on 2019/7/9.
 //  Copyright © 2019 lisy. All rights reserved.
 //
 
-#import "FingerprintManagementViewController.h"
+#import "FingerprintManagementVC_OFF.h"
 
 #import "FpInfoModel.h"
 
@@ -14,8 +14,7 @@
 #import "Masonry.h"
 #import "NSObject+ProgressHUD.h"
 #import "MyBTManager.h"
-#import "FingerprintInfoApiManager.h"
-#import "LoginFingerprintApiManager.h"
+#import "OfflineManager.h"
 
 typedef NS_ENUM(NSInteger,FingerprintLoginState){
     LoginStateDefault = 0,
@@ -23,7 +22,7 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
     LoginStateTogether
 };
 
-@interface FingerprintManagementViewController () <MyBTManagerProtocol>
+@interface FingerprintManagementVC_OFF () <MyBTManagerProtocol>
 
 @property (nonatomic,strong) MyBTManager *myBTManager;
 
@@ -44,10 +43,10 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
 @property (nonatomic,assign) NSString *curLoginLocation;
 
 @property (nonatomic,strong) NSMutableArray *alreadyLoginArray;
-
+@property (nonatomic,strong) OfflineManager *offlineManager;
 @end
 
-@implementation FingerprintManagementViewController
+@implementation FingerprintManagementVC_OFF
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -70,6 +69,7 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
         self.machineId = machineId;
         self.myBTManager = [MyBTManager sharedInstance];
         self.myBTManager.delegate = self;
+        self.offlineManager = [OfflineManager sharedInstance];
         self.loginState = LoginStateDefault;
         self.fpArray = [[NSMutableArray alloc] initWithCapacity:11];
     }
@@ -77,8 +77,6 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
 }
 
 - (void)layoutMySubviews{
-//    [self initMyFingerprintAppearence];
-    //
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH/8, SCREEN_HEIGHT/12)];
     backView.layer.cornerRadius = 15;
     backView.backgroundColor = UIColorFromRGB(0x03b5f5);
@@ -313,129 +311,72 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
 }
 
 - (void)loadData{
-    FingerprintInfoApiManager *manager = [[FingerprintInfoApiManager alloc] init];
-    [manager loadDataWithParams:@{@"service":@"App.Fingerprint.GetFingerPrint",@"userId":self.userId,@"machineId":self.machineId} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-        if (errorType == ZHYAPIManagerErrorTypeSuccess){
-            NSLog(@"response == %@",responseData[@"data"]);
-            if ([responseData[@"data"][@"code"] integerValue] == 0){
-                NSLog(@"新的机器码");
-                LoginFingerprintApiManager *m = [[LoginFingerprintApiManager alloc] init];
-                NSDictionary *dic = @{@"service":@"App.Fingerprint.SetAllFingerPrint",@"userId":self.userId,@"machineId":self.machineId,@"f0":@"-1",@"f1":@"-1",@"f2":@"-1",@"f3":@"-1",@"f4":@"-1",@"f5":@"-1",@"f6":@"-1",@"f7":@"-1",@"f8":@"-1",@"f9":@"-1"};
-                [m loadDataWithParams:dic CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-                    [self loadData];
-                }];
-            }
-            else{
-                if (self.fpArray) {
-                    [self.fpArray removeAllObjects];
-                    //
-                    FpInfoModel *fp1 = [[FpInfoModel alloc] init];
-                    fp1.fingerId = @"0"; fp1.fingerName = @"小拇指"; fp1.storeLocation = responseData[@"data"][@"info"][@"f0"];
-                    [self.fpArray addObject:fp1];
-                    FpInfoModel *fp2 = [[FpInfoModel alloc] init];
-                    fp2.fingerId = @"1"; fp2.fingerName = @"无名指"; fp2.storeLocation = responseData[@"data"][@"info"][@"f1"];
-                    [self.fpArray addObject:fp2];
-                    FpInfoModel *fp3 = [[FpInfoModel alloc] init];
-                    fp3.fingerId = @"2"; fp3.fingerName = @"中指"; fp3.storeLocation = responseData[@"data"][@"info"][@"f2"];
-                    [self.fpArray addObject:fp3];
-                    FpInfoModel *fp4 = [[FpInfoModel alloc] init];
-                    fp4.fingerId = @"3"; fp4.fingerName = @"食指"; fp4.storeLocation = responseData[@"data"][@"info"][@"f3"];
-                    [self.fpArray addObject:fp4];
-                    FpInfoModel *fp5 = [[FpInfoModel alloc] init];
-                    fp5.fingerId = @"4"; fp5.fingerName = @"大拇指"; fp5.storeLocation = responseData[@"data"][@"info"][@"f4"];
-                    [self.fpArray addObject:fp5];
-                    FpInfoModel *fp6 = [[FpInfoModel alloc] init];
-                    fp6.fingerId = @"5"; fp6.fingerName = @"大拇指"; fp6.storeLocation = responseData[@"data"][@"info"][@"f5"];
-                    [self.fpArray addObject:fp6];
-                    FpInfoModel *fp7 = [[FpInfoModel alloc] init];
-                    fp7.fingerId = @"6"; fp7.fingerName = @"食指"; fp7.storeLocation = responseData[@"data"][@"info"][@"f6"];
-                    [self.fpArray addObject:fp7];
-                    FpInfoModel *fp8 = [[FpInfoModel alloc] init];
-                    fp8.fingerId = @"7"; fp8.fingerName = @"中指"; fp8.storeLocation = responseData[@"data"][@"info"][@"f7"];
-                    [self.fpArray addObject:fp8];
-                    FpInfoModel *fp9 = [[FpInfoModel alloc] init];
-                    fp9.fingerId = @"8"; fp9.fingerName = @"无名指"; fp9.storeLocation = responseData[@"data"][@"info"][@"f8"];
-                    [self.fpArray addObject:fp9];
-                    FpInfoModel *fp10 = [[FpInfoModel alloc] init];
-                    fp10.fingerId = @"9"; fp10.fingerName = @"小拇指"; fp10.storeLocation = responseData[@"data"][@"info"][@"f9"];
-                    [self.fpArray addObject:fp10];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self initMyFingerprintAppearence];
-                    });
-                }
-            }
-        }else{
-            NSLog(@"%@",responseData[@"msg"]);
-            if (self.fpArray) {
-                [self.fpArray removeAllObjects];
-                FpInfoModel *fp1 = [[FpInfoModel alloc] init];
-                fp1.fingerId = @"0"; fp1.fingerName = @"小拇指"; fp1.storeLocation = @"-1";
-                [self.fpArray addObject:fp1];
-                FpInfoModel *fp2 = [[FpInfoModel alloc] init];
-                fp2.fingerId = @"1"; fp2.fingerName = @"无名指"; fp2.storeLocation = @"-1";
-                [self.fpArray addObject:fp2];
-                FpInfoModel *fp3 = [[FpInfoModel alloc] init];
-                fp3.fingerId = @"2"; fp3.fingerName = @"中指"; fp3.storeLocation = @"-1";
-                [self.fpArray addObject:fp3];
-                FpInfoModel *fp4 = [[FpInfoModel alloc] init];
-                fp4.fingerId = @"3"; fp4.fingerName = @"食指"; fp4.storeLocation = @"-1";
-                [self.fpArray addObject:fp4];
-                FpInfoModel *fp5 = [[FpInfoModel alloc] init];
-                fp5.fingerId = @"4"; fp5.fingerName = @"大拇指"; fp5.storeLocation = @"-1";
-                [self.fpArray addObject:fp5];
-                FpInfoModel *fp6 = [[FpInfoModel alloc] init];
-                fp6.fingerId = @"5"; fp6.fingerName = @"大拇指"; fp6.storeLocation = @"-1";
-                [self.fpArray addObject:fp6];
-                FpInfoModel *fp7 = [[FpInfoModel alloc] init];
-                fp7.fingerId = @"6"; fp7.fingerName = @"食指"; fp7.storeLocation = @"-1";
-                [self.fpArray addObject:fp7];
-                FpInfoModel *fp8 = [[FpInfoModel alloc] init];
-                fp8.fingerId = @"7"; fp8.fingerName = @"中指"; fp8.storeLocation = @"-1";
-                [self.fpArray addObject:fp8];
-                FpInfoModel *fp9 = [[FpInfoModel alloc] init];
-                fp9.fingerId = @"8"; fp9.fingerName = @"无名指"; fp9.storeLocation = @"-1";
-                [self.fpArray addObject:fp9];
-                FpInfoModel *fp10 = [[FpInfoModel alloc] init];
-                fp10.fingerId = @"9"; fp10.fingerName = @"小拇指"; fp10.storeLocation = @"-1";
-                [self.fpArray addObject:fp10];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self initMyFingerprintAppearence];
-                });
-            }
-        }
-    }];
+    [self.offlineManager setOperatingTable:@"fingerprint_table"];
+    if (self.fpArray) {
+        [self.fpArray removeAllObjects];
+        //
+        FpInfoModel *fp1 = [[FpInfoModel alloc] init];
+        fp1.fingerId = @"0"; fp1.fingerName = @"小拇指"; fp1.storeLocation = ((id)[self.offlineManager getObjectWithKey:@"0"])[@"storeLocation"];
+        [self.fpArray addObject:fp1];
+        FpInfoModel *fp2 = [[FpInfoModel alloc] init];
+        fp2.fingerId = @"1"; fp2.fingerName = @"无名指"; fp2.storeLocation = ((id)[self.offlineManager getObjectWithKey:@"1"])[@"storeLocation"];
+        [self.fpArray addObject:fp2];
+        FpInfoModel *fp3 = [[FpInfoModel alloc] init];
+        fp3.fingerId = @"2"; fp3.fingerName = @"中指"; fp3.storeLocation = ((id)[self.offlineManager getObjectWithKey:@"2"])[@"storeLocation"];
+        [self.fpArray addObject:fp3];
+        FpInfoModel *fp4 = [[FpInfoModel alloc] init];
+        fp4.fingerId = @"3"; fp4.fingerName = @"食指"; fp4.storeLocation = ((id)[self.offlineManager getObjectWithKey:@"3"])[@"storeLocation"];
+        [self.fpArray addObject:fp4];
+        FpInfoModel *fp5 = [[FpInfoModel alloc] init];
+        fp5.fingerId = @"4"; fp5.fingerName = @"大拇指"; fp5.storeLocation = ((id)[self.offlineManager getObjectWithKey:@"4"])[@"storeLocation"];
+        [self.fpArray addObject:fp5];
+        FpInfoModel *fp6 = [[FpInfoModel alloc] init];
+        fp6.fingerId = @"5"; fp6.fingerName = @"大拇指"; fp6.storeLocation = ((id)[self.offlineManager getObjectWithKey:@"5"])[@"storeLocation"];
+        [self.fpArray addObject:fp6];
+        FpInfoModel *fp7 = [[FpInfoModel alloc] init];
+        fp7.fingerId = @"6"; fp7.fingerName = @"食指"; fp7.storeLocation = ((id)[self.offlineManager getObjectWithKey:@"6"])[@"storeLocation"];
+        [self.fpArray addObject:fp7];
+        FpInfoModel *fp8 = [[FpInfoModel alloc] init];
+        fp8.fingerId = @"7"; fp8.fingerName = @"中指"; fp8.storeLocation = ((id)[self.offlineManager getObjectWithKey:@"7"])[@"storeLocation"];
+        [self.fpArray addObject:fp8];
+        FpInfoModel *fp9 = [[FpInfoModel alloc] init];
+        fp9.fingerId = @"8"; fp9.fingerName = @"无名指"; fp9.storeLocation = ((id)[self.offlineManager getObjectWithKey:@"8"])[@"storeLocation"];
+        [self.fpArray addObject:fp9];
+        FpInfoModel *fp10 = [[FpInfoModel alloc] init];
+        fp10.fingerId = @"9"; fp10.fingerName = @"小拇指"; fp10.storeLocation = ((id)[self.offlineManager getObjectWithKey:@"9"])[@"storeLocation"];
+        [self.fpArray addObject:fp10];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self initMyFingerprintAppearence];
+        });
+    }
 }
 
 - (void)uploadFpToServerWithId:(NSString *)fpId Location:(NSString *)location{
-    LoginFingerprintApiManager *manager = [[LoginFingerprintApiManager alloc] init];
-    [manager loadDataWithParams:@{@"service":@"App.Fingerprint.SetFingerPrint",@"userId":self.userId,@"machineId":self.machineId,@"fingerId":fpId,@"fingerValue":location} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-        NSLog(@"%@",responseData);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self loadData];
-        });
-    }];
+    FpInfoModel *model = (FpInfoModel *)[self.fpArray objectAtIndex:[fpId integerValue]];
+    NSDictionary *dic = @{@"fingerId":fpId,@"fingerName":model.fingerName,@"storeLocation":location};
+    [self.offlineManager storeObject:dic WithKey:fpId];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self loadData];
+    });
 }
 
 - (void)uploadTenFpTogether{
     NSLog(@"%lu",(unsigned long)[self.alreadyLoginArray count]);
-    __block NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [self.alreadyLoginArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         FpInfoModel *m = (FpInfoModel *)obj;
-        //[self uploadFpToServerWithId:m.fingerId Location:m.storeLocation];
-        [dic setValue:m.storeLocation forKey:[NSString stringWithFormat:@"f%@",m.fingerId]];
+        FpInfoModel *m0 = (FpInfoModel *)[self.fpArray objectAtIndex:idx];
+        NSLog(@"%@ %@ %@",m.fingerId,m0.fingerName,m.storeLocation);
+        NSDictionary *dic = @{@"fingerId":m.fingerId,@"fingerName":m0.fingerName,@"storeLocation":m.storeLocation};
+        NSLog(@"%@",dic);
+        [self.offlineManager storeObject:dic WithKey:m.fingerId];
     }];
-    [dic setValue:@"-1" forKey:@"f8"];
-    [dic setValue:@"-1" forKey:@"f9"];
-    [dic setValue:@"App.Fingerprint.SetAllFingerPrint" forKey:@"service"];
-    [dic setValue:self.userId forKey:@"userId"];
-    [dic setValue:self.machineId forKey:@"machineId"];
-    LoginFingerprintApiManager *manager = [[LoginFingerprintApiManager alloc] init];
-    [manager loadDataWithParams:dic CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-        NSLog(@"%@",responseData);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self loadData];
-        });
-    }];
+    NSDictionary *dic1 = @{@"fingerId":@"8",@"fingerName":@"无名指",@"storeLocation":@"-1"};
+    [self.offlineManager storeObject:dic1 WithKey:@"8"];
+    NSDictionary *dic2 = @{@"fingerId":@"9",@"fingerName":@"小拇指",@"storeLocation":@"-1"};
+    [self.offlineManager storeObject:dic2 WithKey:@"9"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self loadData];
+    });
 }
 
 #pragma mark - event
@@ -465,12 +406,14 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
 - (void)tapLoginAllFp:(UIGestureRecognizer *)gr{
     if (gr.view.tag == 11){
         [self.viewArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            UIView *v = (UIView *)obj;
-            [v removeFromSuperview];
-            FpInfoModel *model = (FpInfoModel*)[self.fpArray objectAtIndex:idx];
-            v = [self viewBlankWithName:model.fingerName Index:model.fingerId];
-            [self.view addSubview:v];
-            [self.viewArray setObject:v atIndexedSubscript:idx];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIView *v = (UIView *)obj;
+                [v removeFromSuperview];
+                FpInfoModel *model = (FpInfoModel*)[self.fpArray objectAtIndex:idx];
+                v = [self viewBlankWithName:model.fingerName Index:model.fingerId];
+                [self.view addSubview:v];
+                [self.viewArray setObject:v atIndexedSubscript:idx];
+            });
         }];
         //
         NSLog(@"tap 一起录入");
@@ -495,7 +438,7 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
         self.loginAllView.tag = 11;
         [self uploadTenFpTogether];
     }
-
+    
 }
 
 - (void)tapBack:(UIGestureRecognizer *)gr{

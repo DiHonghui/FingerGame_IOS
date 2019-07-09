@@ -11,6 +11,8 @@
 #import "ViewController.h"
 #import "GameStageTableViewController.h"
 #import "TabBarControllerConfig.h"
+//
+#import "TabBarControllerConfig_OFF.h"
 
 @interface AppDelegate ()
 
@@ -40,12 +42,12 @@
     self.window.rootViewController =tabBarController.tabBarController;
 
 }
-//test main game
-//-(void)toMain{
-//    GameDetailViewController *vc = [[GameDetailViewController alloc] initWithGameId:@"1"];
-//    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-//    self.window.rootViewController =nc;
-//}
+
+- (void)toMainOffline{
+    TabBarControllerConfig_OFF *tabBarController =[[TabBarControllerConfig_OFF alloc]init];
+    self.window.rootViewController =tabBarController.tabBarController;
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

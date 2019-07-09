@@ -16,7 +16,9 @@
 #import "UserLoginApiManager.h"
 #import "MyAlertCenter.h"
 #import "AFNetworkReachabilityManager.h"
+//
 #import "OfflineManager.h"
+#import "GameStageTVC_OFF.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -267,6 +269,7 @@
     NSLog(@"进入离线模式");
     OfflineManager *m = [OfflineManager sharedInstance];
     [m initMyOfflineData];
-
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [delegate toMainOffline];
 }
 @end
