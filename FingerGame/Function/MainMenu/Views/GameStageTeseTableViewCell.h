@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(GameStageTeseTableViewCell *)createCellbyTableView:(UITableView *)tableView;
 
 -(void)configureCell:(MissionModel *)model;
-
+@property(strong,nonatomic)MissionModel *missionCellModel;
 @end
 
 NS_ASSUME_NONNULL_END

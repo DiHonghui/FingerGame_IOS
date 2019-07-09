@@ -109,8 +109,11 @@
     
     self.tableView.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakself loadData];
+        [self.tableView reloadData];
     }];
     [weakself loadData];
+    [self.tableView reloadData];
+    
     
     //
 }
@@ -189,10 +192,6 @@
                 
             }
     }];
-
-    [self.tableView reloadData];
-    
-    
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -272,7 +271,6 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     MissionModel *missionModel = _tempdataSource[indexPath.row];
-    NSLog(@"datasource type is %@",self.dataSource);
     NSLog(@"收藏状态是%@",missionModel.like);
     [cell configureCell:missionModel];
     cell.delegate = self;
