@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
 @property (nonatomic,assign) FingerprintLoginState loginState;
 
 @property (nonatomic,assign) int curOperatingFinger;
-@property (nonatomic,assign) NSString *curLoginLocation;
+@property (nonatomic,strong) NSString *curLoginLocation;
 
 @property (nonatomic,strong) NSMutableArray *alreadyLoginArray;
 
@@ -465,12 +465,14 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
 - (void)tapLoginAllFp:(UIGestureRecognizer *)gr{
     if (gr.view.tag == 11){
         [self.viewArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            UIView *v = (UIView *)obj;
-            [v removeFromSuperview];
-            FpInfoModel *model = (FpInfoModel*)[self.fpArray objectAtIndex:idx];
-            v = [self viewBlankWithName:model.fingerName Index:model.fingerId];
-            [self.view addSubview:v];
-            [self.viewArray setObject:v atIndexedSubscript:idx];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIView *v = (UIView *)obj;
+                [v removeFromSuperview];
+                FpInfoModel *model = (FpInfoModel*)[self.fpArray objectAtIndex:idx];
+                v = [self viewBlankWithName:model.fingerName Index:model.fingerId];
+                [self.view addSubview:v];
+                [self.viewArray setObject:v atIndexedSubscript:idx];
+            });
         }];
         //
         NSLog(@"tap 一起录入");

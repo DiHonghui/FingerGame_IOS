@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
 @property (nonatomic,assign) FingerprintLoginState loginState;
 
 @property (nonatomic,assign) int curOperatingFinger;
-@property (nonatomic,assign) NSString *curLoginLocation;
+@property (nonatomic,strong) NSString *curLoginLocation;
 
 @property (nonatomic,strong) NSMutableArray *alreadyLoginArray;
 @property (nonatomic,strong) OfflineManager *offlineManager;
