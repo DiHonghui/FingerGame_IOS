@@ -81,6 +81,21 @@ static AudioManager *sInstance = nil;
     }
 }
 
+- (void)prepareForAudioPlayerWithDataSet:(NSString *)audioName{
+    NSDataAsset *asset = [[NSDataAsset alloc] initWithName:audioName];
+    NSData *data = asset.data;
+    NSError *error=nil;
+    _myAudioPlayer = [[AVAudioPlayer alloc] initWithData:data error:&error];
+    if (_myAudioPlayer) NSLog(@"播放器成功创建");
+    [_myAudioPlayer prepareToPlay];//加载音频文件到缓存
+    _myAudioPlayer.numberOfLoops=0;//设置为0不循环
+    _myAudioPlayer.delegate=self;
+    NSLog(@"ready for playing");
+    if(error){
+        NSLog(@"初始化播放器过程发生错误,错误信息:%@",error.localizedDescription);
+    }
+}
+
 - (void)playAudio{
     if (![self.myAudioPlayer isPlaying]){
         [self.myAudioPlayer play];

@@ -22,6 +22,8 @@ typedef void(^DownloadProgressBlock)(CGFloat p);
 - (void)downloadAudioWithURL:(NSString *)aUrl fileName:(NSString *)aFileName downloadProgressBlock:(DownloadProgressBlock)progressBlock downloadReturnBlock:(DownloadReturnBlock)returnBlock;
 //传入本地音频文件路径，准备播放
 - (void)prepareForAudioPlayer:(NSString *)filePath;
+//传入assets data set音频文件，准备播放
+- (void)prepareForAudioPlayerWithDataSet:(NSString *)audioName;
 //
 - (void)playAudio;
 //

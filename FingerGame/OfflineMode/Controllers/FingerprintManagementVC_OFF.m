@@ -370,10 +370,10 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
         NSLog(@"%@",dic);
         [self.offlineManager storeObject:dic WithKey:m.fingerId];
     }];
-    NSDictionary *dic1 = @{@"fingerId":@"8",@"fingerName":@"无名指",@"storeLocation":@"-1"};
-    [self.offlineManager storeObject:dic1 WithKey:@"8"];
-    NSDictionary *dic2 = @{@"fingerId":@"9",@"fingerName":@"小拇指",@"storeLocation":@"-1"};
-    [self.offlineManager storeObject:dic2 WithKey:@"9"];
+//    NSDictionary *dic1 = @{@"fingerId":@"8",@"fingerName":@"无名指",@"storeLocation":@"-1"};
+//    [self.offlineManager storeObject:dic1 WithKey:@"8"];
+//    NSDictionary *dic2 = @{@"fingerId":@"9",@"fingerName":@"小拇指",@"storeLocation":@"-1"};
+//    [self.offlineManager storeObject:dic2 WithKey:@"9"];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self loadData];
     });
@@ -490,7 +490,7 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
                     [self.view addSubview:v];
                     [self.viewArray setObject:v atIndexedSubscript:self.curOperatingFinger];
                     
-                    if (self.curOperatingFinger == 7){
+                    if (self.curOperatingFinger == 9){
                         self.loginState = LoginStateDefault;
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [self hideProgress];
@@ -520,7 +520,7 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
                         [self.view addSubview:v];
                         [self.viewArray setObject:v atIndexedSubscript:self.curOperatingFinger];
                         
-                        if (self.curOperatingFinger == 7){
+                        if (self.curOperatingFinger == 9){
                             self.loginState = LoginStateDefault;
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 [self hideProgress];

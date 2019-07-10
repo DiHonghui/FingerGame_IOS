@@ -250,6 +250,7 @@
 
 //开始游戏（从倒计时开始）
 - (void)startGame{
+    [self.curAudioManager prepareForAudioPlayerWithDataSet:self.curMissionModel.missionID];
     [self initGameStatistics];
     _gameStaticsView = [[GameStaticsView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _gameStaticsView.delegate = self;
@@ -508,6 +509,7 @@
             if ([data containsString:@"aa02030609"]){
                 NSLog(@"开始游戏！");
                 self.isPaused = NO;
+                [self.curAudioManager playAudio];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSLog(@"-----------");
                     [self->displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
@@ -516,7 +518,6 @@
                 NSLog(@"未接收到蓝牙计时结束指令，无法正常游戏");
             }
         }];
-        [self.curAudioManager playAudio];
     }];
 }
 

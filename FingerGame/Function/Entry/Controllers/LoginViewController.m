@@ -19,8 +19,10 @@
 //
 #import "OfflineManager.h"
 #import "GameStageTVC_OFF.h"
+#import "AudioManager.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface LoginViewController () <UITextFieldDelegate>
+@interface LoginViewController () <UITextFieldDelegate,AVAudioPlayerDelegate>
 
 @property (strong,nonatomic)UITextField *usernameField;
 @property (strong,nonatomic)UITextField *passwordField;
@@ -35,6 +37,8 @@
 
 
 @property (strong,nonatomic) UserLoginAPIManager *loginApimanager;
+
+@property (strong,nonatomic) AVAudioPlayer *player;
 @end
 
 @implementation LoginViewController
@@ -267,9 +271,11 @@
 -(void)loginOfflineClick:(id)sender{
 //离线进入主页面
     NSLog(@"进入离线模式");
+    
     OfflineManager *m = [OfflineManager sharedInstance];
     [m initMyOfflineData];
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [delegate toMainOffline];
 }
+
 @end

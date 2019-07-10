@@ -424,8 +424,8 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
         //[self uploadFpToServerWithId:m.fingerId Location:m.storeLocation];
         [dic setValue:m.storeLocation forKey:[NSString stringWithFormat:@"f%@",m.fingerId]];
     }];
-    [dic setValue:@"-1" forKey:@"f8"];
-    [dic setValue:@"-1" forKey:@"f9"];
+//    [dic setValue:@"-1" forKey:@"f8"];
+//    [dic setValue:@"-1" forKey:@"f9"];
     [dic setValue:@"App.Fingerprint.SetAllFingerPrint" forKey:@"service"];
     [dic setValue:self.userId forKey:@"userId"];
     [dic setValue:self.machineId forKey:@"machineId"];
@@ -547,7 +547,7 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
                     [self.view addSubview:v];
                     [self.viewArray setObject:v atIndexedSubscript:self.curOperatingFinger];
                     
-                    if (self.curOperatingFinger == 7){
+                    if (self.curOperatingFinger == 9){
                         self.loginState = LoginStateDefault;
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [self hideProgress];
@@ -577,7 +577,7 @@ typedef NS_ENUM(NSInteger,FingerprintLoginState){
                         [self.view addSubview:v];
                         [self.viewArray setObject:v atIndexedSubscript:self.curOperatingFinger];
                         
-                        if (self.curOperatingFinger == 7){
+                        if (self.curOperatingFinger == 9){
                             self.loginState = LoginStateDefault;
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 [self hideProgress];
