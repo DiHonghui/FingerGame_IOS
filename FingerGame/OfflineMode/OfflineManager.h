@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)getStringWithKey:(NSString *)key;
 
 - (id)getObjectWithKey:(NSString *)key;
+-(void)UpdateForLikeObjectWithKey:(NSString *)key;
 
 - (NSDate *)getCreatedTimeForKey:(NSString *)key;
 

@@ -28,6 +28,7 @@
 #import "FavoViewController.h"
 #import "FingerprintManagementVC_OFF.h"
 #import "OfflineManager.h"
+#import "FavoriteTVC_OFF.h"
 
 @interface PersonalCenterVC_OFF ()
 
@@ -343,7 +344,7 @@
         case 1:
             NSLog(@"Tap 1");
             if (view.tag==1) {
-                FavoViewController *ft = [[FavoViewController alloc]init];
+                FavoriteTVC_OFF *ft = [[FavoriteTVC_OFF alloc]init];
                 [self.navigationController pushViewController:ft animated:YES];
             }
             break;

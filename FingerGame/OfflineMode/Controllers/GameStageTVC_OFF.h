@@ -8,10 +8,11 @@
 
 #import "TableViewController.h"
 #import "CostValueTableViewCell.h"
+#import "StageTVCell_OFF.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GameStageTVC_OFF : TableViewController <CostBuyDelegate>
+@interface GameStageTVC_OFF : TableViewController <CostBuyDelegate,StageTVCell_OFFDelegate>
 
 @end
 

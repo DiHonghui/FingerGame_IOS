@@ -324,6 +324,26 @@ static OfflineManager *sInstance = nil;
     return [_myStore getAllItemsFromTable:tableName];
 }
 
+-(void)UpdateForLikeObjectWithKey:(NSString *)key{
+    id result = [_myStore getObjectById:key fromTable:_operatingTable];
+    NSArray *keys = [result allKeys];
+    NSMutableArray *tempDic = [[ NSMutableDictionary alloc] init];
+    for (NSString *temp in keys) {
+        if (![temp isEqualToString:@"like"]) {
+            [tempDic setValue:[result objectForKey:temp] forKey:temp];
+        }else if ([result[@"like"] isEqualToString:@"1"]){
+            [tempDic setValue:@"0" forKey:@"like"];
+        }else{
+            [tempDic setValue:@"1" forKey:@"like"];
+        }
+        
+    }
+   
+        [_myStore deleteObjectById:key fromTable:_operatingTable];
+        [_myStore putObject:tempDic withId:key intoTable:_operatingTable];
+}
+
+
 - (NSDate *)getCreatedTimeForKey:(NSString *)key{
     YTKKeyValueItem *resultItem = [_myStore getYTKKeyValueItemById:key fromTable:_operatingTable];
     if (resultItem){

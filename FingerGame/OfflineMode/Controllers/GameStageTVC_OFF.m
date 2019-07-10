@@ -7,6 +7,7 @@
 //
 
 #import "GameStageTVC_OFF.h"
+#import "StageTVCell_OFF.h"
 #import "GameStageTeseTableViewCell.h"
 #import "OfflineManager.h"
 #import "MainGameVC_OFF.h"
@@ -35,9 +36,9 @@
 
 #import "LoadResourceTipView.h"
 #define GSTVCELL @"GameStageTableViewCell"
-#define GSTTVCELL @"GameStageTeseTableViewCell"
+#define GSTTVCELL @"StageTVCell_OFF"
 
-@interface GameStageTVC_OFF () <MyBTManagerProtocol,GameStageTeseTableViewCellDelegate>
+@interface GameStageTVC_OFF () <MyBTManagerProtocol,GameStageTeseTableViewCellDelegate,StageTVCell_OFFDelegate>
 
 @property (strong, nonatomic) MissionlistApiManager *missionlistApiManager;
 
@@ -278,7 +279,7 @@
         return cell;
     }
     
-    GameStageTeseTableViewCell *cell = (GameStageTeseTableViewCell *)[tableView dequeueReusableCellWithIdentifier:GSTTVCELL];
+    StageTVCell_OFF *cell = (StageTVCell_OFF *)[tableView dequeueReusableCellWithIdentifier:GSTTVCELL];
     if (!cell) {
         UINib* nib = [UINib nibWithNibName:GSTTVCELL bundle:nil];
         [tableView registerNib:nib forCellReuseIdentifier:GSTTVCELL];
@@ -549,5 +550,8 @@
     return result;
 }
 
-
+-(void)changeLike:(NSString *)missionId{
+    
+    [self.offlineManager UpdateForLikeObjectWithKey:missionId];
+}
 @end

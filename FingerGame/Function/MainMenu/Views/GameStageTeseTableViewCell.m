@@ -27,7 +27,6 @@
 @property (strong,nonatomic)MissionCollectApiManager *missionCollectApiManager;
 @property (weak,nonatomic)NSString *likeOrNot;
 @property(nonatomic,strong)NSString *missionId;
-
 @end
 
 
