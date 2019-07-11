@@ -58,7 +58,7 @@
     [self.mybuttonView addSubview:view4];
     
     //self.title=@"精品列表";
-    //__weak typeof (self) weakself = self;
+    __weak typeof (self) weakself = self;
     self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight(self.mybuttonView.bounds), 0.0);
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight(self.mybuttonView.bounds), 0.0);
     
@@ -69,10 +69,10 @@
     self.tableView.separatorColor = [UIColor clearColor];
     
     self.tableView.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self loadData];
+        [weakself loadData];
     }];
     
-    [self loadData];
+    [weakself loadData];
     //[self.tableView.mj_header beginRefreshing];
 }
 

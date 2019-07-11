@@ -300,10 +300,10 @@
         return;
     }
     NSInteger energyint = [[GVUserDefaults standardUserDefaults].energy integerValue ];
-    if (energyint < 20) {
+    if (energyint < 5) {
         [self alertViewWithXib];
     }else{
-        energyint = energyint - 20;
+        energyint = energyint - 5;
         
         NSLog(@"GameBestScore:%@",((MissionModel *)self.dataSource[indexPath.row]).bestScore);
         
@@ -441,9 +441,9 @@
     if (number!=0) {
         NSLog(@"触发充值按钮");
         NSString* sNumber = [NSString stringWithFormat:@"%ld", number];
-        [self.rechargeApiManager loadDataWithParams:@{@"user_id":[GVUserDefaults standardUserDefaults].userId,@"amount":sNumber,@"service":@"App.User.Recharge"} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
-            //NSLog(@"充值结果为%@", responseData[@"data"][@"message"]);
-        }];
+//        [self.rechargeApiManager loadDataWithParams:@{@"user_id":[GVUserDefaults standardUserDefaults].userId,@"amount":sNumber,@"service":@"App.User.Recharge"} CompleteHandle:^(id responseData, ZHYAPIManagerErrorType errorType) {
+//            //NSLog(@"充值结果为%@", responseData[@"data"][@"message"]);
+//        }];
         NSLog(@"update sucess");
     }
 }

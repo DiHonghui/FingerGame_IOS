@@ -55,7 +55,7 @@ static OfflineManager *sInstance = nil;
     [self storeString:@"10010001000" WithKey:@"phoneNumber"];
     [self storeString:@"50" WithKey:@"diamond"];
     [self storeString:@"500" WithKey:@"healthyBeans"];
-    [self storeString:@"100" WithKey:@"energy"];
+    [self storeString:@"200" WithKey:@"energy"];
     [self storeString:@"1" WithKey:@"level"];
     [self storeString:@"" WithKey:@"avatar"];
     [self storeString:@"50" WithKey:@"experience"];
