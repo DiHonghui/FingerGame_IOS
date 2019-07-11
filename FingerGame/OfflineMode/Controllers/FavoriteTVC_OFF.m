@@ -68,6 +68,12 @@
 
 @implementation FavoriteTVC_OFF
 
+- (void)dealloc
+{
+    //[self.tableView removeObserver:self forKeyPath:@"frame"];
+    self.tableView.delegate = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.offlineManager = [OfflineManager sharedInstance];

@@ -29,6 +29,7 @@
 - (void)dealloc
 {
     [self.tableView removeObserver:self forKeyPath:@"frame"];
+    
     self.tableView.delegate = nil;
 }
 
@@ -57,7 +58,7 @@
     [self.mybuttonView addSubview:view4];
     
     //self.title=@"精品列表";
-    __weak typeof (self) weakself = self;
+    //__weak typeof (self) weakself = self;
     self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight(self.mybuttonView.bounds), 0.0);
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight(self.mybuttonView.bounds), 0.0);
     
@@ -68,10 +69,10 @@
     self.tableView.separatorColor = [UIColor clearColor];
     
     self.tableView.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [weakself loadData];
+        [self loadData];
     }];
     
-    [weakself loadData];
+    [self loadData];
     //[self.tableView.mj_header beginRefreshing];
 }
 
@@ -242,6 +243,34 @@
         return SCREEN_WIDTH;
     }
     return 90;
+}
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self adjustFloatingViewFrame];
+}
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    if([keyPath isEqualToString:@"frame"]) {
+        [self adjustFloatingViewFrame];
+    }
+}
+
+- (void)adjustFloatingViewFrame
+{
+    CGRect newFrame = self.mybuttonView.frame;
+    
+    newFrame.origin.x = 0;
+    newFrame.origin.y = self.tableView.contentOffset.y ;
+    
+    self.mybuttonView.frame = newFrame;
+    [self.tableView bringSubviewToFront:self.mybuttonView];
 }
 
 -(void)buyDiomond{
