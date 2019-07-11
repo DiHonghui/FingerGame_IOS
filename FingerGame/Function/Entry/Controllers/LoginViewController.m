@@ -239,7 +239,7 @@
     if (!_loginOffLine) {
         _loginOffLine = [[UIButton alloc]init];
         _loginOffLine.backgroundColor = [UIColor darkGrayColor];
-        [_loginOffLine setTitle:@"离  线  测   试" forState:UIControlStateNormal];
+        [_loginOffLine setTitle:@"离  线  游  玩" forState:UIControlStateNormal];
         
         [_loginOffLine addTarget:self action:@selector(loginOfflineClick:) forControlEvents:UIControlEventTouchUpInside];
     }

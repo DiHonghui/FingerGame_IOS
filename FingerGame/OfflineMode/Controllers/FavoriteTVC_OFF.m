@@ -164,6 +164,7 @@
     [cell configureCell:missionModel];
     cell.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.userInteractionEnabled = false;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
